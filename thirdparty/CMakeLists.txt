@@ -21,3 +21,6 @@ add_subdirectory(volk)
 add_subdirectory(vma)
 
 add_subdirectory(renamenoise)
+
+# RRAP
+add_subdirectory(apcpp)
