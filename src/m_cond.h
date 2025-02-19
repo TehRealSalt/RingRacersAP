@@ -294,6 +294,9 @@ typedef enum {
 	GDMUSIC_MAX
 } gdmusic_t;
 
+#define UNLOCKED_LOCATION (0x01) // The location was unlocked.
+#define UNLOCKED_ITEM (0x02) // The item was unlocked.
+
 // This is the largest number of 9s that will fit in UINT32 and UINT16 respectively.
 #define GDMAX_RINGS 999999999
 #define GDMAX_CHAOKEYS 9999
@@ -339,7 +342,7 @@ struct gamedata_t
 	boolean collected[MAXEMBLEMS];
 
 	// UNLOCKABLES UNLOCKED
-	boolean unlocked[MAXUNLOCKABLES];
+	UINT8 unlocked[MAXUNLOCKABLES];
 	boolean unlockpending[MAXUNLOCKABLES];
 
 	// SPRAYCANS COLLECTED

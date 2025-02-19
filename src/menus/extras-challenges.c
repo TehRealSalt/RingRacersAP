@@ -92,7 +92,7 @@ static void M_UpdateChallengeGridVisuals(void)
 
 		challengesmenu.unlockcount[CMC_TOTAL]++;
 
-		if (!gamedata->unlocked[i])
+		if (!(gamedata->unlocked[i] & UNLOCKED_LOCATION))
 		{
 			continue;
 		}
@@ -192,7 +192,7 @@ tryfreshrandom:
 				if (triedrandomlevel < 2)
 				{
 					// We try for any unlock second
-					if (!gamedata->unlocked[i])
+					if (!(gamedata->unlocked[i] & UNLOCKED_LOCATION))
 					{
 						continue;
 					}
@@ -439,7 +439,7 @@ boolean M_CanKeyHiliTile(void)
 		return false;
 
 	// Already unlocked?
-	if (gamedata->unlocked[challengesmenu.currentunlock] == true)
+	if (gamedata->unlocked[challengesmenu.currentunlock] & UNLOCKED_LOCATION)
 		return false;
 
 #ifdef DEVELOP
@@ -722,7 +722,7 @@ void M_ChallengesTick(void)
 			unlockable_t *ref = &unlockables[challengesmenu.currentunlock];
 
 			// Unlock animation... also tied directly to the actual unlock!
-			gamedata->unlocked[challengesmenu.currentunlock] = true;
+			gamedata->unlocked[challengesmenu.currentunlock] |= UNLOCKED_LOCATION;
 			M_UpdateUnlockablesAndExtraEmblems(true, true);
 
 			// Update shown description just in case..?
@@ -846,7 +846,7 @@ boolean M_ChallengesInputs(INT32 ch)
 		if (gamedata->chaokeytutorial == true
 			&& gamedata->majorkeyskipattempted == false
 			&& challengesmenu.currentunlock < MAXUNLOCKABLES
-			&& gamedata->unlocked[challengesmenu.currentunlock] == false
+			&& !(gamedata->unlocked[challengesmenu.currentunlock] & UNLOCKED_LOCATION)
 			&& unlockables[challengesmenu.currentunlock].majorunlock == true)
 		{
 			M_ChallengesTutorial(CCTUTORIAL_MAJORSKIP);
@@ -861,9 +861,14 @@ boolean M_ChallengesInputs(INT32 ch)
 			S_StartSound(NULL, sfx_s3k7b); //sfx_s3kb2
 
 #ifdef DEVELOP
-			if (cv_debugchallenges.value && challengesmenu.currentunlock < MAXUNLOCKABLES && challengesmenu.unlockanim >= UNLOCKTIME && gamedata->unlocked[challengesmenu.currentunlock] == true)
+			if (cv_debugchallenges.value
+				&& challengesmenu.currentunlock < MAXUNLOCKABLES
+				&& challengesmenu.unlockanim >= UNLOCKTIME
+				&& (gamedata->unlocked[challengesmenu.currentunlock] & UNLOCKED_LOCATION))
 			{
-				gamedata->unlocked[challengesmenu.currentunlock] = gamedata->unlockpending[challengesmenu.currentunlock] = false;
+				gamedata->unlocked[challengesmenu.currentunlock] &= ~UNLOCKED_LOCATION;
+				gamedata->unlockpending[challengesmenu.currentunlock] = false;
+
 				UINT16 set = unlockables[challengesmenu.currentunlock].conditionset;
 				if (set > 0 && set <= MAXCONDITIONSETS)
 				{
@@ -1087,7 +1092,7 @@ boolean M_ChallengesInputs(INT32 ch)
 		}
 
 		if (challengesmenu.currentunlock < MAXUNLOCKABLES
-			&& gamedata->unlocked[challengesmenu.currentunlock])
+			&& (gamedata->unlocked[challengesmenu.currentunlock] & UNLOCKED_LOCATION))
 		{
 			switch (unlockables[challengesmenu.currentunlock].type)
 			{

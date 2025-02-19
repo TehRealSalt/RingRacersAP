@@ -34,6 +34,9 @@
 #include "k_pwrlv.h"
 #include "k_profiles.h"
 
+// RingRacersAP
+#include "ap_main.h"
+
 gamedata_t *gamedata = NULL;
 boolean netUnlocked[MAXUNLOCKABLES];
 
@@ -401,7 +404,7 @@ badgrid:
 static void M_ChallengeGridExtraDataAdjacencyRules(challengegridextradata_t *extradata, UINT16 adjacent)
 {
 	// Adjacent unlocked tile, permit hint/general key skip.
-	if (gamedata->unlocked[adjacent] == true)
+	if (gamedata->unlocked[adjacent] & UNLOCKED_LOCATION)
 	{
 		extradata->flags |= CHE_HINT;
 	}
@@ -436,7 +439,7 @@ void M_UpdateChallengeGridExtraData(challengegridextradata_t *extradata)
 		{
 			id = (i * CHALLENGEGRIDHEIGHT) + j;
 			num = gamedata->challengegrid[id];
-			if (num >= MAXUNLOCKABLES || unlockables[num].majorunlock == false || gamedata->unlocked[num] == true)
+			if (num >= MAXUNLOCKABLES || unlockables[num].majorunlock == false || (gamedata->unlocked[num] & UNLOCKED_LOCATION))
 			{
 				extradata[id].flags = CHE_NONE;
 				continue;
@@ -1274,7 +1277,7 @@ void M_SetNetUnlocked(void)
 	// Use your gamedata as baseline
 	for (i = 0; i < MAXUNLOCKABLES; i++)
 	{
-		netUnlocked[i] = gamedata->unlocked[i];
+		netUnlocked[i] = ((gamedata->unlocked[i] & UNLOCKED_ITEM) == UNLOCKED_ITEM);
 	}
 
 	if (!dedicated)
@@ -1614,7 +1617,7 @@ boolean M_CheckCondition(condition_t *cn, player_t *player)
 		case UC_EMBLEM: // Requires emblem x to be obtained
 			return gamedata->collected[cn->requirement-1];
 		case UC_UNLOCKABLE: // Requires unlockable x to be obtained
-			return gamedata->unlocked[cn->requirement-1];
+			return ((gamedata->unlocked[cn->requirement-1] & UNLOCKED_ITEM) == UNLOCKED_ITEM);
 		case UC_CONDITIONSET: // requires condition set x to already be achieved
 			return M_Achieved(cn->requirement-1);
 
@@ -1682,7 +1685,7 @@ boolean M_CheckCondition(condition_t *cn, player_t *player)
 
 					total++;
 
-					if (gamedata->unlocked[i] == false)
+					if ((gamedata->unlocked[i] & UNLOCKED_LOCATION) == 0)
 						continue;
 
 					unlocked++;
@@ -2520,7 +2523,7 @@ static const char *M_GetConditionString(condition_t *cn)
 		}
 		case UC_UNLOCKABLE: // Requires unlockable x to be obtained
 			return va("get %s",
-				gamedata->unlocked[cn->requirement-1]
+				(gamedata->unlocked[cn->requirement-1] & UNLOCKED_ITEM)
 				? unlockables[cn->requirement-1].name
 				: "???");
 
@@ -2568,7 +2571,7 @@ static const char *M_GetConditionString(condition_t *cn)
 				{
 					if (unlockables[i].type != cn->extrainfo1)
 						continue;
-					if (gamedata->unlocked[i] == false)
+					if ((gamedata->unlocked[i] & UNLOCKED_ITEM) == 0)
 						continue;
 					break;
 				}
@@ -2986,7 +2989,7 @@ char *M_BuildConditionSetString(UINT16 unlockid)
 		return NULL;
 	}
 
-	if (gamedata->unlocked[unlockid] == true && M_Achieved(unlockables[unlockid].conditionset - 1) == false)
+	if ((gamedata->unlocked[unlockid] & UNLOCKED_LOCATION) && M_Achieved(unlockables[unlockid].conditionset - 1) == false)
 	{
 		message[0] = '\x86'; // the following text will be grey
 		message[1] = '\0';
@@ -3087,7 +3090,7 @@ char *M_BuildConditionSetString(UINT16 unlockid)
 		}
 	}
 
-	if (usedTourney && unlockables[unlockid].conditionset == CH_FURYBIKE && gamedata->unlocked[unlockid] == false)
+	if (usedTourney && unlockables[unlockid].conditionset == CH_FURYBIKE && (gamedata->unlocked[unlockid] & UNLOCKED_LOCATION) == 0)
 	{
 		strcpy(message, "Power shrouds this challenge in darkness... (Return here without Tournament Mode!)\0");
 	}
@@ -3194,12 +3197,12 @@ boolean M_UpdateUnlockablesAndExtraEmblems(boolean loud, boolean doall)
 	// Go through unlockables
 	for (i = 0; i < MAXUNLOCKABLES; ++i)
 	{
-		if (gamedata->unlocked[i] || !unlockables[i].conditionset)
+		if (!unlockables[i].conditionset)
 		{
 			continue;
 		}
 
-		if (gamedata->unlocked[i] == true
+		if ((gamedata->unlocked[i] & UNLOCKED_LOCATION) == UNLOCKED_LOCATION
 			|| gamedata->unlockpending[i] == true)
 		{
 			continue;
@@ -3210,7 +3213,7 @@ boolean M_UpdateUnlockablesAndExtraEmblems(boolean loud, boolean doall)
 			continue;
 		}
 
-		gamedata->unlockpending[i] = true;
+		RRAP_SetUnlocked(i);
 		response++;
 	}
 
@@ -3249,7 +3252,7 @@ UINT16 M_GetNextAchievedUnlock(boolean canskipchaokeys)
 			continue;
 		}
 
-		if (gamedata->unlocked[i] == true)
+		if (gamedata->unlocked[i] & UNLOCKED_LOCATION)
 		{
 			// Already unlocked, no need to engage
 			continue;
@@ -3403,26 +3406,11 @@ UINT16 M_CompletionEmblems(void) // Bah! Duplication sucks, but it's for a separ
 
 boolean M_GameTrulyStarted(void)
 {
-	// Fail safe
-	if (gamedata == NULL)
-		return false;
-
-	// Not set
-	if (gamestartchallenge >= MAXUNLOCKABLES)
-		return true;
-
-	// An unfortunate sidestep, but sync is important.
-	if (netgame)
-		return true;
-
-	// Okay, we can check to see if this challenge has been achieved.
-	/*return (
-		gamedata->unlockpending[gamestartchallenge]
-		|| gamedata->unlocked[gamestartchallenge]
-	);*/
-	// Actually, on second thought, let's let the Goner Setup play one last time
-	// The above is used in M_StartControlPanel instead
-	return (gamedata->gonerlevel == GDGONER_DONE);
+	// Archipelago: this is determined solely
+	// by whenever or not we're connected
+	// (or at least, currently trying to)
+	// to a session or not yet.
+	return g_ap_started;
 }
 
 boolean M_CheckNetUnlockByID(UINT16 unlockid)
@@ -3438,7 +3426,7 @@ boolean M_CheckNetUnlockByID(UINT16 unlockid)
 		return netUnlocked[unlockid];
 	}
 
-	return gamedata->unlocked[unlockid];
+	return (gamedata->unlocked[unlockid] & UNLOCKED_ITEM);
 }
 
 boolean M_SecretUnlocked(INT32 type, boolean local)
@@ -3455,7 +3443,7 @@ boolean M_SecretUnlocked(INT32 type, boolean local)
 	{
 		if (unlockables[i].type != type)
 			continue;
-		if ((local && gamedata->unlocked[i])
+		if ((local && (gamedata->unlocked[i] & UNLOCKED_ITEM))
 			|| (!local && M_CheckNetUnlockByID(i)))
 			continue;
 		return false;
@@ -3593,7 +3581,7 @@ INT32 M_CountMedals(boolean all, boolean extraonly)
 	{
 		if (unlockables[i].type != SECRET_EXTRAMEDAL)
 			continue;
-		if (!all && !gamedata->unlocked[i])
+		if (!all && !(gamedata->unlocked[i] & UNLOCKED_ITEM))
 			continue;
 		found++;
 	}
@@ -3638,7 +3626,7 @@ boolean M_GotEnoughMedals(INT32 number)
 	{
 		if (unlockables[i].type != SECRET_EXTRAMEDAL)
 			continue;
-		if (!gamedata->unlocked[i])
+		if (!(gamedata->unlocked[i] & UNLOCKED_ITEM))
 			continue;
 		if (++gottenmedals < number)
 			continue;

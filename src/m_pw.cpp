@@ -38,6 +38,9 @@
 #include "sounds.h"
 #include "z_zone.h"
 
+// RingRacersAP
+#include "ap_main.h"
+
 namespace
 {
 
@@ -111,10 +114,10 @@ void f_tournament()
 			continue;
 		if (unlockables[i].conditionset == CH_FURYBIKE)
 			continue;
-		if (gamedata->unlocked[i])
+		if (gamedata->unlocked[i] & UNLOCKED_LOCATION)
 			continue;
 
-		gamedata->unlocked[i] = true;
+		RRAP_SetUnlocked(i);
 		success = true;
 	}
 
@@ -263,12 +266,12 @@ void f_colors()
 			continue;
 		if (unlockables[i].conditionset == CH_FURYBIKE)
 			continue;
-		if (gamedata->unlocked[i])
+		if (gamedata->unlocked[i] & UNLOCKED_LOCATION)
 			continue;
 		if (unlockables[i].type != SECRET_COLOR)
 			continue;
 
-		gamedata->unlocked[i] = true;
+		RRAP_SetUnlocked(i);
 		success = true;
 	}
 
@@ -295,12 +298,12 @@ void f_followers()
 			continue;
 		if (unlockables[i].conditionset == CH_FURYBIKE)
 			continue;
-		if (gamedata->unlocked[i])
+		if (gamedata->unlocked[i] & UNLOCKED_LOCATION)
 			continue;
 		if (unlockables[i].type != SECRET_FOLLOWER)
 			continue;
 
-		gamedata->unlocked[i] = true;
+		RRAP_SetUnlocked(i);
 		success = true;
 	}
 
@@ -327,12 +330,12 @@ void f_maps()
 			continue;
 		if (unlockables[i].conditionset == CH_FURYBIKE)
 			continue;
-		if (gamedata->unlocked[i])
+		if (gamedata->unlocked[i] & UNLOCKED_LOCATION)
 			continue;
 		if (unlockables[i].type != SECRET_MAP && unlockables[i].type != SECRET_CUP)
 			continue;
 
-		gamedata->unlocked[i] = true;
+		RRAP_SetUnlocked(i);
 		success = true;
 	}
 
@@ -373,12 +376,12 @@ void f_characters()
 			continue;
 		if (unlockables[i].conditionset == CH_FURYBIKE)
 			continue;
-		if (gamedata->unlocked[i])
+		if (gamedata->unlocked[i] & UNLOCKED_LOCATION)
 			continue;
 		if (unlockables[i].type != SECRET_SKIN)
 			continue;
 
-		gamedata->unlocked[i] = true;
+		RRAP_SetUnlocked(i);
 		success = true;
 	}
 
@@ -405,12 +408,12 @@ void f_altmusic()
 			continue;
 		if (unlockables[i].conditionset == CH_FURYBIKE)
 			continue;
-		if (gamedata->unlocked[i])
+		if (gamedata->unlocked[i] & UNLOCKED_LOCATION)
 			continue;
 		if (unlockables[i].type != SECRET_ALTMUSIC && unlockables[i].type != SECRET_SOUNDTEST)
 			continue;
 
-		gamedata->unlocked[i] = true;
+		RRAP_SetUnlocked(i);
 		success = true;
 	}
 
@@ -438,7 +441,7 @@ void f_timeattack()
 			continue;
 		if (unlockables[i].conditionset == CH_FURYBIKE)
 			continue;
-		if (gamedata->unlocked[i])
+		if (gamedata->unlocked[i] & UNLOCKED_LOCATION)
 			continue;
 
 		if (unlockables[i].type == SECRET_TIMEATTACK
@@ -446,7 +449,7 @@ void f_timeattack()
 			|| unlockables[i].type == SECRET_SPECIALATTACK
 			|| (unlockables[i].type == SECRET_SPBATTACK && already_have_encore))
 		{
-			gamedata->unlocked[i] = true;
+			RRAP_SetUnlocked(i);
 			success = true;
 		}
 	}
@@ -486,13 +489,13 @@ void f_encore()
 			continue;
 		if (unlockables[i].conditionset == CH_FURYBIKE)
 			continue;
-		if (gamedata->unlocked[i])
+		if (gamedata->unlocked[i] & UNLOCKED_LOCATION)
 			continue;
 
 		if (unlockables[i].type == SECRET_ENCORE
 			|| (unlockables[i].type == SECRET_SPBATTACK && already_have_timeattacks))
 		{
-			gamedata->unlocked[i] = true;
+			RRAP_SetUnlocked(i);
 			success = true;
 		}
 	}
@@ -527,12 +530,12 @@ void f_difficulty()
 			continue;
 		if (unlockables[i].conditionset == CH_FURYBIKE)
 			continue;
-		if (gamedata->unlocked[i])
+		if (gamedata->unlocked[i] & UNLOCKED_LOCATION)
 			continue;
 
 		if (unlockables[i].type == SECRET_HARDSPEED || unlockables[i].type == SECRET_MASTERMODE)
 		{
-			gamedata->unlocked[i] = true;
+			RRAP_SetUnlocked(i);
 			success = true;
 		}
 	}
@@ -586,7 +589,7 @@ void f_devmode()
 	{
 		if (!unlockables[i].conditionset)
 			continue;
-		gamedata->unlocked[i] = true;
+		RRAP_SetUnlocked(i);
 	}
 
 	// Unlock all hidden levels.

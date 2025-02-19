@@ -220,7 +220,7 @@ UINT8 *R_GetSkinAvailabilities(boolean demolock, INT32 botforcecharacter)
 
 		if ((forbots
 			? (M_CheckNetUnlockByID(i) || skinid == botforcecharacter) // Assert the host's lock.
-			: gamedata->unlocked[i]) // Assert the local lock.
+			: (gamedata->unlocked[i] & UNLOCKED_ITEM)) // Assert the local lock.
 				!= true && !demolock)
 			continue;
 
@@ -305,7 +305,7 @@ boolean R_SkinUsable(INT32 playernum, INT32 skinnum, boolean demoskins)
 		return M_CheckNetUnlockByID(i);
 
 	// Use the unlockables table directly
-	return (boolean)(gamedata->unlocked[i]);
+	return (boolean)(gamedata->unlocked[i] & UNLOCKED_ITEM);
 }
 
 boolean R_CanShowSkinInDemo(INT32 skinnum)

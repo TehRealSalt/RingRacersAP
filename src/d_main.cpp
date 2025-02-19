@@ -102,6 +102,9 @@
 
 #include "lua_profile.h"
 
+// RingRacersAP
+#include "ap_main.h"
+
 extern "C" consvar_t cv_lua_profile, cv_menuframeskip;
 
 /* Manually defined asset hashes
@@ -1789,6 +1792,7 @@ void D_SRB2Main(void)
 
 	D_RegisterServerCommands();
 	D_RegisterClientCommands(); // be sure that this is called before D_CheckNetGame
+	D_RegisterArchipelagoCommands();
 	R_RegisterEngineStuff();
 	S_RegisterSoundStuff();
 
@@ -1837,6 +1841,7 @@ void D_SRB2Main(void)
 	if (M_CheckParm("-noupload"))
 		COM_BufAddText("downloading 0\n");
 
+#if 0
 	if (M_CheckParm("-gamedata") && M_IsNextParm())
 	{
 		// Moved from G_LoadGameData itself, as it would cause some crazy
@@ -1844,6 +1849,7 @@ void D_SRB2Main(void)
 		strlcpy(gamedatafilename, M_GetNextParm(), sizeof gamedatafilename);
 	}
 	G_LoadGameData();
+#endif
 
 	wipegamestate = gamestate;
 

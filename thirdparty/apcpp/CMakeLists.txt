@@ -10,6 +10,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 
 add_library(APCpp STATIC Archipelago.cpp Archipelago.h)
+add_library(APCpp::APCpp ALIAS APCpp)
+
+target_include_directories(APCpp PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")
 
 set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
 set(ENABLE_TESTING OFF CACHE BOOL "" FORCE)
@@ -39,25 +42,10 @@ if (MINGW)
 	target_link_libraries(APCpp PRIVATE -static -static-libstdc++ -static-libgcc)
 endif(MINGW)
 
-# Attempt finding system version of JsonCpp
-find_package(PkgConfig)
-if (PKGCONFIG_FOUND AND (NOT MINGW))
-	pkg_check_modules(JSONCPP jsoncpp)
-	if (JSONCPP_FOUND)
-		include_directories(${JSONCPP_INCLUDE_DIRS})
-		target_link_libraries(APCpp PRIVATE ${JSONCPP_LDFLAGS})
-	endif(JSONCPP_FOUND)
-endif(PKGCONFIG_FOUND AND (NOT MINGW))
-
-# No system version: Enable bundled
-if((NOT JSONCPP_FOUND))
-	set(JSONCPP_WITH_TESTS OFF CACHE BOOL "" FORCE)
-	set(JSONCPP_WITH_POST_BUILD_UNITTEST OFF CACHE BOOL "" FORCE)
-	add_subdirectory(jsoncpp)
-	set_property(TARGET jsoncpp_static PROPERTY POSITION_INDEPENDENT_CODE ON)
-	include_directories(jsoncpp/include)
-	target_link_libraries(APCpp PRIVATE jsoncpp_static)
-endif((NOT JSONCPP_FOUND))
+add_subdirectory(jsoncpp)
+set_property(TARGET jsoncpp_static PROPERTY POSITION_INDEPENDENT_CODE ON)
+include_directories(jsoncpp/include)
+target_link_libraries(APCpp PRIVATE jsoncpp_static)
 
 if (WIN32)
 	target_link_libraries(APCpp PRIVATE ws2_32)

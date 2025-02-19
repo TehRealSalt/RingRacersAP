@@ -827,15 +827,10 @@ void M_StartControlPanel(void)
 
 		Music_Stop("title");
 
-		if (gamedata != NULL
-		&& gamedata->gonerlevel < GDGONER_OUTRO
-		&& gamestartchallenge < MAXUNLOCKABLES)
+		if (gamedata != NULL && gamedata->gonerlevel < GDGONER_OUTRO)
 		{
 			// See M_GameTrulyStarted
-			if (
-				gamedata->unlockpending[gamestartchallenge]
-				|| gamedata->unlocked[gamestartchallenge]
-			)
+			if (M_GameTrulyStarted() == true)
 			{
 				gamedata->gonerlevel = GDGONER_OUTRO;
 				M_GonerBGImplyPassageOfTime();

@@ -90,15 +90,11 @@ boolean ultimatemode = false;
 
 JoyType_t Joystick[MAXSPLITSCREENPLAYERS];
 
-// SRB2kart
-char gamedatafilename[64] =
-#if defined (TESTERS)
-	"test"
-#elif defined(DEVELOP)
-	"develop"
-#endif
-	"ringdata.dat";
-char timeattackfolder[64] = "ringracers";
+// Changing this for Archipelago isn't necessary since it gets overwritten later,
+// but it's to make sure that the game does not accidentally overwrite
+// your normal Ring Racers install's files.
+char gamedatafilename[64] = "ringracersap.apdat";
+char timeattackfolder[64] = "ringracersap";
 char customversionstring[32] = "\0";
 
 static void G_DoCompleted(void);

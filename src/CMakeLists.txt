@@ -167,6 +167,7 @@ add_executable(SRB2SDL2 MACOSX_BUNDLE WIN32
 	music.cpp
 	music_manager.cpp
 	sanitize.cpp
+	ap_main.cpp
 )
 
 if(SRB2_CONFIG_ENABLE_WEBM_MOVIES)
@@ -294,6 +295,8 @@ if(SRB2_CONFIG_ENABLE_WEBM_MOVIES)
 endif()
 
 target_link_libraries(SRB2SDL2 PRIVATE nlohmann_json::nlohmann_json)
+
+target_link_libraries(SRB2SDL2 PRIVATE APCpp::APCpp)
 
 set(SRB2_HAVE_THREADS ON)
 target_compile_definitions(SRB2SDL2 PRIVATE -DHAVE_THREADS)

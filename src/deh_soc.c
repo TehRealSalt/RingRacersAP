@@ -2269,6 +2269,7 @@ void readsound(MYFILE *f, INT32 num)
 	Z_Free(s);
 }
 
+#if 0
 /** Checks if a game data file name for a mod is good.
  * "Good" means that it contains only alphanumerics, _, and -;
  * ends in ".dat"; has at least one character before the ".dat";
@@ -2301,6 +2302,7 @@ static boolean GoodDataFileName(const char *s)
 
 	return true;
 }
+#endif
 
 void reademblemdata(MYFILE *f, INT32 num)
 {
@@ -3472,60 +3474,10 @@ void readmaincfg(MYFILE *f, boolean mainfile)
 
 			value = atoi(word2); // used for numerical settings
 
-			if (fastcmp(word, "GAMEDATA"))
+			if (!mainfile)
 			{
-				size_t filenamelen;
-
-				// Check the data filename so that mods
-				// can't write arbitrary files.
-				if (!GoodDataFileName(word2))
-					I_Error("Maincfg: bad data file name '%s'\n", word2);
-
-				G_SaveGameData();
-				strlcpy(gamedatafilename, word2, sizeof (gamedatafilename));
-				strlwr(gamedatafilename);
-				savemoddata = true;
-				majormods = false;
-				gamedata->loaded = false;
-
-				// Also save a time attack folder
-				filenamelen = strlen(gamedatafilename)-4;  // Strip off the extension
-				filenamelen = min(filenamelen, sizeof (timeattackfolder));
-				strncpy(timeattackfolder, gamedatafilename, filenamelen);
-				timeattackfolder[min(filenamelen, sizeof (timeattackfolder) - 1)] = '\0';
-
-				strcpy(savegamename, timeattackfolder);
-				strlcat(savegamename, "%u.ssg", sizeof(savegamename));
-				// can't use sprintf since there is %u in savegamename
-				strcatbf(savegamename, srb2home, PATHSEP);
-
-				strcpy(gpbackup, va("gp%s.bkp", timeattackfolder));
-				strcatbf(gpbackup, srb2home, PATHSEP);
-
-				refreshdirmenu |= REFRESHDIR_GAMEDATA;
-				gamedataadded = true;
-				titlechanged = true;
-
-				clear_unlockables();
-				clear_conditionsets();
-				clear_emblems();
-				//clear_levels();
-				doClearLevels = true;
-
-				G_ClearRecords();
-				M_ClearStats();
-				M_ClearSecrets();
-
-				// Don't softlock the Stereo on if you won't be able to access it anymore!?
-				if (soundtest.playing && M_SecretUnlocked(SECRET_SOUNDTEST, true) == false)
-					S_SoundTestStop();
+				deh_warning("Archipelago does not support custom \"%s\"", word);
 			}
-#ifndef DEVELOP
-			else if (!mainfile && !gamedataadded)
-			{
-				deh_warning("You must define a custom gamedata to use \"%s\"", word);
-			}
-#endif
 			else if (fastcmp(word, "CLEARLEVELS"))
 			{
 				doClearLevels = (UINT8)(value == 0 || word2[0] == 'F' || word2[0] == 'N');

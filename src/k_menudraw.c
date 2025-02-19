@@ -6493,7 +6493,7 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 	}
 #endif
 
-	unlockedyet = !((gamedata->unlocked[num] == false)
+	unlockedyet = !(((gamedata->unlocked[num] & UNLOCKED_LOCATION) == 0)
 		|| (challengesmenu.pending && num == challengesmenu.currentunlock && challengesmenu.unlockanim <= UNLOCKTIME));
 
 	// If we aren't unlocked yet, return early.
@@ -6908,7 +6908,7 @@ static void M_DrawChallengePreview(INT32 x, INT32 y)
 	ref = &unlockables[challengesmenu.currentunlock];
 
 	// Funny question mark?
-	if (!gamedata->unlocked[challengesmenu.currentunlock])
+	if (!(gamedata->unlocked[challengesmenu.currentunlock] & UNLOCKED_LOCATION))
 	{
 		spritedef_t *sprdef = &sprites[SPR_UQMK];
 		spriteframe_t *sprframe;
@@ -7703,7 +7703,7 @@ static void M_DrawChallengeScrollBar(UINT8 *flashmap)
 		if (completionamount == -1)
 			continue;
 
-		if (gamedata->unlocked[gamedata->challengegrid[i]])
+		if (gamedata->unlocked[gamedata->challengegrid[i]] & UNLOCKED_LOCATION)
 		{
 			completionamount++;
 
@@ -7874,7 +7874,7 @@ challengedesc:
 		if (challengesmenu.currentunlock < MAXUNLOCKABLES)
 		{
 			str = unlockables[challengesmenu.currentunlock].name;
-			if (!gamedata->unlocked[challengesmenu.currentunlock])
+			if (!(gamedata->unlocked[challengesmenu.currentunlock] & UNLOCKED_LOCATION))
 			{
 				str = "???"; //M_CreateSecretMenuOption(str);
 			}
@@ -7969,7 +7969,7 @@ challengedesc:
 
 	if (challengesmenu.unlockcondition != NULL
 	&& challengesmenu.currentunlock < MAXUNLOCKABLES
-	&& ((gamedata->unlocked[challengesmenu.currentunlock] == true)
+	&& ((gamedata->unlocked[challengesmenu.currentunlock] & UNLOCKED_LOCATION)
 		|| ((challengesmenu.extradata != NULL)
 		&& (challengesmenu.extradata[i].flags & CHE_HINT))
 		)
@@ -8305,7 +8305,7 @@ static void M_DrawStatsMaps(void)
 		}
 
 		{
-			if (gamedata->unlocked[i])
+			if (gamedata->unlocked[i] & UNLOCKED_ITEM)
 			{
 				UINT16 color = min(unlockables[i].color, numskincolors-1);
 				if (!color)

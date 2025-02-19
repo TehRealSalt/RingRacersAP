@@ -2287,7 +2287,7 @@ void G_BeginRecording(void)
 	WRITEUINT32(demobuf.p, MAXUNLOCKABLES);
 	for (size_t unlockindex = 0; unlockindex < MAXUNLOCKABLES; unlockindex++)
 	{
-		UINT8 unlock = gamedata->unlocked[unlockindex];
+		UINT8 unlock = ((gamedata->unlocked[unlockindex] & UNLOCKED_ITEM) == UNLOCKED_ITEM);
 		WRITEUINT8(demobuf.p, unlock);
 	}
 

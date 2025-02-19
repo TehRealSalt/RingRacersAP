@@ -90,10 +90,11 @@ void srb2::save_ng_gamedata()
 	{
 		ng.emblems[i] = gamedata->collected[i];
 	}
+	// TODO: split unlockable item & location
 	ng.unlockables.resize(MAXUNLOCKABLES, false);
 	for (int i = 0; i < MAXUNLOCKABLES; i++)
 	{
-		ng.unlockables[i] = gamedata->unlocked[i];
+		ng.unlockables[i] = ((gamedata->unlocked[i] & UNLOCKED_ITEM) == UNLOCKED_ITEM);
 	}
 	ng.unlockpending.resize(MAXUNLOCKABLES, false);
 	for (int i = 0; i < MAXUNLOCKABLES; i++)
@@ -509,10 +510,11 @@ void srb2::load_ng_gamedata()
 		gamedata->collected[i] = js.emblems[i];
 	}
 
+	// TODO: split unlockable item & location
 	size_t unlocks_size = js.unlockables.size();
 	for (size_t i = 0; i < std::min((size_t)MAXUNLOCKABLES, unlocks_size); i++)
 	{
-		gamedata->unlocked[i] = js.unlockables[i];
+		gamedata->unlocked[i] = (js.unlockables[i] ? UNLOCKED_ITEM : 0);
 	}
 
 	size_t pending_unlocks_size = js.unlockpending.size();

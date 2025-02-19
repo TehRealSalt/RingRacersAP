@@ -407,9 +407,9 @@ static void DEH_LoadDehackedFile(MYFILE *f, boolean mainfile)
 				}
 				else if (fastcmp(word, "EMBLEM"))
 				{
-					if (!mainfile && !gamedataadded)
+					if (!mainfile)
 					{
-						deh_warning("You must define a custom gamedata to use \"%s\"", word);
+						deh_warning("Archipelago does not support custom \"%s\"", word);
 						ignorelines(f);
 					}
 					else if (i > 0 && i <= MAXEMBLEMS)
@@ -429,9 +429,9 @@ static void DEH_LoadDehackedFile(MYFILE *f, boolean mainfile)
 				}
 				else if (fastcmp(word, "UNLOCKABLE"))
 				{
-					if (!mainfile && !gamedataadded)
+					if (!mainfile)
 					{
-						deh_warning("You must define a custom gamedata to use \"%s\"", word);
+						deh_warning("Archipelago does not support custom \"%s\"", word);
 						ignorelines(f);
 					}
 					else if (i > 0 && i <= MAXUNLOCKABLES)
@@ -444,9 +444,9 @@ static void DEH_LoadDehackedFile(MYFILE *f, boolean mainfile)
 				}
 				else if (fastcmp(word, "CONDITIONSET"))
 				{
-					if (!mainfile && !gamedataadded)
+					if (!mainfile)
 					{
-						deh_warning("You must define a custom gamedata to use \"%s\"", word);
+						deh_warning("Archipelago does not support custom \"%s\"", word);
 						ignorelines(f);
 					}
 					else if (i > 0 && i <= MAXCONDITIONSETS)
@@ -607,6 +607,7 @@ static void DEH_LoadDehackedFile(MYFILE *f, boolean mainfile)
 			deh_warning("No word in this line: %s", s);
 	} // end while
 
+#if 0
 	if (gamedataadded)
 	{
 		basenummapheaders = nummapheaders;
@@ -629,6 +630,7 @@ static void DEH_LoadDehackedFile(MYFILE *f, boolean mainfile)
 			COM_BufAddText("exitgame"); // Command_ExitGame_f() but delayed
 		}
 	}
+#endif
 
 	dbg_line = -1;
 	if (deh_num_warning)

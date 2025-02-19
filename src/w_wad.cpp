@@ -950,8 +950,16 @@ UINT16 W_InitFile(const char *filename, boolean mainfile, boolean startup)
 
 	K_InitTerrain(numwadfiles - 1);
 
+
 	if (refreshdirmenu & REFRESHDIR_GAMEDATA)
+	{
+#if 0
 		G_LoadGameData();
+#else
+		CONS_Alert(CONS_ERROR, "Custom gamedata not supported in RingRacersAP\n");
+#endif
+	}
+
 	DEH_UpdateMaxFreeslots();
 
 	W_InvalidateLumpnumCache();
