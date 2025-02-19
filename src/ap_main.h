@@ -25,9 +25,9 @@ extern "C" {
 
 extern boolean g_ap_started;
 
-void RRAP_SetUnlocked(int unlock_id);
+void RRAP_SetUnlocked(int64_t unlock_id);
 
-void D_RegisterArchipelagoCommands();
+void D_RegisterArchipelagoCommands(void);
 
 #ifdef __cplusplus
 } // extern "C"

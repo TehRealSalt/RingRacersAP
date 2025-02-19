@@ -36,7 +36,7 @@ static std::string g_ap_address = "";
 static std::string g_ap_slot = "";
 static std::string g_ap_password = "";
 
-void RRAP_SetUnlocked(int unlock_id)
+void RRAP_SetUnlocked(int64_t unlock_id)
 {
 	if (unlock_id < 0 || unlock_id >= MAXUNLOCKABLES)
 	{
@@ -91,6 +91,7 @@ static void RRAP_InitGamedata(void)
 	// TODO: Can we get some other game identifier instead?
 	// This has lots of collision risk.
 	std::string gamedata_name = g_ap_slot + "_" + g_ap_address;
+	CONS_Printf("gamedata_name: %s\n", gamedata_name.c_str());
 
 	// Convert to lowercase & discard illegal chars
 	std::transform(
@@ -98,9 +99,10 @@ static void RRAP_InitGamedata(void)
 		[](unsigned char c)
 		{
 			unsigned char lwr = std::tolower(c);
-			return ((g_ap_file_legal_chars.find(lwr) == std::string::npos) ? lwr : '-');
+			return ((g_ap_file_legal_chars.find(lwr) == std::string::npos) ? '-' : lwr);
 		}
 	);
+	CONS_Printf("w/o illegal: %s\n", gamedata_name.c_str());
 
 	const size_t file_name_max = sizeof(gamedatafilename) - g_ap_file_ext.size();
 	if (gamedata_name.size() >= file_name_max)
@@ -109,24 +111,30 @@ static void RRAP_InitGamedata(void)
 		// Clamp it, I guess...
 		gamedata_name.resize(file_name_max - 1);
 	}
+	CONS_Printf("resized: %s\n", gamedata_name.c_str());
 
 	// add extension
 	std::string gamedata_file = gamedata_name + g_ap_file_ext;
+	CONS_Printf("gamedata_file: %s\n", gamedata_file.c_str());
 
 	// Copy to the C code...
 	strlcpy(gamedatafilename, gamedata_file.c_str(), sizeof(gamedatafilename));
 	gamedatafilename[std::min(gamedata_file.size(), sizeof(gamedatafilename) - 1)] = '\0';
+	CONS_Printf("gamedatafilename: %s\n", gamedatafilename);
 
 	strlcpy(timeattackfolder, gamedata_name.c_str(), sizeof(timeattackfolder));
 	timeattackfolder[std::min(gamedata_name.size(), sizeof(timeattackfolder) - 1)] = '\0';
+	CONS_Printf("timeattackfolder: %s\n", timeattackfolder);
 
 	strcpy(savegamename, gamedata_name.c_str());
 	strlcat(savegamename, "%u.ssg", sizeof(savegamename));
 	// can't use sprintf since there is %u in savegamename
 	strcatbf(savegamename, srb2home, PATHSEP);
+	CONS_Printf("savegamename: %s\n", savegamename);
 
 	strcpy(gpbackup, va("gp%s.bkp", gamedata_name.c_str()));
 	strcatbf(gpbackup, srb2home, PATHSEP);
+	CONS_Printf("gpbackup: %s\n", gpbackup);
 
 	refreshdirmenu |= REFRESHDIR_GAMEDATA;
 

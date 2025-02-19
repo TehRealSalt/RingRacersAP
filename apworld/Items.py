@@ -427,7 +427,11 @@ altmusic_items = {
     "Alt. Music: Dead Simple": 44330903,
 }
 
-item_table = {
+filler_items = {
+    "Nothing": 44331024,
+}
+
+unlocks_table = {
     **driver_items,
     **follower_items,
     **spraycan_items,
@@ -435,6 +439,11 @@ item_table = {
     **extras_items,
     **lostandfound_access_items,
     **altmusic_items,
+}
+
+item_table = {
+    **unlocks_table,
+    **filler_items,
 }
 
 item_groups: typing.Dict[str, str] = {
@@ -456,11 +465,13 @@ def create_items(multiworld: MultiWorld, player: int) -> None:
     for item in sorted(item_groups["Extras"]):
         multiworld.push_precollected(create_item(item, player, ItemClassification.useful))
 
+    #multiworld.push_precollected(create_item("Ring Cup Access", player, ItemClassification.progression))
+
     preplaced_items = {item.name for item in multiworld.precollected_items[player]}
 
     def add_item(item_name: str, item_class: ItemClassification):
         if item_name in preplaced_items:
-            items.append(create_item("Nothing", player))
+            items.append(create_item("Nothing", player, ItemClassification.filler))
             return
 
         i = create_item(item_name, player, item_class)
