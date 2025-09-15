@@ -20,6 +20,7 @@
 #include <Archipelago.h>
 #include "ap_main.h"
 
+#include "doomdef.h"
 #include "m_cond.h"
 #include "m_misc.h" // strcatbf
 #include "d_main.h" // srb2home
@@ -36,11 +37,21 @@ static std::string g_ap_address = "";
 static std::string g_ap_slot = "";
 static std::string g_ap_password = "";
 
-void RRAP_SetUnlocked(int64_t unlock_id)
+void RRAP_SetUnlocked(int64_t unlock_id, boolean forced)
 {
 	if (unlock_id < 0 || unlock_id >= MAXUNLOCKABLES)
 	{
 		return;
+	}
+
+	if (forced == false)
+	{
+		if ((gamedata->unlocked[unlock_id] & UNLOCKED_LOCATION) == 0)
+		{
+			// Prevent the sound from playing more than once before it gets here.
+			gamedata->unlockpending[unlock_id] = true;
+			CONS_Printf("RRAP_SetUnlocked -> unlockpending\n");
+		}
 	}
 
 	AP_SendItem(AP_BASE_ID + unlock_id);
@@ -53,6 +64,7 @@ static void RRAP_GotClearItems(void)
 	for (i = 0; i < MAXUNLOCKABLES; i++)
 	{
 		gamedata->unlocked[i] = 0;
+		gamedata->unlockpending[i] = false;
 	}
 }
 
@@ -64,6 +76,9 @@ static void RRAP_GotItemReceived(int64_t item_id, bool should_notify)
 	{
 		// Item ID is an unlockable.
 		gamedata->unlocked[item_id] |= UNLOCKED_ITEM;
+
+		// Unlocking this may cause a domino effect of even more unlocks!
+		M_UpdateUnlockablesAndExtraEmblems(should_notify, true); // Only be loud if we're notifying
 	}
 }
 
@@ -74,7 +89,17 @@ static void RRAP_GotLocationChecked(int64_t location_id)
 	if (location_id >= 0 && location_id < MAXUNLOCKABLES)
 	{
 		// Location ID is an unlockable.
+		if ((gamedata->unlocked[location_id] & UNLOCKED_LOCATION) == 0)
+		{
+			// Wasn't set prior, play unlocking animation.
+			gamedata->unlockpending[location_id] = true;
+			CONS_Printf("RRAP_GotLocationChecked -> unlockpending\n");
+		}
+
 		gamedata->unlocked[location_id] |= UNLOCKED_LOCATION;
+
+		// Unlocking this may cause a domino effect of even more unlocks!
+		M_UpdateUnlockablesAndExtraEmblems(false, true);
 	}
 }
 

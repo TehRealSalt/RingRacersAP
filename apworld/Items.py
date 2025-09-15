@@ -465,8 +465,6 @@ def create_items(multiworld: MultiWorld, player: int) -> None:
     for item in sorted(item_groups["Extras"]):
         multiworld.push_precollected(create_item(item, player, ItemClassification.useful))
 
-    #multiworld.push_precollected(create_item("Ring Cup Access", player, ItemClassification.progression))
-
     preplaced_items = {item.name for item in multiworld.precollected_items[player]}
 
     def add_item(item_name: str, item_class: ItemClassification):

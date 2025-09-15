@@ -25,7 +25,7 @@ extern "C" {
 
 extern boolean g_ap_started;
 
-void RRAP_SetUnlocked(int64_t unlock_id);
+void RRAP_SetUnlocked(int64_t unlock_id, boolean forced);
 
 void D_RegisterArchipelagoCommands(void);
 

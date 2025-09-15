@@ -4,7 +4,7 @@ import os, json
 from BaseClasses import Item, MultiWorld
 from worlds.AutoWorld import World
 
-from . import Items, Locations, Regions
+from . import Items, Locations, Regions, Rules
 from .Options import RingRacersOptions
 
 client_version = 1
@@ -17,7 +17,7 @@ class RingRacersWorld(World):
     game: str = "Ring Racers"
     options_dataclass = RingRacersOptions
     options: RingRacersOptions
-    topology_present = False
+    topology_present = True
 
     base_id = 44330000
 
@@ -35,14 +35,17 @@ class RingRacersWorld(World):
             "PlayerNum": self.player,
         }
 
-    def create_regions(self):
+    def create_regions(self) -> None:
         Regions.create_regions(self.multiworld, self.player)
 
     def create_item(self, name: str) -> Item:
         return Items.create_item(name, self.player)
 
-    def create_items(self):
+    def create_items(self) -> None:
         Items.create_items(self.multiworld, self.player)
 
     def create_filler(self) -> Item:
         return self.create_item("Nothing")
+
+    def set_rules(self) -> None:
+        Rules.create_rules(self.multiworld, self.player)

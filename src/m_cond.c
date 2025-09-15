@@ -3213,7 +3213,7 @@ boolean M_UpdateUnlockablesAndExtraEmblems(boolean loud, boolean doall)
 			continue;
 		}
 
-		RRAP_SetUnlocked(i);
+		RRAP_SetUnlocked(i, false);
 		response++;
 	}
 

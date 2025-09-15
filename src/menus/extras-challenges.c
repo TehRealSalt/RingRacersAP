@@ -19,6 +19,9 @@
 #include "../r_skins.h"
 #include "../s_sound.h"
 
+// RingRacersAP
+#include "../ap_main.h"
+
 #ifdef DEVELOP
 extern consvar_t cv_debugchallenges;
 #endif
@@ -723,7 +726,7 @@ void M_ChallengesTick(void)
 
 			// Unlock animation... also tied directly to the actual unlock!
 			gamedata->unlocked[challengesmenu.currentunlock] |= UNLOCKED_LOCATION;
-			M_UpdateUnlockablesAndExtraEmblems(true, true);
+			RRAP_SetUnlocked(challengesmenu.currentunlock, true);
 
 			// Update shown description just in case..?
 			if (challengesmenu.unlockcondition)

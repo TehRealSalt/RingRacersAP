@@ -39,6 +39,9 @@
 #include "z_zone.h"
 
 // RingRacersAP
+// FIXME: RRAP_SetUnlocked is not the right function for these cheats,
+// as they unlock the *location* rather than the *item*. Making these
+// cheats act like !giveitem would be ideal.
 #include "ap_main.h"
 
 namespace
@@ -117,7 +120,7 @@ void f_tournament()
 		if (gamedata->unlocked[i] & UNLOCKED_LOCATION)
 			continue;
 
-		RRAP_SetUnlocked(i);
+		RRAP_SetUnlocked(i, false);
 		success = true;
 	}
 
@@ -271,7 +274,7 @@ void f_colors()
 		if (unlockables[i].type != SECRET_COLOR)
 			continue;
 
-		RRAP_SetUnlocked(i);
+		RRAP_SetUnlocked(i, false);
 		success = true;
 	}
 
@@ -303,7 +306,7 @@ void f_followers()
 		if (unlockables[i].type != SECRET_FOLLOWER)
 			continue;
 
-		RRAP_SetUnlocked(i);
+		RRAP_SetUnlocked(i, false);
 		success = true;
 	}
 
@@ -335,7 +338,7 @@ void f_maps()
 		if (unlockables[i].type != SECRET_MAP && unlockables[i].type != SECRET_CUP)
 			continue;
 
-		RRAP_SetUnlocked(i);
+		RRAP_SetUnlocked(i, false);
 		success = true;
 	}
 
@@ -381,7 +384,7 @@ void f_characters()
 		if (unlockables[i].type != SECRET_SKIN)
 			continue;
 
-		RRAP_SetUnlocked(i);
+		RRAP_SetUnlocked(i, false);
 		success = true;
 	}
 
@@ -413,7 +416,7 @@ void f_altmusic()
 		if (unlockables[i].type != SECRET_ALTMUSIC && unlockables[i].type != SECRET_SOUNDTEST)
 			continue;
 
-		RRAP_SetUnlocked(i);
+		RRAP_SetUnlocked(i, false);
 		success = true;
 	}
 
@@ -449,7 +452,7 @@ void f_timeattack()
 			|| unlockables[i].type == SECRET_SPECIALATTACK
 			|| (unlockables[i].type == SECRET_SPBATTACK && already_have_encore))
 		{
-			RRAP_SetUnlocked(i);
+			RRAP_SetUnlocked(i, false);
 			success = true;
 		}
 	}
@@ -495,7 +498,7 @@ void f_encore()
 		if (unlockables[i].type == SECRET_ENCORE
 			|| (unlockables[i].type == SECRET_SPBATTACK && already_have_timeattacks))
 		{
-			RRAP_SetUnlocked(i);
+			RRAP_SetUnlocked(i, false);
 			success = true;
 		}
 	}
@@ -535,7 +538,7 @@ void f_difficulty()
 
 		if (unlockables[i].type == SECRET_HARDSPEED || unlockables[i].type == SECRET_MASTERMODE)
 		{
-			RRAP_SetUnlocked(i);
+			RRAP_SetUnlocked(i, false);
 			success = true;
 		}
 	}
@@ -589,7 +592,7 @@ void f_devmode()
 	{
 		if (!unlockables[i].conditionset)
 			continue;
-		RRAP_SetUnlocked(i);
+		RRAP_SetUnlocked(i, false);
 	}
 
 	// Unlock all hidden levels.
