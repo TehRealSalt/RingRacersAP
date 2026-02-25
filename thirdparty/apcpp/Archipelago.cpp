@@ -6,6 +6,7 @@
 
 #include <cstddef>
 #include <cstdint>
+#include <queue>
 #include <random>
 #include <fstream>
 #include <json/json.h>
@@ -20,7 +21,8 @@
 #include <utility>
 #include <vector>
 
-constexpr int AP_OFFLINE_SLOT = 1404;
+extern const int AP_OFFLINE_SLOT = 1404;
+constexpr int AP_OFFLINE_TEAM = 0;
 constexpr char const* AP_OFFLINE_NAME = "You";
 constexpr AP_NetworkVersion AP_DEFAULT_NETWORK_VERSION = {0,5,1}; // Default for compatibility reasons
 
@@ -32,13 +34,14 @@ bool multiworld = true;
 bool isSSL = true;
 bool ssl_success = false;
 int ap_player_id;
+int ap_player_team;
 std::string ap_player_name;
 size_t ap_player_name_hash;
 std::string ap_ip;
 std::string ap_game;
 std::string ap_passwd;
 std::uint64_t ap_uuid = 0;
-std::mt19937 rando;
+std::mt19937_64 rando;
 AP_NetworkVersion client_version = AP_DEFAULT_NETWORK_VERSION; 
 
 //Deathlink Stuff
@@ -57,19 +60,29 @@ std::map<int, AP_NetworkPlayer> map_players;
 std::map<std::pair<std::string,int64_t>, std::string> map_location_id_name;
 std::map<std::pair<std::string,int64_t>, std::string> map_item_id_name;
 
+// Data Sets
+std::set<int> teams_set;
+
 // Callback function pointers
-void (*resetItemValues)();
-void (*getitemfunc)(int64_t,bool);
-void (*checklocfunc)(int64_t);
-void (*locinfofunc)(std::vector<AP_NetworkItem>) = nullptr;
-void (*recvdeath)() = nullptr;
-void (*setreplyfunc)(AP_SetReply) = nullptr;
-void (*bouncedfunc)(AP_Bounce) = nullptr;
+std::function<void()> resetItemValues = nullptr;
+std::function<void(int64_t,bool)> getitemfunc = nullptr;
+std::function<void(int64_t)> checklocfunc = nullptr;
+std::function<void(std::vector<AP_NetworkItem>)> locinfofunc = nullptr;
+std::function<void(std::string, std::string)> recvdeath = nullptr;
+std::function<void(AP_SetReply)> setreplyfunc = nullptr;
+std::function<void(AP_Bounce)> bouncedfunc = nullptr;
 
 // Serverdata Management
 std::map<std::string,AP_DataType> map_serverdata_typemanage;
 AP_GetServerDataRequest resync_serverdata_request;
 uint64_t last_item_idx = 0;
+
+void resolveDataStorageOp(Json::Value op);
+
+// Gifting interop
+bool gifting_supported = false;
+bool gifting_autoReject = true;
+void handleGiftAPISetReply(const AP_SetReply& reply);
 
 // Singleplayer Seed Info
 std::string sp_save_path;
@@ -80,11 +93,12 @@ AP_RoomInfo lib_room_info;
 
 //Server Data Stuff
 std::map<std::string, AP_GetServerDataRequest*> map_server_data;
+std::queue<std::pair<Json::Value,AP_RequestStatus*>> queue_server_data;
 
 //Slot Data Stuff
-std::map<std::string, void (*)(int)> map_slotdata_callback_int;
-std::map<std::string, void (*)(std::string)> map_slotdata_callback_raw;
-std::map<std::string, void (*)(std::map<int,int>)> map_slotdata_callback_mapintint;
+std::map<std::string, std::function<void(int)>> map_slotdata_callback_int;
+std::map<std::string, std::function<void(std::string)>> map_slotdata_callback_raw;
+std::map<std::string, std::function<void(std::map<int,int>)>> map_slotdata_callback_mapintint;
 std::vector<std::string> slotdata_strings;
 
 // Datapackage Stuff
@@ -114,7 +128,7 @@ void AP_Init(const char* ip, const char* game, const char* player_name, const ch
     multiworld = true;
     
     uint64_t milliseconds_since_epoch = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
-    rando = std::mt19937(milliseconds_since_epoch);
+    rando = std::mt19937_64(milliseconds_since_epoch);
 
     if (!strcmp(ip,"")) {
         ip = "archipelago.gg:38281";
@@ -161,6 +175,7 @@ void AP_Init(const char* ip, const char* game, const char* player_name, const ch
             }
         }
     );
+    webSocket.enablePerMessageDeflate();
     webSocket.setPingInterval(45);
 
     AP_NetworkPlayer archipelago {
@@ -203,10 +218,11 @@ void AP_Start() {
         ap_game = sp_ap_root["data_package"]["data"]["games"].getMemberNames()[0];
         Json::Value fake_msg;
         fake_msg[0]["cmd"] = "Connected";
+        fake_msg[0]["team"] = AP_OFFLINE_TEAM;
         fake_msg[0]["slot"] = AP_OFFLINE_SLOT;
         fake_msg[0]["slot_info"][std::to_string(AP_OFFLINE_SLOT)]["game"] = ap_game;
         fake_msg[0]["players"] = Json::arrayValue;
-        fake_msg[0]["players"][0]["team"] = 0;
+        fake_msg[0]["players"][0]["team"] = AP_OFFLINE_TEAM;
         fake_msg[0]["players"][0]["slot"] = AP_OFFLINE_SLOT;
         fake_msg[0]["players"][0]["alias"] = AP_OFFLINE_NAME;
         fake_msg[0]["players"][0]["name"] = AP_OFFLINE_NAME;
@@ -256,6 +272,8 @@ void AP_Shutdown() {
     enable_deathlink = false;
     deathlink_amnesty = 0;
     cur_deathlink_amnesty = 0;
+    gifting_autoReject = true;
+    gifting_supported = false;
     while (AP_IsMessagePending()) AP_ClearLatestMessage();
     queueitemrecvmsg = true;
     map_players.clear();
@@ -389,7 +407,7 @@ void AP_DeathLinkSend() {
     std::chrono::time_point<std::chrono::system_clock> timestamp = std::chrono::system_clock::now();
     AP_Bounce b;
     Json::Value v;
-    v["time"] = std::chrono::duration_cast<std::chrono::seconds>(timestamp.time_since_epoch()).count();
+    v["time"] = (int64_t)std::chrono::duration_cast<std::chrono::seconds>(timestamp.time_since_epoch()).count();
     v["source"] = ap_player_name; // Name and Shame >:D
     b.data = writer.write(v);
     b.games = nullptr;
@@ -403,37 +421,40 @@ void AP_EnableQueueItemRecvMsgs(bool b) {
     queueitemrecvmsg = b;
 }
 
-void AP_SetItemClearCallback(void (*f_itemclr)()) {
+void AP_SetItemClearCallback(std::function<void()> f_itemclr) {
     resetItemValues = f_itemclr;
 }
 
-void AP_SetItemRecvCallback(void (*f_itemrecv)(int64_t,bool)) {
+void AP_SetItemRecvCallback(std::function<void(int64_t,bool)> f_itemrecv) {
     getitemfunc = f_itemrecv;
 }
 
-void AP_SetLocationCheckedCallback(void (*f_loccheckrecv)(int64_t)) {
-    checklocfunc = f_loccheckrecv;
+void AP_SetLocationCheckedCallback(std::function<void(int64_t)> f_locrecv) {
+    checklocfunc = f_locrecv;
 }
 
-void AP_SetLocationInfoCallback(void (*f_locinfrecv)(std::vector<AP_NetworkItem>)) {
+void AP_SetLocationInfoCallback(std::function<void(std::vector<AP_NetworkItem>)> f_locinfrecv) {
     locinfofunc = f_locinfrecv;
 }
 
-void AP_SetDeathLinkRecvCallback(void (*f_deathrecv)()) {
+void AP_SetDeathLinkRecvCallback(std::function<void()> f_deathrecv) {
+    recvdeath = [f_deathrecv](std::string, std::string){ f_deathrecv(); };
+}
+void AP_SetDeathLinkRecvCallback(std::function<void(std::string, std::string)> f_deathrecv) {
     recvdeath = f_deathrecv;
 }
 
-void AP_RegisterSlotDataIntCallback(std::string key, void (*f_slotdata)(int)) {
+void AP_RegisterSlotDataIntCallback(std::string key, std::function<void(int)> f_slotdata) {
     map_slotdata_callback_int[key] = f_slotdata;
     slotdata_strings.push_back(key);
 }
 
-void AP_RegisterSlotDataRawCallback(std::string key, void (*f_slotdata)(std::string)) {
+void AP_RegisterSlotDataRawCallback(std::string key, std::function<void(std::string)> f_slotdata) {
     map_slotdata_callback_raw[key] = f_slotdata;
     slotdata_strings.push_back(key);
 }
 
-void AP_RegisterSlotDataMapIntIntCallback(std::string key, void (*f_slotdata)(std::map<int,int>)) {
+void AP_RegisterSlotDataMapIntIntCallback(std::string key, std::function<void(std::map<int,int>)> f_slotdata) {
     map_slotdata_callback_mapintint[key] = f_slotdata;
     slotdata_strings.push_back(key);
 }
@@ -501,66 +522,128 @@ int AP_GetPlayerID() {
     return ap_player_id;
 }
 
-void AP_SetServerData(AP_SetServerDataRequest* request) {
+void AP_BulkSetServerData(AP_SetServerDataRequest* request) {
     request->status = AP_RequestStatus::Pending;
 
     Json::Value req_t;
-    req_t[0]["cmd"] = "Set";
-    req_t[0]["key"] = request->key;
+    req_t["cmd"] = "Set";
+    req_t["key"] = request->key;
     switch (request->type) {
         case AP_DataType::Int:
             for (int i = 0; i < request->operations.size(); i++) {
-                req_t[0]["operations"][i]["operation"] = request->operations[i].operation;
-                req_t[0]["operations"][i]["value"] = *((int*)request->operations[i].value);
+                req_t["operations"][i]["operation"] = request->operations[i].operation;
+                req_t["operations"][i]["value"] = *((int*)request->operations[i].value);
+            }
+            if (request->default_value != nullptr) {
+                req_t["default"] = *((int*)request->default_value);
             }
             break;
         case AP_DataType::Double:
             for (int i = 0; i < request->operations.size(); i++) {
-                req_t[0]["operations"][i]["operation"] = request->operations[i].operation;
-                req_t[0]["operations"][i]["value"] = *((double*)request->operations[i].value);
+                req_t["operations"][i]["operation"] = request->operations[i].operation;
+                req_t["operations"][i]["value"] = *((double*)request->operations[i].value);
+            }
+            if (request->default_value != nullptr) {
+                req_t["default"] = *((double*)request->default_value);
             }
             break;
         default:
             for (int i = 0; i < request->operations.size(); i++) {
-                req_t[0]["operations"][i]["operation"] = request->operations[i].operation;
+                req_t["operations"][i]["operation"] = request->operations[i].operation;
                 Json::Value data;
                 reader.parse((*(std::string*)request->operations[i].value), data);
-                req_t[0]["operations"][i]["value"] = data;
+                req_t["operations"][i]["value"] = data;
             }
-            Json::Value default_val_json;
-            reader.parse(*((std::string*)request->default_value), default_val_json);
-            req_t[0]["default"] = default_val_json;
+            if (request->default_value != nullptr) {
+                Json::Value default_val_json;
+                reader.parse(*((std::string*)request->default_value), default_val_json);
+                req_t["default"] = default_val_json;
+            }
             break;
     }
-    req_t[0]["want_reply"] = request->want_reply;
+    req_t["want_reply"] = request->want_reply;
     map_serverdata_typemanage[request->key] = request->type;
-    APSend(writer.write(req_t));
-    request->status = AP_RequestStatus::Done;
+
+    queue_server_data.push({req_t,&request->status});
 }
 
-void AP_RegisterSetReplyCallback(void (*f_setreply)(AP_SetReply)) {
+void AP_CommitServerData() {
+    Json::Value req = Json::arrayValue;
+    while (!queue_server_data.empty()) {
+        std::pair<Json::Value, AP_RequestStatus*> request = queue_server_data.front();
+        req.append(request.first);
+        std::string key = req[req.size()-1]["cmd"].asString();
+        if (key == "Set" || key == "SetNotify") // Set has local completion at this stage
+            *(request.second) = AP_RequestStatus::Done;
+        if (!multiworld)
+            resolveDataStorageOp(request.first);
+        queue_server_data.pop();
+    }
+    if (multiworld) APSend(writer.write(req));
+}
+
+void AP_SetServerData(AP_SetServerDataRequest* request) {
+    AP_BulkSetServerData(request);
+    AP_CommitServerData();
+}
+
+void AP_RegisterSetReplyCallback(std::function<void(AP_SetReply)> f_setreply) {
     setreplyfunc = f_setreply;
 }
 
-void AP_SetNotify(std::map<std::string,AP_DataType> keylist) {
+void AP_SetNotify(std::map<std::string,AP_DataType> keylist, bool requestCurrentValue) {
     Json::Value req_t;
-    req_t[0]["cmd"] = "SetNotify";
+    req_t["cmd"] = "SetNotify";
+
+    std::string zero = "0";
+    std::string emptyJson = "{}";
+
     int i = 0;
+    std::vector<AP_SetServerDataRequest> requests;
+
     for (std::pair<std::string,AP_DataType> keytypepair : keylist) {
-        req_t[0]["keys"][i] = keytypepair.first;
+        req_t["keys"][i] = keytypepair.first;
         map_serverdata_typemanage[keytypepair.first] = keytypepair.second;
+
         i++;
+
+        if (requestCurrentValue) {
+            AP_SetServerDataRequest setDefaultRequest;
+            setDefaultRequest.key = keytypepair.first;
+            setDefaultRequest.type = keytypepair.second;
+            setDefaultRequest.want_reply = true;
+            switch (keytypepair.second) {
+                case AP_DataType::Int:
+                case AP_DataType::Double:
+                    setDefaultRequest.operations = {{"default", &zero}};
+                    setDefaultRequest.default_value = &zero;
+                    break;
+                case AP_DataType::Raw:
+                    setDefaultRequest.operations = {{"default", &zero}};
+                    setDefaultRequest.default_value = &emptyJson;
+                    break;
+            }
+            
+            requests.push_back(setDefaultRequest);
+        }
     }
-    APSend(writer.write(req_t));
+
+    AP_RequestStatus requestStatus;
+    queue_server_data.push({req_t, &requestStatus});
+
+    for (AP_SetServerDataRequest& request : requests)
+        AP_BulkSetServerData(&request);
+
+    AP_CommitServerData();
 }
 
-void AP_SetNotify(std::string key, AP_DataType type) {
+void AP_SetNotify(std::string key, AP_DataType type, bool requestCurrentValue) {
     std::map<std::string,AP_DataType> keylist;
     keylist[key] = type;
-    AP_SetNotify(keylist);
+    AP_SetNotify(keylist, requestCurrentValue);
 }
 
-void AP_GetServerData(AP_GetServerDataRequest* request) {
+void AP_BulkGetServerData(AP_GetServerDataRequest* request) {
     request->status = AP_RequestStatus::Pending;
 
     if (map_server_data.find(request->key) != map_server_data.end()) return;
@@ -568,9 +651,15 @@ void AP_GetServerData(AP_GetServerDataRequest* request) {
     map_server_data[request->key] = request;
 
     Json::Value req_t;
-    req_t[0]["cmd"] = "Get";
-    req_t[0]["keys"][0] = request->key;
-    APSend(writer.write(req_t));
+    req_t["cmd"] = "Get";
+    req_t["keys"][0] = request->key;
+
+    queue_server_data.push({req_t,&request->status});
+}
+
+void AP_GetServerData(AP_GetServerDataRequest *request) {
+    AP_BulkGetServerData(request);
+    AP_CommitServerData();
 }
 
 std::string AP_GetPrivateServerDataPrefix() {
@@ -599,7 +688,7 @@ void AP_SendBounce(AP_Bounce bounce) {
     APSend(writer.write(req_t));
 }
 
-void AP_RegisterBouncedCallback(void (*f_bounced)(AP_Bounce)) {
+void AP_RegisterBouncedCallback(std::function<void(AP_Bounce)> f_bounced) {
     bouncedfunc = f_bounced;
 }
 
@@ -663,12 +752,13 @@ bool parse_response(std::string msg, std::string &request) {
             // Avoid inconsistency if we disconnected before
             printf("AP: Authenticated\n");
             ap_player_id = root[i]["slot"].asInt(); // MUST be called before resetitemvalues, otherwise PrivateServerDataPrefix, GetPlayerID return broken values!
-            (*resetItemValues)();
+            ap_player_team = root[i]["team"].asInt();
+            resetItemValues();
 
             for (unsigned int j = 0; j < root[i]["checked_locations"].size(); j++) {
                 //Sync checks with server
                 int64_t loc_id = root[i]["checked_locations"][j].asInt64();
-                (*checklocfunc)(loc_id);
+                checklocfunc(loc_id);
             }
             for (unsigned int j = 0; j < root[i]["players"].size(); j++) {
                 AP_NetworkPlayer player = {
@@ -680,7 +770,18 @@ bool parse_response(std::string msg, std::string &request) {
                 };
                 player.game = root[i]["slot_info"][std::to_string(player.slot)]["game"].asString();
                 map_players[root[i]["players"][j]["slot"].asInt()] = player;
+                teams_set.insert(root[i]["players"][j]["team"].asInt());
             }
+
+            if (gifting_supported) {
+                // Order is important, Motherboxes must be retrieved before personal box for auto-rejection reasons, do not combine
+                std::map<std::string,AP_DataType> giftMotherBoxKeys;
+                for (int team : teams_set)
+                    giftMotherBoxKeys.emplace("GiftBoxes;" + std::to_string(team), AP_DataType::Raw); 
+                AP_SetNotify(giftMotherBoxKeys, true);
+                AP_SetNotify("GiftBox;" + std::to_string(ap_player_team) + ";" + std::to_string(ap_player_id), AP_DataType::Raw, true);
+            }
+
             if ((root[i]["slot_data"].get("death_link", false).asBool() || root[i]["slot_data"].get("DeathLink", false).asBool()) && deathlinksupported) enable_deathlink = true;
             if (root[i]["slot_data"]["death_link_amnesty"] != Json::nullValue)
                 deathlink_amnesty = root[i]["slot_data"].get("death_link_amnesty", 0).asInt();
@@ -689,15 +790,15 @@ bool parse_response(std::string msg, std::string &request) {
             cur_deathlink_amnesty = deathlink_amnesty;
             for (std::string key : slotdata_strings) {
                 if (map_slotdata_callback_int.count(key)) {
-                    (*map_slotdata_callback_int.at(key))(root[i]["slot_data"][key].asInt());
+                    map_slotdata_callback_int.at(key)(root[i]["slot_data"][key].asInt());
                 } else if (map_slotdata_callback_raw.count(key)) {
-                    (*map_slotdata_callback_raw.at(key))(writer.write(root[i]["slot_data"][key]));
+                    map_slotdata_callback_raw.at(key)(writer.write(root[i]["slot_data"][key]));
                 } else if (map_slotdata_callback_mapintint.count(key)) {
                     std::map<int,int> out;
                     for (auto itr : root[i]["slot_data"][key].getMemberNames()) {
                         out[std::stoi(itr)] = root[i]["slot_data"][key][itr.c_str()].asInt();
                     }
-                    (*map_slotdata_callback_mapintint.at(key))(out);
+                    map_slotdata_callback_mapintint.at(key)(out);
                 }
             }
 
@@ -714,8 +815,9 @@ bool parse_response(std::string msg, std::string &request) {
                 req_t.append(setdeathlink);
             }
             // Get datapackage for outdated games
+            const Json::Value dpkg_cache_games = datapkg_cache.get("games", Json::objectValue);
             for (std::pair<std::string,std::string> game_pkg : lib_room_info.datapackage_checksums) {
-                if (datapkg_cache.get("games", Json::objectValue).get(game_pkg.first, Json::objectValue).get("checksum", "_None") != game_pkg.second) {
+                if (dpkg_cache_games.get(game_pkg.first, Json::objectValue).get("checksum", "_None") != game_pkg.second) {
                     printf("AP: Cache outdated for game: %s\n", game_pkg.first.c_str());
                     datapkg_outdated_games.insert(game_pkg.first);
                 }
@@ -769,6 +871,18 @@ bool parse_response(std::string msg, std::string &request) {
                 map_server_data.erase(itr);
             }
         } else if (cmd == "SetReply") {
+            if (gifting_supported && root[i]["key"].asString().rfind("GiftBox", 0) == 0) {
+                // Reserved by library. Used for Gifting API
+                std::string raw_val;
+                std::string raw_orig_val;
+                AP_SetReply setreply;
+                raw_val =  writer.write(root[i]["value"]);
+                raw_orig_val = writer.write(root[i]["original_value"]);
+                setreply.key = root[i]["key"].asString();
+                setreply.value = &raw_val;
+                setreply.original_value = &raw_orig_val;
+                handleGiftAPISetReply(setreply);
+            }
             if (setreplyfunc) {
                 int int_val;
                 int int_orig_val;
@@ -798,7 +912,7 @@ bool parse_response(std::string msg, std::string &request) {
                         setreply.original_value = &raw_orig_val;
                         break;
                 }
-                (*setreplyfunc)(setreply);
+                setreplyfunc(setreply);
             }
         } else if (cmd == "PrintJSON") {
             const std::string printType = root[i].get("type","").asString();
@@ -866,7 +980,7 @@ bool parse_response(std::string msg, std::string &request) {
             for (unsigned int j = 0; j < root[i]["items"].size(); j++) {
                 int64_t item_id = root[i]["items"][j]["item"].asInt64();
                 notify = (item_idx == 0 && last_item_idx <= j && multiworld) || item_idx != 0;
-                (*getitemfunc)(item_id, notify);
+                getitemfunc(item_id, notify);
                 if (queueitemrecvmsg && notify) {
                     AP_ItemRecvMessage* msg = new AP_ItemRecvMessage;
                     AP_NetworkPlayer sender = getPlayer(0, root[i]["items"][j]["player"].asInt());
@@ -894,7 +1008,7 @@ bool parse_response(std::string msg, std::string &request) {
             //Sync checks with server
             for (unsigned int j = 0; j < root[i]["checked_locations"].size(); j++) {
                 int64_t loc_id = root[i]["checked_locations"][j].asInt64();
-                (*checklocfunc)(loc_id);
+                checklocfunc(loc_id);
             }
             //Update Player aliases if present
             for (auto itr : root[i].get("players", Json::arrayValue)) {
@@ -906,16 +1020,19 @@ bool parse_response(std::string msg, std::string &request) {
             printf("AP: Archipelago Server has refused connection. Check Password / Name / IP and restart the Game.\n");
             fflush(stdout);
         } else if (cmd == "Bounced") {
-            if (!enable_deathlink && bouncedfunc == nullptr) continue;
-            if (bouncedfunc == nullptr) {
+            if (!enable_deathlink && !bouncedfunc) continue;
+            if (!bouncedfunc) {
                 // Only do native DeathLink handling, client is not interested in bounce packets
                 for (unsigned int j = 0; j < root[i]["tags"].size(); j++) {
                     if (root[i]["tags"][j].asString() == "DeathLink") {
+                        std::string source = root[i]["data"]["source"].asString();
+                        
                         // Suspicions confirmed ;-; But maybe we died, not them?
-                        if (root[i]["data"]["source"].asString() == ap_player_name) break; // We already paid our penance
+                        if (source == ap_player_name) break; // We already paid our penance
                         deathlinkstat = true;
-                        if (recvdeath != nullptr) {
-                            (*recvdeath)();
+                        if (recvdeath) {
+                            std::string cause = root[i]["data"]["cause"].isNull() ? "" : root[i]["data"]["cause"].asString();
+                            recvdeath(source, cause);
                         }
                         break;
                     }
@@ -928,7 +1045,7 @@ bool parse_response(std::string msg, std::string &request) {
                 // Add targets to bounce package
                 #define ADD_TARGETS( targets ) \
                         if (root[i].isMember(#targets)) { \
-                            for (int j = 0; j < root[i][#targets].size(); j++) { \
+                            for (unsigned int j = 0; j < root[i][#targets].size(); j++) { \
                                 targets.push_back(root[i][#targets][j].asString()); \
                             } \
                             bounce.targets = &targets; \
@@ -939,7 +1056,7 @@ bool parse_response(std::string msg, std::string &request) {
                 #undef ADD_TARGETS
 
                 bounce.data = writer.write(root[i]["data"]);
-                (*bouncedfunc)(bounce);
+                bouncedfunc(bounce);
             }
             
         }
@@ -972,9 +1089,9 @@ void parseDataPkg(Json::Value new_datapkg) {
         printf("AP: Game Cache updated for %s\n", game.c_str());
     }
     WriteFileJSON(datapkg_cache, datapkg_cache_path);
-    parseDataPkg();
 
     if (datapkg_outdated_games.empty()){
+        parseDataPkg(); // Only after all datapackages are up to date
         auth = true;
         ssl_success = auth && isSSL;
         refused = false;
@@ -1005,4 +1122,20 @@ std::string getLocationName(std::string game, int64_t id) {
 
 AP_NetworkPlayer getPlayer(int team, int slot) {
     return map_players[slot];
+}
+
+AP_NetworkPlayer getPlayer(int team, std::string name) {
+    for (std::pair<int,AP_NetworkPlayer> player : map_players) {
+        if (player.second.name == name && player.second.team == team) {
+            return player.second;
+        }
+    }
+    static AP_NetworkPlayer ERR_Player = {
+        -1,
+        -1,
+        "ERR",
+        "ERR",
+        "ERR"
+    };
+    return ERR_Player;
 }
