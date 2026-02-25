@@ -507,6 +507,13 @@ ITEM_NAME_GROUPS: typing.Dict[str, str] = {
     "Extras": list(EXTRAS_ITEM_NAME_TO_ID.keys()),
 }
 
+CHALLENGE_FOLLOWERS = [
+    "Follower: Tornado",
+    "Follower: Chao",
+    "Follower: Chao Egg",
+    "Follower: Froggy",
+    "Follower: Has Bean",
+]
 
 class RingRacersItem(Item):
     game = "Dr. Robotnik's Ring Racers"
@@ -519,13 +526,20 @@ def get_random_filler_item_name(world: RingRacersWorld) -> str:
 def create_rr_item(world: RingRacersWorld, name: str) -> RingRacersItem:
     classification = ItemClassification.filler
 
-    if name in ITEM_NAME_GROUPS["Drivers"]:
-        classification = ItemClassification.progression | ItemClassification.useful
-    elif (name in ITEM_NAME_GROUPS["Cups"] or name in ITEM_NAME_GROUPS["Maps"]):
-        classification = ItemClassification.progression
-
     if name == "Follower: Mystic Melody":
-        classification = ItemClassification.progression | ItemClassification.useful
+        classification = ItemClassification.progression
+    elif name in CHALLENGE_FOLLOWERS:
+        # Only mark followers that are required for challenges as progression
+        classification = ItemClassification.progression_deprioritized_skip_balancing
+    elif name in ITEM_NAME_GROUPS["Drivers"]:
+        # There's probably 1 or 2 drivers that aren't required for challenges,
+        # but the vast majority of them are, so just mark them all as progression
+        # and be done with it LOL
+        classification = ItemClassification.progression_skip_balancing | ItemClassification.useful
+    elif (name in ITEM_NAME_GROUPS["Cups"]
+        or name in ITEM_NAME_GROUPS["Maps"]
+        or name in ITEM_NAME_GROUPS["Extras"]):
+        classification = ItemClassification.progression
 
     return RingRacersItem(name, classification, ITEM_NAME_TO_ID[name], world.player)
 
@@ -536,8 +550,9 @@ def create_all_items(world: RingRacersWorld) -> None:
     for driver_name in DRIVER_ITEM_NAME_TO_ID.keys():
         driver_pool.append(world.create_item(driver_name))
 
-    precollect_driver = driver_pool.pop(world.random.randrange(len(driver_pool)))
-    world.push_precollected(precollect_driver)
+    for i in range(8):
+        precollect_driver = driver_pool.pop(world.random.randrange(len(driver_pool)))
+        world.push_precollected(precollect_driver)
 
     cup_pool: list[Item] = []
 

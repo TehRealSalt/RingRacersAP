@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import logging
 from typing import TYPE_CHECKING
 
 from BaseClasses import Entrance, Region
@@ -627,6 +628,8 @@ def create_and_connect_regions(world: APQuestWorld) -> None:
 
 
 def create_all_regions(world: APQuestWorld) -> None:
+    logging.debug('RingRacers:: Creating regions...')
+
     menu = Region("Menu", world.player, world.multiworld)
     challenges = Region("Challenge Grid", world.player, world.multiworld)
     tutorial = Region("Tutorial", world.player, world.multiworld)
@@ -637,15 +640,19 @@ def create_all_regions(world: APQuestWorld) -> None:
     for cup_name in CUP_TO_ACCESS_ITEM:
         cup_region = Region(cup_name, world.player, world.multiworld)
         regions.append(cup_region)
+        logging.debug('RingRacers:: Created cup region %s', cup_name)
 
     for map_name in MAP_LIST:
         map_region = Region(map_name, world.player, world.multiworld)
         regions.append(map_region)
+        logging.debug('RingRacers:: Created map region %s', map_name)
 
     world.multiworld.regions += regions
 
 
 def connect_regions(world: APQuestWorld) -> None:
+    logging.debug('RingRacers:: Connecting regions...')
+
     menu = world.get_region("Menu")
 
     challenges = world.get_region("Challenge Grid")
@@ -655,13 +662,14 @@ def connect_regions(world: APQuestWorld) -> None:
     for cup_name, cup_maps in DEFAULT_CUP_LAYOUT.items():
         cup_region = world.get_region(cup_name)
 
-        # We'll set cup access item here because it's easy enough.
-        # More specific rules are handled in rules.py
         menu.connect(cup_region, "Menu to " + cup_name)
+        logging.debug('RingRacers:: - Menu goes to %s', cup_name)
 
         for map_name in cup_maps:
             map_region = world.get_region(map_name)
             cup_region.connect(map_region, cup_name + " to " + map_name)
+            logging.debug('RingRacers::   - %s goes to %s', cup_name, map_name)
+
 
     # Lost & Found
     lost_n_found_region = world.get_region("Lost & Found")
@@ -670,6 +678,7 @@ def connect_regions(world: APQuestWorld) -> None:
     for map_name in LOST_AND_FOUND_TO_ACCESS_ITEM.keys():
         map_region = world.get_region(map_name)
         lost_n_found_region.connect(map_region, "Lost & Found to " + map_name)
+        logging.debug('RingRacers:: - Lost & Found goes to %s', map_name)
 
     # Tutorial
     tutorial_region = world.get_region("Tutorial")
@@ -678,6 +687,7 @@ def connect_regions(world: APQuestWorld) -> None:
     for map_name in TUTORIAL_MAP_LIST:
         map_region = world.get_region(map_name)
         tutorial_region.connect(map_region, "Tutorial to " + map_name)
+        logging.debug('RingRacers:: - Tutorial goes to %s', map_name)
 
     # Handle extra special cases
     sunbeam_controls_region = world.get_region("Sunbeam Paradise: Controls")

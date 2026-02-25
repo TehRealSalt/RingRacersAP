@@ -228,10 +228,14 @@ CHALLENGE_FOLLOWER_LOCATION_NAME_TO_ID = {
 }
 
 
-# TODO: Maybe we want to allow a KKD medal per level,
-# instead of exactly 100 Spray Cans?
+
 #CHALLENGE_SPRAY_CAN_LOCATION_NAME_TO_ID = {
-#
+    #
+    # SPRAY CAN CHALLENGES (500 - 599)
+    #
+
+    # TODO: Maybe we want to allow a KKD medal per level,
+    # instead of exactly 100 Spray Cans?
 #}
 
 
@@ -317,9 +321,6 @@ CHALLENGE_EXTRAS_LOCATION_NAME_TO_ID = {
 
     # Similar story as Spray Cans; probably want per-level
     # instead of the global system.
-
-    # This one, however, is an actual Challenge Board entry!
-    
 #}
 
 

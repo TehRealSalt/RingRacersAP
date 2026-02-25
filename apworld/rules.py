@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import logging
 from typing import TYPE_CHECKING
 
 from BaseClasses import CollectionState
@@ -66,19 +67,20 @@ def have_all_maps_but_test_run(state: CollectionState, player: int) -> bool:
 
 def can_reach_chaos_emeralds(state: CollectionState, player: int) -> bool:
     # TODO: Is there any case where we need to check reachability of the Sealed Stars themselves?
-    return state.has_all([
+    return state.has_all((
         "Ring Cup Access",
         "Sneaker Cup Access",
         "Spring Cup Access",
         "Barrier Cup Access",
         "Invincible Cup Access",
         "Emerald Cup Access",
-        "Extra Cup Access"], player)
+        "Extra Cup Access"
+    ), player)
 
 
 def can_reach_all_emeralds(state: CollectionState, player: int) -> bool:
     # TODO: Is there any case where we need to check reachability of the Sealed Stars themselves?
-    return state.has_all([ 
+    return state.has_all((
         "Ring Cup Access",
         "Sneaker Cup Access",
         "Spring Cup Access",
@@ -92,7 +94,8 @@ def can_reach_all_emeralds(state: CollectionState, player: int) -> bool:
         "Lightning Cup Access",
         "Flame Cup Access",
         "Super Cup Access",
-        "Egg Cup Access"], player)
+        "Egg Cup Access"
+    ), player)
 
 
 def enough_medals(state: CollectionState, count: int, player: int) -> bool:
@@ -103,7 +106,7 @@ def enough_medals(state: CollectionState, count: int, player: int) -> bool:
 def have_all_guest_drivers(state: CollectionState, player: int) -> bool:
     # Not including Trouble Bruin is intentional, but keep an
     # eye on if the main game fixes this issue
-    return state.has_all([ 
+    return state.has_all(( 
         "Driver: AiAi",
         "Driver: Aigis",
         "Driver: Arle",
@@ -122,7 +125,8 @@ def have_all_guest_drivers(state: CollectionState, player: int) -> bool:
         "Driver: Rappy",
         "Driver: Sakura Shinguji",
         "Driver: Vectorman",
-        "Driver: Wonder Boy"], player)
+        "Driver: Wonder Boy"
+    ), player)
 
 
 def set_all_rules(world: RingRacersWorld) -> None:
@@ -182,9 +186,247 @@ ENTRANCE_TO_ACCESS_ITEM = {
 
 
 def set_all_entrance_rules(world: RingRacersWorld) -> None:
-    for entrance_name, access_item in ENTRANCE_TO_ACCESS_ITEM.items():
-        entrance = world.get_entrance(entrance_name)
-        set_rule(entrance, lambda state: state.has(access_item, world.player))
+    logging.debug('RingRacers:: Setting entrance rules...')
+
+    set_rule(
+        world.get_entrance("Menu to Ring Cup"),
+        lambda state:
+            state.has("Ring Cup Access", world.player)
+    )
+
+    set_rule(
+        world.get_entrance("Menu to Sneaker Cup"),
+        lambda state:
+            state.has("Sneaker Cup Access", world.player)
+    )
+
+    set_rule(
+        world.get_entrance("Menu to Spring Cup"),
+        lambda state:
+            state.has("Spring Cup Access", world.player)
+    )
+
+    set_rule(
+        world.get_entrance("Menu to Barrier Cup"),
+        lambda state:
+            state.has("Barrier Cup Access", world.player)
+    )
+
+    set_rule(
+        world.get_entrance("Menu to Invincible Cup"),
+        lambda state:
+            state.has("Invincible Cup Access", world.player)
+    )
+
+    set_rule(
+        world.get_entrance("Menu to Emerald Cup"),
+        lambda state:
+            state.has("Emerald Cup Access", world.player)
+    )
+
+    set_rule(
+        world.get_entrance("Menu to Extra Cup"),
+        lambda state:
+            state.has("Extra Cup Access", world.player)
+    )
+
+    set_rule(
+        world.get_entrance("Menu to S.P.B. Cup"),
+        lambda state:
+            state.has("S.P.B. Cup Access", world.player)
+    )
+
+    set_rule(
+        world.get_entrance("Menu to Rocket Cup"),
+        lambda state:
+            state.has("Rocket Cup Access", world.player)
+    )
+
+    set_rule(
+        world.get_entrance("Menu to Aqua Cup"),
+        lambda state:
+            state.has("Aqua Cup Access", world.player)
+    )
+
+    set_rule(
+        world.get_entrance("Menu to Lightning Cup"),
+        lambda state:
+            state.has("Lightning Cup Access", world.player)
+    )
+
+    set_rule(
+        world.get_entrance("Menu to Flame Cup"),
+        lambda state:
+            state.has("Flame Cup Access", world.player)
+    )
+
+    set_rule(
+        world.get_entrance("Menu to Super Cup"),
+        lambda state:
+            state.has("Super Cup Access", world.player)
+    )
+
+    set_rule(
+        world.get_entrance("Menu to Egg Cup"),
+        lambda state:
+            state.has("Egg Cup Access", world.player)
+    )
+
+    set_rule(
+        world.get_entrance("Menu to Goggles Cup"),
+        lambda state:
+            state.has("Goggles Cup Access", world.player)
+    )
+
+    set_rule(
+        world.get_entrance("Menu to Timer Cup"),
+        lambda state:
+            state.has("Timer Cup Access", world.player)
+    )
+
+    set_rule(
+        world.get_entrance("Menu to Grow Cup"),
+        lambda state:
+            state.has("Grow Cup Access", world.player)
+    )
+
+    set_rule(
+        world.get_entrance("Menu to Chao Cup"),
+        lambda state:
+            state.has("Chao Cup Access", world.player)
+    )
+
+    set_rule(
+        world.get_entrance("Menu to Wing Cup"),
+        lambda state:
+            state.has("Wing Cup Access", world.player)
+    )
+
+    set_rule(
+        world.get_entrance("Menu to Mega Cup"),
+        lambda state:
+            state.has("Mega Cup Access", world.player)
+    )
+
+    set_rule(
+        world.get_entrance("Menu to Phantom Cup"),
+        lambda state:
+            state.has("Phantom Cup Access", world.player)
+    )
+
+    set_rule(
+        world.get_entrance("Menu to Flash Cup"),
+        lambda state:
+            state.has("Flash Cup Access", world.player)
+    )
+
+    set_rule(
+        world.get_entrance("Menu to Swap Cup"),
+        lambda state:
+            state.has("Swap Cup Access", world.player)
+    )
+
+    set_rule(
+        world.get_entrance("Menu to Shrink Cup"),
+        lambda state:
+            state.has("Shrink Cup Access", world.player)
+    )
+
+    set_rule(
+        world.get_entrance("Menu to Bomb Cup"),
+        lambda state:
+            state.has("Bomb Cup Access", world.player)
+    )
+
+    set_rule(
+        world.get_entrance("Menu to Power Cup"),
+        lambda state:
+            state.has("Power Cup Access", world.player)
+    )
+
+    set_rule(
+        world.get_entrance("Menu to Genesis Cup"),
+        lambda state:
+            state.has("Genesis Cup Access", world.player)
+    )
+
+    set_rule(
+        world.get_entrance("Menu to Skate Cup"),
+        lambda state:
+            state.has("Skate Cup Access", world.player)
+    )
+
+    set_rule(
+        world.get_entrance("Menu to Recycle Cup A"),
+        lambda state:
+            state.has("Recycle Cup A Access", world.player)
+    )
+
+    set_rule(
+        world.get_entrance("Menu to Recycle Cup B"),
+        lambda state:
+            state.has("Recycle Cup B Access", world.player)
+    )
+
+    set_rule(
+        world.get_entrance("Tutorial to Sunbeam Paradise: Playground"),
+        lambda state:
+            state.has("Sunbeam Paradise: Playground Access", world.player)
+    )
+
+    set_rule(
+        world.get_entrance("Tutorial to Sunbeam Paradise: Brakes"),
+        lambda state:
+            state.has("Sunbeam Paradise: Brakes Access", world.player)
+    )
+
+    set_rule(
+        world.get_entrance("Tutorial to Sunbeam Paradise: Drifting"),
+        lambda state:
+            state.has("Sunbeam Paradise: Drifting Access", world.player)
+    )
+
+    set_rule(
+        world.get_entrance("Tutorial to Sunbeam Paradise: Items"),
+        lambda state:
+            state.has("Sunbeam Paradise: Items Access", world.player)
+    )
+
+    set_rule(
+        world.get_entrance("Tutorial to Sunbeam Paradise: Springs"),
+        lambda state:
+            state.has("Sunbeam Paradise: Springs Access", world.player)
+    )
+
+    set_rule(
+        world.get_entrance("Lost & Found to Test Run"),
+        lambda state:
+            state.has("Test Run Access", world.player)
+    )
+
+    set_rule(
+        world.get_entrance("Lost & Found to Hidden Palace"),
+        lambda state:
+            state.has("Hidden Palace Access", world.player)
+    )
+
+    set_rule(
+        world.get_entrance("Lost & Found to Test Track"),
+        lambda state:
+            state.has("Test Track Access", world.player)
+    )
+
+    set_rule(
+        world.get_entrance("Lost & Found to Route 1980"),
+        lambda state:
+            state.has("Route 1980 Access", world.player)
+    )
+
+    set_rule(
+        world.get_entrance("Lost & Found to Duel Busters"),
+        lambda state:
+            state.has("Duel Busters Access", world.player)
+    )
 
 
 def set_driver_challenge_location_rules(world: RingRacersWorld) -> None:
@@ -346,7 +588,7 @@ def set_driver_challenge_location_rules(world: RingRacersWorld) -> None:
     set_rule(
         world.get_location("Challenge - Driver: Gutbuster"),
         lambda state:
-            state.has_all(["Driver: Bomb", "Driver: Heavy"], world.player)
+            state.has_all(("Driver: Bomb", "Driver: Heavy"), world.player)
             and state.can_reach_region("Sundae Drive", world.player)
     )
 
@@ -408,7 +650,7 @@ def set_driver_challenge_location_rules(world: RingRacersWorld) -> None:
     set_rule(
         world.get_location("Challenge - Driver: Mecha Sonic"),
         lambda state:
-            state.has_all(["Driver: Knuckles", "Gear 3 + GP Vicious Mode"], world.player)
+            state.has_all(("Driver: Knuckles", "Gear 3 + GP Vicious Mode"), world.player)
             and state.can_reach_region("Sky Sanctuary", world.player)
     )
 
@@ -533,7 +775,7 @@ def set_driver_challenge_location_rules(world: RingRacersWorld) -> None:
     set_rule(
         world.get_location("Challenge - Driver: Trouble Bruin"),
         lambda state:
-            state.has_all(["Driver: Headdy", "Gear 3 + GP Vicious Mode"], world.player)
+            state.has_all(("Driver: Headdy", "Gear 3 + GP Vicious Mode"), world.player)
             and state.can_reach_region("Trap Tower", world.player)
     )
 
@@ -853,7 +1095,7 @@ def set_follower_challenge_location_rules(world: RingRacersWorld) -> None:
     set_rule(
         world.get_location("Challenge - Follower: Frogger"),
         lambda state:
-            state.has_all(["Driver: Big", "Follower: Froggy"], world.player)
+            state.has_all(("Driver: Big", "Follower: Froggy"), world.player)
             and state.can_reach_region("Wood", world.player)
     )
 
@@ -950,14 +1192,14 @@ def set_follower_challenge_location_rules(world: RingRacersWorld) -> None:
     set_rule(
         world.get_location("Challenge - Follower: Hero Chao"),
         lambda state:
-            state.has_all(["Driver: Sonic", "Follower: Chao"], world.player)
+            state.has_all(("Driver: Sonic", "Follower: Chao"), world.player)
             and state.can_reach_region("Hero Chao Garden", world.player)
     )
 
     set_rule(
         world.get_location("Challenge - Follower: Dark Chao"),
         lambda state:
-            state.has_all(["Driver: Shadow", "Follower: Chao"], world.player)
+            state.has_all(("Driver: Shadow", "Follower: Chao"), world.player)
             and state.can_reach_region("Dark Chao Garden", world.player)
     )
 
@@ -1158,7 +1400,7 @@ def set_follower_challenge_location_rules(world: RingRacersWorld) -> None:
     set_rule(
         world.get_location("Challenge - Follower: Mean Bean"),
         lambda state:
-            state.has_all(["Driver: Dr. Eggman", "Follower: Has Bean"], world.player)
+            state.has_all(("Driver: Dr. Eggman", "Follower: Has Bean"), world.player)
             and state.can_reach_region("Egg Cup", world.player)
     )
 
@@ -1441,7 +1683,7 @@ def set_cup_challenge_location_rules(world: RingRacersWorld) -> None:
     set_rule(
         world.get_location("Challenge - Egg Cup"),
         lambda state:
-            state.has_all([
+            state.has_all((
                 "Ring Cup Access",
                 "Sneaker Cup Access",
                 "Spring Cup Access",
@@ -1454,7 +1696,8 @@ def set_cup_challenge_location_rules(world: RingRacersWorld) -> None:
                 "Aqua Cup Access",
                 "Lightning Cup Access",
                 "Flame Cup Access",
-                "Super Cup Access"], world.player)
+                "Super Cup Access"
+            ), world.player)
     )
 
     #
@@ -1601,7 +1844,7 @@ def set_extras_challenge_location_rules(world: RingRacersWorld) -> None:
     set_rule(
         world.get_location("Challenge - SPB Attack Mode"),
         lambda state:
-            state.has_all(["Encore Mode", "Time Attack Mode"], world.player)
+            state.has_all(("Encore Mode", "Time Attack Mode"), world.player)
             and enough_medals(state, 500, world.player)
     )
 
@@ -1652,7 +1895,7 @@ def set_extras_challenge_location_rules(world: RingRacersWorld) -> None:
     set_rule(
         world.get_location("Challenge - Springs & Trick Panels"),
         lambda state:
-            state.has_any(["Rocket Cup Access", "Goggles Cup Access"], world.player)
+            state.has_any(("Rocket Cup Access", "Goggles Cup Access"), world.player)
     )
 
     set_rule(

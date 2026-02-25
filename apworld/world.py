@@ -2,6 +2,7 @@ from collections.abc import Mapping
 from typing import Any
 
 from worlds.AutoWorld import World
+from Utils import visualize_regions
 
 from . import items, locations, regions, rules
 from . import options as rr_options
@@ -25,7 +26,6 @@ class RingRacersWorld(World):
 
     origin_region_name = "Menu"
     topology_present = True
-
 
     def create_regions(self) -> None:
         regions.create_and_connect_regions(self)
