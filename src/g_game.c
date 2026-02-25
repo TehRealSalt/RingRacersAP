@@ -84,21 +84,21 @@
 #include "hardware/hw_main.h" // for cv_glshearing
 #endif
 
+// [RRAP]
+#include "ap_main.h" // RRAP_TickMessages
+
 gameaction_t gameaction;
 gamestate_t gamestate = GS_NULL;
 boolean ultimatemode = false;
 
 JoyType_t Joystick[MAXSPLITSCREENPLAYERS];
 
-// SRB2kart
-char gamedatafilename[64] =
-#if defined (TESTERS)
-	"test"
-#elif defined(DEVELOP)
-	"develop"
-#endif
-	"ringdata.dat";
-char timeattackfolder[64] = "ringracers";
+// [RR-AP] Changing this for Archipelago isn't necessary since it will
+// get overwritten later, but it's to make sure that the game does not
+// accidentally overwrite your normal Ring Racers install's files.
+// (Not that you should put these in the same folder, anyways...)
+char gamedatafilename[64] = "ringracersap.apdat";
+char timeattackfolder[64] = "ringracersap";
 char customversionstring[32] = "\0";
 
 static void G_DoCompleted(void);
@@ -2117,6 +2117,9 @@ void G_Ticker(boolean run)
 
 	if (run)
 	{
+		// [RRAP]
+		RRAP_TickMessages();
+
 		if (gamestate != GS_TITLESCREEN
 		&& G_GamestateUsesLevel() == true)
 			ST_Ticker(run);

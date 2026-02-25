@@ -177,6 +177,8 @@ add_executable(SRB2SDL2 MACOSX_BUNDLE WIN32
 	music_manager.cpp
 	sanitize.cpp
 	p_deepcopy.cpp
+	# [RR-AP]
+	ap_main.cpp
 )
 
 # Always compile some files with optimizations in Debug config.
@@ -395,6 +397,9 @@ if(SRB2_CONFIG_ENABLE_WEBM_MOVIES)
 endif()
 
 target_link_libraries(SRB2SDL2 PRIVATE nlohmann_json::nlohmann_json)
+
+# [RR-AP]
+target_link_libraries(SRB2SDL2 PRIVATE APCpp::APCpp)
 
 set(SRB2_HAVE_THREADS ON)
 target_compile_definitions(SRB2SDL2 PRIVATE -DHAVE_THREADS)

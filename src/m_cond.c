@@ -35,6 +35,9 @@
 #include "k_profiles.h"
 #include "k_objects.h" // Obj_AllAncientGearsCollected
 
+// [RRAP]
+#include "ap_main.h"
+
 gamedata_t *gamedata = NULL;
 boolean netUnlocked[MAXUNLOCKABLES];
 
@@ -3505,30 +3508,15 @@ UINT16 M_CompletionEmblems(void) // Bah! Duplication sucks, but it's for a separ
 
 boolean M_GameTrulyStarted(void)
 {
-	// Fail safe
-	if (gamedata == NULL)
-		return false;
-
-	// Not set
-	if (gamestartchallenge >= MAXUNLOCKABLES)
-		return true;
-
-	// An unfortunate sidestep, but sync is important.
-	if (netgame)
-		return true;
-
-	// Okay, we can check to see if this challenge has been achieved.
-	/*return (
-		gamedata->unlockpending[gamestartchallenge]
-		|| gamedata->unlocked[gamestartchallenge]
-	);*/
-	// Actually, on second thought, let's let the Goner Setup play one last time
-	// The above is used in M_StartControlPanel instead
-	return (gamedata->gonerlevel == GDGONER_DONE);
+	// [RR-AP]: this is determined solely
+	// by whenever or not we're connected
+	// to (or attempting) a session yet.
+	return g_ap_started;
 }
 
 boolean M_GameAboutToStart(void)
 {
+#if 0
 	// Fail safe
 	if (gamedata == NULL)
 		return false;
@@ -3542,6 +3530,10 @@ boolean M_GameAboutToStart(void)
 		gamedata->unlockpending[gamestartchallenge]
 		&& !gamedata->unlocked[gamestartchallenge]
 	);
+#else
+	// [RR-AP]
+	return M_GameTrulyStarted();
+#endif
 }
 
 boolean M_CheckNetUnlockByID(UINT16 unlockid)

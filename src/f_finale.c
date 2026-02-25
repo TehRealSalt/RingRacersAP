@@ -330,10 +330,14 @@ void F_StartIntro(void)
 		D_ClearState();
 	}
 
+#if 0
 	skippableallowed = (
 		gamestartchallenge >= MAXUNLOCKABLES
 		|| (gamedata && gamedata->unlocked[gamestartchallenge])
 	);
+#else
+	skippableallowed = true; // [RR-AP]
+#endif
 
 	M_ClearMenus(false);
 	D_SetDeferredStartTitle(false);

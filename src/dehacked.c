@@ -407,9 +407,10 @@ static void DEH_LoadDehackedFile(MYFILE *f, boolean mainfile)
 				}
 				else if (fastcmp(word, "EMBLEM"))
 				{
-					if (!mainfile && !gamedataadded)
+					if (!mainfile)
 					{
-						deh_warning("You must define a custom gamedata to use \"%s\"", word);
+						// [RR-AP]
+						deh_warning("Archipelago does not support custom \"%s\"", word);
 						ignorelines(f);
 					}
 					else if (i > 0 && i <= MAXEMBLEMS)
@@ -429,9 +430,10 @@ static void DEH_LoadDehackedFile(MYFILE *f, boolean mainfile)
 				}
 				else if (fastcmp(word, "UNLOCKABLE"))
 				{
-					if (!mainfile && !gamedataadded)
+					if (!mainfile)
 					{
-						deh_warning("You must define a custom gamedata to use \"%s\"", word);
+						// [RR-AP]
+						deh_warning("Archipelago does not support custom \"%s\"", word);
 						ignorelines(f);
 					}
 					else if (i > 0 && i <= MAXUNLOCKABLES)
@@ -444,9 +446,10 @@ static void DEH_LoadDehackedFile(MYFILE *f, boolean mainfile)
 				}
 				else if (fastcmp(word, "CONDITIONSET"))
 				{
-					if (!mainfile && !gamedataadded)
+					if (!mainfile)
 					{
-						deh_warning("You must define a custom gamedata to use \"%s\"", word);
+						// [RR-AP]
+						deh_warning("Archipelago does not support custom \"%s\"", word);
 						ignorelines(f);
 					}
 					else if (i > 0 && i <= MAXCONDITIONSETS)
@@ -608,12 +611,14 @@ static void DEH_LoadDehackedFile(MYFILE *f, boolean mainfile)
 			deh_warning("No word in this line: %s", s);
 	} // end while
 
+#if 0 // [RR-AP]
 	if (gamedataadded)
 	{
 		basenummapheaders = nummapheaders;
 		basenumkartcupheaders = numkartcupheaders;
 		G_LoadGameData();
 	}
+#endif
 
 	if (gamestate == GS_MENU || gamestate == GS_TITLESCREEN)
 	{
