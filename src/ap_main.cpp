@@ -146,7 +146,7 @@ static void Command_AP_Connect(void)
 
 	AP_Init(
 		g_ap_address.c_str(),
-		"Ring Racers",
+		"Dr. Robotnik's Ring Racers",
 		g_ap_slot.c_str(),
 		g_ap_password.c_str()
 	);
