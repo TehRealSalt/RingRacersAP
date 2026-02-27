@@ -775,12 +775,16 @@ void M_StartControlPanel(void)
 	{
 		// No instantly skipping the titlescreen.
 		// (We can change this timer later when extra animation is added.)
+#if 0
 		if (finalecount < (
 			M_GameTrulyStarted()
 				? 1
 				: 3*TICRATE
 			)
 		)
+#else
+		if (finalecount < 1) // [RRAP]
+#endif
 		{
 			return;
 		}
