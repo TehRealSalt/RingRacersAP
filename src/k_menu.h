@@ -1139,6 +1139,9 @@ extern struct optionsmenu_s {
 	INT16 currcolour;
 	INT16 lastcolour;
 	tic_t fade;
+
+	// [RRAP]
+	boolean aproom;
 } optionsmenu;
 
 extern INT16 controlleroffsets[][2];

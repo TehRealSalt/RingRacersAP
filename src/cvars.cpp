@@ -1542,6 +1542,15 @@ consvar_t cv_execversion = Server(cvlist_execversion)("execversion", "1").dont_s
 
 
 //
+// [RRAP] Archipelago console variables
+//
+
+// These used to be ACTUAL dummies, but I wanted them to save
+consvar_t cv_dummy_ap_address = Player("menu_ap_address", "");
+consvar_t cv_dummy_ap_slot = Player("menu_ap_slot", "");
+consvar_t cv_dummy_ap_password = Player("menu_ap_password", "").dont_save();
+
+//
 // Initialized by CVarList::load...
 //
 

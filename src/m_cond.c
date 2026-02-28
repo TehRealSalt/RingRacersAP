@@ -783,7 +783,7 @@ void M_ClearSecrets(void)
 	gamedata->playgroundroute = false;
 	gamedata->finishedtutorialchallenge = false;
 
-	gamedata->gonerlevel = GDGONER_INIT;
+	gamedata->gonerlevel = GDGONER_OUTRO; // [RRAP] Hacking this part into a connection screen
 }
 
 // For lack of a better idea on where to put this

@@ -1385,7 +1385,10 @@ void M_DrawHorizontalMenu(void)
 		else
 		{
 			V_DrawFill(x-1, y + 17, 2, 2,
-				(i == final && skullAnimCounter/5) ? 73 : 10
+#if 0 // [RRAP]
+				(i == final && skullAnimCounter/5) ? 73 :
+#endif
+				10
 			);
 		}
 	}
@@ -1405,13 +1408,16 @@ void M_DrawHorizontalMenu(void)
 	while (x < BASEVIDWIDTH + (width/2))
 	{
 		showflags = 0;
+#if 0 // [RRAP]
 		if (i == final)
 		{
 			showflags |= V_STRINGDANCE;
 			if (itemOn == i)
 				showflags |= V_YELLOWMAP;
 		}
-		else if (i == itemOn)
+		else
+#endif
+		if (i == itemOn)
 		{
 			showflags |= highlightflags;
 		}
@@ -4753,8 +4759,18 @@ void M_DrawOptionsMovingButton(void)
 	fixed_t ty = Easing_OutQuad(t, optionsmenu.opty * FRACUNIT, optionsmenu.topty * FRACUNIT) + z;
 
 	V_DrawFixedPatch(tx, ty, FRACUNIT, 0, butt, c);
+		
+	const char *s = "";
+	if (optionsmenu.aproom)
+	{
+		// because this was done in an absolutely insane way
+		s = "Archipelago";
+	}
+	else
+	{
+		OPTIONS_MainDef.menuitems[OPTIONS_MainDef.lastOn].text;
+	}
 
-	const char *s = OPTIONS_MainDef.menuitems[OPTIONS_MainDef.lastOn].text;
 	fixed_t w = V_StringScaledWidth(
 		FRACUNIT,
 		FRACUNIT,

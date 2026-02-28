@@ -31,10 +31,23 @@
 
 #include "../core/string.h"
 
+// [RRAP]
+#include "../ap_main.h"
+#include "../sanitize.h"
+
+extern consvar_t cv_dummy_ap_address;
+extern consvar_t cv_dummy_ap_slot;
+extern consvar_t cv_dummy_ap_password;
+
 static void M_GonerDrawer(void);
 static void M_GonerChoiceDrawer(void);
+#if 0 // [RRAP]
 static void M_GonerConclude(INT32 choice);
+#endif
 static boolean M_GonerInputs(INT32 ch);
+
+// [RRAP]
+static void M_GonerAPRoom(INT32 choice);
 
 static menuitem_t MAIN_GonerAccessibility[] =
 {
@@ -130,13 +143,17 @@ menu_t MAIN_GonerAccessibilityDef = {
 
 static menuitem_t MAIN_Goner[] =
 {
-	{IT_STRING | IT_CVAR | IT_CV_STRING, "PASSWORD",
-		"ATTEMPT ADMINISTRATOR ACCESS.", NULL,
-		srb2::itemaction(& cv_dummyextraspassword), 0, 0},
-
 	{IT_STRING | IT_CALL, "EXIT PROGRAM",
 		"CONCLUDE OBSERVATIONS NOW.", NULL,
 		srb2::itemaction(M_QuitSRB2), 0, 0},
+
+	{IT_STRING | IT_CALL, "CONNECT",
+		"INITIALIZE MACROCOSM LINK.", NULL,
+		srb2::itemaction(RRAP_ConnectFromMenu), 0, 0},
+
+	{IT_STRING | IT_CALL, "ROOM SETUP",
+		"CORRECT DEVICE COMMUNICATION.", NULL,
+		srb2::itemaction(M_GonerAPRoom), 0, 0},
 
 	{IT_STRING | IT_CALL, "VIDEO OPTIONS",
 		"CONFIGURE OCULAR PATHWAYS.", NULL,
@@ -149,18 +166,14 @@ static menuitem_t MAIN_Goner[] =
 	{IT_STRING | IT_CALL, "PROFILE SETUP",
 		"ASSIGN VEHICLE INPUTS.", NULL,
 		srb2::itemaction(M_GonerProfile), 0, 0},
-
-	{IT_STRING | IT_CALL, "MAKE CHOICE",
-		"PREPARE FOR INTEGRATION?", NULL,
-		srb2::itemaction(M_GonerChoice), 0, 0},
-
-	{IT_STRING | IT_CALL, "START GAME",
-		"I WILL SUCCEED.", NULL,
-		srb2::itemaction(M_GonerConclude), 0, 0},
 };
 
 menu_t MAIN_GonerDef = {
+#if 0
 	2,
+#else
+	sizeof (MAIN_Goner) / sizeof (menuitem_t), // [RRAP]
+#endif
 	NULL,
 	1,
 	MAIN_Goner,
@@ -217,6 +230,53 @@ static menu_t MAIN_GonerChoiceDef = {
 	NULL,
 	NULL,
 };
+
+// [RRAP]
+static menuitem_t MAIN_GonerAPRoom[] =
+{
+	{IT_STRING | IT_CVAR | IT_CV_STRING, "Room Address",
+		"Hostname of the server running the Archipelago session.", NULL,
+		srb2::itemaction(& cv_dummy_ap_address), 0, 0},
+
+	{IT_STRING | IT_CVAR | IT_CV_STRING, "Slot Name",
+		"The name of the slot that you are connecting to.", NULL,
+		srb2::itemaction(& cv_dummy_ap_slot), 0, 0},
+
+	{IT_STRING | IT_CVAR | IT_CV_STRING, "Room Password",
+		"The password needed to access the room, if any.", NULL,
+		srb2::itemaction(& cv_dummy_ap_password), 0, 0},
+};
+
+menu_t MAIN_GonerAPRoomDef = {
+	sizeof (MAIN_GonerAPRoom) / sizeof (menuitem_t),
+	&MAIN_GonerDef,
+	0,
+	MAIN_GonerAPRoom,
+	48, 80-8,
+	SKINCOLOR_LILAC, 0,
+	MBF_DRAWBGWHILEPLAYING,
+	NULL,
+	2, 5,
+	M_DrawGenericOptions,
+	M_DrawOptionsCogs,
+	M_OptionsTick,
+	NULL,
+	NULL,
+	NULL,
+};
+
+void M_GonerAPRoom(INT32 choice)
+{
+	(void)choice;
+
+	M_SetupNextMenu(&MAIN_GonerAPRoomDef, false);
+
+	optionsmenu.ticker = 0;
+	M_OptionsTick();
+
+	optionsmenu.aproom = true;
+	M_GonerResetLooking(GDGONER_INIT);
+}
 
 namespace
 {
@@ -572,6 +632,7 @@ void Miles_Electric_Lower()
 int goner_levelworking = GDGONER_INIT;
 bool goner_gdq = false;
 
+#if 0
 static void Initial_Control_Info(void)
 {
 	if (cv_currprofile.value != -1)
@@ -588,6 +649,7 @@ static void Initial_Control_Info(void)
 
 	LinesToDigest.push_back(line);
 }
+#endif
 
 void M_AddGonerLines(void)
 {
@@ -600,22 +662,26 @@ void M_AddGonerLines(void)
 	// This one always plays, so it checks the levelworking instead of gamedata.
 	if (goner_levelworking == GDGONER_INTRO)
 	{
+#if 0 // [RRAP]
 		if (!MAIN_Goner[0].mvar2)
 		{
 			LinesToDigest.emplace_back(GONERSPEAKER_EGGMAN, 0,
 				"Metal Sonic. Are you online?");
 		}
+#endif
 
 		leftoff = (goner_levelworking < gamedata->gonerlevel-1);
 
 		if (leftoff)
 		{
+#if 0 // [RRAP]
 			LinesToDigest.emplace_back(0, Miles_Look_Camera);
 			LinesToDigest.emplace_back(GONERSPEAKER_TAILS, 0,
 				"It must have run into some sort of error...");
 			LinesToDigest.emplace_back(GONERSPEAKER_EGGMAN, 0,
 				"Don't worry, your settings so far are saved. "\
 				"Let's pick up where we left off.");
+#endif
 
 			// the -1 guarantees that one will be (re)played
 			goner_levelworking = gamedata->gonerlevel-1;
@@ -624,6 +690,7 @@ void M_AddGonerLines(void)
 		return;
 	}
 
+#if 0 // [RRAP]
 	switch (gamedata->gonerlevel)
 	{
 		case GDGONER_VIDEO:
@@ -854,6 +921,7 @@ void M_AddGonerLines(void)
 			LinesToDigest.emplace_back(GONERSPEAKER_TAILS, 0,
 				"I am error");
 	}
+#endif
 
 	leftoff = false;
 }
@@ -863,6 +931,7 @@ tic_t goner_youactuallylooked = 0;
 
 void M_GonerRailroad(bool set)
 {
+#if 0 // [RRAP]
 	INT16 destsize = std::min(
 		static_cast<INT16>(
 			(set ? 2 : 1) // Quit + options + maybe 1 for extra access
@@ -877,6 +946,7 @@ void M_GonerRailroad(bool set)
 
 	itemOn = destsize-1;
 	S_StartSound(NULL, sfx_s3k63);
+#endif
 }
 
 void M_GonerHidePassword(void)
@@ -1043,8 +1113,13 @@ void M_GonerTick(void)
 
 	if (goner_typewriter.textDone)
 	{
+#if 0 
 		if (!LinesOutput.empty())
+#else
+		if (true) // [RRAP]
+#endif
 			M_GonerHidePassword();
+
 		if (goner_delay > 0)
 			goner_delay--;
 		else if (!LinesToDigest.empty())
@@ -1235,6 +1310,7 @@ void M_DrawGonerBack(void)
 
 static void M_GonerDrawer(void)
 {
+#if 0 // [RRAP]
 	srb2::Draw drawer = srb2::Draw();
 
 	float newy = currentMenu->y - 12;
@@ -1348,6 +1424,21 @@ static void M_GonerDrawer(void)
 			.flags(V_GRAYMAP)
 			.text(scrolltext);
 	}
+#else
+	// [RRAP] Display the room settings on the top menu
+	INT32 x = MAIN_GonerAPRoomDef.x, y = MAIN_GonerAPRoomDef.y;
+
+	for (INT32 i = 0; i < 3; i++)
+	{
+		consvar_t *cv = MAIN_GonerAPRoom[i].itemaction.cvar;
+
+		V_DrawFill(x+5, y+5, MAXSTRINGLENGTH*7+6, 9+6, 159);
+		V_DrawMenuString(x, y, V_GRAYMAP, MAIN_GonerAPRoom[i].text);
+		M_DrawCaretString(x + 14, y + 9, cv->string, false);
+
+		y += 22;
+	}
+#endif
 
 	M_DrawHorizontalMenu();
 }
@@ -1630,6 +1721,7 @@ void M_GonerPlayground(INT32 choice)
 	M_GonerResetText(true);
 }
 
+#if 0 // [RRAP]
 static void M_GonerConclude(INT32 choice)
 {
 	(void)choice;
@@ -1643,6 +1735,7 @@ static void M_GonerConclude(INT32 choice)
 	M_ClearMenus(true);
 	M_GonerResetText(true);
 }
+#endif
 
 void M_GonerGDQ(boolean opinion)
 {

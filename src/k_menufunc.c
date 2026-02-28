@@ -847,7 +847,12 @@ void M_StartControlPanel(void)
 			// Are you ready for the First Boot Experience?
 			M_ResetOptions();
 
+#if 0
 			currentMenu = &MAIN_GonerAccessibilityDef;
+#else
+			// [RRAP] Don't nag on every boot
+			currentMenu = &MAIN_GonerDef;
+#endif
 			restoreMenu = NULL;
 
 			M_PlayMenuJam();

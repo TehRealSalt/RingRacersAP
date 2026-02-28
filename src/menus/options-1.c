@@ -93,6 +93,8 @@ void M_ResetOptions(void)
 	optionsmenu.profile = NULL;
 	optionsmenu.profilemenu = false;
 	optionsmenu.resetprofilemenu = false;
+
+	optionsmenu.aproom = false;
 }
 
 void M_InitOptions(INT32 choice)

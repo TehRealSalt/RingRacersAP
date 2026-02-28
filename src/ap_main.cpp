@@ -37,6 +37,10 @@ static std::string g_ap_address = "";
 static std::string g_ap_slot = "";
 static std::string g_ap_password = "";
 
+extern consvar_t cv_dummy_ap_address;
+extern consvar_t cv_dummy_ap_slot;
+extern consvar_t cv_dummy_ap_password;
+
 void RRAP_TickMessages(void)
 {
 	if (AP_IsMessagePending())
@@ -130,20 +134,16 @@ static void RRAP_InitGamedata(void)
 	}
 
 	G_LoadGameData();
+
+	// [RRAP] Ensure correct goner level.
+	// This isn't used by M_GameTrulyStarted
+	// anymore but just ensure that there's
+	// no other strange side-effects.
+	gamedata->gonerlevel = GDGONER_DONE;
 }
 
-static void Command_AP_Connect(void)
+static void RRAP_Connect(void)
 {
-	if (COM_Argc() < 3 || *COM_Argv(1) == 0 || *COM_Argv(2) == 0)
-	{
-		CONS_Printf("ap_connect <address> <slot> [password]: connect to an Archipelago room\n");
-		return;
-	}
-
-	g_ap_address = COM_Argv(1);
-	g_ap_slot = COM_Argv(2);
-	g_ap_password = COM_Argv(3);
-
 	AP_Init(
 		g_ap_address.c_str(),
 		"Dr. Robotnik's Ring Racers",
@@ -168,7 +168,57 @@ static void Command_AP_Connect(void)
 	}
 }
 
+static void Command_AP_Connect(void)
+{
+	if (COM_Argc() < 3 || *COM_Argv(1) == 0 || *COM_Argv(2) == 0)
+	{
+		CONS_Printf("ap_connect <address> <slot> [password]: connect to an Archipelago room\n");
+		return;
+	}
+
+	g_ap_address = COM_Argv(1);
+	g_ap_slot = COM_Argv(2);
+	g_ap_password = COM_Argv(3);
+
+	RRAP_Connect();
+}
+
 void D_RegisterArchipelagoCommands(void)
 {
 	COM_AddCommand("ap_connect", Command_AP_Connect);
+}
+
+void RRAP_ConnectFromMenu(int32_t choice)
+{
+	if (cv_dummy_ap_address.string[0] == '\0')
+	{
+		M_StartMessage(
+			"Archipelago Connection Failure",
+			M_GetText(
+				"No room address was specified.\n"
+			),
+			nullptr, MM_NOTHING, nullptr,
+			"Back to Menu"
+		);
+		return;
+	}
+
+	if (cv_dummy_ap_slot.string[0] == '\0')
+	{
+		M_StartMessage(
+			"Archipelago Connection Failure",
+			M_GetText(
+				"No slot name was specified.\n"
+			),
+			nullptr, MM_NOTHING, nullptr,
+			"Back to Menu"
+		);
+		return;
+	}
+
+	g_ap_address = cv_dummy_ap_address.string;
+	g_ap_slot = cv_dummy_ap_slot.string;
+	g_ap_password = cv_dummy_ap_password.string;
+
+	RRAP_Connect();
 }
