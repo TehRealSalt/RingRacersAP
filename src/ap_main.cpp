@@ -80,61 +80,67 @@ static void RRAP_LoadArchipelagoJSONLump(uint16_t wad_id, lumpnum_t lump_id)
 	srb2::JsonObject parsed_obj = srb2::JsonValue::from_json_string(json_string).as_object();
 	try
 	{
-		srb2::JsonObject locations = parsed_obj.at("locations").as_object();
-		for (auto& [key_string, location_obj] : locations)
+		if (parsed_obj.find("locations") != parsed_obj.end())
 		{
-			int64_t key_index = std::stol(key_string);
-			SRB2_ASSERT(key_index > 0);
-			SRB2_ASSERT(g_ap_item_info.find(key_index) == g_ap_item_info.end());
+			srb2::JsonObject locations = parsed_obj.at("locations").as_object();
+			for (auto& [key_string, location_obj] : locations)
+			{
+				int64_t key_index = std::stol(key_string);
+				SRB2_ASSERT(key_index > 0);
+				SRB2_ASSERT(g_ap_item_info.find(key_index) == g_ap_item_info.end());
 
-			RRAP_Location location;
-			location.label = location_obj.at("label").get<srb2::String>();
-			location.condition_set = location_obj.value("condition_set", -1);
-			location.big_tile = location_obj.value("big_tile", false);
+				RRAP_Location location;
+				location.label = location_obj.at("label").get<srb2::String>();
+				location.condition_set = location_obj.value("condition_set", -1);
+				location.big_tile = location_obj.value("big_tile", false);
 
-			g_ap_location_info[key_index] = location;
+				g_ap_location_info[key_index] = location;
+			}
 		}
-
-		srb2::JsonObject items = parsed_obj.at("items").as_object();
-		for (auto& [key_string, item_obj] : items)
+		
+		if (parsed_obj.find("items") != parsed_obj.end())
 		{
-			int64_t key_index = std::stol(key_string);
-			SRB2_ASSERT(key_index > 0);
-			SRB2_ASSERT(g_ap_item_info.find(key_index) == g_ap_item_info.end());
+			srb2::JsonObject items = parsed_obj.at("items").as_object();
+			for (auto& [key_string, item_obj] : items)
+			{
+				int64_t key_index = std::stol(key_string);
+				SRB2_ASSERT(key_index > 0);
+				SRB2_ASSERT(g_ap_item_info.find(key_index) == g_ap_item_info.end());
 
-			RRAP_Item item;
-			item.label = item_obj.at("label").get<srb2::String>();
+				RRAP_Item item;
+				item.label = item_obj.at("label").get<srb2::String>();
 
-			int unlockable_id = item_obj.value("unlockable", 0);
-			if (unlockable_id > 0 && unlockable_id <= MAXUNLOCKABLES)
-			{
-				unlockables[unlockable_id - 1].ap_item_id = key_index;
-				item.unlockable = unlockable_id - 1;
-			}
-			else if (unlockable_id == 0)
-			{
-				item.unlockable = MAXUNLOCKABLES;
-			}
-			else
-			{
-				throw std::runtime_error(srb2::format("invalid unlock id '{}'", unlockable_id));
-			}
-
-			srb2::String skin = item_obj.value("skin", srb2::String(""));
-			if (skin.empty() == false)
-			{
-				int skin_id = R_SkinAvailableEx(skin.c_str(), false);
-				if (skin_id != -1)
+				int unlockable_id = item_obj.value("unlockable", 0);
+				if (unlockable_id > 0 && unlockable_id <= MAXUNLOCKABLES)
 				{
-					skins[skin_id]->ap_item_id = key_index;
+					unlockables[unlockable_id - 1].ap_item_id = key_index;
+					item.unlockable = unlockable_id - 1;
+				}
+				else if (unlockable_id == 0)
+				{
+					item.unlockable = MAXUNLOCKABLES;
 				}
 				else
 				{
-					throw std::runtime_error(srb2::format("invalid skin '{}'", skin));
+					throw std::runtime_error(srb2::format("invalid unlock id '{}'", unlockable_id));
 				}
-			}
 
-			g_ap_item_info[key_index] = item;
+				srb2::String skin = item_obj.value("skin", srb2::String(""));
+				if (skin.empty() == false)
+				{
+					int skin_id = R_SkinAvailableEx(skin.c_str(), false);
+					if (skin_id != -1)
+					{
+						skins[skin_id]->ap_item_id = key_index;
+					}
+					else
+					{
+						throw std::runtime_error(srb2::format("invalid skin '{}'", skin));
+					}
+				}
+
+				g_ap_item_info[key_index] = item;
+			}
 		}
 	}
 	catch (const std::exception& ex)
