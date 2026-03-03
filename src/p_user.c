@@ -302,6 +302,7 @@ UINT8 P_GetNextEmerald(void)
 
 	if (grandprixinfo.gp == true && grandprixinfo.cup)
 	{
+#if 0
 		if (gamedata->sealedswaps[GDMAX_SEALEDSWAPS-1] != NULL // all found
 		|| grandprixinfo.cup->id >= basenumkartcupheaders // custom content
 		|| M_SecretUnlocked(SECRET_SPECIALATTACK, false)) // true order
@@ -323,6 +324,10 @@ UINT8 P_GetNextEmerald(void)
 
 			return i+1;
 		}
+#else
+		// [RRAP] Consistent sealed stars
+		cup = grandprixinfo.cup;
+#endif
 	}
 
 	if (cup == NULL)

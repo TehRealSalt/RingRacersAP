@@ -2946,6 +2946,7 @@ fixed_t M_DrawCupWinData(INT32 rankx, INT32 ranky, cupheader_t *cup, UINT8 diffi
 
 	if (!noemerald)
 	{
+#if 0
 		if (gamedata->sealedswaps[GDMAX_SEALEDSWAPS-1] != NULL // all found
 		|| cup->id >= basenumkartcupheaders // custom content
 		|| M_SecretUnlocked(SECRET_SPECIALATTACK, true)) // true order
@@ -2991,6 +2992,13 @@ fixed_t M_DrawCupWinData(INT32 rankx, INT32 ranky, cupheader_t *cup, UINT8 diffi
 				}
 			}
 		}
+#else
+		// Standard order.
+		if (windata->got_emerald == true)
+		{
+			emeraldnum = cup->emeraldnum;
+		}
+#endif
 	}
 
 	if (windata->best_placement == 0)
@@ -8868,7 +8876,9 @@ static void M_DrawStatsMaps(void)
 
 	i = -1;
 
+#if 0
 	const boolean allowsealed = M_SecretUnlocked(SECRET_SPECIALATTACK, true);
+#endif
 	const boolean allowencore = M_SecretUnlocked(SECRET_ENCORE, true);
 	const boolean allowspb = M_SecretUnlocked(SECRET_SPBATTACK, true);
 	boolean allowtime = false;
@@ -8897,11 +8907,16 @@ static void M_DrawStatsMaps(void)
 				if (mapheaderinfo[mnum]->typeoflevel & TOL_TUTORIAL)
 					str = "TUTORIAL MODE";
 				else if (mapheaderinfo[mnum]->cup
+#if 0
 				&& (!(mapheaderinfo[mnum]->typeoflevel & TOL_SPECIAL) // not special
 				|| gamedata->sealedswaps[GDMAX_SEALEDSWAPS-1] != NULL // all found
 				|| mapheaderinfo[mnum]->cup->id >= basenumkartcupheaders // custom content
 				|| allowsealed)) // true order
+#else
+					) // [RRAP] consistent sealed stars
+#endif
 					str = va("%s CUP", mapheaderinfo[mnum]->cup->realname);
+
 				else
 					str = "LOST & FOUND";
 

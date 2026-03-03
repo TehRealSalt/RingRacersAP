@@ -4376,6 +4376,7 @@ void G_GPCupIntoRoundQueue(cupheader_t *cup, UINT8 setgametype, boolean setencor
 		// ~toast 010324
 		cupheader_t *emeraldcup = NULL;
 
+#if 0
 		if (gamedata->sealedswaps[GDMAX_SEALEDSWAPS-1] != NULL // all found
 		|| cup->id >= basenumkartcupheaders // custom content
 		|| M_SecretUnlocked(SECRET_SPECIALATTACK, false)) // true order
@@ -4414,6 +4415,10 @@ void G_GPCupIntoRoundQueue(cupheader_t *cup, UINT8 setgametype, boolean setencor
 				}
 			}
 		}
+#else
+		// [RRAP] Consistent sealed stars
+		emeraldcup = cup;
+#endif
 
 		if (emeraldcup)
 		{

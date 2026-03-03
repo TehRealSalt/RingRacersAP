@@ -28,6 +28,7 @@ static boolean M_StatisticsAddMap(UINT16 map, cupheader_t *cup, boolean *headere
 
 	if (mapheaderinfo[map]->typeoflevel & TOL_SPECIAL)
 	{
+#if 0
 		if (gamedata->sealedswaps[GDMAX_SEALEDSWAPS-1] != NULL // all found
 		|| (mapheaderinfo[map]->cup
 			&& mapheaderinfo[map]->cup->id >= basenumkartcupheaders) // custom content
@@ -38,6 +39,11 @@ static boolean M_StatisticsAddMap(UINT16 map, cupheader_t *cup, boolean *headere
 		}
 		else if (cup) // Appear under Lost & Found until you've ordered them.
 			return false;
+#else
+		// [RRAP] Consistent sealed stars
+		if (mapheaderinfo[map]->cup != cup)
+			return false;
+#endif
 	}
 	else if (mapheaderinfo[map]->cup != cup)
 		return false;

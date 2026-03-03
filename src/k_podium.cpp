@@ -1372,6 +1372,7 @@ void K_ResetCeremony(void)
 
 	cupheader_t *emeraldcup = NULL;
 
+#if 0
 	if (gamedata->sealedswaps[GDMAX_SEALEDSWAPS-1] != NULL // all found
 	|| grandprixinfo.cup->id >= basenumkartcupheaders // custom content
 	|| M_SecretUnlocked(SECRET_SPECIALATTACK, false)) // true order
@@ -1423,6 +1424,10 @@ void K_ResetCeremony(void)
 			g_podiumData.emeraldnum = i+1;
 		}
 	}
+#else
+	// [RRAP] Consistent sealed stars
+	emeraldcup = grandprixinfo.cup;
+#endif
 
 	// Write grade, position, and emerald-having-ness for later sessions!
 	i = (grandprixinfo.masterbots) ? KARTGP_MASTER : grandprixinfo.gamespeed;

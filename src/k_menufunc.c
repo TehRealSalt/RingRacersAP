@@ -633,6 +633,7 @@ void M_PlayMenuJam(void)
 
 boolean M_ConsiderSealedSwapAlert(void)
 {
+#if 0
 	if (gamedata->sealedswapalerted == true)
 		return false;
 
@@ -661,6 +662,10 @@ boolean M_ConsiderSealedSwapAlert(void)
 	}
 
 	return false;
+#else
+	// [RRAP] Consistent sealed stars
+	return false;
+#endif
 }
 
 void M_ValidateRestoreMenu(void)
