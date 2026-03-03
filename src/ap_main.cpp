@@ -20,6 +20,10 @@
 #include <Archipelago.h>
 #include "ap_main.h"
 
+#include "core/string.h"
+#include "core/hash_map.hpp"
+#include "core/json.hpp"
+
 #include "m_cond.h"
 #include "m_misc.h" // strcatbf
 #include "d_main.h" // srb2home
@@ -27,19 +31,125 @@
 #include "s_sound.h" // struct soundtest
 #include "i_system.h" // I_UpdateMouseGrab
 #include "hu_stuff.h" // HU_AddChatText
+#include "r_skins.h"
+#include "w_wad.h"
+#include "z_zone.h"
 
 boolean g_ap_started;
 
 static const std::string g_ap_file_legal_chars = "abcdefghijklmnopqrstuvwxyz0123456789-_";
 static const std::string g_ap_file_ext = ".apdat";
 
-static std::string g_ap_address = "";
-static std::string g_ap_slot = "";
-static std::string g_ap_password = "";
+static srb2::String g_ap_address = "";
+static srb2::String g_ap_slot = "";
+static srb2::String g_ap_password = "";
 
 extern consvar_t cv_dummy_ap_address;
 extern consvar_t cv_dummy_ap_slot;
 extern consvar_t cv_dummy_ap_password;
+
+struct RRAP_Item
+{
+	// TODO: properly private this stuff,
+	// so that only received can be changed.
+	bool recieved;
+
+	srb2::String label;
+};
+srb2::HashMap<int64_t, RRAP_Item> g_ap_item_info;
+
+struct RRAP_Location
+{
+	// TODO: properly private this stuff,
+	// so that only checked can be changed.
+	bool checked;
+
+	srb2::String label;
+	int32_t condition_set;
+	bool big_tile;
+};
+srb2::HashMap<int64_t, RRAP_Location> g_ap_location_info;
+
+static void RRAP_LoadArchipelagoJSONLump(uint16_t wad_id, lumpnum_t lump_id)
+{
+	size_t lump_len = W_LumpLengthPwad(wad_id, lump_id);
+	const char *lump = static_cast<const char *>( W_CacheLumpNumPwad(wad_id, lump_id, PU_CACHE) );
+
+	srb2::String json_string { lump, lump_len };
+	srb2::JsonObject parsed_obj = srb2::JsonValue::from_json_string(json_string).as_object();
+	try
+	{
+		srb2::JsonObject locations = parsed_obj.at("locations").as_object();
+		for (auto& [key_string, location_obj] : locations)
+		{
+			int64_t key_index = std::stol(key_string);
+
+			RRAP_Location location;
+			location.label = location_obj.at("label").get<srb2::String>();
+			location.condition_set = location_obj.value("condition_set", -1);
+			location.big_tile = location_obj.value("big_tile", false);
+
+			SRB2_ASSERT(g_ap_location_info.find(key_index) == g_ap_location_info.end());
+			g_ap_location_info[key_index] = location;
+		}
+
+		srb2::JsonObject items = parsed_obj.at("items").as_object();
+		for (auto& [key_string, item_obj] : items)
+		{
+			int64_t key_index = std::stol(key_string);
+
+			RRAP_Item item;
+			item.label = item_obj.at("label").get<srb2::String>();
+
+			srb2::String skin = item_obj.value("skin", srb2::String(""));
+			if (skin.empty() == false)
+			{
+				int skin_id = R_SkinAvailableEx(skin.c_str(), false);
+				if (skin_id != -1)
+				{
+					skins[skin_id]->ap_item_id = key_index;
+				}
+				else
+				{
+					throw std::runtime_error("unknown skin '" + skin + "'");
+				}
+			}
+
+			SRB2_ASSERT(g_ap_item_info.find(key_index) == g_ap_item_info.end());
+			g_ap_item_info[key_index] = item;
+		}
+	}
+	catch (const std::exception& ex)
+	{
+		I_Error("Archipelago JSON parse error: %s", ex.what());
+	}
+}
+
+void RRAP_LoadArchipelagoJSON(void)
+{
+	for (uint16_t wad_num = 0; wad_num < mainwads; wad_num++)
+	{
+		if (wadfiles[wad_num]->type != RET_PK3)
+		{
+			continue;
+		}
+
+		uint16_t lump_start = W_CheckNumForFolderStartPK3("archipelago/", wad_num, 0);
+		if (lump_start == INT16_MAX)
+		{
+			return;
+		}
+
+		uint16_t lump_end = W_CheckNumForFolderEndPK3("archipelago/", wad_num, lump_start);
+		for (uint16_t lump_num = lump_start; lump_num < lump_end; lump_num++)
+		{
+			lumpinfo_t *lump_p = &wadfiles[wad_num]->lumpinfo[lump_num];
+			srb2::String file_name = srb2::format("{}|{}", wadfiles[wad_num]->filename, lump_p->fullname);
+			CONS_Printf(M_GetText("Loading Archipelago JSON from %s\n"), file_name.c_str());
+			RRAP_LoadArchipelagoJSONLump(wad_num, lump_num);
+		}
+	}
+}
 
 void RRAP_TickMessages(void)
 {
@@ -51,19 +161,65 @@ void RRAP_TickMessages(void)
 	}
 }
 
+boolean RRAP_HaveItem(int64_t item_id)
+{
+	if (g_ap_item_info.find(item_id) == g_ap_item_info.end())
+	{
+		return false;
+	}
+
+	return g_ap_item_info[item_id].recieved;
+}
+
 static void RRAP_GotClearItems(void)
 {
-	// TODO
+	for (auto& [key, value] : g_ap_item_info)
+	{
+		value.recieved = false;
+	}
+
+	for (auto& [key, value] : g_ap_location_info)
+	{
+		value.checked = false;
+	}
 }
 
 static void RRAP_GotItemReceived(int64_t item_id, bool should_notify)
 {
-	// TODO
+	if (g_ap_item_info.find(item_id) == g_ap_item_info.end())
+	{
+		CONS_Printf(
+			" == AP == could not receive invalid item ID [%li]\n",
+			item_id
+		);
+		return;
+	}
+
+	g_ap_item_info[item_id].recieved = true;
+
+	if (true) //(should_notify)
+	{
+		// TEMP?
+		CONS_Printf(
+			" == AP == GOT ITEM ID [%li]: %s\n",
+			item_id,
+			g_ap_item_info[item_id].label.c_str()
+		);
+	}
 }
 
 static void RRAP_GotLocationChecked(int64_t location_id)
 {
-	// TODO
+	if (g_ap_location_info.find(location_id) == g_ap_location_info.end())
+	{
+		CONS_Printf(
+			" == AP == could not check invalid location ID [%li]\n",
+			location_id
+		);
+		return;
+	}
+
+	g_ap_location_info[location_id].checked = true;
 }
 
 static void RRAP_InitGamedata(void)

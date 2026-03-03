@@ -1451,6 +1451,7 @@ static void IdentifyVersion(void)
 #ifdef USE_PATCH_FILE
 	D_AddFile(startupiwads, num_startupiwads++, va(pandf,srb2waddir,"patch.pk3"), ASSET_HASH_PATCH_PK3);
 #endif
+	D_AddFile(startupiwads, num_startupiwads++, va(spandf,srb2waddir,"data","archipelago.pk3"), nullptr);
 
 #define MUSICTEST(str) \
 		musicpath = va(spandf,srb2waddir,"data",str);\
@@ -1957,6 +1958,9 @@ void D_SRB2Main(void)
 	CONS_Printf("ACS_Init(): Init Action Code Script VM.\n");
 	ACS_Init();
 	CON_SetLoadingProgress(LOADED_ACSINIT);
+
+	// [RRAP]
+	RRAP_LoadArchipelagoJSON();
 
 	//------------------------------------------------ COMMAND LINE PARAMS
 

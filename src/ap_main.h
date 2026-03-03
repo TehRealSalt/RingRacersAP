@@ -24,7 +24,9 @@ extern "C" {
 
 extern boolean g_ap_started;
 
+void RRAP_LoadArchipelagoJSON(void);
 void RRAP_TickMessages(void);
+boolean RRAP_HaveItem(int64_t item_id);
 void RRAP_ConnectFromMenu(int32_t choice);
 
 void D_RegisterArchipelagoCommands();

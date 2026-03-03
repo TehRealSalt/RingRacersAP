@@ -71,6 +71,9 @@ struct skin_t
 	// contains super versions too
 	spritedef_t sprites[NUMPLAYERSPRITES*2];
 	spriteinfo_t sprinfo[NUMPLAYERSPRITES*2];
+
+	// [RRAP]
+	int64_t ap_item_id;
 };
 
 enum facepatches {

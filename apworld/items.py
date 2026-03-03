@@ -68,15 +68,15 @@ DRIVER_ITEM_NAME_TO_ID = {
     "Driver: Ring the Racer": 55,
     "Driver: Trouble Bruin": 56,
 
-    "Driver: Dr. Eggman": 191,
-    "Driver: Tails": 192,
+    "Driver: Tails": 191,
+    "Driver: Amy": 192,
     "Driver: Sonic": 193,
-    "Driver: Knuckles": 194,
-    "Driver: Amy": 195,
-    "Driver: Metal Sonic": 196,
-    "Driver: Fang": 197,
-    "Driver: Mighty": 198,
-    "Driver: Motobug": 199,
+    "Driver: Motobug": 194,
+    "Driver: Knuckles": 195,
+    "Driver: Fang": 196,
+    "Driver: Mighty": 197,
+    "Driver: Dr. Eggman": 198,
+    "Driver: Metal Sonic": 199,
 }
 
 FOLLOWER_ITEM_NAME_TO_ID = {
@@ -550,17 +550,10 @@ def create_all_items(world: RingRacersWorld) -> None:
     for driver_name in DRIVER_ITEM_NAME_TO_ID.keys():
         driver_pool.append(world.create_item(driver_name))
 
-    for i in range(8):
-        precollect_driver = driver_pool.pop(world.random.randrange(len(driver_pool)))
-        world.push_precollected(precollect_driver)
-
     cup_pool: list[Item] = []
 
     for cup_name in CUP_ITEM_NAME_TO_ID.keys():
         cup_pool.append(world.create_item(cup_name))
-
-    precollect_cup = cup_pool.pop(world.random.randrange(len(cup_pool)))
-    world.push_precollected(precollect_cup)
 
     item_pool: list[Item] = []
     item_pool += driver_pool
