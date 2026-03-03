@@ -325,11 +325,10 @@ static void RRAP_InitGamedata(void)
 
 	G_LoadGameData();
 
-	// [RRAP] Ensure correct goner level.
-	// This isn't used by M_GameTrulyStarted
-	// anymore but just ensure that there's
-	// no other strange side-effects.
+	// [RRAP] Set up some gamedata variables
+	// to be how we want them.
 	gamedata->gonerlevel = GDGONER_DONE;
+	gamedata->tutorialdone = true;
 }
 
 static void RRAP_Connect(void)
