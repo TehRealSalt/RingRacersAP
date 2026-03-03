@@ -226,6 +226,9 @@ struct unlockable_t
 	char *stringVar;
 	INT16 stringVarCache;
 	UINT8 majorunlock;
+
+	// [RRAP]
+	INT64 ap_item_id;
 };
 
 typedef enum

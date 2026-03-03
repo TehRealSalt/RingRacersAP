@@ -73,7 +73,7 @@ struct skin_t
 	spriteinfo_t sprinfo[NUMPLAYERSPRITES*2];
 
 	// [RRAP]
-	int64_t ap_item_id;
+	INT64 ap_item_id;
 };
 
 enum facepatches {
@@ -127,7 +127,7 @@ void SetPlayerSkin(INT32 playernum,const char *skinname);
 void SetPlayerSkinByNum(INT32 playernum,INT32 skinnum); // Tails 03-16-2002
 
 // Set backup
-INT32 GetSkinNumClosestToStats(UINT8 kartspeed, UINT8 kartweight, UINT32 flags, boolean unlock);
+INT32 GetSkinNumClosestToStats(INT32 playernum, UINT8 kartspeed, UINT8 kartweight, UINT32 flags, boolean unlock);
 UINT16 R_BotDefaultSkin(void);
 
 // Heavy Magician

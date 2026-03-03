@@ -3549,7 +3549,7 @@ boolean M_CheckNetUnlockByID(UINT16 unlockid)
 		return netUnlocked[unlockid];
 	}
 
-	return gamedata->unlocked[unlockid];
+	return RRAP_HaveItem(unlockables[unlockid].ap_item_id);
 }
 
 boolean M_SecretUnlocked(INT32 type, boolean local)
@@ -3566,9 +3566,22 @@ boolean M_SecretUnlocked(INT32 type, boolean local)
 	{
 		if (unlockables[i].type != type)
 			continue;
-		if ((local && gamedata->unlocked[i])
-			|| (!local && M_CheckNetUnlockByID(i)))
-			continue;
+
+		if (local)
+		{
+			if (RRAP_HaveItem(unlockables[i].ap_item_id))
+			{
+				continue;
+			}
+		}
+		else
+		{
+			if (M_CheckNetUnlockByID(i))
+			{
+				continue;
+			}
+		}
+
 		return false;
 	}
 

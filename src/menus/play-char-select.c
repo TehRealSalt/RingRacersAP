@@ -220,6 +220,11 @@ static void M_SetupProfileGridPos(setup_player_t *p)
 	if (i == -1)
 		i = 0;
 
+	if (!R_SkinUsable(g_localplayers[0], i, false))
+	{
+		i = GetSkinNumClosestToStats(g_localplayers[0], skins[i]->kartspeed, skins[i]->kartweight, skins[i]->flags, false);
+	}
+
 	// While we're here, read follower values.
 	p->followern = K_FollowerAvailable(pr->follower);
 
@@ -231,11 +236,6 @@ static void M_SetupProfileGridPos(setup_player_t *p)
 	if (K_ColorUsable(p->followercolor, true, true) == false)
 	{
 		p->followercolor = SKINCOLOR_NONE;
-	}
-
-	if (!R_SkinUsable(g_localplayers[0], i, false))
-	{
-		i = GetSkinNumClosestToStats(skins[i]->kartspeed, skins[i]->kartweight, skins[i]->flags, false);
 	}
 
 	// Now position the grid for skin
@@ -253,7 +253,6 @@ static void M_SetupProfileGridPos(setup_player_t *p)
 	{
 		p->color = SKINCOLOR_NONE;
 	}
-
 }
 
 static void M_SetupMidGameGridPos(setup_player_t *p, UINT8 num)
@@ -263,6 +262,11 @@ static void M_SetupMidGameGridPos(setup_player_t *p, UINT8 num)
 
 	if (i == -1)
 		i = 0;
+
+	if (!R_SkinUsable(g_localplayers[0], i, false))
+	{
+		i = GetSkinNumClosestToStats(g_localplayers[0], skins[i]->kartspeed, skins[i]->kartweight, skins[i]->flags, false);
+	}
 
 	// While we're here, read follower values.
 	p->followern = cv_follower[num].value;

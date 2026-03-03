@@ -2037,7 +2037,7 @@ static democharlist_t *G_LoadDemoSkins(const DemoBufferSizes &psizes, savebuffer
 			}
 			else
 			{
-				result = GetSkinNumClosestToStats(skinlist[i].kartspeed, skinlist[i].kartweight, skinlist[i].flags, true);
+				result = GetSkinNumClosestToStats(-1, skinlist[i].kartspeed, skinlist[i].kartweight, skinlist[i].flags, true);
 			}
 		}
 

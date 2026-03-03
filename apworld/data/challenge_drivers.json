@@ -247,276 +247,331 @@
 	"items": {
 		"1": {
 			"label": "Driver: AiAi",
+			"unlockable": 1,
 			"skin": "aiai",
 			"group": "Drivers"
 		},
 		"2": {
 			"label": "Driver: Aigis",
+			"unlockable": 2,
 			"skin": "aigis",
 			"group": "Drivers"
 		},
 		"3": {
 			"label": "Driver: Arle",
+			"unlockable": 3,
 			"skin": "arle",
 			"group": "Drivers"
 		},
 		"4": {
 			"label": "Driver: Azusa Miura",
+			"unlockable": 4,
 			"skin": "azusa",
 			"group": "Drivers"
 		},
 		"5": {
 			"label": "Driver: Bark",
+			"unlockable": 5,
 			"skin": "bark",
 			"group": "Drivers"
 		},
 		"6": {
 			"label": "Driver: Battle Kukku XV",
+			"unlockable": 6,
 			"skin": "battlekukku",
 			"group": "Drivers"
 		},
 		"7": {
 			"label": "Driver: Bean",
+			"unlockable": 7,
 			"skin": "bean",
 			"group": "Drivers"
 		},
 		"8": {
 			"label": "Driver: Big",
+			"unlockable": 8,
 			"skin": "big",
 			"group": "Drivers"
 		},
 		"9": {
 			"label": "Driver: Billy Hatcher",
+			"unlockable": 9,
 			"skin": "billyh",
 			"group": "Drivers"
 		},
 		"10": {
 			"label": "Driver: Blaze",
+			"unlockable": 10,
 			"skin": "blaze",
 			"group": "Drivers"
 		},
 		"11": {
 			"label": "Driver: Bomb",
+			"unlockable": 11,
 			"skin": "bomb",
 			"group": "Drivers"
 		},
 		"12": {
 			"label": "Driver: Carol",
+			"unlockable": 12,
 			"skin": "carol",
 			"group": "Drivers"
 		},
 		"13": {
 			"label": "Driver: Caterkiller",
+			"unlockable": 13,
 			"skin": "caterkiller",
 			"group": "Drivers"
 		},
 		"14": {
 			"label": "Driver: Chao",
+			"unlockable": 14,
 			"skin": "chao",
 			"group": "Drivers"
 		},
 		"15": {
 			"label": "Driver: Chaos",
+			"unlockable": 15,
 			"skin": "chaos",
 			"group": "Drivers"
 		},
 		"16": {
 			"label": "Driver: Charmy",
+			"unlockable": 16,
 			"skin": "charmy",
 			"group": "Drivers"
 		},
 		"17": {
 			"label": "Driver: Chuchu",
+			"unlockable": 17,
 			"skin": "chuchu",
 			"group": "Drivers"
 		},
 		"18": {
 			"label": "Driver: Cluckoid",
+			"unlockable": 18,
 			"skin": "cluckoid",
 			"group": "Drivers"
 		},
 		"19": {
 			"label": "Driver: Cream",
+			"unlockable": 19,
 			"skin": "cream",
 			"group": "Drivers"
 		},
 		"20": {
 			"label": "Driver: Ecco",
+			"unlockable": 20,
 			"skin": "ecco",
 			"group": "Drivers"
 		},
 		"21": {
 			"label": "Driver: Eggrobo",
+			"unlockable": 21,
 			"skin": "eggrobo",
 			"group": "Drivers"
 		},
 		"22": {
 			"label": "Driver: Emerl",
+			"unlockable": 22,
 			"skin": "emerl",
 			"group": "Drivers"
 		},
 		"23": {
 			"label": "Driver: Espio",
+			"unlockable": 23,
 			"skin": "espio",
 			"group": "Drivers"
 		},
 		"24": {
 			"label": "Driver: Flicky",
+			"unlockable": 24,
 			"skin": "flicky",
 			"group": "Drivers"
 		},
 		"25": {
 			"label": "Driver: Gum",
+			"unlockable": 25,
 			"skin": "gum",
 			"group": "Drivers"
 		},
 		"26": {
 			"label": "Driver: Gutbuster",
+			"unlockable": 26,
 			"skin": "gutbuster",
 			"group": "Drivers"
 		},
 		"27": {
 			"label": "Driver: Headdy",
+			"unlockable": 27,
 			"skin": "headdy",
 			"group": "Drivers"
 		},
 		"28": {
 			"label": "Driver: Heavy",
+			"unlockable": 28,
 			"skin": "heavy",
 			"group": "Drivers"
 		},
 		"29": {
 			"label": "Driver: Heavy Magician",
+			"unlockable": 29,
 			"skin": "heavymagician",
 			"group": "Drivers"
 		},
 		"30": {
 			"label": "Driver: Honey",
+			"unlockable": 30,
 			"skin": "honey",
 			"group": "Drivers"
 		},
 		"31": {
 			"label": "Driver: Jack Frost",
+			"unlockable": 31,
 			"skin": "jackfrost",
 			"group": "Drivers"
 		},
 		"32": {
 			"label": "Driver: Jet",
+			"unlockable": 32,
 			"skin": "jet",
 			"group": "Drivers"
 		},
 		"34": {
 			"label": "Driver: Mail",
+			"unlockable": 34,
 			"skin": "mail",
 			"group": "Drivers"
 		},
 		"35": {
 			"label": "Driver: Maria",
+			"unlockable": 35,
 			"skin": "maria",
 			"group": "Drivers"
 		},
 		"36": {
 			"label": "Driver: Mecha Sonic",
+			"unlockable": 36,
 			"skin": "mechasonic",
 			"group": "Drivers"
 		},
 		"37": {
 			"label": "Driver: Metal Knuckles",
+			"unlockable": 37,
 			"skin": "metalknuckles",
 			"group": "Drivers"
 		},
 		"38": {
 			"label": "Driver: Nights",
+			"unlockable": 38,
 			"skin": "nights",
 			"group": "Drivers"
 		},
 		"39": {
 			"label": "Driver: Orta",
+			"unlockable": 39,
 			"skin": "orta",
 			"group": "Drivers"
 		},
 		"40": {
 			"label": "Driver: Pulseman",
+			"unlockable": 40,
 			"skin": "pulseman",
 			"group": "Drivers"
 		},
 		"41": {
 			"label": "Driver: Rappy",
+			"unlockable": 41,
 			"skin": "rappy",
 			"group": "Drivers"
 		},
 		"42": {
 			"label": "Driver: Ray",
+			"unlockable": 42,
 			"skin": "ray",
 			"group": "Drivers"
 		},
 		"43": {
 			"label": "Driver: Redz",
+			"unlockable": 43,
 			"skin": "redz",
 			"group": "Drivers"
 		},
 		"44": {
 			"label": "Driver: Rouge",
+			"unlockable": 44,
 			"skin": "rouge",
 			"group": "Drivers"
 		},
 		"45": {
 			"label": "Driver: Sakura Shinguji",
+			"unlockable": 45,
 			"skin": "sakura",
 			"group": "Drivers"
 		},
 		"46": {
 			"label": "Driver: Shadow",
+			"unlockable": 46,
 			"skin": "shadow",
 			"group": "Drivers"
 		},
 		"47": {
 			"label": "Driver: Silver",
+			"unlockable": 47,
 			"skin": "silver",
 			"group": "Drivers"
 		},
 		"48": {
 			"label": "Driver: Surge",
+			"unlockable": 48,
 			"skin": "surge",
 			"group": "Drivers"
 		},
 		"49": {
 			"label": "Driver: Tails Doll",
+			"unlockable": 49,
 			"skin": "tailsdoll",
 			"group": "Drivers"
 		},
 		"50": {
 			"label": "Driver: Tikal",
+			"unlockable": 50,
 			"skin": "tikal",
 			"group": "Drivers"
 		},
 		"51": {
 			"label": "Driver: Vectorman",
+			"unlockable": 51,
 			"skin": "vectorman",
 			"group": "Drivers"
 		},
 		"52": {
 			"label": "Driver: Whisper",
+			"unlockable": 52,
 			"skin": "whisper",
 			"group": "Drivers"
 		},
 		"53": {
 			"label": "Driver: Wonder Boy",
+			"unlockable": 53,
 			"skin": "wonderboy",
 			"group": "Drivers"
 		},
 		"54": {
 			"label": "Driver: Zipp",
+			"unlockable": 54,
 			"skin": "zipp",
 			"group": "Drivers"
 		},
 		"55": {
 			"label": "Driver: Ring the Racer",
+			"unlockable": 55,
 			"skin": "ring",
 			"group": "Drivers"
 		},
 		"56": {
 			"label": "Driver: Trouble Bruin",
+			"unlockable": 56,
 			"skin": "troublebruin",
 			"group": "Drivers"
 		}

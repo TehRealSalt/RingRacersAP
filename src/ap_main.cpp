@@ -55,6 +55,7 @@ struct RRAP_Item
 	bool recieved;
 
 	srb2::String label;
+	uint16_t unlockable;
 };
 srb2::HashMap<int64_t, RRAP_Item> g_ap_item_info;
 
@@ -83,13 +84,14 @@ static void RRAP_LoadArchipelagoJSONLump(uint16_t wad_id, lumpnum_t lump_id)
 		for (auto& [key_string, location_obj] : locations)
 		{
 			int64_t key_index = std::stol(key_string);
+			SRB2_ASSERT(key_index > 0);
+			SRB2_ASSERT(g_ap_item_info.find(key_index) == g_ap_item_info.end());
 
 			RRAP_Location location;
 			location.label = location_obj.at("label").get<srb2::String>();
 			location.condition_set = location_obj.value("condition_set", -1);
 			location.big_tile = location_obj.value("big_tile", false);
 
-			SRB2_ASSERT(g_ap_location_info.find(key_index) == g_ap_location_info.end());
 			g_ap_location_info[key_index] = location;
 		}
 
@@ -97,9 +99,26 @@ static void RRAP_LoadArchipelagoJSONLump(uint16_t wad_id, lumpnum_t lump_id)
 		for (auto& [key_string, item_obj] : items)
 		{
 			int64_t key_index = std::stol(key_string);
+			SRB2_ASSERT(key_index > 0);
+			SRB2_ASSERT(g_ap_item_info.find(key_index) == g_ap_item_info.end());
 
 			RRAP_Item item;
 			item.label = item_obj.at("label").get<srb2::String>();
+
+			int unlockable_id = item_obj.value("unlockable", 0);
+			if (unlockable_id > 0 && unlockable_id <= MAXUNLOCKABLES)
+			{
+				unlockables[unlockable_id - 1].ap_item_id = key_index;
+				item.unlockable = unlockable_id - 1;
+			}
+			else if (unlockable_id == 0)
+			{
+				item.unlockable = MAXUNLOCKABLES;
+			}
+			else
+			{
+				throw std::runtime_error(srb2::format("invalid unlock id '{}'", unlockable_id));
+			}
 
 			srb2::String skin = item_obj.value("skin", srb2::String(""));
 			if (skin.empty() == false)
@@ -111,11 +130,10 @@ static void RRAP_LoadArchipelagoJSONLump(uint16_t wad_id, lumpnum_t lump_id)
 				}
 				else
 				{
-					throw std::runtime_error("unknown skin '" + skin + "'");
+					throw std::runtime_error(srb2::format("invalid skin '{}'", skin));
 				}
 			}
 
-			SRB2_ASSERT(g_ap_item_info.find(key_index) == g_ap_item_info.end());
 			g_ap_item_info[key_index] = item;
 		}
 	}
@@ -163,12 +181,22 @@ void RRAP_TickMessages(void)
 
 boolean RRAP_HaveItem(int64_t item_id)
 {
-	if (g_ap_item_info.find(item_id) == g_ap_item_info.end())
+	if (!item_id || g_ap_item_info.find(item_id) == g_ap_item_info.end())
 	{
-		return false;
+		return true;
 	}
 
 	return g_ap_item_info[item_id].recieved;
+}
+
+uint16_t RRAP_ItemToUnlockable(int64_t item_id)
+{
+	if (!item_id || g_ap_item_info.find(item_id) == g_ap_item_info.end())
+	{
+		return MAXUNLOCKABLES;
+	}
+
+	return g_ap_item_info[item_id].unlockable;
 }
 
 static void RRAP_GotClearItems(void)
@@ -186,7 +214,7 @@ static void RRAP_GotClearItems(void)
 
 static void RRAP_GotItemReceived(int64_t item_id, bool should_notify)
 {
-	if (g_ap_item_info.find(item_id) == g_ap_item_info.end())
+	if (!item_id || g_ap_item_info.find(item_id) == g_ap_item_info.end())
 	{
 		CONS_Printf(
 			" == AP == could not receive invalid item ID [%li]\n",

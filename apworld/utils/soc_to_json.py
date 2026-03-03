@@ -139,6 +139,7 @@ for id_str, unlockable in soc["unlockable"].items():
 
 		item = {}
 		item["label"] = "Driver: {}".format(parsed_name)
+		item["unlockable"] = id_int
 		item["skin"] = unlockable["var"].lower()
 		item["group"] = "Drivers"
 
@@ -159,6 +160,7 @@ for id_str, unlockable in soc["unlockable"].items():
 
 		item = {}
 		item["label"] = "Follower: {}".format(parsed_name)
+		item["unlockable"] = id_int
 		item["follower"] = unlockable["var"].lower()
 		item["group"] = "Followers"
 
@@ -181,6 +183,7 @@ for id_str, unlockable in soc["unlockable"].items():
 
 		item = {}
 		item["label"] = "Spray Can: {}".format(parsed_name)
+		item["unlockable"] = id_int
 		item["color"] = unlockable["var"].lower()
 		item["group"] = "Spray Cans"
 
@@ -201,6 +204,7 @@ for id_str, unlockable in soc["unlockable"].items():
 
 		item = {}
 		item["label"] = "{} Access".format(parsed_name)
+		item["unlockable"] = id_int
 		item["cup"] = unlockable["var"].lower()
 		item["group"] = "Cup Access"
 
@@ -222,6 +226,7 @@ for id_str, unlockable in soc["unlockable"].items():
 
 		item = {}
 		item["label"] = "{} Access".format(parsed_name)
+		item["unlockable"] = id_int
 		item["map"] = unlockable["var"]
 		item["group"] = "Map Access"
 
@@ -246,6 +251,7 @@ for id_str, unlockable in soc["unlockable"].items():
 
 		item = {}
 		item["label"] = temp_name
+		item["unlockable"] = id_int
 		item["color"] = unlockable["var"].lower()
 		item["group"] = "Alt. Music"
 
@@ -267,6 +273,7 @@ for id_str, unlockable in soc["unlockable"].items():
 
 		item = {}
 		item["label"] = parsed_name
+		item["unlockable"] = id_int
 		item["item_type"] = type_name
 
 		locations[id_int] = location

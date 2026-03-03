@@ -8093,7 +8093,7 @@ static void P_InitPlayers(void)
 
 					if (!R_SkinUsable(g_localplayers[0], skin, false))
 					{
-						skin = GetSkinNumClosestToStats(skins[skin]->kartspeed, skins[skin]->kartweight, skins[skin]->flags, false);
+						skin = GetSkinNumClosestToStats(g_localplayers[0], skins[skin]->kartspeed, skins[skin]->kartweight, skins[skin]->flags, false);
 					}
 
 					if (K_ColorUsable(static_cast<skincolornum_t>(p->color), false, true) == true)

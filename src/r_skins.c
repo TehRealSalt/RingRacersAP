@@ -41,6 +41,9 @@
 #include "hardware/hw_md2.h"
 #endif
 
+// [RRAP]
+#include "ap_main.h"
+
 INT32 numskins = 0;
 skin_t **skins;
 
@@ -190,7 +193,6 @@ void R_InitSkins(void)
 
 UINT8 *R_GetSkinAvailabilities(boolean demolock, INT32 botforcecharacter)
 {
-	UINT16 i;
 	UINT8 shif, byte;
 	INT32 skinid;
 	static UINT8 responsebuffer[MAXAVAILABILITY];
@@ -198,21 +200,32 @@ UINT8 *R_GetSkinAvailabilities(boolean demolock, INT32 botforcecharacter)
 
 	memset(&responsebuffer, 0, sizeof(responsebuffer));
 
-	for (i = 0; i < MAXUNLOCKABLES; i++)
+	for (skinid = 0; skinid < numskins; skinid++)
 	{
-		if (unlockables[i].type != SECRET_SKIN)
-			continue;
+		if (!demolock)
+		{
+			boolean res = true;
 
-		skinid = M_UnlockableSkinNum(&unlockables[i]);
+			if (forbots)
+			{
+				if (skinid != botforcecharacter)
+				{
+					// Assert the host's lock.
+					UINT16 unlock_id = RRAP_ItemToUnlockable(skins[skinid]->ap_item_id);
+					res = M_CheckNetUnlockByID(unlock_id);
+				}
+			}
+			else
+			{
+				// Assert the local lock.
+				res = RRAP_HaveItem(skins[skinid]->ap_item_id);
+			}
 
-		if (skinid < 0 || skinid >= MAXSKINUNAVAILABLE)
-			continue;
-
-		if ((forbots
-			? (M_CheckNetUnlockByID(i) || skinid == botforcecharacter) // Assert the host's lock.
-			: gamedata->unlocked[i]) // Assert the local lock.
-				!= true && !demolock)
-			continue;
+			if (res != true)
+			{
+				continue;
+			}
+		}
 
 		shif = (skinid % 8);
 		byte = (skinid / 8);
@@ -229,8 +242,7 @@ boolean R_SkinUsable(INT32 playernum, INT32 skinnum, boolean demoskins)
 {
 	boolean needsunlocked = false;
 	boolean useplayerstruct = ((Playing() || demo.playback) && playernum >= 0);
-	UINT16 i;
-	INT32 skinid;
+	INT64 item_id = 0;
 
 	if (skinnum == -1)
 	{
@@ -241,6 +253,13 @@ boolean R_SkinUsable(INT32 playernum, INT32 skinnum, boolean demoskins)
 	if (K_CanChangeRules(true) && (cv_forceskin.value == skinnum))
 	{
 		// Being forced to play as this character by the server
+		return true;
+	}
+
+	if (M_GameTrulyStarted() == false)
+	{
+		// [RRAP] Allow profile setup before the game starts
+		// to display all drivers.
 		return true;
 	}
 
@@ -257,6 +276,8 @@ boolean R_SkinUsable(INT32 playernum, INT32 skinnum, boolean demoskins)
 	}
 
 	// Determine if this character is supposed to be unlockable or not
+	item_id = skins[skinnum]->ap_item_id;
+
 	if (useplayerstruct && demo.playback)
 	{
 		if (!demoskins)
@@ -265,20 +286,7 @@ boolean R_SkinUsable(INT32 playernum, INT32 skinnum, boolean demoskins)
 	}
 	else
 	{
-		for (i = 0; i < MAXUNLOCKABLES; i++)
-		{
-			if (unlockables[i].type != SECRET_SKIN)
-				continue;
-
-			skinid = M_UnlockableSkinNum(&unlockables[i]);
-
-			if (skinid != skinnum)
-				continue;
-
-			// i is now the unlockable index, we can use this later
-			needsunlocked = true;
-			break;
-		}
+		needsunlocked = (item_id != 0);
 	}
 
 	if (needsunlocked == false)
@@ -298,10 +306,10 @@ boolean R_SkinUsable(INT32 playernum, INT32 skinnum, boolean demoskins)
 
 	// Use the host's if it's checking general state
 	if (playernum == -1)
-		return M_CheckNetUnlockByID(i);
+		return M_CheckNetUnlockByID(RRAP_ItemToUnlockable(item_id));
 
 	// Use the unlockables table directly
-	return (boolean)(gamedata->unlocked[i]);
+	return RRAP_HaveItem(item_id);
 }
 
 boolean R_CanShowSkinInDemo(INT32 skinnum)
@@ -628,27 +636,37 @@ void ClearFakePlayerSkin(player_t* player)
 }
 
 // Finds a skin with the closest stats if the expected skin doesn't exist.
-INT32 GetSkinNumClosestToStats(UINT8 kartspeed, UINT8 kartweight, UINT32 flags, boolean unlock)
+
+INT32 GetSkinNumClosestToStats(INT32 playernum, UINT8 kartspeed, UINT8 kartweight, UINT32 flags, boolean unlock)
 {
+#define CLOSEST_FLAGS_MASK (SF_IRONMAN | SF_HIVOLT)
+	flags &= CLOSEST_FLAGS_MASK;
+
 	INT32 i, closest_skin = 0;
-	UINT8 closest_stats, stat_diff;
+	INT32 closest_stats, stat_diff;
 	boolean doflagcheck = true;
 	UINT32 flagcheck = flags;
 
 flaglessretry:
-	closest_stats = stat_diff = UINT8_MAX;
+	closest_stats = stat_diff = INT32_MAX;
 
 	for (i = 0; i < numskins; i++)
 	{
-		if (!unlock && !R_SkinUsable(-1, i, false))
+		if (unlock == false)
 		{
-			continue;
+			if (R_SkinUsable(playernum, i, false) == false)
+			{
+				continue;
+			}
 		}
+
 		stat_diff = abs(skins[i]->kartspeed - kartspeed) + abs(skins[i]->kartweight - kartweight);
+
 		if (doflagcheck && (skins[i]->flags & flagcheck) != flagcheck)
 		{
 			continue;
 		}
+
 		if (stat_diff < closest_stats)
 		{
 			closest_stats = stat_diff;
@@ -659,9 +677,9 @@ flaglessretry:
 	if (stat_diff && (doflagcheck || closest_stats == UINT8_MAX))
 	{
 		// Just grab *any* SF_IRONMAN if we don't get it on the first pass.
-		if ((flagcheck & SF_IRONMAN) && (flagcheck != SF_IRONMAN))
+		if ((flagcheck & CLOSEST_FLAGS_MASK) && (flagcheck != CLOSEST_FLAGS_MASK))
 		{
-			flagcheck = SF_IRONMAN;
+			flagcheck = CLOSEST_FLAGS_MASK;
 		}
 
 		doflagcheck = false;
@@ -670,6 +688,7 @@ flaglessretry:
 	}
 
 	return closest_skin;
+#undef CLOSEST_FLAGS_MASK
 }
 
 //
