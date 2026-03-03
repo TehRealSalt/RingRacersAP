@@ -136,40 +136,40 @@ def set_all_rules(world: RingRacersWorld) -> None:
 
 
 ENTRANCE_TO_ACCESS_ITEM = {
-    "Menu to Ring Cup": "Ring Cup Access",
-    "Menu to Sneaker Cup": "Sneaker Cup Access",
-    "Menu to Spring Cup": "Spring Cup Access",
-    "Menu to Barrier Cup": "Barrier Cup Access",
-    "Menu to Invincible Cup": "Invincible Cup Access",
-    "Menu to Emerald Cup": "Emerald Cup Access",
-    "Menu to Extra Cup": "Extra Cup Access",
+    "Cup Select to Ring Cup": "Ring Cup Access",
+    "Cup Select to Sneaker Cup": "Sneaker Cup Access",
+    "Cup Select to Spring Cup": "Spring Cup Access",
+    "Cup Select to Barrier Cup": "Barrier Cup Access",
+    "Cup Select to Invincible Cup": "Invincible Cup Access",
+    "Cup Select to Emerald Cup": "Emerald Cup Access",
+    "Cup Select to Extra Cup": "Extra Cup Access",
 
-    "Menu to S.P.B. Cup": "S.P.B. Cup Access",
-    "Menu to Rocket Cup": "Rocket Cup Access",
-    "Menu to Aqua Cup": "Aqua Cup Access",
-    "Menu to Lightning Cup": "Lightning Cup Access",
-    "Menu to Flame Cup": "Flame Cup Access",
-    "Menu to Super Cup": "Super Cup Access",
-    "Menu to Egg Cup": "Egg Cup Access",
+    "Cup Select to S.P.B. Cup": "S.P.B. Cup Access",
+    "Cup Select to Rocket Cup": "Rocket Cup Access",
+    "Cup Select to Aqua Cup": "Aqua Cup Access",
+    "Cup Select to Lightning Cup": "Lightning Cup Access",
+    "Cup Select to Flame Cup": "Flame Cup Access",
+    "Cup Select to Super Cup": "Super Cup Access",
+    "Cup Select to Egg Cup": "Egg Cup Access",
 
-    "Menu to Goggles Cup": "Goggles Cup Access",
-    "Menu to Timer Cup": "Timer Cup Access",
-    "Menu to Grow Cup": "Grow Cup Access",
-    "Menu to Chao Cup": "Chao Cup Access",
-    "Menu to Wing Cup": "Wing Cup Access",
-    "Menu to Mega Cup": "Mega Cup Access",
-    "Menu to Phantom Cup": "Phantom Cup Access",
+    "Cup Select to Goggles Cup": "Goggles Cup Access",
+    "Cup Select to Timer Cup": "Timer Cup Access",
+    "Cup Select to Grow Cup": "Grow Cup Access",
+    "Cup Select to Chao Cup": "Chao Cup Access",
+    "Cup Select to Wing Cup": "Wing Cup Access",
+    "Cup Select to Mega Cup": "Mega Cup Access",
+    "Cup Select to Phantom Cup": "Phantom Cup Access",
 
-    "Menu to Flash Cup": "Flash Cup Access",
-    "Menu to Swap Cup": "Swap Cup Access",
-    "Menu to Shrink Cup": "Shrink Cup Access",
-    "Menu to Bomb Cup": "Bomb Cup Access",
-    "Menu to Power Cup": "Power Cup Access",
-    "Menu to Genesis Cup": "Genesis Cup Access",
-    "Menu to Skate Cup": "Skate Cup Access",
+    "Cup Select to Flash Cup": "Flash Cup Access",
+    "Cup Select to Swap Cup": "Swap Cup Access",
+    "Cup Select to Shrink Cup": "Shrink Cup Access",
+    "Cup Select to Bomb Cup": "Bomb Cup Access",
+    "Cup Select to Power Cup": "Power Cup Access",
+    "Cup Select to Genesis Cup": "Genesis Cup Access",
+    "Cup Select to Skate Cup": "Skate Cup Access",
 
-    "Menu to Recycle Cup A": "Recycle Cup A Access",
-    "Menu to Recycle Cup B": "Recycle Cup B Access",
+    "Cup Select to Recycle Cup A": "Recycle Cup A Access",
+    "Cup Select to Recycle Cup B": "Recycle Cup B Access",
 
     "Tutorial to Sunbeam Paradise: Playground": "Sunbeam Paradise: Playground Access",
     "Tutorial to Sunbeam Paradise: Brakes": "Sunbeam Paradise: Brakes Access",
@@ -188,182 +188,183 @@ ENTRANCE_TO_ACCESS_ITEM = {
 def set_all_entrance_rules(world: RingRacersWorld) -> None:
     logging.debug('RingRacers:: Setting entrance rules...')
 
+    # Basic menu access rules
     set_rule(
-        world.get_entrance("Menu to Ring Cup"),
+        world.get_entrance("Cup Select to Ring Cup"),
         lambda state:
             state.has("Ring Cup Access", world.player)
     )
 
     set_rule(
-        world.get_entrance("Menu to Sneaker Cup"),
+        world.get_entrance("Cup Select to Sneaker Cup"),
         lambda state:
             state.has("Sneaker Cup Access", world.player)
     )
 
     set_rule(
-        world.get_entrance("Menu to Spring Cup"),
+        world.get_entrance("Cup Select to Spring Cup"),
         lambda state:
             state.has("Spring Cup Access", world.player)
     )
 
     set_rule(
-        world.get_entrance("Menu to Barrier Cup"),
+        world.get_entrance("Cup Select to Barrier Cup"),
         lambda state:
             state.has("Barrier Cup Access", world.player)
     )
 
     set_rule(
-        world.get_entrance("Menu to Invincible Cup"),
+        world.get_entrance("Cup Select to Invincible Cup"),
         lambda state:
             state.has("Invincible Cup Access", world.player)
     )
 
     set_rule(
-        world.get_entrance("Menu to Emerald Cup"),
+        world.get_entrance("Cup Select to Emerald Cup"),
         lambda state:
             state.has("Emerald Cup Access", world.player)
     )
 
     set_rule(
-        world.get_entrance("Menu to Extra Cup"),
+        world.get_entrance("Cup Select to Extra Cup"),
         lambda state:
             state.has("Extra Cup Access", world.player)
     )
 
     set_rule(
-        world.get_entrance("Menu to S.P.B. Cup"),
+        world.get_entrance("Cup Select to S.P.B. Cup"),
         lambda state:
             state.has("S.P.B. Cup Access", world.player)
     )
 
     set_rule(
-        world.get_entrance("Menu to Rocket Cup"),
+        world.get_entrance("Cup Select to Rocket Cup"),
         lambda state:
             state.has("Rocket Cup Access", world.player)
     )
 
     set_rule(
-        world.get_entrance("Menu to Aqua Cup"),
+        world.get_entrance("Cup Select to Aqua Cup"),
         lambda state:
             state.has("Aqua Cup Access", world.player)
     )
 
     set_rule(
-        world.get_entrance("Menu to Lightning Cup"),
+        world.get_entrance("Cup Select to Lightning Cup"),
         lambda state:
             state.has("Lightning Cup Access", world.player)
     )
 
     set_rule(
-        world.get_entrance("Menu to Flame Cup"),
+        world.get_entrance("Cup Select to Flame Cup"),
         lambda state:
             state.has("Flame Cup Access", world.player)
     )
 
     set_rule(
-        world.get_entrance("Menu to Super Cup"),
+        world.get_entrance("Cup Select to Super Cup"),
         lambda state:
             state.has("Super Cup Access", world.player)
     )
 
     set_rule(
-        world.get_entrance("Menu to Egg Cup"),
+        world.get_entrance("Cup Select to Egg Cup"),
         lambda state:
             state.has("Egg Cup Access", world.player)
     )
 
     set_rule(
-        world.get_entrance("Menu to Goggles Cup"),
+        world.get_entrance("Cup Select to Goggles Cup"),
         lambda state:
             state.has("Goggles Cup Access", world.player)
     )
 
     set_rule(
-        world.get_entrance("Menu to Timer Cup"),
+        world.get_entrance("Cup Select to Timer Cup"),
         lambda state:
             state.has("Timer Cup Access", world.player)
     )
 
     set_rule(
-        world.get_entrance("Menu to Grow Cup"),
+        world.get_entrance("Cup Select to Grow Cup"),
         lambda state:
             state.has("Grow Cup Access", world.player)
     )
 
     set_rule(
-        world.get_entrance("Menu to Chao Cup"),
+        world.get_entrance("Cup Select to Chao Cup"),
         lambda state:
             state.has("Chao Cup Access", world.player)
     )
 
     set_rule(
-        world.get_entrance("Menu to Wing Cup"),
+        world.get_entrance("Cup Select to Wing Cup"),
         lambda state:
             state.has("Wing Cup Access", world.player)
     )
 
     set_rule(
-        world.get_entrance("Menu to Mega Cup"),
+        world.get_entrance("Cup Select to Mega Cup"),
         lambda state:
             state.has("Mega Cup Access", world.player)
     )
 
     set_rule(
-        world.get_entrance("Menu to Phantom Cup"),
+        world.get_entrance("Cup Select to Phantom Cup"),
         lambda state:
             state.has("Phantom Cup Access", world.player)
     )
 
     set_rule(
-        world.get_entrance("Menu to Flash Cup"),
+        world.get_entrance("Cup Select to Flash Cup"),
         lambda state:
             state.has("Flash Cup Access", world.player)
     )
 
     set_rule(
-        world.get_entrance("Menu to Swap Cup"),
+        world.get_entrance("Cup Select to Swap Cup"),
         lambda state:
             state.has("Swap Cup Access", world.player)
     )
 
     set_rule(
-        world.get_entrance("Menu to Shrink Cup"),
+        world.get_entrance("Cup Select to Shrink Cup"),
         lambda state:
             state.has("Shrink Cup Access", world.player)
     )
 
     set_rule(
-        world.get_entrance("Menu to Bomb Cup"),
+        world.get_entrance("Cup Select to Bomb Cup"),
         lambda state:
             state.has("Bomb Cup Access", world.player)
     )
 
     set_rule(
-        world.get_entrance("Menu to Power Cup"),
+        world.get_entrance("Cup Select to Power Cup"),
         lambda state:
             state.has("Power Cup Access", world.player)
     )
 
     set_rule(
-        world.get_entrance("Menu to Genesis Cup"),
+        world.get_entrance("Cup Select to Genesis Cup"),
         lambda state:
             state.has("Genesis Cup Access", world.player)
     )
 
     set_rule(
-        world.get_entrance("Menu to Skate Cup"),
+        world.get_entrance("Cup Select to Skate Cup"),
         lambda state:
             state.has("Skate Cup Access", world.player)
     )
 
     set_rule(
-        world.get_entrance("Menu to Recycle Cup A"),
+        world.get_entrance("Cup Select to Recycle Cup A"),
         lambda state:
             state.has("Recycle Cup A Access", world.player)
     )
 
     set_rule(
-        world.get_entrance("Menu to Recycle Cup B"),
+        world.get_entrance("Cup Select to Recycle Cup B"),
         lambda state:
             state.has("Recycle Cup B Access", world.player)
     )

@@ -73,19 +73,6 @@ CHALLENGE_DRIVER_LOCATION_NAME_TO_ID = {
 }
 
 
-STARTING_DRIVER_LOCATION_NAME_TO_ID = {
-    "Starting Driver A": 191,
-    "Starting Driver B": 192,
-    "Starting Driver C": 193,
-    "Starting Driver D": 194,
-    "Starting Driver E": 195,
-    "Starting Driver F": 196,
-    "Starting Driver G": 197,
-    "Starting Driver H": 198,
-    "Starting Driver I": 199,
-}
-
-
 CHALLENGE_FOLLOWER_LOCATION_NAME_TO_ID = {
     #
     # FOLLOWER CHALLENGES (200 - 499)
@@ -348,7 +335,6 @@ CHALLENGE_LOCATION_NAME_TO_ID = {
 
 
 LOCATION_NAME_TO_ID = {
-    **STARTING_DRIVER_LOCATION_NAME_TO_ID,
     **CHALLENGE_LOCATION_NAME_TO_ID
 }
 
@@ -367,10 +353,6 @@ def create_all_locations(world: RingRacersWorld) -> None:
 
 
 def create_regular_locations(world: RingRacersWorld) -> None:
-    menu = world.get_region("Menu")
-    starting_driver_locations = get_location_names_with_ids(list(STARTING_DRIVER_LOCATION_NAME_TO_ID.keys()))
-    menu.add_locations(starting_driver_locations, RingRacersLocation)
-
     challenges = world.get_region("Challenge Grid")
     all_challenge_locations = get_location_names_with_ids(list(CHALLENGE_LOCATION_NAME_TO_ID.keys()))
     challenges.add_locations(all_challenge_locations, RingRacersLocation)

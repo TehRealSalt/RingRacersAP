@@ -550,6 +550,10 @@ def create_all_items(world: RingRacersWorld) -> None:
     for driver_name in DRIVER_ITEM_NAME_TO_ID.keys():
         driver_pool.append(world.create_item(driver_name))
 
+    for i in range(9):
+        precollect_driver = driver_pool.pop(world.random.randrange(len(driver_pool)))
+        world.push_precollected(precollect_driver)
+
     cup_pool: list[Item] = []
 
     for cup_name in CUP_ITEM_NAME_TO_ID.keys():

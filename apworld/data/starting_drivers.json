@@ -1,33 +1,4 @@
 {
-	"locations": {
-		"191": {
-			"label": "Starting Driver A"
-		},
-		"192": {
-			"label": "Starting Driver B"
-		},
-		"193": {
-			"label": "Starting Driver C"
-		},
-		"194": {
-			"label": "Starting Driver D"
-		},
-		"195": {
-			"label": "Starting Driver E"
-		},
-		"196": {
-			"label": "Starting Driver F"
-		},
-		"197": {
-			"label": "Starting Driver G"
-		},
-		"198": {
-			"label": "Starting Driver H"
-		},
-		"199": {
-			"label": "Starting Driver I"
-		}
-	},
 	"items": {
 		"191": {
 			"label": "Driver: Tails",

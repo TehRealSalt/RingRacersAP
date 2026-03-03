@@ -632,10 +632,11 @@ def create_all_regions(world: APQuestWorld) -> None:
 
     menu = Region("Menu", world.player, world.multiworld)
     challenges = Region("Challenge Grid", world.player, world.multiworld)
-    tutorial = Region("Tutorial", world.player, world.multiworld)
+    cup_select = Region("Cup Select", world.player, world.multiworld)
     lost_n_found = Region("Lost & Found", world.player, world.multiworld)
+    tutorial = Region("Tutorial", world.player, world.multiworld)
 
-    regions = [menu, challenges, tutorial, lost_n_found]
+    regions = [menu, challenges, cup_select, lost_n_found, tutorial]
 
     for cup_name in CUP_TO_ACCESS_ITEM:
         cup_region = Region(cup_name, world.player, world.multiworld)
@@ -654,26 +655,26 @@ def connect_regions(world: APQuestWorld) -> None:
     logging.debug('RingRacers:: Connecting regions...')
 
     menu = world.get_region("Menu")
-
     challenges = world.get_region("Challenge Grid")
     menu.connect(challenges, "Menu to Challenge Grid")
+
+    cup_select = world.get_region("Cup Select")
+    menu.connect(cup_select, "Menu to Cup Select")
 
     # Connect cups to menu, and then the cup's levels to the cup
     for cup_name, cup_maps in DEFAULT_CUP_LAYOUT.items():
         cup_region = world.get_region(cup_name)
 
-        menu.connect(cup_region, "Menu to " + cup_name)
-        logging.debug('RingRacers:: - Menu goes to %s', cup_name)
+        cup_select.connect(cup_region, "Cup Select to " + cup_name)
 
         for map_name in cup_maps:
             map_region = world.get_region(map_name)
             cup_region.connect(map_region, cup_name + " to " + map_name)
-            logging.debug('RingRacers::   - %s goes to %s', cup_name, map_name)
 
 
     # Lost & Found
     lost_n_found_region = world.get_region("Lost & Found")
-    menu.connect(lost_n_found_region, "Menu to Lost & Found")
+    cup_select.connect(lost_n_found_region, "Cup Select to Lost & Found")
 
     for map_name in LOST_AND_FOUND_TO_ACCESS_ITEM.keys():
         map_region = world.get_region(map_name)
