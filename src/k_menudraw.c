@@ -4776,7 +4776,7 @@ void M_DrawOptionsMovingButton(void)
 	}
 	else
 	{
-		OPTIONS_MainDef.menuitems[OPTIONS_MainDef.lastOn].text;
+		s = OPTIONS_MainDef.menuitems[OPTIONS_MainDef.lastOn].text;
 	}
 
 	fixed_t w = V_StringScaledWidth(
