@@ -3532,7 +3532,7 @@ boolean M_GameAboutToStart(void)
 	);
 #else
 	// [RR-AP]
-	return M_GameTrulyStarted();
+	return false;
 #endif
 }
 
