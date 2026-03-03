@@ -660,7 +660,14 @@ flaglessretry:
 			}
 		}
 
-		stat_diff = abs(skins[i]->kartspeed - kartspeed) + abs(skins[i]->kartweight - kartweight);
+		INT32 speed_diff = abs(skins[i]->kartspeed - kartspeed);
+		INT32 weight_diff = abs(skins[i]->kartweight - kartweight);
+#if 1
+		// [RRAP] Experimental; use real distance.
+		stat_diff = (speed_diff * speed_diff) + (weight_diff * weight_diff);
+#else
+		stat_diff = speed_diff + weight_diff;
+#endif
 
 		if (doflagcheck && (skins[i]->flags & flagcheck) != flagcheck)
 		{
