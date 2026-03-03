@@ -1944,4 +1944,4 @@ def set_all_location_rules(world: RingRacersWorld) -> None:
 
 
 def set_completion_condition(world: RingRacersWorld) -> None:
-    world.multiworld.completion_condition[world.player] = lambda state: state.has("Victory", world.player)
+    world.multiworld.completion_condition[world.player] = lambda state: state.has("Cup Trophy", world.player, 14) # TEMP
