@@ -991,9 +991,11 @@ void M_SetNetUnlocked(void)
 	// Use your gamedata as baseline
 	for (i = 0; i < MAXUNLOCKABLES; i++)
 	{
-		netUnlocked[i] = gamedata->unlocked[i];
+		rrap_item_t *item = RRAP_GetItem(unlockables[i].ap_item_id);
+		netUnlocked[i] = RRAP_ItemRecieved(item);
 	}
 
+#if 0 // [RRAP] Bad for Archipelago
 	if (!dedicated)
 	{
 		return;
@@ -1042,6 +1044,7 @@ void M_SetNetUnlocked(void)
 			}
 		}
 	}
+#endif
 }
 
 // ----------------------
