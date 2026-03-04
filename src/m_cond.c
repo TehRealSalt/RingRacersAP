@@ -3549,7 +3549,8 @@ boolean M_CheckNetUnlockByID(UINT16 unlockid)
 		return netUnlocked[unlockid];
 	}
 
-	return RRAP_HaveItem(unlockables[unlockid].ap_item_id);
+	rrap_item_t *item = RRAP_GetItem(unlockables[unlockid].ap_item_id);
+	return RRAP_ItemRecieved(item);
 }
 
 boolean M_SecretUnlocked(INT32 type, boolean local)
@@ -3569,7 +3570,8 @@ boolean M_SecretUnlocked(INT32 type, boolean local)
 
 		if (local)
 		{
-			if (RRAP_HaveItem(unlockables[i].ap_item_id))
+			rrap_item_t *item = RRAP_GetItem(unlockables[i].ap_item_id);
+			if (RRAP_ItemRecieved(item))
 			{
 				continue;
 			}

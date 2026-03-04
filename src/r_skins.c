@@ -205,20 +205,21 @@ UINT8 *R_GetSkinAvailabilities(boolean demolock, INT32 botforcecharacter)
 		if (!demolock)
 		{
 			boolean res = true;
+			rrap_item_t *item = RRAP_GetItem(skins[skinid]->ap_item_id);
 
 			if (forbots)
 			{
 				if (skinid != botforcecharacter)
 				{
 					// Assert the host's lock.
-					UINT16 unlock_id = RRAP_ItemToUnlockable(skins[skinid]->ap_item_id);
+					UINT16 unlock_id = RRAP_ItemToUnlockableId(item);
 					res = M_CheckNetUnlockByID(unlock_id);
 				}
 			}
 			else
 			{
 				// Assert the local lock.
-				res = RRAP_HaveItem(skins[skinid]->ap_item_id);
+				res = RRAP_ItemRecieved(item);
 			}
 
 			if (res != true)
@@ -304,12 +305,14 @@ boolean R_SkinUsable(INT32 playernum, INT32 skinnum, boolean demoskins)
 		return !!(players[playernum].availabilities[byte] & (1 << shif));
 	}
 
+	rrap_item_t *item = RRAP_GetItem(item_id);
+
 	// Use the host's if it's checking general state
 	if (playernum == -1)
-		return M_CheckNetUnlockByID(RRAP_ItemToUnlockable(item_id));
+		return M_CheckNetUnlockByID(RRAP_ItemToUnlockableId(item));
 
 	// Use the unlockables table directly
-	return RRAP_HaveItem(item_id);
+	return RRAP_ItemRecieved(item);
 }
 
 boolean R_CanShowSkinInDemo(INT32 skinnum)

@@ -13,12 +13,12 @@
 /// \file  ap_main.cpp
 /// \brief Archipelago connectivity
 
+#include <Archipelago.h>
+#include "ap_main.h"
+
 #include <algorithm>
 #include <cctype>
 #include <string>
-
-#include <Archipelago.h>
-#include "ap_main.h"
 
 #include "core/string.h"
 #include "core/hash_map.hpp"
@@ -34,6 +34,7 @@
 #include "r_skins.h"
 #include "w_wad.h"
 #include "z_zone.h"
+#include "k_menu.h"
 
 boolean g_ap_started;
 
@@ -48,28 +49,52 @@ extern consvar_t cv_dummy_ap_address;
 extern consvar_t cv_dummy_ap_slot;
 extern consvar_t cv_dummy_ap_password;
 
-struct RRAP_Item
+static srb2::HashMap<INT64, rrap_location_t> g_ap_location_info;
+static srb2::HashMap<INT64, rrap_item_t> g_ap_item_info;
+
+rrap_location_t::rrap_location_t(INT64 index, srb2::JsonValue json)
 {
-	// TODO: properly private this stuff,
-	// so that only received can be changed.
-	bool recieved;
+	_label = json.at("label").get<srb2::String>();
+	_condition_set_id = json.value("condition_set", -1);
+	_big_tile = json.value("big_tile", false);
+}
 
-	srb2::String label;
-	uint16_t unlockable;
-};
-srb2::HashMap<int64_t, RRAP_Item> g_ap_item_info;
-
-struct RRAP_Location
+rrap_item_t::rrap_item_t(INT64 index, srb2::JsonValue json)
 {
-	// TODO: properly private this stuff,
-	// so that only checked can be changed.
-	bool checked;
+	_label = json.at("label").get<srb2::String>();
 
-	srb2::String label;
-	int32_t condition_set;
-	bool big_tile;
-};
-srb2::HashMap<int64_t, RRAP_Location> g_ap_location_info;
+	int work_unlock_id = json.value("unlockable", 0);
+	if (work_unlock_id > 0 && work_unlock_id <= MAXUNLOCKABLES)
+	{
+		// We need to establish this awkward two-way connection
+		// purely to maintain compatibility w/ non-Archipelago
+		// clients. Multiplayer!!
+		_unlockable_id = work_unlock_id - 1;
+		unlockables[_unlockable_id].ap_item_id = index;
+	}
+	else if (work_unlock_id == 0)
+	{
+		_unlockable_id = MAXUNLOCKABLES;
+	}
+	else
+	{
+		throw std::runtime_error(srb2::format("invalid unlock id '{}'", work_unlock_id));
+	}
+
+	srb2::String work_skin = json.value("skin", srb2::String(""));
+	if (work_skin.empty() == false)
+	{
+		int skin_id = R_SkinAvailableEx(work_skin.c_str(), false);
+		if (skin_id != -1)
+		{
+			skins[skin_id]->ap_item_id = index;
+		}
+		else
+		{
+			throw std::runtime_error(srb2::format("invalid skin '{}'", work_skin));
+		}
+	}
+}
 
 static void RRAP_LoadArchipelagoJSONLump(uint16_t wad_id, lumpnum_t lump_id)
 {
@@ -85,16 +110,12 @@ static void RRAP_LoadArchipelagoJSONLump(uint16_t wad_id, lumpnum_t lump_id)
 			srb2::JsonObject locations = parsed_obj.at("locations").as_object();
 			for (auto& [key_string, location_obj] : locations)
 			{
-				int64_t key_index = std::stol(key_string);
+				INT64 key_index = std::stol(key_string);
 				SRB2_ASSERT(key_index > 0);
-				SRB2_ASSERT(g_ap_item_info.find(key_index) == g_ap_item_info.end());
+				SRB2_ASSERT(g_ap_location_info.find(key_index) == g_ap_location_info.end());
 
-				RRAP_Location location;
-				location.label = location_obj.at("label").get<srb2::String>();
-				location.condition_set = location_obj.value("condition_set", -1);
-				location.big_tile = location_obj.value("big_tile", false);
-
-				g_ap_location_info[key_index] = location;
+				rrap_location_t location(key_index, location_obj);
+				g_ap_location_info.try_emplace(key_index, location);
 			}
 		}
 		
@@ -103,43 +124,12 @@ static void RRAP_LoadArchipelagoJSONLump(uint16_t wad_id, lumpnum_t lump_id)
 			srb2::JsonObject items = parsed_obj.at("items").as_object();
 			for (auto& [key_string, item_obj] : items)
 			{
-				int64_t key_index = std::stol(key_string);
+				INT64 key_index = std::stol(key_string);
 				SRB2_ASSERT(key_index > 0);
 				SRB2_ASSERT(g_ap_item_info.find(key_index) == g_ap_item_info.end());
 
-				RRAP_Item item;
-				item.label = item_obj.at("label").get<srb2::String>();
-
-				int unlockable_id = item_obj.value("unlockable", 0);
-				if (unlockable_id > 0 && unlockable_id <= MAXUNLOCKABLES)
-				{
-					unlockables[unlockable_id - 1].ap_item_id = key_index;
-					item.unlockable = unlockable_id - 1;
-				}
-				else if (unlockable_id == 0)
-				{
-					item.unlockable = MAXUNLOCKABLES;
-				}
-				else
-				{
-					throw std::runtime_error(srb2::format("invalid unlock id '{}'", unlockable_id));
-				}
-
-				srb2::String skin = item_obj.value("skin", srb2::String(""));
-				if (skin.empty() == false)
-				{
-					int skin_id = R_SkinAvailableEx(skin.c_str(), false);
-					if (skin_id != -1)
-					{
-						skins[skin_id]->ap_item_id = key_index;
-					}
-					else
-					{
-						throw std::runtime_error(srb2::format("invalid skin '{}'", skin));
-					}
-				}
-
-				g_ap_item_info[key_index] = item;
+				rrap_item_t item(key_index, item_obj);
+				g_ap_item_info.try_emplace(key_index, item);
 			}
 		}
 	}
@@ -151,21 +141,21 @@ static void RRAP_LoadArchipelagoJSONLump(uint16_t wad_id, lumpnum_t lump_id)
 
 void RRAP_LoadArchipelagoJSON(void)
 {
-	for (uint16_t wad_num = 0; wad_num < mainwads; wad_num++)
+	for (UINT16 wad_num = 0; wad_num < mainwads; wad_num++)
 	{
 		if (wadfiles[wad_num]->type != RET_PK3)
 		{
 			continue;
 		}
 
-		uint16_t lump_start = W_CheckNumForFolderStartPK3("archipelago/", wad_num, 0);
+		UINT16 lump_start = W_CheckNumForFolderStartPK3("archipelago/", wad_num, 0);
 		if (lump_start == INT16_MAX)
 		{
 			return;
 		}
 
-		uint16_t lump_end = W_CheckNumForFolderEndPK3("archipelago/", wad_num, lump_start);
-		for (uint16_t lump_num = lump_start; lump_num < lump_end; lump_num++)
+		UINT16 lump_end = W_CheckNumForFolderEndPK3("archipelago/", wad_num, lump_start);
+		for (UINT16 lump_num = lump_start; lump_num < lump_end; lump_num++)
 		{
 			lumpinfo_t *lump_p = &wadfiles[wad_num]->lumpinfo[lump_num];
 			srb2::String file_name = srb2::format("{}|{}", wadfiles[wad_num]->filename, lump_p->fullname);
@@ -175,46 +165,56 @@ void RRAP_LoadArchipelagoJSON(void)
 	}
 }
 
-void RRAP_TickMessages(void)
+rrap_location_t *RRAP_GetLocation(INT64 location_id)
 {
-	if (AP_IsMessagePending())
+	if (!location_id || g_ap_location_info.find(location_id) == g_ap_location_info.end())
 	{
-		AP_Message *msg = AP_GetLatestMessage();
-		HU_AddChatText(va("\x82[AP] \x80%s", msg->text.c_str()), false);
-		AP_ClearLatestMessage();
+		return nullptr;
 	}
+
+	return &g_ap_location_info[location_id];
 }
 
-boolean RRAP_HaveItem(int64_t item_id)
+rrap_item_t *RRAP_GetItem(INT64 item_id)
 {
 	if (!item_id || g_ap_item_info.find(item_id) == g_ap_item_info.end())
+	{
+		return nullptr;
+	}
+
+	return &g_ap_item_info[item_id];
+}
+
+boolean RRAP_ItemRecieved(rrap_item_t *item)
+{
+	if (!item)
 	{
 		return true;
 	}
 
-	return g_ap_item_info[item_id].recieved;
+	return item->recieved();
 }
 
-uint16_t RRAP_ItemToUnlockable(int64_t item_id)
+UINT16 RRAP_ItemToUnlockableId(rrap_item_t *item)
 {
-	if (!item_id || g_ap_item_info.find(item_id) == g_ap_item_info.end())
+	if (!item)
 	{
 		return MAXUNLOCKABLES;
 	}
 
-	return g_ap_item_info[item_id].unlockable;
+	return item->unlockable_id();
 }
 
 static void RRAP_GotClearItems(void)
 {
 	for (auto& [key, value] : g_ap_item_info)
 	{
-		value.recieved = false;
+		value.set_recieved(false);
 	}
 
 	for (auto& [key, value] : g_ap_location_info)
 	{
-		value.checked = false;
+		value.set_checked(CHECK_FALSE);
 	}
 }
 
@@ -229,7 +229,7 @@ static void RRAP_GotItemReceived(int64_t item_id, bool should_notify)
 		return;
 	}
 
-	g_ap_item_info[item_id].recieved = true;
+	g_ap_item_info[item_id].set_recieved(true);
 
 	if (true) //(should_notify)
 	{
@@ -237,7 +237,7 @@ static void RRAP_GotItemReceived(int64_t item_id, bool should_notify)
 		CONS_Printf(
 			" == AP == GOT ITEM ID [%li]: %s\n",
 			item_id,
-			g_ap_item_info[item_id].label.c_str()
+			g_ap_item_info[item_id].label().c_str()
 		);
 	}
 }
@@ -253,7 +253,17 @@ static void RRAP_GotLocationChecked(int64_t location_id)
 		return;
 	}
 
-	g_ap_location_info[location_id].checked = true;
+	g_ap_location_info[location_id].set_checked(CHECK_TRUE);
+}
+
+void RRAP_TickMessages(void)
+{
+	if (AP_IsMessagePending())
+	{
+		AP_Message *msg = AP_GetLatestMessage();
+		HU_AddChatText(va("\x82[AP] \x80%s", msg->text.c_str()), false);
+		AP_ClearLatestMessage();
+	}
 }
 
 static void RRAP_InitGamedata(void)
