@@ -98,6 +98,8 @@ struct follower_t
 	tic_t ringtime;				// time to keep the above playing for
 
 	sfxenum_t hornsound;		// Press (B) to announce you are pressing (B)
+
+	INT64 ap_item_id; // [RRAP]
 };
 
 extern INT32 numfollowers;

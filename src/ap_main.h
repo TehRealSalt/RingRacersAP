@@ -81,6 +81,7 @@ private:
 	boolean _received;
 	UINT16 _unlockable_id;
 	INT32 _skin_id;
+	INT32 _follower_id;
 	INT32 _display_type;
 	srb2::String _display_icon;
 	UINT16 _display_color;
@@ -94,6 +95,7 @@ public:
 	boolean recieved() const { return _received; }
 	UINT16 unlockable_id() const { return _unlockable_id; }
 	INT32 skin_id() const { return _skin_id; }
+	INT32 follower_id() const { return _follower_id; }
 	INT32 display_type() const { return _display_type; }
 	srb2::String display_icon() const { return _display_icon; }
 	UINT16 display_color() const { return _display_color; }
@@ -147,6 +149,7 @@ char *RRAP_ItemLabel(rrap_item_t *item);
 boolean RRAP_ItemRecieved(rrap_item_t *item);
 UINT16 RRAP_ItemToUnlockableId(rrap_item_t *item);
 INT32 RRAP_ItemToSkinId(rrap_item_t *item);
+INT32 RRAP_ItemToFollowerId(rrap_item_t *item);
 
 INT32 RRAP_ItemDisplayType(rrap_item_t *item);
 char *RRAP_ItemDisplayIcon(rrap_item_t *item);

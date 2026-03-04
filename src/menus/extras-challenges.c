@@ -79,8 +79,6 @@ struct challengesmenu_s challengesmenu;
 
 static void M_UpdateChallengeGridVisuals(void)
 {
-	UINT16 i;
-
 	challengesmenu.cache_secondrowlocked = M_CupSecondRowLocked();
 
 	// [RRAP]
@@ -514,7 +512,7 @@ static void M_ChallengesTutorial(UINT8 option)
 void M_ChallengesTick(void)
 {
 	const UINT8 pid = 0;
-	UINT64 i;
+	INT64 i;
 	INT64 new_location = 0;
 
 	// Ticking
@@ -535,7 +533,7 @@ void M_ChallengesTick(void)
 	// Update tile flip state.
 	if (challengesmenu.extradata != NULL)
 	{
-		UINT64 id = (challengesmenu.hilix * CHALLENGEGRIDHEIGHT) + challengesmenu.hiliy;
+		INT64 id = (challengesmenu.hilix * CHALLENGEGRIDHEIGHT) + challengesmenu.hiliy;
 		boolean seeeveryone = challengesmenu.requestflip;
 		boolean allthewaythrough = allthewaythrough = (!seeeveryone && !challengesmenu.pending);
 
@@ -544,7 +542,7 @@ void M_ChallengesTick(void)
 		if (id == challengesmenu.nowplayingtile)
 		{
 			// Don't permit the active song to stop spinning
-			id = UINT64_MAX;
+			id = INT64_MAX;
 		}
 
 		for (i = 0; i < (CHALLENGEGRIDHEIGHT * gamedata->ap_challengegridwidth); i++)
@@ -782,10 +780,9 @@ void M_ChallengesTick(void)
 						}
 						break;
 					}
-#if 0 // [RRAP] TODO - finish implementing item types
 					case SECRET_FOLLOWER:
 					{
-						INT32 fskin = M_UnlockableFollowerNum(ref);
+						INT32 fskin = RRAP_ItemToFollowerId(item);
 						if (fskin != -1)
 						{
 							INT32 psk = R_SkinAvailableEx(cv_skin[0].string, false);
@@ -795,7 +792,6 @@ void M_ChallengesTick(void)
 						}
 						break;
 					}
-#endif
 					default:
 						break;
 				}
@@ -1225,12 +1221,11 @@ boolean M_ChallengesInputs(INT32 ch)
 					}
 					break;
 				}
-#if 0 // [RRAP] TODO - finish implementing item types
 				case SECRET_FOLLOWER:
 				{
 					if (!horngoner && M_MenuConfirmPressed(pid))
 					{
-						INT32 fskin = M_UnlockableFollowerNum(ref);
+						INT32 fskin = RRAP_ItemToFollowerId(item);
 						if (fskin != -1)
 						{
 							if (setup_numplayers <= 1 && cv_lastprofile[0].value != PROFILE_GUEST)
@@ -1270,6 +1265,7 @@ boolean M_ChallengesInputs(INT32 ch)
 					}
 					break;
 				}
+#if 0 // [RRAP] TODO - finish implementing item types
 				case SECRET_COLOR:
 				{
 					if (setup_numplayers <= 1 && cv_lastprofile[0].value != PROFILE_GUEST && M_MenuConfirmPressed(pid))

@@ -88,7 +88,10 @@ void rrap_location_t::queue_check()
 
 void rrap_location_t::update_displayed_item(srb2::String label, INT64 item_id)
 {
-	CONS_Printf("[AP] Updating location %li display item (label: %s, id: %li)\n", _id, label, item_id);
+	CONS_Printf(
+		"[AP] Updating location %li display item (label: %s, id: %li)\n",
+		_id, label.c_str(), item_id
+	);
 
 	_display_item_label = label;
 
@@ -143,6 +146,24 @@ rrap_item_t::rrap_item_t(INT64 index, srb2::JsonValue json)
 		else
 		{
 			throw std::runtime_error(srb2::format("invalid skin '{}'", work_skin));
+		}
+	}
+
+	srb2::String work_follower = json.value("follower", srb2::String(""));
+	if (work_follower.empty() == false)
+	{
+		int follower_id = K_FollowerAvailable(work_follower.c_str());
+		if (follower_id != -1)
+		{
+			_follower_id = follower_id;
+			followers[_follower_id].ap_item_id = index;
+
+			SRB2_ASSERT(_display_type == SECRET_NONE);
+			_display_type = SECRET_FOLLOWER;
+		}
+		else
+		{
+			throw std::runtime_error(srb2::format("invalid follower '{}'", work_follower));
 		}
 	}
 }
@@ -372,6 +393,16 @@ INT32 RRAP_ItemToSkinId(rrap_item_t *item)
 	return item->skin_id();
 }
 
+INT32 RRAP_ItemToFollowerId(rrap_item_t *item)
+{
+	if (!item)
+	{
+		return -1;
+	}
+
+	return item->follower_id();
+}
+
 INT32 RRAP_ItemDisplayType(rrap_item_t *item)
 {
 	if (!item)
@@ -407,7 +438,7 @@ void RRAP_PopulateChallengeGrid(void)
 	INT64 i, j;
 	srb2::Vector<INT64> selection_small;
 	srb2::Vector<INT64> selection_big;
-	size_t num_empty = 0;
+	UINT64 num_empty = 0;
 	int big_compact = 2;
 
 	if (gamedata->ap_challengegrid != nullptr)
@@ -428,12 +459,12 @@ void RRAP_PopulateChallengeGrid(void)
 		if (location.is_big_tile())
 		{
 			selection_big.emplace_back(id);
-			CONS_Printf(" found %d (LARGE)\n", id);
+			CONS_Printf(" found %li (LARGE)\n", id);
 		}
 		else
 		{
 			selection_small.emplace_back(id);
-			CONS_Printf(" found %d\n", id);
+			CONS_Printf(" found %li\n", id);
 		}
 	}
 
@@ -460,7 +491,7 @@ void RRAP_PopulateChallengeGrid(void)
 #endif
 
 		CONS_Printf(
-			"%d major unlocks means width of %d, numempty of %d\n",
+			"%lu major unlocks means width of %lu, numempty of %lu\n",
 			selection_big.size(),
 			gamedata->ap_challengegridwidth,
 			num_empty
@@ -470,12 +501,12 @@ void RRAP_PopulateChallengeGrid(void)
 	if (selection_small.size() > num_empty)
 	{
 		// Getting the number of extra columns to store normal unlocks
-		size_t temp = ((selection_small.size() - num_empty) + (CHALLENGEGRIDHEIGHT - 1)) / CHALLENGEGRIDHEIGHT;
+		UINT64 temp = ((selection_small.size() - num_empty) + (CHALLENGEGRIDHEIGHT - 1)) / CHALLENGEGRIDHEIGHT;
 		gamedata->ap_challengegridwidth += temp;
 		big_compact = 1;
 
 		CONS_Printf(
-			"%d normal unlocks means %d extra entries, additional width of %d\n",
+			"%lu normal unlocks means %lu extra entries, additional width of %lu\n",
 			selection_small.size(),
 			(selection_small.size() - num_empty),
 			temp
@@ -490,14 +521,14 @@ void RRAP_PopulateChallengeGrid(void)
 	// [RRAP] The placing algorithm fails HARD with too many big tiles.
 	// Try to just salvage it for now, look into a better way of placing
 	// these down later.
-	UINT64 big_tile_area = selection_big.size() * 4;
-	UINT64 min_width = (big_tile_area * 2) / CHALLENGEGRIDHEIGHT;
+	INT64 big_tile_area = selection_big.size() * 4;
+	INT64 min_width = (big_tile_area * 2) / CHALLENGEGRIDHEIGHT;
 	if (gamedata->ap_challengegridwidth < min_width)
 	{
 		gamedata->ap_challengegridwidth = min_width;
 
 		CONS_Printf(
-			" FORCING WIDTH HACK: %d\n",
+			" FORCING WIDTH HACK: %lu\n",
 			min_width
 		);
 	}
@@ -535,7 +566,7 @@ void RRAP_PopulateChallengeGrid(void)
 		// Place in random valid locations.
 		while (selection_big.size() && num_spots > 0)
 		{
-			INT16 row, col;
+			INT64 row, col;
 
 			// RRAP TODO - this needs to be seeded with the room,
 			// so that races between 2 worlds are fair
@@ -548,12 +579,12 @@ void RRAP_PopulateChallengeGrid(void)
 			INT64 placed = selection_big.back();
 			selection_big.pop_back();
 
-			CONS_Printf("--- %d (LARGE) placed at (%d, %d)\n", placed, row, col);
+			CONS_Printf("--- %li (LARGE) placed at (%li, %li)\n", placed, row, col);
 
 			i = row + (col * CHALLENGEGRIDHEIGHT);
 			gamedata->ap_challengegrid[i] = gamedata->ap_challengegrid[i+1] = placed;
 
-			if (col == gamedata->ap_challengegridwidth-1)
+			if (col == gamedata->ap_challengegridwidth - 1)
 			{
 				i = row;
 			}
@@ -641,13 +672,13 @@ quickcheckagain:
 
 		if (selection_big.size())
 		{
-			size_t width_to_print = gamedata->ap_challengegridwidth;
+			UINT64 width_to_print = gamedata->ap_challengegridwidth;
 
 			Z_Free(gamedata->ap_challengegrid);
 			gamedata->ap_challengegrid = nullptr;
 
 			I_Error(
-				"RRAP_PopulateChallengeGrid: was not able to populate %d large tiles (width %d)",
+				"RRAP_PopulateChallengeGrid: was not able to populate %lu large tiles (width %lu)",
 				selection_big.size(),
 				width_to_print
 			);
@@ -675,14 +706,14 @@ quickcheckagain:
 		gamedata->ap_challengegrid = nullptr;
 
 		I_Error(
-			"M_PopulateChallengeGrid: %d small unlocks vs %d empty spaces (%d gap)",
+			"M_PopulateChallengeGrid: %lu small unlocks vs %lu empty spaces (%lu gap)",
 			selection_small.size(),
 			num_empty,
 			(selection_small.size() - num_empty)
 		);
 	}
 
-	CONS_Printf(" %d unlocks vs %d empty spaces\n", selection_small.size(), num_empty);
+	CONS_Printf(" %lu unlocks vs %lu empty spaces\n", selection_small.size(), num_empty);
 
 	while (selection_small.size() < num_empty)
 	{
@@ -707,7 +738,7 @@ quickcheckagain:
 
 		gamedata->ap_challengegrid[i] = placed; // Set that entry
 
-		CONS_Printf(" %d placed at (%d, %d)\n", placed, i / CHALLENGEGRIDHEIGHT, i % CHALLENGEGRIDHEIGHT);
+		CONS_Printf(" %li placed at (%li, %li)\n", placed, i / CHALLENGEGRIDHEIGHT, i % CHALLENGEGRIDHEIGHT);
 
 		if (selection_small.empty())
 		{

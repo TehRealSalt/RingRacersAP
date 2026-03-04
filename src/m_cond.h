@@ -361,7 +361,7 @@ struct gamedata_t
 	UINT16* prisoneggpickups;
 
 	// CHALLENGE GRID
-	UINT64 ap_challengegridwidth;
+	INT64 ap_challengegridwidth;
 	INT64 *ap_challengegrid;
 
 	// # OF TIMES THE GAME HAS BEEN BEATEN

@@ -26,6 +26,9 @@
 #include "s_sound.h"
 #include "m_cond.h"
 
+// [RRAP]
+#include "ap_main.h"
+
 INT32 numfollowers = 0;
 follower_t followers[MAXFOLLOWERS];
 
@@ -63,39 +66,18 @@ boolean K_FollowerUsable(INT32 skinnum)
 {
 	// Unlike R_SkinUsable, not netsynced.
 	// Solely used to prevent an invalid value being sent over the wire.
-	UINT16 i;
-	INT32 fid;
-
-	if (skinnum == -1 || demo.playback)
+	if (skinnum < 0 || skinnum >= numfollowers || demo.playback)
 	{
 		// Simplifies things elsewhere, since there's already plenty of checks for less-than-0...
 		return true;
 	}
 
 	// Determine if this follower is supposed to be unlockable or not
-	for (i = 0; i < MAXUNLOCKABLES; i++)
-	{
-		if (unlockables[i].type != SECRET_FOLLOWER)
-			continue;
-
-		fid = M_UnlockableFollowerNum(&unlockables[i]);
-
-		if (fid != skinnum)
-			continue;
-
-		// i is now the unlockable index, we can use this later
-		break;
-	}
-
-	if (i == MAXUNLOCKABLES)
-	{
-		// Didn't trip anything, so we can use this follower.
-		return true;
-	}
+	rrap_item_t *item = RRAP_GetItem(followers[skinnum].ap_item_id);
 
 	// Use the unlockables table directly
 	// DEFINITELY not M_CheckNetUnlockByID
-	return (boolean)(gamedata->unlocked[i]);
+	return RRAP_ItemRecieved(item);
 }
 
 /*--------------------------------------------------

@@ -116,7 +116,7 @@ void srb2::save_ng_gamedata()
 	{
 		ng.ap_challengegrid.width = gamedata->ap_challengegridwidth;
 		ng.ap_challengegrid.grid.resize(gamedata->ap_challengegridwidth * CHALLENGEGRIDHEIGHT, 0);
-		for (uint64_t i = 0; i < gamedata->ap_challengegridwidth * CHALLENGEGRIDHEIGHT; i++)
+		for (int64_t i = 0; i < gamedata->ap_challengegridwidth * CHALLENGEGRIDHEIGHT; i++)
 		{
 			ng.ap_challengegrid.grid[i] = gamedata->ap_challengegrid[i];
 		}

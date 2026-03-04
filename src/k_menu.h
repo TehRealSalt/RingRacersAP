@@ -1479,9 +1479,9 @@ extern struct challengesmenu_s {
 	UINT16 tutorialfound;
 
 	boolean requestflip;
-	UINT64 nowplayingtile;
+	INT64 nowplayingtile;
 
-	UINT16 unlockcount[CMC_MAX];
+	INT64 unlockcount[CMC_MAX];
 
 	UINT8 fade;
 

@@ -6938,6 +6938,7 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 
 	location = RRAP_GetLocation(num);
 	boolean checked = RRAP_LocationChecked(location);
+	boolean check_pending = RRAP_LocationCheckPending(location);
 	boolean is_big_tile = RRAP_LocationIsBigTile(location);
 
 	// Empty spots in the grid are always unconnected.
@@ -7150,11 +7151,9 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 				}
 				break;
 			}
-
-#if 0 // [RRAP] TODO - finish implementing item types
 			case SECRET_FOLLOWER:
 			{
-				INT32 skin = M_UnlockableFollowerNum(ref);
+				INT32 skin = RRAP_ItemToFollowerId(item);
 				if (skin != -1)
 				{
 					INT32 psk = R_SkinAvailableEx(cv_skin[0].string, false);
@@ -7164,6 +7163,7 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 				}
 				break;
 			}
+#if 0 // [RRAP] TODO - finish implementing item types
 			case SECRET_COLOR:
 			{
 				INT32 colorid = M_UnlockableColorNum(ref);
@@ -7319,7 +7319,6 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 
 drawborder:
 
-	boolean check_pending = RRAP_LocationCheckPending(location);
 	if (location != NULL && check_pending)
 	{
 		const INT32 area = (is_big_tile) ? 42 : 20;
@@ -7534,11 +7533,10 @@ static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 			}
 			break;
 		}
-#if 0 // [RRAP] TODO - finish implementing item types
 		case SECRET_FOLLOWER:
 		{
 			INT32 skin = R_SkinAvailableEx(cv_skin[0].string, false);
-			INT32 fskin = M_UnlockableFollowerNum(ref);
+			INT32 fskin = RRAP_ItemToFollowerId(item);
 
 			// Draw proximity reference for character
 			if (skin == -1)
@@ -7628,6 +7626,7 @@ static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 			}
 			break;
 		}
+#if 0 // [RRAP] TODO - finish implementing item types
 		case SECRET_COLOR:
 		{
 			INT32 colorid = M_UnlockableColorNum(ref);
@@ -8439,7 +8438,6 @@ void M_DrawChallenges(void)
 	INT32 x = currentMenu->x, explodex, selectx = 0, selecty = 0;
 	INT32 y;
 	INT16 i, j;
-	const char *str;
 	INT16 offset;
 
 	{
@@ -8612,7 +8610,7 @@ challengedesc:
 	// Percentage
 	{
 		patch_t *medal = W_CachePatchName(
-			va("UN_MDL%c", '0' + challengesmenu.unlockcount[CMC_MEDALID]),
+			va("UN_MDL%c", '0' + (char)challengesmenu.unlockcount[CMC_MEDALID]),
 			PU_CACHE
 		);
 
