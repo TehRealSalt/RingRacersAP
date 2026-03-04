@@ -19,6 +19,9 @@
 #include "../r_skins.h"
 #include "../s_sound.h"
 
+// [RRAP]
+#include "../ap_main.h"
+
 #ifdef DEVELOP
 extern consvar_t cv_debugchallenges;
 #endif
@@ -80,49 +83,8 @@ static void M_UpdateChallengeGridVisuals(void)
 
 	challengesmenu.cache_secondrowlocked = M_CupSecondRowLocked();
 
-	challengesmenu.unlockcount[CMC_UNLOCKED] = 0;
-	challengesmenu.unlockcount[CMC_TOTAL] = 0;
-	challengesmenu.unlockcount[CMC_KEYED] = 0;
-	challengesmenu.unlockcount[CMC_MAJORSKIPPED] = 0;
-
-//#define MAJORDISTINCTION -- The "basic" medal is basically never seen because Major challenges are usually completed last before 101%. Correct that with this
-
-	for (i = 0; i < MAXUNLOCKABLES; i++)
-	{
-		if (!unlockables[i].conditionset)
-		{
-			continue;
-		}
-
-		challengesmenu.unlockcount[CMC_TOTAL]++;
-
-		if (!gamedata->unlocked[i])
-		{
-			continue;
-		}
-
-		challengesmenu.unlockcount[CMC_UNLOCKED]++;
-
-		if (M_Achieved(unlockables[i].conditionset - 1) == true)
-		{
-			continue;
-		}
-
-		challengesmenu.unlockcount[CMC_KEYED]++;
-
-#ifdef MAJORDISTINCTION
-		if (unlockables[i].majorunlock == false)
-		{
-			continue;
-		}
-
-		challengesmenu.unlockcount[CMC_MAJORSKIPPED]++;
-#endif
-	}
-
-	challengesmenu.unlockcount[CMC_PERCENT] =
-		(100 * challengesmenu.unlockcount[CMC_UNLOCKED])
-			/challengesmenu.unlockcount[CMC_TOTAL];
+	// [RRAP]
+	RRAP_ChallengesMenuCountPercent();
 
 	#define medalheight (19)
 
@@ -164,26 +126,29 @@ static void M_UpdateChallengeGridVisuals(void)
 		medalheight - challengesmenu.unlockcount[CMC_MEDALFILLED];
 }
 
-static void M_ChallengesAutoFocus(UINT16 unlockid, boolean fresh)
+static void M_ChallengesAutoFocus(INT64 ap_location_id, boolean fresh)
 {
 	UINT16 i;
 	INT16 work;
 	boolean posisvalid = false;
 
-	if (unlockid >= MAXUNLOCKABLES && gamedata->pendingkeyrounds > 0
+	if (ap_location_id <= 0 && gamedata->pendingkeyrounds > 0
 		&& (gamedata->chaokeys < GDMAX_CHAOKEYS))
-		challengesmenu.chaokeyadd = true;
-
-	if (fresh && unlockid >= MAXUNLOCKABLES)
 	{
-		if (challengesmenu.currentunlock < MAXUNLOCKABLES)
+		challengesmenu.chaokeyadd = true;
+	}
+
+	if (fresh && ap_location_id <= 0)
+	{
+		if (challengesmenu.current_ap_location > 0)
 		{
 			// Use the last selected time.
-			unlockid = challengesmenu.currentunlock;
+			ap_location_id = challengesmenu.current_ap_location;
 			posisvalid = true;
 		}
 		else
 		{
+#if 0
 			UINT16 selection[MAXUNLOCKABLES];
 			UINT16 numunlocks = 0;
 
@@ -231,25 +196,29 @@ tryfreshrandom:
 			}
 
 			unlockid = selection[M_RandomKey(numunlocks)];
+#else
+			// [RRAP] TODO
+			return;
+#endif
 		}
 	}
 
 	challengesmenu.unlockanim = (challengesmenu.pending && !challengesmenu.chaokeyadd ? 0 : MAXUNLOCKTIME);
 
-	if (unlockid >= MAXUNLOCKABLES)
+	if (ap_location_id <= 0)
 		return;
 
-	challengesmenu.currentunlock = unlockid;
+	challengesmenu.current_ap_location = ap_location_id;
 	if (challengesmenu.unlockcondition)
 		Z_Free(challengesmenu.unlockcondition);
-	challengesmenu.unlockcondition = M_BuildConditionSetString(challengesmenu.currentunlock);
+	challengesmenu.unlockcondition = M_BuildConditionSetString(challengesmenu.current_ap_location);
 
-	if (gamedata->challengegrid == NULL || challengesmenu.extradata == NULL || posisvalid)
+	if (gamedata->ap_challengegrid == NULL || challengesmenu.extradata == NULL || posisvalid)
 		return;
 
-	for (i = 0; i < (CHALLENGEGRIDHEIGHT * gamedata->challengegridwidth); i++)
+	for (i = 0; i < (CHALLENGEGRIDHEIGHT * gamedata->ap_challengegridwidth); i++)
 	{
-		if (gamedata->challengegrid[i] != unlockid)
+		if (gamedata->ap_challengegrid[i] != ap_location_id)
 		{
 			// Not what we're looking for.
 			continue;
@@ -273,32 +242,38 @@ tryfreshrandom:
 			challengesmenu.extradata[i].flip = (TILEFLIP_MAX/2);
 		}
 
+		rrap_location_t *location = RRAP_GetLocation(ap_location_id);
+		boolean is_big_tile = RRAP_LocationIsBigTile(location);
+
 		if (fresh)
 		{
 			// We're just entering the menu. Immediately jump to the desired position...
 			challengesmenu.focusx = 0;
+
 			// ...and since the menu is even-width, randomly select whether it's left or right of center.
-			if (!unlockables[unlockid].majorunlock
-				&& M_RandomChance(FRACUNIT/2))
-					challengesmenu.focusx--;
+
+			if (!is_big_tile && M_RandomChance(FRACUNIT/2))
+			{
+				challengesmenu.focusx--;
+			}
 		}
 		else
 		{
 			// We're jumping between multiple unlocks in sequence. Get the difference (looped from -range/2 < work <= range/2).
 			work -= challengesmenu.col;
-			if (work <= -gamedata->challengegridwidth/2)
-				work += gamedata->challengegridwidth;
-			else if (work >= gamedata->challengegridwidth/2)
-				work -= gamedata->challengegridwidth;
+			if (work <= -gamedata->ap_challengegridwidth / 2)
+				work += gamedata->ap_challengegridwidth;
+			else if (work >= gamedata->ap_challengegridwidth / 2)
+				work -= gamedata->ap_challengegridwidth;
 
 			if (work > 0)
 			{
 				// We only need to scroll as far as the rightward edge.
-				if (unlockables[unlockid].majorunlock)
+				if (is_big_tile)
 				{
 					work--;
 					challengesmenu.col++;
-					if (challengesmenu.col >= gamedata->challengegridwidth)
+					if (challengesmenu.col >= gamedata->ap_challengegridwidth)
 						challengesmenu.col = 0;
 				}
 
@@ -362,7 +337,7 @@ static void M_CacheChallengeTiles(void)
 
 menu_t *M_InterruptMenuWithChallenges(menu_t *desiredmenu)
 {
-	UINT16 newunlock;
+	INT64 new_location;
 
 	if (Playing() == true
 	|| M_GameTrulyStarted() == false)
@@ -370,9 +345,9 @@ menu_t *M_InterruptMenuWithChallenges(menu_t *desiredmenu)
 
 	M_UpdateUnlockablesAndExtraEmblems(false, true);
 
-	newunlock = M_GetNextAchievedUnlock(true);
+	new_location = RRAP_GetNextCheckedLocation(true);
 
-	if ((challengesmenu.pending = (newunlock != MAXUNLOCKABLES)))
+	if ((challengesmenu.pending = (new_location != 0)))
 	{
 		Music_StopAll();
 		if (desiredmenu && desiredmenu != &MISC_ChallengesDef)
@@ -397,16 +372,16 @@ menu_t *M_InterruptMenuWithChallenges(menu_t *desiredmenu)
 
 		if (firstopen)
 		{
-			challengesmenu.currentunlock = MAXUNLOCKABLES;
-			challengesmenu.nowplayingtile = UINT16_MAX;
+			challengesmenu.current_ap_location = 0;
+			challengesmenu.nowplayingtile = UINT64_MAX;
 			firstopen = false;
 		}
 
-		M_PopulateChallengeGrid();
-		if (gamedata->challengegrid)
+		RRAP_PopulateChallengeGrid();
+		if (gamedata->ap_challengegrid)
 		{
 			challengesmenu.extradata = Z_Calloc(
-				(gamedata->challengegridwidth * CHALLENGEGRIDHEIGHT * sizeof(challengegridextradata_t)),
+				(gamedata->ap_challengegridwidth * CHALLENGEGRIDHEIGHT * sizeof(challengegridextradata_t)),
 				PU_STATIC, NULL);
 			M_UpdateChallengeGridExtraData(challengesmenu.extradata);
 		}
@@ -417,12 +392,15 @@ menu_t *M_InterruptMenuWithChallenges(menu_t *desiredmenu)
 		M_UpdateChallengeGridVisuals();
 
 		if (challengesmenu.pending)
-			M_ChallengesAutoFocus(newunlock, true);
+			M_ChallengesAutoFocus(new_location, true);
 		else
 		{
-			if (newunlock >= MAXUNLOCKABLES && gamedata->pendingkeyrounds > 0
+			if (new_location <= 0
+				&& gamedata->pendingkeyrounds > 0
 				&& (gamedata->chaokeys < GDMAX_CHAOKEYS))
+			{
 				challengesmenu.chaokeyadd = true;
+			}
 
 			M_ChallengesAutoFocus(UINT16_MAX, true);
 		}
@@ -448,7 +426,7 @@ void M_Challenges(INT32 choice)
 static void M_CloseChallenges(void)
 {
 	Music_Stop("challenge_altmusic");
-	challengesmenu.nowplayingtile = UINT16_MAX;
+	challengesmenu.nowplayingtile = UINT64_MAX;
 
 	Z_Free(challengesmenu.extradata);
 	challengesmenu.extradata = NULL;
@@ -464,11 +442,12 @@ boolean M_CanKeyHiliTile(void)
 		return false;
 
 	// No selected tile?
-	if (challengesmenu.currentunlock >= MAXUNLOCKABLES)
+	rrap_location_t *location = RRAP_GetLocation(challengesmenu.current_ap_location);
+	if (location == NULL)
 		return false;
 
 	// Already unlocked?
-	if (gamedata->unlocked[challengesmenu.currentunlock] == true)
+	if (RRAP_LocationChecked(location) == true)
 		return false;
 
 #ifdef DEVELOP
@@ -488,7 +467,7 @@ boolean M_CanKeyHiliTile(void)
 		return false;
 
 	// Marked as major?
-	if (unlockables[challengesmenu.currentunlock].majorunlock == true)
+	if (RRAP_LocationIsBigTile(location) == true)
 	{
 		if (!(challengesmenu.extradata[i].flags & CHE_ALLCLEAR))
 			return false;
@@ -498,7 +477,7 @@ boolean M_CanKeyHiliTile(void)
 	}
 
 	// Fury Bike
-	if (unlockables[challengesmenu.currentunlock].conditionset == CH_FURYBIKE)
+	if (RRAP_LocationConditionSet(location) == CH_FURYBIKE)
 		return false;
 
 	// All good!
@@ -574,8 +553,8 @@ static void M_ChallengesTutorial(UINT8 option)
 void M_ChallengesTick(void)
 {
 	const UINT8 pid = 0;
-	UINT16 i;
-	UINT16 newunlock = MAXUNLOCKABLES;
+	UINT64 i;
+	INT64 new_location = 0;
 
 	// Ticking
 	challengesmenu.ticker++;
@@ -595,7 +574,7 @@ void M_ChallengesTick(void)
 	// Update tile flip state.
 	if (challengesmenu.extradata != NULL)
 	{
-		UINT16 id = (challengesmenu.hilix * CHALLENGEGRIDHEIGHT) + challengesmenu.hiliy;
+		UINT64 id = (challengesmenu.hilix * CHALLENGEGRIDHEIGHT) + challengesmenu.hiliy;
 		boolean seeeveryone = challengesmenu.requestflip;
 		boolean allthewaythrough = allthewaythrough = (!seeeveryone && !challengesmenu.pending);
 
@@ -604,10 +583,10 @@ void M_ChallengesTick(void)
 		if (id == challengesmenu.nowplayingtile)
 		{
 			// Don't permit the active song to stop spinning
-			id = UINT16_MAX;
+			id = UINT64_MAX;
 		}
 
-		for (i = 0; i < (CHALLENGEGRIDHEIGHT * gamedata->challengegridwidth); i++)
+		for (i = 0; i < (CHALLENGEGRIDHEIGHT * gamedata->ap_challengegridwidth); i++)
 		{
 			maxflip = ((allthewaythrough && i != id) ? TILEFLIP_MAX : (TILEFLIP_MAX/2));
 			if ((seeeveryone || (i == id) || (i == challengesmenu.nowplayingtile) || (challengesmenu.extradata[i].flip > 0))
@@ -629,11 +608,14 @@ void M_ChallengesTick(void)
 			// Not pressed just this frame?
 			if (!M_MenuExtraPressed(pid))
 			{
+				rrap_location_t *ref = RRAP_GetLocation(challengesmenu.current_ap_location);
+				boolean is_big_tile = RRAP_LocationIsBigTile(ref);
+
 				challengesmenu.chaokeyhold++;
 
 				UINT32 chaohold_duration =
 					CHAOHOLD_PADDING
-					+ ((unlockables[challengesmenu.currentunlock].majorunlock == true)
+					+ ((is_big_tile == true)
 						? CHAOHOLD_MAJOR
 						: CHAOHOLD_STANDARD
 					);
@@ -648,7 +630,7 @@ void M_ChallengesTick(void)
 #ifdef DEVELOP
 					if (!cv_debugchallenges.value)
 #endif
-						gamedata->chaokeys -= (unlockables[challengesmenu.currentunlock].majorunlock == true)
+						gamedata->chaokeys -= (is_big_tile == true)
 							? 10 : 1;
 
 					challengesmenu.chaokeyhold = 0;
@@ -740,10 +722,10 @@ void M_ChallengesTick(void)
 	{
 		// The menu apparatus is requesting a new unlock.
 		challengesmenu.requestnew = false;
-		if ((newunlock = M_GetNextAchievedUnlock(false)) != MAXUNLOCKABLES)
+		if ((new_location = RRAP_GetNextCheckedLocation(false)) != 0)
 		{
 			// We got one!
-			M_ChallengesAutoFocus(newunlock, false);
+			M_ChallengesAutoFocus(new_location, false);
 		}
 		else if (gamedata->pendingkeyrounds > 0
 			&& (gamedata->chaokeys < GDMAX_CHAOKEYS))
@@ -772,15 +754,15 @@ void M_ChallengesTick(void)
 			challengesmenu.requestnew = true;
 		}
 
-		if (challengesmenu.currentunlock < MAXUNLOCKABLES
-			&& challengesmenu.unlockanim == UNLOCKTIME)
-		{
-			unlockable_t *ref = &unlockables[challengesmenu.currentunlock];
+		rrap_location_t *ref = RRAP_GetLocation(challengesmenu.current_ap_location);
 
+		if (ref && challengesmenu.unlockanim == UNLOCKTIME)
+		{
 			// Unlock animation... also tied directly to the actual unlock!
-			gamedata->unlocked[challengesmenu.currentunlock] = true;
+			RRAP_LocationImmediateCheck(ref);
 			M_UpdateUnlockablesAndExtraEmblems(true, true);
 
+#if 0 // [RRAP] TODO? Probably not necessary for Archipelgo
 			if (challengesmenu.tutorialfound == NEXTMAP_INVALID
 			&& ref->type == SECRET_MAP)
 			{
@@ -802,11 +784,12 @@ void M_ChallengesTick(void)
 					}
 				}
 			}
+#endif
 
 			// Update shown description just in case..?
 			if (challengesmenu.unlockcondition)
 				Z_Free(challengesmenu.unlockcondition);
-			challengesmenu.unlockcondition = M_BuildConditionSetString(challengesmenu.currentunlock);
+			challengesmenu.unlockcondition = M_BuildConditionSetString(challengesmenu.current_ap_location);
 			M_UpdateChallengeGridVisuals();
 
 			challengesmenu.unlockcount[CMC_ANIM]++;
@@ -819,6 +802,7 @@ void M_ChallengesTick(void)
 
 				bombcolor = SKINCOLOR_NONE;
 
+#if 0 // [RRAP] TODO: display AP item
 				if (ref->color != SKINCOLOR_NONE && ref->color < numskincolors)
 				{
 					bombcolor = ref->color;
@@ -849,15 +833,19 @@ void M_ChallengesTick(void)
 					default:
 						break;
 				}
+#endif
 
 				if (bombcolor == SKINCOLOR_NONE)
 				{
 					bombcolor = M_GetCvPlayerColor(0);
 				}
 
-				i = (ref->majorunlock && M_RandomChance(FRACUNIT/2)) ? 1 : 0;
+				boolean is_big_tile = RRAP_LocationIsBigTile(ref);
+
+				i = (is_big_tile && M_RandomChance(FRACUNIT/2)) ? 1 : 0;
 				M_SetupReadyExplosions(false, challengesmenu.hilix, challengesmenu.hiliy+i, bombcolor);
-				if (ref->majorunlock)
+
+				if (is_big_tile)
 				{
 					M_SetupReadyExplosions(false, challengesmenu.hilix+1, challengesmenu.hiliy+(1-i), bombcolor);
 				}
@@ -895,18 +883,18 @@ void M_ChallengesTick(void)
 			}
 		}
 
-		if (challengesmenu.currentunlock < MAXUNLOCKABLES
-		&& gamedata->unlockpending[challengesmenu.currentunlock] == true)
+		rrap_location_t *location = RRAP_GetLocation(challengesmenu.current_ap_location);
+		if (RRAP_LocationCheckPending(location))
 		{
 			UINT16 id = (challengesmenu.hilix * CHALLENGEGRIDHEIGHT) + challengesmenu.hiliy;
 			if (challengesmenu.extradata
-			&& challengesmenu.extradata[id].flip != (TILEFLIP_MAX/2))
+				&& challengesmenu.extradata[id].flip != (TILEFLIP_MAX/2))
 			{
 				// Only mark visited once flipped
 			}
 			else
 			{
-				gamedata->unlockpending[challengesmenu.currentunlock] = false;
+				RRAP_LocationUnqueueCheck(location);
 			}
 		}
 	}
@@ -926,11 +914,15 @@ boolean M_ChallengesInputs(INT32 ch)
 	}
 	else if (M_MenuExtraPressed(pid))
 	{
+		rrap_location_t *location = RRAP_GetLocation(challengesmenu.current_ap_location);
+		boolean is_big_tile = RRAP_LocationIsBigTile(location);
+		boolean checked = RRAP_LocationChecked(location);
+
 		if (gamedata->chaokeytutorial == true
 			&& gamedata->majorkeyskipattempted == false
-			&& challengesmenu.currentunlock < MAXUNLOCKABLES
-			&& gamedata->unlocked[challengesmenu.currentunlock] == false
-			&& unlockables[challengesmenu.currentunlock].majorunlock == true)
+			&& location != NULL
+			&& checked == false
+			&& is_big_tile == true)
 		{
 			M_ChallengesTutorial(CCTUTORIAL_MAJORSKIP);
 		}
@@ -944,10 +936,16 @@ boolean M_ChallengesInputs(INT32 ch)
 			S_StartSound(NULL, sfx_s3k7b); //sfx_s3kb2
 
 #ifdef DEVELOP
-			if (cv_debugchallenges.value && challengesmenu.currentunlock < MAXUNLOCKABLES && challengesmenu.unlockanim >= UNLOCKTIME && gamedata->unlocked[challengesmenu.currentunlock] == true)
+			if (cv_debugchallenges.value
+				&& location != NULL
+				&& challengesmenu.unlockanim >= UNLOCKTIME
+				&& checked == true)
 			{
+#if 0 // [RRAP] TODO
 				gamedata->unlocked[challengesmenu.currentunlock] = gamedata->unlockpending[challengesmenu.currentunlock] = false;
-				UINT16 set = unlockables[challengesmenu.currentunlock].conditionset;
+#endif
+
+				UINT16 set = RRAP_LocationConditionSet(location);
 				if (set > 0 && set <= MAXCONDITIONSETS)
 				{
 					gamedata->achieved[set - 1] = false;
@@ -1067,7 +1065,7 @@ boolean M_ChallengesInputs(INT32 ch)
 					}
 
 					// Step the actual column right.
-					if (challengesmenu.col < gamedata->challengegridwidth-1)
+					if (challengesmenu.col < gamedata->ap_challengegridwidth-1)
 					{
 						challengesmenu.col++;
 					}
@@ -1115,7 +1113,7 @@ boolean M_ChallengesInputs(INT32 ch)
 					}
 					else
 					{
-						challengesmenu.col = gamedata->challengegridwidth-1;
+						challengesmenu.col = gamedata->ap_challengegridwidth-1;
 					}
 
 					i--;
@@ -1126,16 +1124,19 @@ boolean M_ChallengesInputs(INT32 ch)
 
 			// After movement has been determined, figure out the current selection.
 			i = (challengesmenu.col * CHALLENGEGRIDHEIGHT) + challengesmenu.row;
-			challengesmenu.currentunlock = (gamedata->challengegrid[i]);
+			challengesmenu.current_ap_location = (gamedata->ap_challengegrid[i]);
 			if (challengesmenu.unlockcondition)
 				Z_Free(challengesmenu.unlockcondition);
-			challengesmenu.unlockcondition = M_BuildConditionSetString(challengesmenu.currentunlock);
+			challengesmenu.unlockcondition = M_BuildConditionSetString(challengesmenu.current_ap_location);
 
 			challengesmenu.hilix = challengesmenu.col;
 			challengesmenu.hiliy = challengesmenu.row;
 
-			if (challengesmenu.currentunlock < MAXUNLOCKABLES
-				&& unlockables[challengesmenu.currentunlock].majorunlock)
+			rrap_location_t *location = RRAP_GetLocation(challengesmenu.current_ap_location);
+			boolean is_big_tile = RRAP_LocationIsBigTile(location);
+
+			if (location != NULL
+				&& is_big_tile)
 			{
 				// Adjust highlight coordinates up/to the left for large tiles.
 
@@ -1152,7 +1153,7 @@ boolean M_ChallengesInputs(INT32 ch)
 					}
 					else
 					{
-						challengesmenu.hilix = gamedata->challengegridwidth-1;
+						challengesmenu.hilix = gamedata->ap_challengegridwidth-1;
 					}
 				}
 
@@ -1162,13 +1163,14 @@ boolean M_ChallengesInputs(INT32 ch)
 			return true;
 		}
 
-		if (challengesmenu.currentunlock < MAXUNLOCKABLES
-			&& gamedata->unlocked[challengesmenu.currentunlock])
-		{
-			unlockable_t *ref = &unlockables[challengesmenu.currentunlock];
+		rrap_location_t *ref = RRAP_GetLocation(challengesmenu.current_ap_location);
+		boolean checked = RRAP_LocationChecked(ref);
 
+		if (ref && checked)
+		{
 			boolean forceflip = false;
 
+#if 0 // [RRAP] TODO - display AP item
 			switch (unlockables[challengesmenu.currentunlock].type)
 			{
 				case SECRET_MAP:
@@ -1382,7 +1384,7 @@ boolean M_ChallengesInputs(INT32 ch)
 							else
 							{
 								Music_Stop(tune);
-								challengesmenu.nowplayingtile = UINT16_MAX;
+								challengesmenu.nowplayingtile = UINT64_MAX;
 							}
 
 							M_SetMenuDelay(pid);
@@ -1394,6 +1396,7 @@ boolean M_ChallengesInputs(INT32 ch)
 				default:
 					break;
 			}
+#endif
 
 			if (forceflip)
 			{

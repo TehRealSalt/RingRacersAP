@@ -26,6 +26,9 @@
 #include "r_skins.h"
 #include "z_zone.h"
 
+// [RRAP]
+#include "ap_main.h"
+
 namespace fs = std::filesystem;
 
 #define GD_VERSION_MAJOR (0xBA5ED321)
@@ -109,13 +112,13 @@ void srb2::save_ng_gamedata()
 	{
 		ng.conditionsets[i] = gamedata->achieved[i];
 	}
-	if (gamedata->challengegrid)
+	if (gamedata->ap_challengegrid)
 	{
-		ng.challengegrid.width = gamedata->challengegridwidth;
-		ng.challengegrid.grid.resize(gamedata->challengegridwidth * CHALLENGEGRIDHEIGHT, 0);
-		for (int i = 0; i < gamedata->challengegridwidth * CHALLENGEGRIDHEIGHT; i++)
+		ng.ap_challengegrid.width = gamedata->ap_challengegridwidth;
+		ng.ap_challengegrid.grid.resize(gamedata->ap_challengegridwidth * CHALLENGEGRIDHEIGHT, 0);
+		for (uint64_t i = 0; i < gamedata->ap_challengegridwidth * CHALLENGEGRIDHEIGHT; i++)
 		{
-			ng.challengegrid.grid[i] = gamedata->challengegrid[i];
+			ng.ap_challengegrid.grid[i] = gamedata->ap_challengegrid[i];
 		}
 	}
 	ng.timesBeaten = gamedata->timesBeaten;
@@ -511,19 +514,19 @@ void srb2::load_ng_gamedata()
 	if (!M_CheckParm("-resetchallengegrid"))
 #endif
 	{
-		gamedata->challengegridwidth = std::max(js.challengegrid.width, (uint32_t)0);
-		if (gamedata->challengegridwidth)
+		gamedata->ap_challengegridwidth = std::max(js.ap_challengegrid.width, (uint64_t)0);
+		if (gamedata->ap_challengegridwidth)
 		{
-			gamedata->challengegrid = static_cast<uint16_t*>(Z_Malloc(
-				(gamedata->challengegridwidth * CHALLENGEGRIDHEIGHT * sizeof(UINT16)),
+			gamedata->ap_challengegrid = static_cast<int64_t*>(Z_Malloc(
+				(gamedata->ap_challengegridwidth * CHALLENGEGRIDHEIGHT * sizeof(INT64)),
 				PU_STATIC, NULL));
-			for (size_t i = 0; i < std::min<size_t>((size_t)(gamedata->challengegridwidth * CHALLENGEGRIDHEIGHT), js.challengegrid.grid.size()); i++)
+			for (size_t i = 0; i < std::min<size_t>((size_t)(gamedata->ap_challengegridwidth * CHALLENGEGRIDHEIGHT), js.ap_challengegrid.grid.size()); i++)
 			{
-				uint16_t gridvalue = js.challengegrid.grid[i];
-				gamedata->challengegrid[i] = gridvalue;
+				int64_t gridvalue = js.ap_challengegrid.grid[i];
+				gamedata->ap_challengegrid[i] = gridvalue;
 			}
 
-			M_SanitiseChallengeGrid();
+			RRAP_SanitiseChallengeGrid();
 		}
 	}
 

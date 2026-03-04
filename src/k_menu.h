@@ -1460,7 +1460,7 @@ extern struct challengesmenu_s {
 	INT16 offset;		// To make the icons move smoothly when we transition!
 	menu_anim_t move;
 
-	UINT16 currentunlock;
+	INT64 current_ap_location;
 	char *unlockcondition;
 
 	tic_t unlockanim;
@@ -1479,7 +1479,7 @@ extern struct challengesmenu_s {
 	UINT16 tutorialfound;
 
 	boolean requestflip;
-	UINT16 nowplayingtile;
+	UINT64 nowplayingtile;
 
 	UINT16 unlockcount[CMC_MAX];
 

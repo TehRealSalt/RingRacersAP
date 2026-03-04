@@ -23,6 +23,7 @@
 #include "core/string.h"
 #include "core/hash_map.hpp"
 #include "core/json.hpp"
+#include "core/vector.hpp"
 
 #include "m_cond.h"
 #include "m_misc.h" // strcatbf
@@ -35,6 +36,7 @@
 #include "w_wad.h"
 #include "z_zone.h"
 #include "k_menu.h"
+#include "m_random.h" // TODO remove this
 
 boolean g_ap_started;
 
@@ -185,6 +187,86 @@ rrap_item_t *RRAP_GetItem(INT64 item_id)
 	return &g_ap_item_info[item_id];
 }
 
+char *RRAP_LocationLabel(rrap_location_t *location)
+{
+	if (!location)
+	{
+		return NULL;
+	}
+
+	return Z_StrDup( location->label().c_str() );
+}
+
+UINT16 RRAP_LocationConditionSet(rrap_location_t *location)
+{
+	if (!location)
+	{
+		return 0;
+	}
+
+	return location->condition_set_id();
+}
+
+boolean RRAP_LocationIsBigTile(rrap_location_t *location)
+{
+	if (!location)
+	{
+		return false;
+	}
+
+	return location->is_big_tile();
+}
+
+boolean RRAP_LocationChecked(rrap_location_t *location)
+{
+	if (!location)
+	{
+		return true;
+	}
+
+	return location->checked();
+}
+
+boolean RRAP_LocationCheckPending(rrap_location_t *location)
+{
+	if (!location)
+	{
+		return false;
+	}
+
+	return location->check_pending();
+}
+
+void RRAP_LocationImmediateCheck(rrap_location_t *location)
+{
+	if (!location)
+	{
+		return;
+	}
+
+	location->immediate_check();
+}
+
+void RRAP_LocationQueueCheck(rrap_location_t *location)
+{
+	if (!location)
+	{
+		return;
+	}
+
+	location->queue_check();
+}
+
+void RRAP_LocationUnqueueCheck(rrap_location_t *location)
+{
+	if (!location)
+	{
+		return;
+	}
+
+	location->unqueue_check();
+}
+
 boolean RRAP_ItemRecieved(rrap_item_t *item)
 {
 	if (!item)
@@ -207,14 +289,14 @@ UINT16 RRAP_ItemToUnlockableId(rrap_item_t *item)
 
 static void RRAP_GotClearItems(void)
 {
-	for (auto& [key, value] : g_ap_item_info)
+	for (auto& [id, item] : g_ap_item_info)
 	{
-		value.set_recieved(false);
+		item.on_clear();
 	}
 
-	for (auto& [key, value] : g_ap_location_info)
+	for (auto& [id, location] : g_ap_location_info)
 	{
-		value.set_checked(CHECK_FALSE);
+		location.on_clear();
 	}
 }
 
@@ -229,7 +311,7 @@ static void RRAP_GotItemReceived(int64_t item_id, bool should_notify)
 		return;
 	}
 
-	g_ap_item_info[item_id].set_recieved(true);
+	g_ap_item_info[item_id].recieve();
 
 	if (true) //(should_notify)
 	{
@@ -253,7 +335,549 @@ static void RRAP_GotLocationChecked(int64_t location_id)
 		return;
 	}
 
-	g_ap_location_info[location_id].set_checked(CHECK_TRUE);
+	g_ap_location_info[location_id].immediate_check();
+}
+
+void RRAP_PopulateChallengeGrid(void)
+{
+	INT64 i, j;
+	srb2::Vector<INT64> selection_small;
+	srb2::Vector<INT64> selection_big;
+	size_t num_empty = 0;
+	int big_compact = 2;
+
+	if (gamedata->ap_challengegrid != nullptr)
+	{
+		// todo tweak your grid if unlocks are changed
+		return;
+	}
+
+	// Go through unlockables
+	for (auto& [id, location] : g_ap_location_info)
+	{
+		UINT16 condition_set = location.condition_set_id();
+		if (!condition_set)
+		{
+			continue;
+		}
+
+		if (location.is_big_tile())
+		{
+			selection_big.emplace_back(id);
+			CONS_Printf(" found %d (LARGE)\n", id);
+		}
+		else
+		{
+			selection_small.emplace_back(id);
+			CONS_Printf(" found %d\n", id);
+		}
+	}
+
+	gamedata->ap_challengegridwidth = 0;
+
+	if (selection_small.size() + selection_big.size() == 0)
+	{
+		return;
+	}
+
+	if (selection_big.size())
+	{
+		// Getting the number of 2-highs you can fit into two adjacent columns.
+		size_t big_pad = (CHALLENGEGRIDHEIGHT / 2);
+		num_empty = selection_big.size() % big_pad;
+		big_pad = (selection_big.size() + (big_pad - 1)) / big_pad;
+
+		gamedata->ap_challengegridwidth = big_pad * 2;
+		num_empty *= 4;
+
+#if (CHALLENGEGRIDHEIGHT % 2)
+		// One extra empty per column.
+		num_empty += gamedata->ap_challengegridwidth;
+#endif
+
+		CONS_Printf(
+			"%d major unlocks means width of %d, numempty of %d\n",
+			selection_big.size(),
+			gamedata->ap_challengegridwidth,
+			num_empty
+		);
+	}
+
+	if (selection_small.size() > num_empty)
+	{
+		// Getting the number of extra columns to store normal unlocks
+		size_t temp = ((selection_small.size() - num_empty) + (CHALLENGEGRIDHEIGHT - 1)) / CHALLENGEGRIDHEIGHT;
+		gamedata->ap_challengegridwidth += temp;
+		big_compact = 1;
+
+		CONS_Printf(
+			"%d normal unlocks means %d extra entries, additional width of %d\n",
+			selection_small.size(),
+			(selection_small.size() - num_empty),
+			temp
+		);
+	}
+	else if (challengegridloops)
+	{
+		// Another case where offset large tiles are permitted.
+		big_compact = 1;
+	}
+
+	// [RRAP] The placing algorithm fails HARD with too many big tiles.
+	// Try to just salvage it for now, look into a better way of placing
+	// these down later.
+	UINT64 big_tile_area = selection_big.size() * 4;
+	UINT64 min_width = (big_tile_area * 2) / CHALLENGEGRIDHEIGHT;
+	if (gamedata->ap_challengegridwidth < min_width)
+	{
+		gamedata->ap_challengegridwidth = min_width;
+
+		CONS_Printf(
+			" FORCING WIDTH HACK: %d\n",
+			min_width
+		);
+	}
+
+	gamedata->ap_challengegrid = static_cast<int64_t *>(Z_Calloc(
+		(gamedata->ap_challengegridwidth * CHALLENGEGRIDHEIGHT * sizeof(INT64)),
+		PU_STATIC, nullptr
+	));
+
+	if (!gamedata->ap_challengegrid)
+	{
+		I_Error("RRAP_PopulateChallengeGrid: was not able to allocate grid");
+	}
+
+	// Attempt to place all large tiles first.
+	if (selection_big.size())
+	{
+		// You lose one from CHALLENGEGRIDHEIGHT because it is impossible to place a 2-high tile on the bottom row.
+		// You lose one from the width if it doesn't loop.
+		// You divide by two if the grid is so compacted that large tiles can't be in offset columns.
+		INT64 num_spots = (gamedata->ap_challengegridwidth - (challengegridloops ? 0 : big_compact))
+				* ((CHALLENGEGRIDHEIGHT - 1) / big_compact);
+
+		// 0 is row, 1 is column
+		srb2::Vector<INT64> quick_check;
+		quick_check.resize(2 * num_spots, 0);
+
+		// Prepare the easy-grab spots.
+		for (i = 0; i < num_spots; i++)
+		{
+			quick_check[i * 2 + 0] = i % (CHALLENGEGRIDHEIGHT - 1);
+			quick_check[i * 2 + 1] = big_compact * i / (CHALLENGEGRIDHEIGHT - 1);
+		}
+
+		// Place in random valid locations.
+		while (selection_big.size() && num_spots > 0)
+		{
+			INT16 row, col;
+
+			// RRAP TODO - this needs to be seeded with the room,
+			// so that races between 2 worlds are fair
+			j = M_RandomKey(num_spots);
+
+			row = quick_check[j * 2 + 0];
+			col = quick_check[j * 2 + 1];
+
+			// We always take from selection_big in order, but the PLACEMENT is still random.
+			INT64 placed = selection_big.back();
+			selection_big.pop_back();
+
+			CONS_Printf("--- %d (LARGE) placed at (%d, %d)\n", placed, row, col);
+
+			i = row + (col * CHALLENGEGRIDHEIGHT);
+			gamedata->ap_challengegrid[i] = gamedata->ap_challengegrid[i+1] = placed;
+
+			if (col == gamedata->ap_challengegridwidth-1)
+			{
+				i = row;
+			}
+			else
+			{
+				i += CHALLENGEGRIDHEIGHT;
+			}
+
+			gamedata->ap_challengegrid[i] = gamedata->ap_challengegrid[i+1] = placed;
+
+			if (selection_big.empty())
+			{
+				break;
+			}
+
+			for (i = 0; i < num_spots; i++)
+			{
+quickcheckagain:
+				if (abs((quick_check[i * 2 + 0]) - (row)) <= 1 // Row distance
+					&& (abs((quick_check[i * 2 + 1]) - (col)) <= 1 // Column distance
+					|| (quick_check[i * 2 + 1] == 0 && col == gamedata->ap_challengegridwidth-1) // Wraparounds l->r
+					|| (quick_check[i * 2 + 1] == gamedata->ap_challengegridwidth-1 && col == 0))) // Wraparounds r->l
+				{
+					// Remove from possible indicies
+					num_spots--;
+
+					if (i == num_spots)
+						break;
+
+					// Shuffle remaining so we can keep on using M_RandomKey
+					quick_check[i * 2 + 0] = quick_check[num_spots * 2 + 0];
+					quick_check[i * 2 + 1] = quick_check[num_spots * 2 + 1];
+
+					// Woah there - we've gotta check the one that just got put in our place.
+					goto quickcheckagain;
+				}
+
+				continue;
+			}
+		}
+
+#if (CHALLENGEGRIDHEIGHT == 4)
+		while (selection_big.size())
+		{
+			INT64 location_to_move = 0;
+
+			j = gamedata->ap_challengegridwidth - 1;
+
+			// Attempt to fix our whoopsie.
+			for (i = 0; i < j; i++)
+			{
+				if (gamedata->ap_challengegrid[1 + (i * CHALLENGEGRIDHEIGHT)] != 0
+					&& gamedata->ap_challengegrid[(i * CHALLENGEGRIDHEIGHT)] == 0)
+					break;
+			}
+
+			if (i == j)
+			{
+				break;
+			}
+
+			location_to_move = gamedata->ap_challengegrid[1 + (i*CHALLENGEGRIDHEIGHT)];
+
+			if (i == 0
+				&& challengegridloops
+				&& (gamedata->ap_challengegrid [1 + (j * CHALLENGEGRIDHEIGHT)]
+					== gamedata->ap_challengegrid[1]))
+				;
+			else
+			{
+				j = i + 1;
+			}
+
+			INT64 placed = selection_big.back();
+			selection_big.pop_back();
+
+			// Push one pair up.
+			gamedata->ap_challengegrid[(i*CHALLENGEGRIDHEIGHT)] = gamedata->ap_challengegrid[(j*CHALLENGEGRIDHEIGHT)] = location_to_move;
+
+			// Wedge the remaining four underneath.
+			gamedata->ap_challengegrid[2 + (i*CHALLENGEGRIDHEIGHT)] = gamedata->ap_challengegrid[2 + (j*CHALLENGEGRIDHEIGHT)] = placed;
+			gamedata->ap_challengegrid[3 + (i*CHALLENGEGRIDHEIGHT)] = gamedata->ap_challengegrid[3 + (j*CHALLENGEGRIDHEIGHT)] = placed;
+		}
+#endif
+
+		if (selection_big.size())
+		{
+			size_t width_to_print = gamedata->ap_challengegridwidth;
+
+			Z_Free(gamedata->ap_challengegrid);
+			gamedata->ap_challengegrid = nullptr;
+
+			I_Error(
+				"RRAP_PopulateChallengeGrid: was not able to populate %d large tiles (width %d)",
+				selection_big.size(),
+				width_to_print
+			);
+		}
+	}
+
+	num_empty = 0;
+
+	// Space out empty entries to pepper into unlock list
+	for (i = 0; i < gamedata->ap_challengegridwidth * CHALLENGEGRIDHEIGHT; i++)
+	{
+		if (gamedata->ap_challengegrid[i] != 0)
+		{
+			continue;
+		}
+
+		num_empty++;
+	}
+
+	if (selection_small.size() > num_empty)
+	{
+		gamedata->ap_challengegridwidth = 0;
+
+		Z_Free(gamedata->ap_challengegrid);
+		gamedata->ap_challengegrid = nullptr;
+
+		I_Error(
+			"M_PopulateChallengeGrid: %d small unlocks vs %d empty spaces (%d gap)",
+			selection_small.size(),
+			num_empty,
+			(selection_small.size() - num_empty)
+		);
+	}
+
+	CONS_Printf(" %d unlocks vs %d empty spaces\n", selection_small.size(), num_empty);
+
+	while (selection_small.size() < num_empty)
+	{
+		CONS_Printf(" adding empty)\n");
+		selection_small.emplace_back(0);
+	}
+
+	// Fill the remaining spots with random ordinary unlocks (and empties).
+	for (i = 0; i < gamedata->ap_challengegridwidth * CHALLENGEGRIDHEIGHT; i++)
+	{
+		if (gamedata->ap_challengegrid[i] != 0)
+		{
+			continue;
+		}
+
+		// RRAP TODO - this needs to be seeded with the room,
+		// so that races between 2 worlds are fair
+		j = M_RandomKey(selection_small.size()); // Get an entry
+
+		INT64 placed = selection_small[j];
+		selection_small.erase(selection_small.begin() + j);
+
+		gamedata->ap_challengegrid[i] = placed; // Set that entry
+
+		CONS_Printf(" %d placed at (%d, %d)\n", placed, i / CHALLENGEGRIDHEIGHT, i % CHALLENGEGRIDHEIGHT);
+
+		if (selection_small.empty())
+		{
+			break;
+		}
+	}
+}
+
+void RRAP_SanitiseChallengeGrid(void)
+{
+	srb2::HashMap<INT64, int> seen;
+	srb2::Vector<INT64> empty;
+	INT64 i, j;
+
+	if (gamedata->ap_challengegrid == nullptr)
+		return;
+
+	// Go through all spots to identify duplicates and absences.
+	for (j = 0; j < gamedata->ap_challengegridwidth * CHALLENGEGRIDHEIGHT; j++)
+	{
+		i = gamedata->ap_challengegrid[j];
+
+		rrap_location_t &ref = g_ap_location_info[i];
+		if (i <= 0 || !ref.condition_set_id())
+		{
+			empty.emplace_back(j);
+			continue;
+		}
+
+		if (seen.find(i) == seen.end())
+		{
+			seen[i] = 0;
+		}
+
+		if (seen[i] != 5) // Arbitrary cap greater than 4
+		{
+			seen[i]++;
+
+			if (seen[i] == 1 || ref.is_big_tile())
+			{
+				continue;
+			}
+		}
+
+		empty.emplace_back(j);
+	}
+
+	// Go through unlockables to identify if any haven't been seen.
+	for (auto& [id, location] : g_ap_location_info)
+	{
+		if (!location.condition_set_id())
+		{
+			continue;
+		}
+	
+		if (location.is_big_tile() && seen[id] != 4)
+		{
+			// Probably not enough spots to retrofit.
+			goto badgrid;
+		}
+
+		if (seen[id] != 0)
+		{
+			// Present on the challenge grid.
+			continue;
+		}
+
+		if (empty.size() != 0)
+		{
+			// Small ones can be slotted in easy.
+			j = empty.back();
+			empty.pop_back();
+
+			gamedata->ap_challengegrid[j] = id;
+		}
+
+		// Nothing we can do to recover.
+		goto badgrid;
+	}
+
+	// Fill the remaining spots with empties.
+	while (empty.size() != 0)
+	{
+		j = empty.back();
+		empty.pop_back();
+
+		gamedata->ap_challengegrid[j] = 0;
+	}
+
+	return;
+
+badgrid:
+	// Just remove everything and let it get regenerated.
+	Z_Free(gamedata->ap_challengegrid);
+	gamedata->ap_challengegrid = nullptr;
+	gamedata->ap_challengegridwidth = 0;
+}
+
+int RRAP_TestLocations(void)
+{
+	int response = 0;
+
+	for (auto& [index, location] : g_ap_location_info)
+	{
+		UINT16 condition_set = location.condition_set_id();
+		if (!condition_set)
+		{
+			continue;
+		}
+
+		if (location.checked() == true
+			|| location.check_pending() == true)
+		{
+			continue;
+		}
+
+		if (M_Achieved(condition_set - 1) == false)
+		{
+			continue;
+		}
+
+		location.queue_check();
+		response++;
+	}
+
+	return response;
+}
+
+INT64 RRAP_GetNextCheckedLocation(boolean canskipchaokeys)
+{
+	// Go through unlockables
+	for (auto& [id, location] : g_ap_location_info)
+	{
+		UINT16 condition_set = location.condition_set_id();
+		if (!condition_set)
+		{
+			// Not worthy of consideration
+			continue;
+		}
+
+		if (location.checked() == true)
+		{
+			// Already unlocked, no need to engage
+			continue;
+		}
+
+		if (location.check_pending() == false)
+		{
+			// Not unlocked AND not pending, which means chao keys can be used on something
+			canskipchaokeys = false;
+			continue;
+		}
+
+		return id;
+	}
+
+	if (canskipchaokeys == true)
+	{
+		// Okay, we're skipping chao keys - let's just insta-digest them.
+
+		if (gamedata->chaokeys + gamedata->keyspending < GDMAX_CHAOKEYS)
+		{
+			gamedata->chaokeys += gamedata->keyspending;
+			gamedata->pendingkeyroundoffset =
+				(gamedata->pendingkeyroundoffset + gamedata->pendingkeyrounds)
+				% GDCONVERT_ROUNDSTOKEY;
+
+		}
+		else
+		{
+			gamedata->chaokeys = GDMAX_CHAOKEYS;
+			gamedata->pendingkeyroundoffset = 0;
+		}
+
+		gamedata->keyspending = 0;
+		gamedata->pendingkeyrounds = 0;
+	}
+	else if (gamedata->keyspending != 0)
+	{
+		// Sentinel value to queue the animation
+		return -1;
+	}
+
+	return 0;
+}
+
+void RRAP_ChallengesMenuCountPercent(void)
+{
+	challengesmenu.unlockcount[CMC_UNLOCKED] = 0;
+	challengesmenu.unlockcount[CMC_TOTAL] = 0;
+	challengesmenu.unlockcount[CMC_KEYED] = 0;
+	challengesmenu.unlockcount[CMC_MAJORSKIPPED] = 0;
+
+// The "basic" medal is basically never seen because Major challenges
+// are usually completed last before 101%. Correct that with this
+//#define MAJORDISTINCTION
+
+	for (auto& [id, location] : g_ap_location_info)
+	{
+		UINT16 condition_set = location.condition_set_id();
+		if (!condition_set)
+		{
+			continue;
+		}
+
+		challengesmenu.unlockcount[CMC_TOTAL]++;
+
+		if (!location.checked())
+		{
+			continue;
+		}
+
+		challengesmenu.unlockcount[CMC_UNLOCKED]++;
+
+		if (M_Achieved(condition_set - 1) == true)
+		{
+			continue;
+		}
+
+		challengesmenu.unlockcount[CMC_KEYED]++;
+
+#ifdef MAJORDISTINCTION
+		if (unlockables[i].majorunlock == false)
+		{
+			continue;
+		}
+
+		challengesmenu.unlockcount[CMC_MAJORSKIPPED]++;
+#endif
+	}
+
+	challengesmenu.unlockcount[CMC_PERCENT] =
+		(100 * challengesmenu.unlockcount[CMC_UNLOCKED])
+			/ challengesmenu.unlockcount[CMC_TOTAL];
 }
 
 void RRAP_TickMessages(void)

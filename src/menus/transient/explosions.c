@@ -20,7 +20,7 @@ void M_SetupReadyExplosions(boolean charsel, UINT16 basex, UINT16 basey, UINT16 
 {
 	UINT8 i, j;
 	UINT8 e = 0;
-	UINT16 maxx = (charsel ? 9 : gamedata->challengegridwidth);
+	UINT16 maxx = (charsel ? 9 : gamedata->ap_challengegridwidth);
 	UINT16 maxy = (charsel ? 9 : CHALLENGEGRIDHEIGHT);
 
 	while (setup_explosions[e].tics)

@@ -64,353 +64,20 @@ void M_NewGameDataStruct(void)
 	G_ClearRecords();
 }
 
-void M_PopulateChallengeGrid(void)
+// [RRAP] M_PopulateChallengeGrid & M_SanitiseChallengeGrid
+// have been replaced w/ our own
+
+static void M_ChallengeGridExtraDataAdjacencyRules(challengegridextradata_t *extradata, INT64 adjacent)
 {
-	UINT16 i, j;
-	UINT16 numunlocks = 0, nummajorunlocks = 0, numempty = 0;
-	UINT16 selection[2][MAXUNLOCKABLES + (CHALLENGEGRIDHEIGHT-1)];
-	UINT16 majorcompact = 2;
+	rrap_location_t *adjacent_ref = RRAP_GetLocation(adjacent);
 
-	if (gamedata->challengegrid != NULL)
-	{
-		// todo tweak your grid if unlocks are changed
-		return;
-	}
-
-	// Go through unlockables
-	for (i = 0; i < MAXUNLOCKABLES; ++i)
-	{
-		if (!unlockables[i].conditionset)
-		{
-			continue;
-		}
-
-		if (unlockables[i].majorunlock)
-		{
-			selection[1][nummajorunlocks++] = i;
-			//CONS_Printf(" found %d (LARGE)\n", selection[1][nummajorunlocks-1]);
-			continue;
-		}
-
-		selection[0][numunlocks++] = i;
-		//CONS_Printf(" found %d\n", selection[0][numunlocks-1]);
-	}
-
-	gamedata->challengegridwidth = 0;
-
-	if (numunlocks + nummajorunlocks == 0)
-	{
-		return;
-	}
-
-	if (nummajorunlocks)
-	{
-		// Getting the number of 2-highs you can fit into two adjacent columns.
-		UINT16 majorpad = (CHALLENGEGRIDHEIGHT/2);
-		numempty = nummajorunlocks%majorpad;
-		majorpad = (nummajorunlocks+(majorpad-1))/majorpad;
-
-		gamedata->challengegridwidth = majorpad*2;
-		numempty *= 4;
-
-#if (CHALLENGEGRIDHEIGHT % 2)
-		// One extra empty per column.
-		numempty += gamedata->challengegridwidth;
-#endif
-
-		//CONS_Printf("%d major unlocks means width of %d, numempty of %d\n", nummajorunlocks, gamedata->challengegridwidth, numempty);
-	}
-
-	if (numunlocks > numempty)
-	{
-		// Getting the number of extra columns to store normal unlocks
-		UINT16 temp = ((numunlocks - numempty) + (CHALLENGEGRIDHEIGHT-1))/CHALLENGEGRIDHEIGHT;
-		gamedata->challengegridwidth += temp;
-		majorcompact = 1;
-		//CONS_Printf("%d normal unlocks means %d extra entries, additional width of %d\n", numunlocks, (numunlocks - numempty), temp);
-	}
-	else if (challengegridloops)
-	{
-		// Another case where offset large tiles are permitted.
-		majorcompact = 1;
-	}
-
-	gamedata->challengegrid = Z_Malloc(
-		(gamedata->challengegridwidth * CHALLENGEGRIDHEIGHT * sizeof(UINT16)),
-		PU_STATIC, NULL);
-
-	if (!gamedata->challengegrid)
-	{
-		I_Error("M_PopulateChallengeGrid: was not able to allocate grid");
-	}
-
-	for (i = 0; i < (gamedata->challengegridwidth * CHALLENGEGRIDHEIGHT); ++i)
-	{
-		gamedata->challengegrid[i] = MAXUNLOCKABLES;
-	}
-
-	// Attempt to place all large tiles first.
-	if (nummajorunlocks)
-	{
-		// You lose one from CHALLENGEGRIDHEIGHT because it is impossible to place a 2-high tile on the bottom row.
-		// You lose one from the width if it doesn't loop.
-		// You divide by two if the grid is so compacted that large tiles can't be in offset columns.
-		UINT16 numspots = (gamedata->challengegridwidth - (challengegridloops ? 0 : majorcompact))
-				* ((CHALLENGEGRIDHEIGHT-1) / majorcompact);
-		// 0 is row, 1 is column
-		INT16 *quickcheck = Z_Calloc(sizeof(INT16) * 2 * numspots, PU_STATIC, NULL);
-
-		// Prepare the easy-grab spots.
-		for (i = 0; i < numspots; i++)
-		{
-			quickcheck[i * 2 + 0] = i%(CHALLENGEGRIDHEIGHT-1);
-			quickcheck[i * 2 + 1] = majorcompact * i/(CHALLENGEGRIDHEIGHT-1);
-		}
-
-		// Place in random valid locations.
-		while (nummajorunlocks > 0 && numspots > 0)
-		{
-			INT16 row, col;
-			j = M_RandomKey(numspots);
-			row = quickcheck[j * 2 + 0];
-			col =  quickcheck[j * 2 + 1];
-
-			// We always take from selection[1][] in order, but the PLACEMENT is still random.
-			nummajorunlocks--;
-
-			//CONS_Printf("--- %d (LARGE) placed at (%d, %d)\n", selection[1][nummajorunlocks], row, col);
-
-			i = row + (col * CHALLENGEGRIDHEIGHT);
-			gamedata->challengegrid[i] = gamedata->challengegrid[i+1] = selection[1][nummajorunlocks];
-			if (col == gamedata->challengegridwidth-1)
-			{
-				i = row;
-			}
-			else
-			{
-				i += CHALLENGEGRIDHEIGHT;
-			}
-			gamedata->challengegrid[i] = gamedata->challengegrid[i+1] = selection[1][nummajorunlocks];
-
-			if (nummajorunlocks == 0)
-			{
-				break;
-			}
-
-			for (i = 0; i < numspots; i++)
-			{
-quickcheckagain:
-				if (abs((quickcheck[i * 2 + 0]) - (row)) <= 1 // Row distance
-					&& (abs((quickcheck[i * 2 + 1]) - (col)) <= 1 // Column distance
-					|| (quickcheck[i * 2 + 1] == 0 && col == gamedata->challengegridwidth-1) // Wraparounds l->r
-					|| (quickcheck[i * 2 + 1] == gamedata->challengegridwidth-1 && col == 0))) // Wraparounds r->l
-				{
-					numspots--;  // Remove from possible indicies
-					if (i == numspots)
-						break;
-					// Shuffle remaining so we can keep on using M_RandomKey
-					quickcheck[i * 2 + 0] = quickcheck[numspots * 2 + 0];
-					quickcheck[i * 2 + 1] = quickcheck[numspots * 2 + 1];
-					// Woah there - we've gotta check the one that just got put in our place.
-					goto quickcheckagain;
-				}
-				continue;
-			}
-		}
-
-#if (CHALLENGEGRIDHEIGHT == 4)
-		while (nummajorunlocks > 0)
-		{
-			UINT16 unlocktomoveup = MAXUNLOCKABLES;
-
-			j = gamedata->challengegridwidth-1;
-
-			// Attempt to fix our whoopsie.
-			for (i = 0; i < j; i++)
-			{
-				if (gamedata->challengegrid[1 + (i*CHALLENGEGRIDHEIGHT)] != MAXUNLOCKABLES
-					&& gamedata->challengegrid[(i*CHALLENGEGRIDHEIGHT)] == MAXUNLOCKABLES)
-					break;
-			}
-
-			if (i == j)
-			{
-				break;
-			}
-
-			unlocktomoveup = gamedata->challengegrid[1 + (i*CHALLENGEGRIDHEIGHT)];
-
-			if (i == 0
-				&& challengegridloops
-				&& (gamedata->challengegrid [1 + (j*CHALLENGEGRIDHEIGHT)]
-					== gamedata->challengegrid[1]))
-				;
-			else
-			{
-				j = i + 1;
-			}
-
-			nummajorunlocks--;
-
-			// Push one pair up.
-			gamedata->challengegrid[(i*CHALLENGEGRIDHEIGHT)] = gamedata->challengegrid[(j*CHALLENGEGRIDHEIGHT)] = unlocktomoveup;
-			// Wedge the remaining four underneath.
-			gamedata->challengegrid[2 + (i*CHALLENGEGRIDHEIGHT)] = gamedata->challengegrid[2 + (j*CHALLENGEGRIDHEIGHT)] = selection[1][nummajorunlocks];
-			gamedata->challengegrid[3 + (i*CHALLENGEGRIDHEIGHT)] = gamedata->challengegrid[3 + (j*CHALLENGEGRIDHEIGHT)] = selection[1][nummajorunlocks];
-		}
-#endif
-
-		if (nummajorunlocks > 0)
-		{
-			UINT16 widthtoprint = gamedata->challengegridwidth;
-			Z_Free(gamedata->challengegrid);
-			gamedata->challengegrid = NULL;
-
-			I_Error("M_PopulateChallengeGrid: was not able to populate %d large tiles (width %d)", nummajorunlocks, widthtoprint);
-		}
-	}
-
-	numempty = 0;
-	// Space out empty entries to pepper into unlock list
-	for (i = 0; i < gamedata->challengegridwidth * CHALLENGEGRIDHEIGHT; i++)
-	{
-		if (gamedata->challengegrid[i] < MAXUNLOCKABLES)
-		{
-			continue;
-		}
-
-		numempty++;
-	}
-
-	if (numunlocks > numempty)
-	{
-		gamedata->challengegridwidth = 0;
-		Z_Free(gamedata->challengegrid);
-		gamedata->challengegrid = NULL;
-
-		I_Error("M_PopulateChallengeGrid: %d small unlocks vs %d empty spaces (%d gap)", numunlocks, numempty, (numunlocks-numempty));
-	}
-
-	//CONS_Printf(" %d unlocks vs %d empty spaces\n", numunlocks, numempty);
-
-	while (numunlocks < numempty)
-	{
-		//CONS_Printf(" adding empty)\n");
-		selection[0][numunlocks++] = MAXUNLOCKABLES;
-	}
-
-	// Fill the remaining spots with random ordinary unlocks (and empties).
-	for (i = 0; i < gamedata->challengegridwidth * CHALLENGEGRIDHEIGHT; i++)
-	{
-		if (gamedata->challengegrid[i] < MAXUNLOCKABLES)
-		{
-			continue;
-		}
-
-		j = M_RandomKey(numunlocks); // Get an entry
-		gamedata->challengegrid[i] = selection[0][j]; // Set that entry
-		//CONS_Printf(" %d placed at (%d, %d)\n", selection[0][j], i/CHALLENGEGRIDHEIGHT, i%CHALLENGEGRIDHEIGHT);
-		numunlocks--; // Remove from possible indicies
-		selection[0][j] = selection[0][numunlocks]; // Shuffle remaining so we can keep on using M_RandomKey
-
-		if (numunlocks == 0)
-		{
-			break;
-		}
-	}
-}
-
-void M_SanitiseChallengeGrid(void)
-{
-	UINT8 seen[MAXUNLOCKABLES];
-	UINT16 empty[MAXUNLOCKABLES + (CHALLENGEGRIDHEIGHT-1)];
-	UINT16 i, j, numempty = 0;
-
-	if (gamedata->challengegrid == NULL)
-		return;
-
-	memset(seen, 0, sizeof(seen));
-
-	// Go through all spots to identify duplicates and absences.
-	for (j = 0; j < gamedata->challengegridwidth * CHALLENGEGRIDHEIGHT; j++)
-	{
-		i = gamedata->challengegrid[j];
-
-		if (i >= MAXUNLOCKABLES || !unlockables[i].conditionset)
-		{
-			empty[numempty++] = j;
-			continue;
-		}
-
-		if (seen[i] != 5) // Arbitrary cap greater than 4
-		{
-			seen[i]++;
-
-			if (seen[i] == 1 || unlockables[i].majorunlock)
-			{
-				continue;
-			}
-		}
-
-		empty[numempty++] = j;
-	}
-
-	// Go through unlockables to identify if any haven't been seen.
-	for (i = 0; i < MAXUNLOCKABLES; ++i)
-	{
-		if (!unlockables[i].conditionset)
-		{
-			continue;
-		}
-
-		if (unlockables[i].majorunlock && seen[i] != 4)
-		{
-			// Probably not enough spots to retrofit.
-			goto badgrid;
-		}
-
-		if (seen[i] != 0)
-		{
-			// Present on the challenge grid.
-			continue;
-		}
-
-		if (numempty != 0)
-		{
-			// Small ones can be slotted in easy.
-			j = empty[--numempty];
-			gamedata->challengegrid[j] = i;
-		}
-
-		// Nothing we can do to recover.
-		goto badgrid;
-	}
-
-	// Fill the remaining spots with empties.
-	while (numempty != 0)
-	{
-		j = empty[--numempty];
-		gamedata->challengegrid[j] = MAXUNLOCKABLES;
-	}
-
-	return;
-
-badgrid:
-	// Just remove everything and let it get regenerated.
-	Z_Free(gamedata->challengegrid);
-	gamedata->challengegrid = NULL;
-	gamedata->challengegridwidth = 0;
-}
-
-static void M_ChallengeGridExtraDataAdjacencyRules(challengegridextradata_t *extradata, UINT16 adjacent)
-{
 	// Adjacent unlocked tile, permit hint/general key skip.
-	if (gamedata->unlocked[adjacent] == true)
+	if (RRAP_LocationChecked(adjacent_ref))
 	{
 		extradata->flags |= CHE_HINT;
 	}
 	// Adjacent locked small tile, prevent 10x key skip.
-	else if (unlockables[adjacent].majorunlock == false)
+	else if (RRAP_LocationIsBigTile(adjacent_ref) == false)
 	{
 		extradata->flags &= ~CHE_ALLCLEAR;
 	}
@@ -418,10 +85,11 @@ static void M_ChallengeGridExtraDataAdjacencyRules(challengegridextradata_t *ext
 
 void M_UpdateChallengeGridExtraData(challengegridextradata_t *extradata)
 {
-	UINT16 i, j, num, id, tempid, work;
+	INT64 i, j, num, id, tempid, work;
 	boolean idchange;
+	rrap_location_t *ref = NULL;
 
-	if (gamedata->challengegrid == NULL)
+	if (gamedata->ap_challengegrid == NULL)
 	{
 		return;
 	}
@@ -434,13 +102,15 @@ void M_UpdateChallengeGridExtraData(challengegridextradata_t *extradata)
 	//CONS_Printf(" --- \n");
 
 	// Pre-wipe flags.
-	for (i = 0; i < gamedata->challengegridwidth; i++)
+	for (i = 0; i < gamedata->ap_challengegridwidth; i++)
 	{
 		for (j = 0; j < CHALLENGEGRIDHEIGHT; j++)
 		{
 			id = (i * CHALLENGEGRIDHEIGHT) + j;
-			num = gamedata->challengegrid[id];
-			if (num >= MAXUNLOCKABLES || unlockables[num].majorunlock == false || gamedata->unlocked[num] == true)
+			num = gamedata->ap_challengegrid[id];
+			ref = RRAP_GetLocation(num);
+
+			if (ref == NULL || RRAP_LocationIsBigTile(ref) == false || RRAP_LocationChecked(ref) == true)
 			{
 				extradata[id].flags = CHE_NONE;
 				continue;
@@ -453,16 +123,17 @@ void M_UpdateChallengeGridExtraData(challengegridextradata_t *extradata)
 	}
 
 	// Populate extra data.
-	for (i = 0; i < gamedata->challengegridwidth; i++)
+	for (i = 0; i < gamedata->ap_challengegridwidth; i++)
 	{
 		for (j = 0; j < CHALLENGEGRIDHEIGHT; j++)
 		{
 			id = (i * CHALLENGEGRIDHEIGHT) + j;
-			num = gamedata->challengegrid[id];
+			num = gamedata->ap_challengegrid[id];
+			ref = RRAP_GetLocation(num);
 			idchange = false;
 
 			// Empty spots in the grid are always unconnected.
-			if (num >= MAXUNLOCKABLES)
+			if (ref == NULL)
 			{
 				continue;
 			}
@@ -471,7 +142,7 @@ void M_UpdateChallengeGridExtraData(challengegridextradata_t *extradata)
 			if (j > 0)
 			{
 				tempid = (i * CHALLENGEGRIDHEIGHT) + (j - 1);
-				work = gamedata->challengegrid[tempid];
+				work = gamedata->ap_challengegrid[tempid];
 				if (work == num)
 				{
 					extradata[id].flags = CHE_CONNECTEDUP;
@@ -488,7 +159,7 @@ void M_UpdateChallengeGridExtraData(challengegridextradata_t *extradata)
 						}
 						else
 						{
-							tempid = ((gamedata->challengegridwidth - 1) * CHALLENGEGRIDHEIGHT) + j - 1;
+							tempid = ((gamedata->ap_challengegridwidth - 1) * CHALLENGEGRIDHEIGHT) + j - 1;
 						}
 					}
 					/*else
@@ -505,7 +176,7 @@ void M_UpdateChallengeGridExtraData(challengegridextradata_t *extradata)
 						continue;
 					}
 				}
-				else if (work < MAXUNLOCKABLES)
+				else if (work > 0)
 				{
 					M_ChallengeGridExtraDataAdjacencyRules(extradata+id, work);
 				}
@@ -519,9 +190,9 @@ void M_UpdateChallengeGridExtraData(challengegridextradata_t *extradata)
 				}
 				else
 				{
-					tempid = ((gamedata->challengegridwidth - 1) * CHALLENGEGRIDHEIGHT) + j;
+					tempid = ((gamedata->ap_challengegridwidth - 1) * CHALLENGEGRIDHEIGHT) + j;
 				}
-				work = gamedata->challengegrid[tempid];
+				work = gamedata->ap_challengegrid[tempid];
 
 				if (work == num)
 				{
@@ -543,7 +214,7 @@ void M_UpdateChallengeGridExtraData(challengegridextradata_t *extradata)
 					/*else
 						CONS_Printf(" %d - %d to left of %d is invalid\n", work, tempid, id);*/
 				}
-				else if (work < MAXUNLOCKABLES)
+				else if (work > 0)
 				{
 					M_ChallengeGridExtraDataAdjacencyRules(extradata+id, work);
 				}
@@ -562,13 +233,13 @@ void M_UpdateChallengeGridExtraData(challengegridextradata_t *extradata)
 			if (j < CHALLENGEGRIDHEIGHT-1)
 			{
 				tempid = (i * CHALLENGEGRIDHEIGHT) + (j + 1);
-				work = gamedata->challengegrid[tempid];
+				work = gamedata->ap_challengegrid[tempid];
 
 				if (work == num)
 				{
 					;
 				}
-				else if (work < MAXUNLOCKABLES)
+				else if (work > 0)
 				{
 					M_ChallengeGridExtraDataAdjacencyRules(extradata+id, work);
 				}
@@ -576,7 +247,7 @@ void M_UpdateChallengeGridExtraData(challengegridextradata_t *extradata)
 
 			// Check the spot to the right.
 			{
-				if (i < (gamedata->challengegridwidth - 1))
+				if (i < (gamedata->ap_challengegridwidth - 1))
 				{
 					tempid = ((i + 1) * CHALLENGEGRIDHEIGHT) + j;
 				}
@@ -584,13 +255,13 @@ void M_UpdateChallengeGridExtraData(challengegridextradata_t *extradata)
 				{
 					tempid = j;
 				}
-				work = gamedata->challengegrid[tempid];
+				work = gamedata->ap_challengegrid[tempid];
 
 				if (work == num)
 				{
 					;
 				}
-				else if (work < MAXUNLOCKABLES)
+				else if (work > 0)
 				{
 					M_ChallengeGridExtraDataAdjacencyRules(extradata+id, work);
 				}
@@ -768,9 +439,9 @@ void M_ClearSecrets(void)
 
 	memset(gamedata->sealedswaps, 0, sizeof(gamedata->sealedswaps));
 
-	Z_Free(gamedata->challengegrid);
-	gamedata->challengegrid = NULL;
-	gamedata->challengegridwidth = 0;
+	Z_Free(gamedata->ap_challengegrid);
+	gamedata->ap_challengegrid = NULL;
+	gamedata->ap_challengegridwidth = 0;
 
 	gamedata->pendingkeyrounds = 0;
 	gamedata->pendingkeyroundoffset = 0;
@@ -3030,7 +2701,7 @@ static const char *M_GetConditionString(condition_t *cn)
 	return va("UNSUPPORTED CONDITION \"%d\"", cn->type);
 }
 
-char *M_BuildConditionSetString(UINT16 unlockid)
+char *M_BuildConditionSetString(INT64 ap_location_id)
 {
 	condition_t *cn;
 	size_t len = 1024, worklen;
@@ -3040,17 +2711,20 @@ char *M_BuildConditionSetString(UINT16 unlockid)
 
 	message[0] = '\0';
 
-	if (unlockid >= MAXUNLOCKABLES)
+	rrap_location_t *location = RRAP_GetLocation(ap_location_id);
+	if (!location)
 	{
 		return NULL;
 	}
 
-	if (!unlockables[unlockid].conditionset)
+	UINT16 condition_set = RRAP_LocationConditionSet(location);
+	if (!condition_set)
 	{
 		return NULL;
 	}
 
-	if (gamedata->unlocked[unlockid] == true && M_Achieved(unlockables[unlockid].conditionset - 1) == false)
+	if (RRAP_LocationChecked(location) == true
+		&& M_Achieved(condition_set - 1) == false)
 	{
 		message[0] = '\x86'; // the following text will be grey
 		message[1] = '\0';
@@ -3065,7 +2739,7 @@ char *M_BuildConditionSetString(UINT16 unlockid)
 	};
 
 	struct conditionset_traverser_s current = {0};
-	current.c = &conditionSets[unlockables[unlockid].conditionset-1];
+	current.c = &conditionSets[condition_set - 1];
 	current.i = current.lastID = current.stopasap = 0;
 
 	struct conditionset_traverser_s restore = {0};
@@ -3192,10 +2866,14 @@ char *M_BuildConditionSetString(UINT16 unlockid)
 		}
 	}
 
-	if (usedTourney && unlockables[unlockid].conditionset == CH_FURYBIKE && gamedata->unlocked[unlockid] == false)
+#if 0 // [RRAP] TODO...?
+	if (usedTourney
+		&& unlockables[unlockid].conditionset == CH_FURYBIKE
+		&& gamedata->unlocked[unlockid] == false)
 	{
 		strcpy(message, "Power shrouds this challenge in darkness... (Return here without Tournament Mode!)\0");
 	}
+#endif
 
 	// Finally, do a clean wordwrap!
 	return V_ScaledWordWrap(
@@ -3230,7 +2908,7 @@ static boolean M_CheckUnlockConditions(player_t *player)
 
 boolean M_UpdateUnlockablesAndExtraEmblems(boolean loud, boolean doall)
 {
-	UINT16 i = 0, response = 0, newkeys = 0;
+	INT64 i = 0, response = 0, newkeys = 0;
 
 	if (!gamedata)
 	{
@@ -3294,30 +2972,8 @@ boolean M_UpdateUnlockablesAndExtraEmblems(boolean loud, boolean doall)
 		return false;
 	}
 
-	response = 0;
-
 	// Go through unlockables
-	for (i = 0; i < MAXUNLOCKABLES; ++i)
-	{
-		if (gamedata->unlocked[i] || !unlockables[i].conditionset)
-		{
-			continue;
-		}
-
-		if (gamedata->unlocked[i] == true
-			|| gamedata->unlockpending[i] == true)
-		{
-			continue;
-		}
-
-		if (M_Achieved(unlockables[i].conditionset - 1) == false)
-		{
-			continue;
-		}
-
-		gamedata->unlockpending[i] = true;
-		response++;
-	}
+	response = RRAP_TestLocations();
 
 	// Announce
 	if (response != 0)
@@ -3341,63 +2997,7 @@ boolean M_UpdateUnlockablesAndExtraEmblems(boolean loud, boolean doall)
 	return false;
 }
 
-UINT16 M_GetNextAchievedUnlock(boolean canskipchaokeys)
-{
-	UINT16 i;
-
-	// Go through unlockables
-	for (i = 0; i < MAXUNLOCKABLES; ++i)
-	{
-		if (!unlockables[i].conditionset)
-		{
-			// Not worthy of consideration
-			continue;
-		}
-
-		if (gamedata->unlocked[i] == true)
-		{
-			// Already unlocked, no need to engage
-			continue;
-		}
-
-		if (gamedata->unlockpending[i] == false)
-		{
-			// Not unlocked AND not pending, which means chao keys can be used on something
-			canskipchaokeys = false;
-			continue;
-		}
-
-		return i;
-	}
-
-	if (canskipchaokeys == true)
-	{
-		// Okay, we're skipping chao keys - let's just insta-digest them.
-
-		if (gamedata->chaokeys + gamedata->keyspending < GDMAX_CHAOKEYS)
-		{
-			gamedata->chaokeys += gamedata->keyspending;
-			gamedata->pendingkeyroundoffset =
-				(gamedata->pendingkeyroundoffset + gamedata->pendingkeyrounds)
-				% GDCONVERT_ROUNDSTOKEY;
-
-		}
-		else
-		{
-			gamedata->chaokeys = GDMAX_CHAOKEYS;
-			gamedata->pendingkeyroundoffset = 0;
-		}
-
-		gamedata->keyspending = 0;
-		gamedata->pendingkeyrounds = 0;
-	}
-	else if (gamedata->keyspending != 0)
-	{
-		return PENDING_CHAOKEYS;
-	}
-
-	return MAXUNLOCKABLES;
-}
+// [RRAP] M_GetNextAchievedUnlock was replaced with our own version
 
 // Emblem unlocking shit
 UINT16 M_CheckLevelEmblems(void)

@@ -92,6 +92,9 @@ int	snprintf(char *str, size_t n, const char *fmt, ...);
 #include "discord.h"
 #endif
 
+// [RRAP]
+#include "ap_main.h"
+
 fixed_t M_TimeFrac(tic_t tics, tic_t duration)
 {
 	return tics < duration ? (tics * FRACUNIT + rendertimefrac_unpaused) / duration : FRACUNIT;
@@ -6919,7 +6922,7 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 #ifdef DEVELOP
 	extern consvar_t cv_debugchallenges;
 #endif
-	unlockable_t *ref = NULL;
+	rrap_location_t *ref = NULL;
 	patch_t *pat = missingpat;
 	UINT8 *colormap = NULL, *bgmap = NULL;
 	INT32 tileflags = 0;
@@ -6928,16 +6931,19 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 	boolean unlockedyet;
 
 	id = (i * CHALLENGEGRIDHEIGHT) + j;
-	num = gamedata->challengegrid[id];
+	num = gamedata->ap_challengegrid[id];
+
+	ref = RRAP_GetLocation(num);
+	boolean checked = RRAP_LocationChecked(ref);
+	boolean is_big_tile = RRAP_LocationIsBigTile(ref);
 
 	// Empty spots in the grid are always unconnected.
-	if (num >= MAXUNLOCKABLES)
+	if (ref == NULL)
 	{
 		goto drawborder;
 	}
 
 	// Okay, this is what we want to draw.
-	ref = &unlockables[num];
 
 #ifdef DEVELOP
 	if (cv_debugchallenges.value > 0 &&
@@ -6949,8 +6955,8 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 	}
 #endif
 
-	unlockedyet = !((gamedata->unlocked[num] == false)
-		|| (challengesmenu.pending && num == challengesmenu.currentunlock && challengesmenu.unlockanim <= UNLOCKTIME));
+	unlockedyet = !((checked == false)
+		|| (challengesmenu.pending && num == challengesmenu.current_ap_location && challengesmenu.unlockanim <= UNLOCKTIME));
 
 	// If we aren't unlocked yet, return early.
 	if (!unlockedyet)
@@ -6960,7 +6966,7 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 
 		pat = W_CachePatchName(
 			va("UN_OUTL%c",
-				ref->majorunlock ? 'B' : 'A'
+				is_big_tile ? 'B' : 'A'
 			),
 			PU_CACHE);
 
@@ -6981,7 +6987,7 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 		pat = W_CachePatchName(
 			va("UN_HNT%c%c",
 				(hili && !colormap) ? '1' : '2',
-				ref->majorunlock ? 'B' : 'A'
+				is_big_tile ? 'B' : 'A'
 			),
 			PU_CACHE);
 
@@ -7017,13 +7023,15 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 	}
 
 	pat = W_CachePatchName(
-		(ref->majorunlock ? "UN_BORDB" : "UN_BORDA"),
+		(is_big_tile ? "UN_BORDB" : "UN_BORDA"),
 		PU_CACHE);
 
 	UINT8 iconid = 0;
 
 	{
 		UINT16 bcol = SKINCOLOR_SILVER;
+
+#if 0 // [RRAP] TODO - display AP item
 		switch (ref->type)
 		{
 			case SECRET_SKIN:
@@ -7079,6 +7087,7 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 				iconid = 9;
 				break;
 		}
+#endif
 
 		bgmap = R_GetTranslationColormap(TC_DEFAULT, bcol, GTC_MENUCACHE);
 	}
@@ -7101,6 +7110,7 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 	}
 #endif
 
+#if 0
 	if (horngoner && ref->type == SECRET_FOLLOWER)
 		goto drawborder;
 	else if (categoryside)
@@ -7108,10 +7118,10 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 		colormap = R_GetTranslationColormap(TC_DEFAULT, SKINCOLOR_SILVER, GTC_MENUCACHE);
 
 		// iconid is already prepopulated because we had to draw the border
-		pat = challengesmenu.tile_category[iconid][ref->majorunlock ? 1 : 0];
+		pat = challengesmenu.tile_category[iconid][is_big_tile ? 1 : 0];
 		if (pat == missingpat)
 		{
-			pat = challengesmenu.tile_category[iconid][ref->majorunlock ? 0 : 1];
+			pat = challengesmenu.tile_category[iconid][is_big_tile ? 0 : 1];
 		}
 	}
 	else if (ref->icon != NULL && ref->icon[0])
@@ -7133,7 +7143,7 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 				if (skin != -1)
 				{
 					colormap = R_GetTranslationColormap(skin, skins[skin]->prefcolor, GTC_MENUCACHE);
-					pat = faceprefix[skin][(ref->majorunlock) ? FACE_WANTED : FACE_RANK];
+					pat = faceprefix[skin][(is_big_tile) ? FACE_WANTED : FACE_RANK];
 				}
 				break;
 			}
@@ -7254,17 +7264,18 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 		{
 			pat = W_CachePatchName(va("UN_IC%02u%c",
 				iconid,
-				ref->majorunlock ? 'B' : 'A'),
+				is_big_tile ? 'B' : 'A'),
 				PU_CACHE);
 			if (pat == missingpat)
 			{
 				pat = W_CachePatchName(va("UN_IC%02u%c",
 					iconid,
-					ref->majorunlock ? 'A' : 'B'),
+					is_big_tile ? 'A' : 'B'),
 					PU_CACHE);
 			}
 		}
 	}
+#endif
 
 	if (pat)
 	{
@@ -7272,7 +7283,7 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 
 		if (!siz)
 			; // prevent div/0
-		else if (ref->majorunlock)
+		else if (is_big_tile)
 		{
 			V_DrawStretchyFixedPatch(
 				((x + 5)*FRACUNIT) + (32*(FRACUNIT-accordion))/2, (y + 5)*FRACUNIT,
@@ -7296,9 +7307,10 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 
 drawborder:
 
-	if (num < MAXUNLOCKABLES && gamedata->unlockpending[num])
+	boolean check_pending = RRAP_LocationCheckPending(ref);
+	if (ref != NULL && check_pending)
 	{
-		const INT32 area = (ref->majorunlock) ? 42 : 20;
+		const INT32 area = (is_big_tile) ? 42 : 20;
 		INT32 val;
 		for (i = 0; i < area; i++)
 		{
@@ -7312,7 +7324,7 @@ drawborder:
 
 	if (hili)
 	{
-		boolean maj = (ref != NULL && ref->majorunlock);
+		boolean maj = (ref != NULL && is_big_tile);
 		char buffer[9];
 		sprintf(buffer, "UN_RETA1");
 		buffer[6] = maj ? 'B' : 'A';
@@ -7333,7 +7345,7 @@ drawborder:
 			cv_debugchallenges.value == -2
 			|| cv_debugchallenges.value > 0
 		)
-		&& num < MAXUNLOCKABLES
+		&& num > 0
 	)
 	{
 		// Display the conditionset for this tile.
@@ -7424,17 +7436,18 @@ void M_DrawCharacterIconAndEngine(INT32 x, INT32 y, UINT16 skin, UINT8 *colormap
 
 static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 {
-	unlockable_t *ref = NULL;
+	rrap_location_t *ref = NULL;
 	UINT8 *colormap = NULL;
 	UINT16 specialmap = NEXTMAP_INVALID;
 
-	if (challengesmenu.currentunlock >= MAXUNLOCKABLES)
+	ref = RRAP_GetLocation(challengesmenu.current_ap_location);
+	if (ref == NULL)
 	{
 		return NULL;
 	}
 
 	// Funny question mark?
-	if (!gamedata->unlocked[challengesmenu.currentunlock])
+	if (!RRAP_LocationChecked(ref))
 	{
 		spritedef_t *sprdef = &sprites[SPR_UQMK];
 		spriteframe_t *sprframe;
@@ -7462,10 +7475,9 @@ static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 	}
 
 	// Okay, this is what we want to draw.
-	ref = &unlockables[challengesmenu.currentunlock];
-
 	const char *actiontext = NULL;
 
+#if 0 // [RRAP] TODO - draw AP item
 	switch (ref->type)
 	{
 		case SECRET_SKIN:
@@ -8073,6 +8085,7 @@ static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 			W_CachePatchName("K_LAPE02", PU_CACHE),
 			colormap);
 	}
+#endif
 
 	return actiontext;
 }
@@ -8161,12 +8174,13 @@ static void M_DrawChallengeKeys(INT32 tilex, INT32 tiley)
 	UINT8 keysbeingused = 0;
 
 	// The Chao Key swooping animation
-	if (challengesmenu.currentunlock < MAXUNLOCKABLES && challengesmenu.chaokeyhold)
+	rrap_location_t *ref = RRAP_GetLocation(challengesmenu.current_ap_location);
+	if (ref && challengesmenu.chaokeyhold)
 	{
 		fixed_t baseradius = challengesgridstep;
 
 		boolean major = false, ending = false;
-		if (unlockables[challengesmenu.currentunlock].majorunlock == true)
+		if (RRAP_LocationIsBigTile(ref) == true)
 		{
 			major = true;
 			tilex += challengesgridstep/2;
@@ -8283,10 +8297,10 @@ static void M_DrawChallengeScrollBar(UINT8 *flashmap)
 
 	const INT32 bary = 4, barh = 1, hiliw = 1;
 
-	if (!gamedata->challengegrid || !gamedata->challengegridwidth)
+	if (!gamedata->ap_challengegrid || !gamedata->ap_challengegridwidth)
 		return;
 
-	const INT32 barlen = gamedata->challengegridwidth*hiliw;
+	const INT32 barlen = gamedata->ap_challengegridwidth*hiliw;
 
 	INT32 barx = (BASEVIDWIDTH - barlen)/2;
 	if (barlen > 200)
@@ -8302,7 +8316,7 @@ static void M_DrawChallengeScrollBar(UINT8 *flashmap)
 
 	// This was a macro for experimentation
 	#define COLTOPIX(col) (col*hiliw)
-		//((col * barlen)/gamedata->challengegridwidth)
+		//((col * barlen)/gamedata->ap_challengegridwidth)
 
 	INT32 hilix, nextstep, i, numincolumn, completionamount, skiplevel;
 
@@ -8340,19 +8354,22 @@ static void M_DrawChallengeScrollBar(UINT8 *flashmap)
 			hilix = COLTOPIX(hilix);
 		}
 
-		// DO NOT DEREFERENCE gamedata->challengegrid[i] UNTIL AFTER THIS
-		if (i >= gamedata->challengegridwidth*CHALLENGEGRIDHEIGHT)
+		// DO NOT DEREFERENCE gamedata->ap_challengegrid[i] UNTIL AFTER THIS
+		if (i >= gamedata->ap_challengegridwidth*CHALLENGEGRIDHEIGHT)
 			break;
 
-		if (gamedata->challengegrid[i] >= MAXUNLOCKABLES)
+		INT64 location_id = gamedata->ap_challengegrid[i];
+		if (location_id <= 0)
 			continue;
+
+		rrap_location_t *ref = RRAP_GetLocation(location_id);
 
 		// Okay, confirmed not a gap.
 		numincolumn++;
 
 #ifdef DEVELOP
 		if (cv_debugchallenges.value > 0
-		&& cv_debugchallenges.value == gamedata->challengegrid[i]+1)
+		&& cv_debugchallenges.value == location_id + 1)
 		{
 			V_DrawFill(barx + hilix, bary, hiliw, barh, (challengesmenu.ticker & 2) ? 0 : 32);
 
@@ -8372,19 +8389,17 @@ static void M_DrawChallengeScrollBar(UINT8 *flashmap)
 		if (completionamount == -1)
 			continue;
 
-		if (gamedata->unlocked[gamedata->challengegrid[i]])
+		if (RRAP_LocationChecked(ref))
 		{
 			completionamount++;
 
-			unlockable_t *ref = &unlockables[gamedata->challengegrid[i]];
-
-			if (!skiplevel && M_Achieved(ref->conditionset - 1) == false)
+			if (!skiplevel && M_Achieved(RRAP_LocationConditionSet(ref) - 1) == false)
 			{
 				skiplevel = 1;
 			}
 		}
 
-		if (gamedata->unlockpending[gamedata->challengegrid[i]] == false)
+		if (RRAP_LocationCheckPending(ref) == false)
 			continue;
 
 		INT32 val = (hilix + challengesmenu.ticker) % 40;
@@ -8436,7 +8451,7 @@ void M_DrawChallenges(void)
 	}
 
 	// Do underlay for everything else early so the bottom of the reticule doesn't get shaded over.
-	if (challengesmenu.currentunlock < MAXUNLOCKABLES)
+	if (challengesmenu.current_ap_location > 0)
 	{
 		y = 120;
 
@@ -8447,7 +8462,7 @@ void M_DrawChallenges(void)
 		V_DrawFadeFill(0, y+27, BASEVIDWIDTH, BASEVIDHEIGHT - (y+27), 0, 31, challengetransparentstrength);
 	}
 
-	if (gamedata->challengegrid == NULL || challengesmenu.extradata == NULL)
+	if (gamedata->ap_challengegrid == NULL || challengesmenu.extradata == NULL)
 	{
 		V_DrawCenteredMenuString(x, y, V_REDMAP, "No challenges available!?");
 		goto challengedesc;
@@ -8468,22 +8483,22 @@ void M_DrawChallenges(void)
 	if (challengegridloops)
 	{
 		if (!challengesmenu.col && challengesmenu.hilix)
-			x -= gamedata->challengegridwidth*challengesgridstep;
+			x -= gamedata->ap_challengegridwidth*challengesgridstep;
 		i = challengesmenu.col + challengesmenu.focusx;
 		explodex = x - (i*challengesgridstep);
 
 		while (x < BASEVIDWIDTH-challengesgridstep)
 		{
-			i = (i + 1) % gamedata->challengegridwidth;
+			i = (i + 1) % gamedata->ap_challengegridwidth;
 			x += challengesgridstep;
 		}
 	}
 	else
 	{
-		if (gamedata->challengegridwidth & 1)
+		if (gamedata->ap_challengegridwidth & 1)
 			x += (challengesgridstep/2);
 
-		i = gamedata->challengegridwidth-1;
+		i = gamedata->ap_challengegridwidth-1;
 		explodex = x - (i*challengesgridstep)/2;
 		x += (i*challengesgridstep)/2;
 	}
@@ -8515,8 +8530,8 @@ void M_DrawChallenges(void)
 		i--;
 		if (challengegridloops && i < 0)
 		{
-			i = (i + gamedata->challengegridwidth)
-				% gamedata->challengegridwidth;
+			i = (i + gamedata->ap_challengegridwidth)
+				% gamedata->ap_challengegridwidth;
 		}
 	}
 
@@ -8540,16 +8555,23 @@ challengedesc:
 	{
 		y = 120;
 
-		if (challengesmenu.currentunlock < MAXUNLOCKABLES)
+		rrap_location_t *ref = RRAP_GetLocation(challengesmenu.current_ap_location);
+		if (ref != NULL)
 		{
-			str = unlockables[challengesmenu.currentunlock].name;
-			if (!gamedata->unlocked[challengesmenu.currentunlock])
+			char *z_str = NULL;
+			if (RRAP_LocationChecked(ref))
 			{
-				str = "???"; //M_CreateSecretMenuOption(str);
+				z_str = RRAP_LocationLabel(ref);
+			}
+			else
+			{
+				z_str = Z_StrDup("???"); //M_CreateSecretMenuOption(str);
 			}
 
-			offset = V_LSTitleLowStringWidth(str, 0) / 2;
-			V_DrawLSTitleLowString(BASEVIDWIDTH/2 - offset, y+6, 0, str);
+			offset = V_LSTitleLowStringWidth(z_str, 0) / 2;
+			V_DrawLSTitleLowString(BASEVIDWIDTH/2 - offset, y+6, 0, z_str);
+
+			Z_Free(z_str);
 		}
 	}
 
@@ -8637,9 +8659,10 @@ challengedesc:
 	// { -- please don't call va() anywhere between here...
 	i = (challengesmenu.hilix * CHALLENGEGRIDHEIGHT) + challengesmenu.hiliy;
 
+	rrap_location_t *location = RRAP_GetLocation(challengesmenu.current_ap_location);
 	if (challengesmenu.unlockcondition != NULL
-	&& challengesmenu.currentunlock < MAXUNLOCKABLES
-	&& ((gamedata->unlocked[challengesmenu.currentunlock] == true)
+	&& location != NULL
+	&& ((RRAP_LocationChecked(location))
 		|| ((challengesmenu.extradata != NULL)
 		&& (challengesmenu.extradata[i].flags & CHE_HINT))
 		)

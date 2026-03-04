@@ -27,21 +27,6 @@
 #endif
 
 #ifdef __cplusplus
-extern "C" {
-#endif
-
-typedef enum
-{
-	CHECK_FALSE = 0,
-	CHECK_PENDING,
-	CHECK_TRUE
-} rrap_location_checked_e;
-
-#ifdef __cplusplus
-} // extern "C"
-#endif
-
-#ifdef __cplusplus
 
 class rrap_location_t
 {
@@ -49,7 +34,8 @@ private:
 	srb2::String _label;
 	INT32 _condition_set_id;
 	boolean _big_tile;
-	rrap_location_checked_e _checked;
+	boolean _checked;
+	boolean _check_pending;
 
 public:
 	rrap_location_t() = default;
@@ -58,11 +44,28 @@ public:
 	srb2::String label() const { return _label; }
 	INT32 condition_set_id() const { return _condition_set_id; }
 	boolean is_big_tile() const { return _big_tile; }
-	rrap_location_checked_e checked() const { return _checked; }
+	boolean checked() const { return _checked; }
+	boolean check_pending() const { return _check_pending; }
 
-	void set_checked(rrap_location_checked_e x)
+	void immediate_check()
 	{
-		_checked = x;
+		_checked = true;
+	}
+
+	void queue_check()
+	{
+		_check_pending = true;
+	}
+
+	void unqueue_check()
+	{
+		_check_pending = false;
+	}
+
+	void on_clear()
+	{
+		_checked = false;
+		_check_pending = false;
 	}
 };
 
@@ -81,9 +84,14 @@ public:
 	UINT16 unlockable_id() const { return _unlockable_id; }
 	boolean recieved() const { return _received; }
 
-	void set_recieved(boolean x)
+	void recieve()
 	{
-		_received = x;
+		_received = true;
+	}
+
+	void on_clear()
+	{
+		_received = false;
 	}
 };
 
@@ -106,11 +114,28 @@ extern boolean g_ap_started;
 
 rrap_location_t *RRAP_GetLocation(INT64 location_id);
 rrap_item_t *RRAP_GetItem(INT64 item_id);
+void RRAP_LoadArchipelagoJSON(void);
+
+char *RRAP_LocationLabel(rrap_location_t *location);
+UINT16 RRAP_LocationConditionSet(rrap_location_t *location);
+boolean RRAP_LocationIsBigTile(rrap_location_t *location);
+boolean RRAP_LocationChecked(rrap_location_t *location);
+boolean RRAP_LocationCheckPending(rrap_location_t *location);
+
+void RRAP_LocationImmediateCheck(rrap_location_t *location);
+void RRAP_LocationQueueCheck(rrap_location_t *location);
+void RRAP_LocationUnqueueCheck(rrap_location_t *location);
 
 boolean RRAP_ItemRecieved(rrap_item_t *item);
 UINT16 RRAP_ItemToUnlockableId(rrap_item_t *item);
 
-void RRAP_LoadArchipelagoJSON(void);
+void RRAP_PopulateChallengeGrid(void);
+void RRAP_SanitiseChallengeGrid(void);
+
+int RRAP_TestLocations(void);
+INT64 RRAP_GetNextCheckedLocation(boolean canskipchaokeys);
+void RRAP_ChallengesMenuCountPercent(void);
+
 void RRAP_TickMessages(void);
 void RRAP_ConnectFromMenu(int32_t choice);
 

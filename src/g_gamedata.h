@@ -125,8 +125,9 @@ struct GamedataPrisonEggPickupsJson final
 
 struct GamedataChallengeGridJson final
 {
-	uint32_t width;
-	Vector<uint16_t> grid;
+	// [RRAP]
+	uint64_t width;
+	Vector<int64_t> grid;
 
 	SRB2_JSON_DEFINE_TYPE_INTRUSIVE_WITH_DEFAULT(GamedataChallengeGridJson, width, grid)
 };
@@ -297,7 +298,7 @@ struct GamedataJson final
 	Vector<bool> unlockables;
 	Vector<bool> unlockpending;
 	Vector<bool> conditionsets;
-	GamedataChallengeGridJson challengegrid;
+	GamedataChallengeGridJson ap_challengegrid; // [RRAP]
 	uint32_t timesBeaten;
 	HashMap<String, GamedataSkinJson> skins;
 	Vector<String> spraycans_v2;
@@ -319,7 +320,7 @@ struct GamedataJson final
 		unlockables,
 		unlockpending,
 		conditionsets,
-		challengegrid,
+		ap_challengegrid,
 		timesBeaten,
 		skins,
 		spraycans_v2,

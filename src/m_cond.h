@@ -285,7 +285,7 @@ typedef enum
 #else
 #define CHALLENGEGRIDLOOPWIDTH (BASEVIDWIDTH/16)
 #endif
-#define challengegridloops (gamedata->challengegridwidth >= CHALLENGEGRIDLOOPWIDTH)
+#define challengegridloops (gamedata->ap_challengegridwidth >= CHALLENGEGRIDLOOPWIDTH)
 
 #define CH_FURYBIKE 55
 
@@ -361,8 +361,8 @@ struct gamedata_t
 	UINT16* prisoneggpickups;
 
 	// CHALLENGE GRID
-	UINT16 challengegridwidth;
-	UINT16 *challengegrid;
+	UINT64 ap_challengegridwidth;
+	INT64 *ap_challengegrid;
 
 	// # OF TIMES THE GAME HAS BEEN BEATEN
 	UINT32 timesBeaten;
@@ -423,8 +423,7 @@ extern INT32 numemblems;
 void M_NewGameDataStruct(void);
 
 // Challenges menu stuff
-void M_PopulateChallengeGrid(void);
-void M_SanitiseChallengeGrid(void);
+// [RRAP] replaced by our own versions
 
 struct challengegridextradata_t
 {
@@ -441,7 +440,7 @@ void M_UpdateChallengeGridExtraData(challengegridextradata_t *extradata);
 #define CHE_DONTDRAW (CHE_CONNECTEDLEFT|CHE_CONNECTEDUP)
 #define CHE_ALLCLEAR      (1<<3)
 
-char *M_BuildConditionSetString(UINT16 unlockid);
+char *M_BuildConditionSetString(INT64 ap_location_id);
 #define DESCRIPTIONWIDTH 170
 
 // Condition set setup
@@ -461,9 +460,6 @@ UINT16 M_CheckCupEmeralds(UINT8 difficulty);
 // Updating conditions and unlockables
 boolean M_CheckCondition(condition_t *cn, player_t *player);
 boolean M_UpdateUnlockablesAndExtraEmblems(boolean loud, boolean doall);
-
-#define PENDING_CHAOKEYS (UINT16_MAX-1)
-UINT16 M_GetNextAchievedUnlock(boolean canskipchaokeys);
 
 void M_UpdateNextPrisonEggPickup(void);
 
