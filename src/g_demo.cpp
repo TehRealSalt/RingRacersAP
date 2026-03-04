@@ -69,6 +69,9 @@
 #include "k_grandprix.h"
 #include "p_setup.h" // oldbest
 
+// [RRAP]
+#include "ap_main.h"
+
 static menuitem_t TitleEntry[] =
 {
 	{IT_NOTHING | IT_SPACE, "Save Replay", NULL,
@@ -2218,7 +2221,8 @@ void G_BeginRecording(void)
 	WRITEUINT32(demobuf.p, MAXUNLOCKABLES);
 	for (size_t unlockindex = 0; unlockindex < MAXUNLOCKABLES; unlockindex++)
 	{
-		UINT8 unlock = gamedata->unlocked[unlockindex];
+		rrap_item_t *item = RRAP_GetItem(unlockables[unlockindex].ap_item_id);
+		UINT8 unlock = RRAP_ItemRecieved(item);
 		WRITEUINT8(demobuf.p, unlock);
 	}
 
