@@ -66,17 +66,53 @@ void rrap_location_t::immediate_check()
 {
 	if (!_checked)
 	{
+		// TODO: don't set this on reconnect
 		_check_pending = true;
 	}
 
 	_checked = true;
+
 	AP_SendItem(_id);
+
+	std::set<INT64> scout_ids = {_id};
+	AP_SendLocationScouts(scout_ids, 0);
+}
+
+void rrap_location_t::queue_check()
+{
+	_check_pending = true;
+
+	std::set<INT64> scout_ids = {_id};
+	AP_SendLocationScouts(scout_ids, 0);
+}
+
+void rrap_location_t::update_displayed_item(srb2::String label, INT64 item_id)
+{
+	CONS_Printf("[AP] Updating location %li display item (label: %s, id: %li)\n", _id, label, item_id);
+
+	_display_item_label = label;
+
+	if (g_ap_item_info.find(item_id) != g_ap_item_info.end())
+	{
+		_display_item_id = item_id;
+	}
+	else
+	{
+		_display_item_id = 0;
+	}
 }
 
 rrap_item_t::rrap_item_t(INT64 index, srb2::JsonValue json)
 {
 	_id = index;
 	_label = json.at("label").get<srb2::String>();
+
+	_unlockable_id = MAXUNLOCKABLES;
+	_skin_id = -1;
+
+	_display_type = SECRET_NONE;
+	_display_icon = "";
+	_display_color = SKINCOLOR_NONE;
 
 	int work_unlock_id = json.value("unlockable", 0);
 	if (work_unlock_id > 0 && work_unlock_id <= MAXUNLOCKABLES)
@@ -87,11 +123,7 @@ rrap_item_t::rrap_item_t(INT64 index, srb2::JsonValue json)
 		_unlockable_id = work_unlock_id - 1;
 		unlockables[_unlockable_id].ap_item_id = index;
 	}
-	else if (work_unlock_id == 0)
-	{
-		_unlockable_id = MAXUNLOCKABLES;
-	}
-	else
+	else if (work_unlock_id != 0)
 	{
 		throw std::runtime_error(srb2::format("invalid unlock id '{}'", work_unlock_id));
 	}
@@ -102,7 +134,11 @@ rrap_item_t::rrap_item_t(INT64 index, srb2::JsonValue json)
 		int skin_id = R_SkinAvailableEx(work_skin.c_str(), false);
 		if (skin_id != -1)
 		{
-			skins[skin_id]->ap_item_id = index;
+			_skin_id = skin_id;
+			skins[_skin_id]->ap_item_id = index;
+
+			SRB2_ASSERT(_display_type == SECRET_NONE);
+			_display_type = SECRET_SKIN;
 		}
 		else
 		{
@@ -204,7 +240,7 @@ char *RRAP_LocationLabel(rrap_location_t *location)
 {
 	if (!location)
 	{
-		return NULL;
+		return nullptr;
 	}
 
 	return Z_StrDup( location->label().c_str() );
@@ -248,6 +284,32 @@ boolean RRAP_LocationCheckPending(rrap_location_t *location)
 	}
 
 	return location->check_pending();
+}
+
+char *RRAP_LocationDisplayItemLabel(rrap_location_t *location)
+{
+	if (!location)
+	{
+		return nullptr;
+	}
+
+	return Z_StrDup( location->display_item_label().c_str() );
+}
+
+rrap_item_t *RRAP_LocationDisplayItem(rrap_location_t *location)
+{
+	if (!location)
+	{
+		return nullptr;
+	}
+
+	INT64 item_id = location->display_item_id();
+	if (!item_id || g_ap_item_info.find(item_id) == g_ap_item_info.end())
+	{
+		return nullptr;
+	}
+
+	return &g_ap_item_info[item_id];
 }
 
 void RRAP_LocationImmediateCheck(rrap_location_t *location)
@@ -300,55 +362,44 @@ UINT16 RRAP_ItemToUnlockableId(rrap_item_t *item)
 	return item->unlockable_id();
 }
 
-static void RRAP_GotClearItems(void)
+INT32 RRAP_ItemToSkinId(rrap_item_t *item)
 {
-	for (auto& [id, item] : g_ap_item_info)
+	if (!item)
 	{
-		item.on_clear();
+		return -1;
 	}
 
-	for (auto& [id, location] : g_ap_location_info)
-	{
-		location.on_clear();
-	}
+	return item->skin_id();
 }
 
-static void RRAP_GotItemReceived(int64_t item_id, bool should_notify)
+INT32 RRAP_ItemDisplayType(rrap_item_t *item)
 {
-	if (!item_id || g_ap_item_info.find(item_id) == g_ap_item_info.end())
+	if (!item)
 	{
-		CONS_Printf(
-			" == AP == could not receive invalid item ID [%li]\n",
-			item_id
-		);
-		return;
+		return SECRET_NONE;
 	}
 
-	g_ap_item_info[item_id].recieve();
-
-	if (true) //(should_notify)
-	{
-		// TEMP?
-		CONS_Printf(
-			" == AP == GOT ITEM ID [%li]: %s\n",
-			item_id,
-			g_ap_item_info[item_id].label().c_str()
-		);
-	}
+	return item->display_type();
 }
 
-static void RRAP_GotLocationChecked(int64_t location_id)
+char *RRAP_ItemDisplayIcon(rrap_item_t *item)
 {
-	if (g_ap_location_info.find(location_id) == g_ap_location_info.end())
+	if (!item)
 	{
-		CONS_Printf(
-			" == AP == could not check invalid location ID [%li]\n",
-			location_id
-		);
-		return;
+		return nullptr;
 	}
 
-	g_ap_location_info[location_id].immediate_check();
+	return Z_StrDup( item->display_icon().c_str() );
+}
+
+UINT16 RRAP_ItemDisplayColor(rrap_item_t *item)
+{
+	if (!item)
+	{
+		return SKINCOLOR_NONE;
+	}
+
+	return item->display_color();
 }
 
 void RRAP_PopulateChallengeGrid(void)
@@ -978,6 +1029,83 @@ static void RRAP_InitGamedata(void)
 	gamedata->tutorialdone = true;
 }
 
+static void RRAP_GotClearItems(void)
+{
+	for (auto& [id, item] : g_ap_item_info)
+	{
+		item.on_clear();
+	}
+
+	for (auto& [id, location] : g_ap_location_info)
+	{
+		location.on_clear();
+	}
+}
+
+static void RRAP_GotItemReceived(int64_t item_id, bool should_notify)
+{
+	if (!item_id || g_ap_item_info.find(item_id) == g_ap_item_info.end())
+	{
+		CONS_Printf(
+			" == AP == could not receive invalid item ID [%li]\n",
+			item_id
+		);
+		return;
+	}
+
+	g_ap_item_info[item_id].recieve();
+
+	if (true) //(should_notify)
+	{
+		// TEMP?
+		CONS_Printf(
+			" == AP == GOT ITEM ID [%li]: %s\n",
+			item_id,
+			g_ap_item_info[item_id].label().c_str()
+		);
+	}
+}
+
+static void RRAP_GotLocationChecked(int64_t location_id)
+{
+	if (g_ap_location_info.find(location_id) == g_ap_location_info.end())
+	{
+		CONS_Printf(
+			" == AP == could not check invalid location ID [%li]\n",
+			location_id
+		);
+		return;
+	}
+
+	g_ap_location_info[location_id].immediate_check();
+}
+
+static void RRAP_GotLocationInfo(std::vector<AP_NetworkItem> network_items)
+{
+	CONS_Printf(" == AP == got location info packet...\n");
+
+	for (auto& net_item : network_items)
+	{
+		CONS_Printf(
+			" == AP == got location info ID [%li]\n",
+			net_item.location
+		);
+
+		if (g_ap_location_info.find(net_item.location) == g_ap_location_info.end())
+		{
+			CONS_Printf(
+				" == AP == could not set location info for invalid location ID [%li]\n",
+				net_item.location
+			);
+			return;
+		}
+
+		g_ap_location_info[net_item.location].update_displayed_item(
+			net_item.itemName, net_item.item
+		);
+	}
+}
+
 static void RRAP_Connect(void)
 {
 	AP_Init(
@@ -990,6 +1118,7 @@ static void RRAP_Connect(void)
 	AP_SetItemClearCallback(RRAP_GotClearItems);
 	AP_SetItemRecvCallback(RRAP_GotItemReceived);
 	AP_SetLocationCheckedCallback(RRAP_GotLocationChecked);
+	AP_SetLocationInfoCallback(RRAP_GotLocationInfo);
 
 	RRAP_InitGamedata();
 

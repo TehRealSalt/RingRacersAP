@@ -6922,7 +6922,10 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 #ifdef DEVELOP
 	extern consvar_t cv_debugchallenges;
 #endif
-	rrap_location_t *ref = NULL;
+
+	rrap_location_t *location = NULL;
+	rrap_item_t *item = NULL;
+
 	patch_t *pat = missingpat;
 	UINT8 *colormap = NULL, *bgmap = NULL;
 	INT32 tileflags = 0;
@@ -6933,17 +6936,18 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 	id = (i * CHALLENGEGRIDHEIGHT) + j;
 	num = gamedata->ap_challengegrid[id];
 
-	ref = RRAP_GetLocation(num);
-	boolean checked = RRAP_LocationChecked(ref);
-	boolean is_big_tile = RRAP_LocationIsBigTile(ref);
+	location = RRAP_GetLocation(num);
+	boolean checked = RRAP_LocationChecked(location);
+	boolean is_big_tile = RRAP_LocationIsBigTile(location);
 
 	// Empty spots in the grid are always unconnected.
-	if (ref == NULL)
+	if (location == NULL)
 	{
 		goto drawborder;
 	}
 
 	// Okay, this is what we want to draw.
+	item = RRAP_LocationDisplayItem(location);
 
 #ifdef DEVELOP
 	if (cv_debugchallenges.value > 0 &&
@@ -7027,70 +7031,66 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 		PU_CACHE);
 
 	UINT8 iconid = 0;
+	UINT16 bcol = SKINCOLOR_SILVER;
 
+	int display_type = RRAP_ItemDisplayType(item);
+	switch (display_type)
 	{
-		UINT16 bcol = SKINCOLOR_SILVER;
-
-#if 0 // [RRAP] TODO - display AP item
-		switch (ref->type)
-		{
-			case SECRET_SKIN:
-				bcol = SKINCOLOR_NOVA;
-				iconid = 1;
-				break;
-			case SECRET_FOLLOWER:
-				if (horngoner)
-				{
-					bcol = SKINCOLOR_BLACK;
-				}
-				else
-				{
-					bcol = SKINCOLOR_SAPPHIRE;
-					iconid = 2;
-				}
-				break;
-			case SECRET_COLOR:
-				//bcol = SKINCOLOR_SILVER;
-				iconid = 3;
-				break;
-			case SECRET_CUP:
-				bcol = SKINCOLOR_GOLD;
-				iconid = 4;
-				break;
-			case SECRET_MAP:
-				bcol = SKINCOLOR_PURPLE;
-				iconid = 8;
-				break;
-			case SECRET_HARDSPEED:
-			case SECRET_MASTERMODE:
-			case SECRET_ENCORE:
-				bcol = SKINCOLOR_RUBY;
-				iconid = 5;
-				break;
-			case SECRET_ONLINE:
-			case SECRET_ADDONS:
-			case SECRET_EGGTV:
-			case SECRET_SOUNDTEST:
-			case SECRET_ALTTITLE:
-				bcol = SKINCOLOR_BLUEBERRY;
-				iconid = 6;
-				break;
-			case SECRET_TIMEATTACK:
-			case SECRET_PRISONBREAK:
-			case SECRET_SPECIALATTACK:
-			case SECRET_SPBATTACK:
-				bcol = SKINCOLOR_PERIDOT;
-				iconid = 7;
-				break;
-			case SECRET_ALTMUSIC:
-				bcol = SKINCOLOR_MAGENTA;
-				iconid = 9;
-				break;
-		}
-#endif
-
-		bgmap = R_GetTranslationColormap(TC_DEFAULT, bcol, GTC_MENUCACHE);
+		case SECRET_SKIN:
+			bcol = SKINCOLOR_NOVA;
+			iconid = 1;
+			break;
+		case SECRET_FOLLOWER:
+			if (horngoner)
+			{
+				bcol = SKINCOLOR_BLACK;
+			}
+			else
+			{
+				bcol = SKINCOLOR_SAPPHIRE;
+				iconid = 2;
+			}
+			break;
+		case SECRET_COLOR:
+			//bcol = SKINCOLOR_SILVER;
+			iconid = 3;
+			break;
+		case SECRET_CUP:
+			bcol = SKINCOLOR_GOLD;
+			iconid = 4;
+			break;
+		case SECRET_MAP:
+			bcol = SKINCOLOR_PURPLE;
+			iconid = 8;
+			break;
+		case SECRET_HARDSPEED:
+		case SECRET_MASTERMODE:
+		case SECRET_ENCORE:
+			bcol = SKINCOLOR_RUBY;
+			iconid = 5;
+			break;
+		case SECRET_ONLINE:
+		case SECRET_ADDONS:
+		case SECRET_EGGTV:
+		case SECRET_SOUNDTEST:
+		case SECRET_ALTTITLE:
+			bcol = SKINCOLOR_BLUEBERRY;
+			iconid = 6;
+			break;
+		case SECRET_TIMEATTACK:
+		case SECRET_PRISONBREAK:
+		case SECRET_SPECIALATTACK:
+		case SECRET_SPBATTACK:
+			bcol = SKINCOLOR_PERIDOT;
+			iconid = 7;
+			break;
+		case SECRET_ALTMUSIC:
+			bcol = SKINCOLOR_MAGENTA;
+			iconid = 9;
+			break;
 	}
+
+	bgmap = R_GetTranslationColormap(TC_DEFAULT, bcol, GTC_MENUCACHE);
 
 	V_DrawStretchyFixedPatch(
 		(x*FRACUNIT) + (SHORT(pat->width)*(FRACUNIT-accordion)/2), y*FRACUNIT,
@@ -7100,6 +7100,7 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 		bgmap
 	);
 
+	// [RRAP] TODO: Icon for Archipelago items
 	pat = missingpat;
 
 #ifdef DEVELOP
@@ -7110,8 +7111,10 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 	}
 #endif
 
-#if 0
-	if (horngoner && ref->type == SECRET_FOLLOWER)
+	char *display_icon = RRAP_ItemDisplayIcon(item);
+	UINT16 display_color = RRAP_ItemDisplayColor(item);
+
+	if (horngoner && display_type == SECRET_FOLLOWER)
 		goto drawborder;
 	else if (categoryside)
 	{
@@ -7124,22 +7127,22 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 			pat = challengesmenu.tile_category[iconid][is_big_tile ? 0 : 1];
 		}
 	}
-	else if (ref->icon != NULL && ref->icon[0])
+	else if (display_icon != NULL && display_icon[0])
 	{
-		pat = W_CachePatchName(ref->icon, PU_CACHE);
-		if (ref->color != SKINCOLOR_NONE && ref->color < numskincolors)
+		pat = W_CachePatchName(display_icon, PU_CACHE);
+		if (display_color != SKINCOLOR_NONE && display_color < numskincolors)
 		{
-			colormap = R_GetTranslationColormap(TC_DEFAULT, ref->color, GTC_MENUCACHE);
+			colormap = R_GetTranslationColormap(TC_DEFAULT, display_color, GTC_MENUCACHE);
 		}
 	}
 	else
 	{
 		iconid = 0; // reuse
-		switch (ref->type)
+		switch (display_type)
 		{
 			case SECRET_SKIN:
 			{
-				INT32 skin = M_UnlockableSkinNum(ref);
+				INT32 skin = RRAP_ItemToSkinId(item);
 				if (skin != -1)
 				{
 					colormap = R_GetTranslationColormap(skin, skins[skin]->prefcolor, GTC_MENUCACHE);
@@ -7147,6 +7150,8 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 				}
 				break;
 			}
+
+#if 0 // [RRAP] TODO - finish implementing item types
 			case SECRET_FOLLOWER:
 			{
 				INT32 skin = M_UnlockableFollowerNum(ref);
@@ -7207,6 +7212,8 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 				iconid = 0; //14; -- This one suits a little better for "go complete this level normally"
 				break;
 			}
+#endif
+
 			case SECRET_ALTMUSIC:
 				iconid = 16;
 				break;
@@ -7252,9 +7259,9 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 
 			default:
 			{
-				if (!colormap && ref->color != SKINCOLOR_NONE && ref->color < numskincolors)
+				if (!colormap && display_color != SKINCOLOR_NONE && display_color < numskincolors)
 				{
-					colormap = R_GetTranslationColormap(TC_RAINBOW, ref->color, GTC_MENUCACHE);
+					colormap = R_GetTranslationColormap(TC_RAINBOW, display_color, GTC_MENUCACHE);
 				}
 				break;
 			}
@@ -7275,7 +7282,12 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 			}
 		}
 	}
-#endif
+
+	if (display_icon != NULL)
+	{
+		Z_Free(display_icon);
+		display_icon = NULL;
+	}
 
 	if (pat)
 	{
@@ -7307,8 +7319,8 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 
 drawborder:
 
-	boolean check_pending = RRAP_LocationCheckPending(ref);
-	if (ref != NULL && check_pending)
+	boolean check_pending = RRAP_LocationCheckPending(location);
+	if (location != NULL && check_pending)
 	{
 		const INT32 area = (is_big_tile) ? 42 : 20;
 		INT32 val;
@@ -7324,7 +7336,7 @@ drawborder:
 
 	if (hili)
 	{
-		boolean maj = (ref != NULL && is_big_tile);
+		boolean maj = (location != NULL && is_big_tile);
 		char buffer[9];
 		sprintf(buffer, "UN_RETA1");
 		buffer[6] = maj ? 'B' : 'A';
@@ -7436,18 +7448,19 @@ void M_DrawCharacterIconAndEngine(INT32 x, INT32 y, UINT16 skin, UINT8 *colormap
 
 static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 {
-	rrap_location_t *ref = NULL;
+	rrap_location_t *location = NULL;
+	rrap_item_t *item = NULL;
 	UINT8 *colormap = NULL;
 	UINT16 specialmap = NEXTMAP_INVALID;
 
-	ref = RRAP_GetLocation(challengesmenu.current_ap_location);
-	if (ref == NULL)
+	location = RRAP_GetLocation(challengesmenu.current_ap_location);
+	if (location == NULL)
 	{
 		return NULL;
 	}
 
 	// Funny question mark?
-	if (!RRAP_LocationChecked(ref))
+	if (!RRAP_LocationChecked(location))
 	{
 		spritedef_t *sprdef = &sprites[SPR_UQMK];
 		spriteframe_t *sprframe;
@@ -7475,14 +7488,16 @@ static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 	}
 
 	// Okay, this is what we want to draw.
+	item = RRAP_LocationDisplayItem(location);
+
 	const char *actiontext = NULL;
 
-#if 0 // [RRAP] TODO - draw AP item
-	switch (ref->type)
+	INT32 display_type = RRAP_ItemDisplayType(item);
+	switch (display_type)
 	{
 		case SECRET_SKIN:
 		{
-			INT32 skin = M_UnlockableSkinNum(ref), i;
+			INT32 skin = RRAP_ItemToSkinId(item), i;
 			// Draw our character!
 			if (skin != -1)
 			{
@@ -7519,6 +7534,7 @@ static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 			}
 			break;
 		}
+#if 0 // [RRAP] TODO - finish implementing item types
 		case SECRET_FOLLOWER:
 		{
 			INT32 skin = R_SkinAvailableEx(cv_skin[0].string, false);
@@ -7794,6 +7810,7 @@ static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 
 			break;
 		}
+#endif
 		case SECRET_ENCORE:
 		{
 			static UINT16 encoremapcache = NEXTMAP_INVALID;
@@ -7912,6 +7929,7 @@ static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 
 			break;
 		}
+#if 0 // [RRAP] TODO - finish implementing item types
 		case SECRET_ALTMUSIC:
 		{
 			UINT16 map = M_UnlockableMapNum(ref);
@@ -8030,13 +8048,14 @@ static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 				}
 			}
 		}
+#endif
 		default:
 		{
 			break;
 		}
 	}
 
-	if (specialmap == NEXTMAP_INVALID || !ref)
+	if (specialmap == NEXTMAP_INVALID)
 		return actiontext;
 
 	x -= 50;
@@ -8045,32 +8064,32 @@ static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 	K_DrawMapThumbnail(
 		(x)<<FRACBITS, (y)<<FRACBITS,
 		80<<FRACBITS,
-		(ref->type == SECRET_ENCORE) ? V_FLIP : 0,
+		(display_type == SECRET_ENCORE) ? V_FLIP : 0,
 		specialmap,
 		NULL);
 
-	if (ref->type == SECRET_ENCORE)
+	if (display_type == SECRET_ENCORE)
 	{
 		static angle_t rubyfloattime = 0;
 		const fixed_t rubyheight = FINESINE(rubyfloattime>>ANGLETOFINESHIFT);
 		V_DrawFixedPatch((x+40)<<FRACBITS, ((y+25)<<FRACBITS) - (rubyheight<<1), FRACUNIT, 0, W_CachePatchName("RUBYICON", PU_CACHE), NULL);
 		rubyfloattime += FixedMul(ANGLE_MAX/NEWTICRATE, renderdeltatics);
 	}
-	else if (ref->type == SECRET_SPBATTACK)
+	else if (display_type == SECRET_SPBATTACK)
 	{
 		V_DrawFixedPatch((x+40-25)<<FRACBITS, ((y+25-25)<<FRACBITS),
 			FRACUNIT, 0,
 			W_CachePatchName(K_GetItemPatch(KITEM_SPB, false), PU_CACHE),
 			NULL);
 	}
-	else if (ref->type == SECRET_HARDSPEED)
+	else if (display_type == SECRET_HARDSPEED)
 	{
 		V_DrawFixedPatch((x+40-25)<<FRACBITS, ((y+25-25)<<FRACBITS),
 			FRACUNIT, 0,
 			W_CachePatchName(K_GetItemPatch(KITEM_ROCKETSNEAKER, false), PU_CACHE),
 			NULL);
 	}
-	else if (ref->type == SECRET_MASTERMODE)
+	else if (display_type == SECRET_MASTERMODE)
 	{
 		V_DrawFixedPatch((x+40-25)<<FRACBITS, ((y+25-25)<<FRACBITS),
 			FRACUNIT, 0,
@@ -8085,7 +8104,6 @@ static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 			W_CachePatchName("K_LAPE02", PU_CACHE),
 			colormap);
 	}
-#endif
 
 	return actiontext;
 }
@@ -8561,7 +8579,7 @@ challengedesc:
 			char *z_str = NULL;
 			if (RRAP_LocationChecked(ref))
 			{
-				z_str = RRAP_LocationLabel(ref);
+				z_str = RRAP_LocationDisplayItemLabel(ref);
 			}
 			else
 			{
@@ -8571,7 +8589,11 @@ challengedesc:
 			offset = V_LSTitleLowStringWidth(z_str, 0) / 2;
 			V_DrawLSTitleLowString(BASEVIDWIDTH/2 - offset, y+6, 0, z_str);
 
-			Z_Free(z_str);
+			if (z_str)
+			{
+				Z_Free(z_str);
+				z_str = NULL;
+			}
 		}
 	}
 

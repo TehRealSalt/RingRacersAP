@@ -2866,7 +2866,7 @@ char *M_BuildConditionSetString(INT64 ap_location_id)
 		}
 	}
 
-#if 0 // [RRAP] TODO...?
+#if 0 // [RRAP] TODO? Probably not necessary for Archipelgo
 	if (usedTourney
 		&& unlockables[unlockid].conditionset == CH_FURYBIKE
 		&& gamedata->unlocked[unlockid] == false)

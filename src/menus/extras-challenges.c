@@ -754,20 +754,21 @@ void M_ChallengesTick(void)
 			challengesmenu.requestnew = true;
 		}
 
-		rrap_location_t *ref = RRAP_GetLocation(challengesmenu.current_ap_location);
+		rrap_location_t *location = RRAP_GetLocation(challengesmenu.current_ap_location);
+		rrap_item_t *item = RRAP_LocationDisplayItem(location);
 
-		if (ref && challengesmenu.unlockanim == UNLOCKTIME)
+		if (location && challengesmenu.unlockanim == UNLOCKTIME)
 		{
 			// Unlock animation... also tied directly to the actual unlock!
-			RRAP_LocationImmediateCheck(ref);
+			RRAP_LocationImmediateCheck(location);
 			M_UpdateUnlockablesAndExtraEmblems(true, true);
 
 #if 0 // [RRAP] TODO? Probably not necessary for Archipelgo
 			if (challengesmenu.tutorialfound == NEXTMAP_INVALID
-			&& ref->type == SECRET_MAP)
+			&& display_type == SECRET_MAP)
 			{
 				// Map exists...
-				UINT16 mapnum = M_UnlockableMapNum(ref);
+				UINT16 mapnum = M_UnlockableMapNum(item);
 				if (mapnum < nummapheaders && mapheaderinfo[mapnum])
 				{
 					// is tutorial...
@@ -802,22 +803,25 @@ void M_ChallengesTick(void)
 
 				bombcolor = SKINCOLOR_NONE;
 
-#if 0 // [RRAP] TODO: display AP item
-				if (ref->color != SKINCOLOR_NONE && ref->color < numskincolors)
+				INT32 display_type = RRAP_ItemDisplayType(item);
+				UINT16 display_color = RRAP_ItemDisplayColor(item);
+
+				if (display_color != SKINCOLOR_NONE && display_color < numskincolors)
 				{
-					bombcolor = ref->color;
+					bombcolor = display_color;
 				}
-				else switch (ref->type)
+				else switch (display_type)
 				{
 					case SECRET_SKIN:
 					{
-						INT32 skin = M_UnlockableSkinNum(ref);
+						INT32 skin = RRAP_ItemToSkinId(item);
 						if (skin != -1)
 						{
 							bombcolor = skins[skin]->prefcolor;
 						}
 						break;
 					}
+#if 0 // [RRAP] TODO - finish implementing item types
 					case SECRET_FOLLOWER:
 					{
 						INT32 fskin = M_UnlockableFollowerNum(ref);
@@ -830,17 +834,17 @@ void M_ChallengesTick(void)
 						}
 						break;
 					}
+#endif
 					default:
 						break;
 				}
-#endif
 
 				if (bombcolor == SKINCOLOR_NONE)
 				{
 					bombcolor = M_GetCvPlayerColor(0);
 				}
 
-				boolean is_big_tile = RRAP_LocationIsBigTile(ref);
+				boolean is_big_tile = RRAP_LocationIsBigTile(location);
 
 				i = (is_big_tile && M_RandomChance(FRACUNIT/2)) ? 1 : 0;
 				M_SetupReadyExplosions(false, challengesmenu.hilix, challengesmenu.hiliy+i, bombcolor);
@@ -941,7 +945,7 @@ boolean M_ChallengesInputs(INT32 ch)
 				&& challengesmenu.unlockanim >= UNLOCKTIME
 				&& checked == true)
 			{
-#if 0 // [RRAP] TODO
+#if 0 // [RRAP] TODO? Probably not necessary for Archipelago
 				gamedata->unlocked[challengesmenu.currentunlock] = gamedata->unlockpending[challengesmenu.currentunlock] = false;
 #endif
 
@@ -1163,16 +1167,19 @@ boolean M_ChallengesInputs(INT32 ch)
 			return true;
 		}
 
-		rrap_location_t *ref = RRAP_GetLocation(challengesmenu.current_ap_location);
-		boolean checked = RRAP_LocationChecked(ref);
+		rrap_location_t *location = RRAP_GetLocation(challengesmenu.current_ap_location);
+		boolean checked = RRAP_LocationChecked(location);
 
-		if (ref && checked)
+		if (location && checked)
 		{
 			boolean forceflip = false;
 
-#if 0 // [RRAP] TODO - display AP item
-			switch (unlockables[challengesmenu.currentunlock].type)
+			rrap_item_t *item = RRAP_LocationDisplayItem(location);
+			INT32 display_type = RRAP_ItemDisplayType(item);
+
+			switch (display_type)
 			{
+#if 0 // [RRAP] TODO - finish implementing item types
 				case SECRET_MAP:
 				{
 					// Only for 1p
@@ -1219,6 +1226,7 @@ boolean M_ChallengesInputs(INT32 ch)
 					}
 					break;
 				}
+#endif
 				case SECRET_ALTTITLE:
 				{
 					if (M_MenuConfirmPressed(pid))
@@ -1236,7 +1244,7 @@ boolean M_ChallengesInputs(INT32 ch)
 				{
 					if (setup_numplayers <= 1 && cv_lastprofile[0].value != PROFILE_GUEST && M_MenuConfirmPressed(pid))
 					{
-						INT32 skin = M_UnlockableSkinNum(ref);
+						INT32 skin = RRAP_ItemToSkinId(item);
 						if (skin != -1)
 						{
 							profile_t *pr = PR_GetProfile(cv_lastprofile[0].value);
@@ -1256,6 +1264,7 @@ boolean M_ChallengesInputs(INT32 ch)
 					}
 					break;
 				}
+#if 0 // [RRAP] TODO - finish implementing item types
 				case SECRET_FOLLOWER:
 				{
 					if (!horngoner && M_MenuConfirmPressed(pid))
@@ -1393,10 +1402,10 @@ boolean M_ChallengesInputs(INT32 ch)
 
 					break;
 				}
+#endif
 				default:
 					break;
 			}
-#endif
 
 			if (forceflip)
 			{

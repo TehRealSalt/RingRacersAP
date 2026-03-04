@@ -34,9 +34,13 @@ private:
 	INT64 _id;
 	srb2::String _label;
 	UINT16 _condition_set_id;
+
 	boolean _big_tile;
 	boolean _checked;
 	boolean _check_pending;
+
+	srb2::String _display_item_label;
+	INT64 _display_item_id;
 
 public:
 	rrap_location_t() = default;
@@ -49,12 +53,13 @@ public:
 	boolean checked() const { return _checked; }
 	boolean check_pending() const { return _check_pending; }
 
-	void immediate_check();
+	srb2::String display_item_label() const { return _display_item_label; }
+	INT64 display_item_id() const { return _display_item_id; }
 
-	void queue_check()
-	{
-		_check_pending = true;
-	}
+	void immediate_check();
+	void queue_check();
+
+	void update_displayed_item(srb2::String label, INT64 item_id);
 
 	void unqueue_check()
 	{
@@ -73,8 +78,12 @@ class rrap_item_t
 private:
 	INT64 _id;
 	srb2::String _label;
-	UINT16 _unlockable_id;
 	boolean _received;
+	UINT16 _unlockable_id;
+	INT32 _skin_id;
+	INT32 _display_type;
+	srb2::String _display_icon;
+	UINT16 _display_color;
 
 public:
 	rrap_item_t() = default;
@@ -82,8 +91,12 @@ public:
 
 	INT64 id() const { return _id; }
 	srb2::String label() const { return _label; }
-	UINT16 unlockable_id() const { return _unlockable_id; }
 	boolean recieved() const { return _received; }
+	UINT16 unlockable_id() const { return _unlockable_id; }
+	INT32 skin_id() const { return _skin_id; }
+	INT32 display_type() const { return _display_type; }
+	srb2::String display_icon() const { return _display_icon; }
+	UINT16 display_color() const { return _display_color; }
 
 	void recieve()
 	{
@@ -123,12 +136,21 @@ boolean RRAP_LocationIsBigTile(rrap_location_t *location);
 boolean RRAP_LocationChecked(rrap_location_t *location);
 boolean RRAP_LocationCheckPending(rrap_location_t *location);
 
+char *RRAP_LocationDisplayItemLabel(rrap_location_t *location);
+rrap_item_t *RRAP_LocationDisplayItem(rrap_location_t *location);
+
 void RRAP_LocationImmediateCheck(rrap_location_t *location);
 void RRAP_LocationQueueCheck(rrap_location_t *location);
 void RRAP_LocationUnqueueCheck(rrap_location_t *location);
 
+char *RRAP_ItemLabel(rrap_item_t *item);
 boolean RRAP_ItemRecieved(rrap_item_t *item);
 UINT16 RRAP_ItemToUnlockableId(rrap_item_t *item);
+INT32 RRAP_ItemToSkinId(rrap_item_t *item);
+
+INT32 RRAP_ItemDisplayType(rrap_item_t *item);
+char *RRAP_ItemDisplayIcon(rrap_item_t *item);
+UINT16 RRAP_ItemDisplayColor(rrap_item_t *item);
 
 void RRAP_PopulateChallengeGrid(void);
 void RRAP_SanitiseChallengeGrid(void);
