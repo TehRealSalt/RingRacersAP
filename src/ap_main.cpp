@@ -56,13 +56,26 @@ static srb2::HashMap<INT64, rrap_item_t> g_ap_item_info;
 
 rrap_location_t::rrap_location_t(INT64 index, srb2::JsonValue json)
 {
+	_id = index;
 	_label = json.at("label").get<srb2::String>();
 	_condition_set_id = json.value("condition_set", -1);
 	_big_tile = json.value("big_tile", false);
 }
 
+void rrap_location_t::immediate_check()
+{
+	if (!_checked)
+	{
+		_check_pending = true;
+	}
+
+	_checked = true;
+	AP_SendItem(_id);
+}
+
 rrap_item_t::rrap_item_t(INT64 index, srb2::JsonValue json)
 {
+	_id = index;
 	_label = json.at("label").get<srb2::String>();
 
 	int work_unlock_id = json.value("unlockable", 0);

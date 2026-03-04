@@ -31,8 +31,9 @@
 class rrap_location_t
 {
 private:
+	INT64 _id;
 	srb2::String _label;
-	INT32 _condition_set_id;
+	UINT16 _condition_set_id;
 	boolean _big_tile;
 	boolean _checked;
 	boolean _check_pending;
@@ -41,16 +42,14 @@ public:
 	rrap_location_t() = default;
 	rrap_location_t(INT64 index, srb2::JsonValue json);
 
+	INT64 id() const { return _id; }
 	srb2::String label() const { return _label; }
-	INT32 condition_set_id() const { return _condition_set_id; }
+	UINT16 condition_set_id() const { return _condition_set_id; }
 	boolean is_big_tile() const { return _big_tile; }
 	boolean checked() const { return _checked; }
 	boolean check_pending() const { return _check_pending; }
 
-	void immediate_check()
-	{
-		_checked = true;
-	}
+	void immediate_check();
 
 	void queue_check()
 	{
@@ -72,6 +71,7 @@ public:
 class rrap_item_t
 {
 private:
+	INT64 _id;
 	srb2::String _label;
 	UINT16 _unlockable_id;
 	boolean _received;
@@ -80,6 +80,7 @@ public:
 	rrap_item_t() = default;
 	rrap_item_t(INT64 index, srb2::JsonValue json);
 
+	INT64 id() const { return _id; }
 	srb2::String label() const { return _label; }
 	UINT16 unlockable_id() const { return _unlockable_id; }
 	boolean recieved() const { return _received; }
