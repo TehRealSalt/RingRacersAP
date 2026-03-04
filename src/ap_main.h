@@ -158,6 +158,7 @@ void RRAP_SanitiseChallengeGrid(void);
 int RRAP_TestLocations(void);
 INT64 RRAP_GetNextCheckedLocation(boolean canskipchaokeys);
 void RRAP_ChallengesMenuCountPercent(void);
+INT64 RRAP_ChallengesMenuRandomFocus(INT32 level);
 
 void RRAP_TickMessages(void);
 void RRAP_ConnectFromMenu(int32_t choice);

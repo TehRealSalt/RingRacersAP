@@ -944,6 +944,50 @@ void RRAP_ChallengesMenuCountPercent(void)
 			/ challengesmenu.unlockcount[CMC_TOTAL];
 }
 
+INT64 RRAP_ChallengesMenuRandomFocus(INT32 level)
+{
+	srb2::Vector<INT64> selection;
+
+	// Get a random available location.
+	for (auto& [id, location] : g_ap_location_info)
+	{
+		UINT16 condition_set = location.condition_set_id();
+		if (!condition_set)
+		{
+			continue;
+		}
+
+		// Otherwise we don't care, just pick any non-blank tile
+		if (level < 2)
+		{
+			// We try for any unlock second
+			if (!location.checked())
+			{
+				continue;
+			}
+
+			if (level == 0)
+			{
+				// We try for a pending unlock first
+				if (!location.check_pending())
+				{
+					continue;
+				}
+			}
+		}
+
+		selection.emplace_back(id);
+	}
+
+	if (selection.empty())
+	{
+		return 0;
+	}
+
+	INT32 index = M_RandomKey(selection.size());
+	return selection[index];
+}
+
 void RRAP_TickMessages(void)
 {
 	if (AP_IsMessagePending())

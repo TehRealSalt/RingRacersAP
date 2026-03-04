@@ -148,58 +148,19 @@ static void M_ChallengesAutoFocus(INT64 ap_location_id, boolean fresh)
 		}
 		else
 		{
-#if 0
-			UINT16 selection[MAXUNLOCKABLES];
-			UINT16 numunlocks = 0;
+			INT32 tried_random_level = 0;
 
-			boolean triedrandomlevel = 0;
-
-tryfreshrandom:
-
-			// Get a random available unlockable.
-			for (i = 0; i < MAXUNLOCKABLES; i++)
+			while (ap_location_id <= 0)
 			{
-				if (!unlockables[i].conditionset)
+				if (tried_random_level == 2)
 				{
-					continue;
-				}
-
-				// Otherwise we don't care, just pick any non-blank tile
-				if (triedrandomlevel < 2)
-				{
-					// We try for any unlock second
-					if (!gamedata->unlocked[i])
-					{
-						continue;
-					}
-
-					if (triedrandomlevel == 0)
-					{
-						// We try for a pending unlock first
-						if (!gamedata->unlockpending[i])
-						{
-							continue;
-						}
-					}
-				}
-
-				selection[numunlocks++] = i;
-			}
-
-			if (numunlocks == 0)
-			{
-				if (triedrandomlevel == 2)
+					// Couldn't do anything.
 					return;
+				}
 
-				triedrandomlevel++;
-				goto tryfreshrandom;
+				ap_location_id = RRAP_ChallengesMenuRandomFocus(tried_random_level);
+				tried_random_level++;
 			}
-
-			unlockid = selection[M_RandomKey(numunlocks)];
-#else
-			// [RRAP] TODO
-			return;
-#endif
 		}
 	}
 
@@ -402,7 +363,7 @@ menu_t *M_InterruptMenuWithChallenges(menu_t *desiredmenu)
 				challengesmenu.chaokeyadd = true;
 			}
 
-			M_ChallengesAutoFocus(UINT16_MAX, true);
+			M_ChallengesAutoFocus(-1, true);
 		}
 
 		M_CacheChallengeTiles();
@@ -640,7 +601,7 @@ void M_ChallengesTick(void)
 					S_StartSound(NULL, sfx_chchng);
 
 					challengesmenu.pending = true;
-					//M_ChallengesAutoFocus(challengesmenu.currentunlock, false);
+					//M_ChallengesAutoFocus(challengesmenu.current_ap_location, false);
 					challengesmenu.unlockanim = UNLOCKTIME-1;
 				}
 			}
