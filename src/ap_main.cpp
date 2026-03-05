@@ -185,6 +185,65 @@ rrap_item_t::rrap_item_t(INT64 index, srb2::JsonValue json)
 		SRB2_ASSERT(_display_type == SECRET_NONE);
 		_display_type = SECRET_MAP;
 	}
+
+	srb2::String work_type = json.value("item_type", srb2::String(""));
+	if (work_type.empty() == false)
+	{
+		SRB2_ASSERT(_display_type == SECRET_NONE);
+
+		if (work_type == "hardspeed")
+		{
+			_display_type = SECRET_HARDSPEED;
+		}
+		else if (work_type == "mastermode")
+		{
+			_display_type = SECRET_MASTERMODE;
+		}
+		else if (work_type == "encore")
+		{
+			_display_type = SECRET_ENCORE;
+		}
+		else if (work_type == "timeattack")
+		{
+			_display_type = SECRET_TIMEATTACK;
+		}
+		else if (work_type == "prisonbreak")
+		{
+			_display_type = SECRET_PRISONBREAK;
+		}
+		else if (work_type == "specialattack")
+		{
+			_display_type = SECRET_SPECIALATTACK;
+		}
+		else if (work_type == "spbattack")
+		{
+			_display_type = SECRET_SPBATTACK;
+		}
+		else if (work_type == "online")
+		{
+			_display_type = SECRET_ONLINE;
+		}
+		else if (work_type == "addons")
+		{
+			_display_type = SECRET_ADDONS;
+		}
+		else if (work_type == "eggtv")
+		{
+			_display_type = SECRET_EGGTV;
+		}
+		else if (work_type == "soundtest")
+		{
+			_display_type = SECRET_SOUNDTEST;
+		}
+		else if (work_type == "alttitle")
+		{
+			_display_type = SECRET_ALTTITLE;
+		}
+		else
+		{
+			throw std::runtime_error(srb2::format("invalid special item type '{}'", work_type));
+		}
+	}
 }
 
 static void RRAP_LoadArchipelagoJSONLump(uint16_t wad_id, lumpnum_t lump_id)
