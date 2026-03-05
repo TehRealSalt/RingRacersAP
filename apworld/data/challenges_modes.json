@@ -1,0 +1,147 @@
+{
+	"locations": {
+		"700": {
+			"name": "Challenge - Prison Break Mode",
+			"label": "Prison Break Mode",
+			"condition_set": 700,
+			"big_tile": true
+		},
+		"701": {
+			"name": "Challenge - Special Mode",
+			"label": "Special Mode",
+			"condition_set": 701,
+			"big_tile": true
+		},
+		"702": {
+			"name": "Challenge - Gear 3 + GP Vicious Mode",
+			"label": "Gear 3 + GP Vicious Mode",
+			"condition_set": 702,
+			"big_tile": true
+		},
+		"703": {
+			"name": "Challenge - Time Attack Mode",
+			"label": "Time Attack Mode",
+			"condition_set": 709,
+			"big_tile": true
+		},
+		"704": {
+			"name": "Challenge - GP Master Mode",
+			"label": "GP Master Mode",
+			"condition_set": 704,
+			"big_tile": true
+		},
+		"705": {
+			"name": "Challenge - Encore Mode",
+			"label": "Encore Mode",
+			"condition_set": 705,
+			"big_tile": true
+		},
+		"706": {
+			"name": "Challenge - SPB Attack Mode",
+			"label": "SPB Attack Mode",
+			"condition_set": 706,
+			"big_tile": true
+		},
+		"708": {
+			"name": "Challenge - Online Play",
+			"label": "Online Play",
+			"condition_set": 708,
+			"big_tile": true
+		},
+		"730": {
+			"name": "Challenge - Alternate Titlescreen",
+			"label": "Alternate Titlescreen",
+			"condition_set": 730,
+			"big_tile": true
+		},
+		"731": {
+			"name": "Challenge - Egg TV",
+			"label": "Egg TV",
+			"condition_set": 731
+		},
+		"732": {
+			"name": "Challenge - Sound Test",
+			"label": "Sound Test",
+			"condition_set": 732
+		},
+		"733": {
+			"name": "Challenge - Playing with Addons",
+			"label": "Playing with Addons",
+			"condition_set": 733
+		}
+	},
+	"items": {
+		"700": {
+			"name": "Prison Break Mode",
+			"label": "Prison Break Mode",
+			"unlockable": 700,
+			"item_type": "prisonbreak"
+		},
+		"701": {
+			"name": "Special Mode",
+			"label": "Special Mode",
+			"unlockable": 701,
+			"item_type": "specialattack"
+		},
+		"702": {
+			"name": "Gear 3 + GP Vicious Mode",
+			"label": "Gear 3 + GP Vicious Mode",
+			"unlockable": 702,
+			"item_type": "hardspeed"
+		},
+		"703": {
+			"name": "Time Attack Mode",
+			"label": "Time Attack Mode",
+			"unlockable": 703,
+			"item_type": "timeattack"
+		},
+		"704": {
+			"name": "GP Master Mode",
+			"label": "GP Master Mode",
+			"unlockable": 704,
+			"item_type": "mastermode"
+		},
+		"705": {
+			"name": "Encore Mode",
+			"label": "Encore Mode",
+			"unlockable": 705,
+			"item_type": "encore"
+		},
+		"706": {
+			"name": "SPB Attack Mode",
+			"label": "SPB Attack Mode",
+			"unlockable": 706,
+			"item_type": "spbattack"
+		},
+		"708": {
+			"name": "Online Play",
+			"label": "Online Play",
+			"unlockable": 708,
+			"item_type": "online"
+		},
+		"730": {
+			"name": "Alternate Titlescreen",
+			"label": "Alternate Titlescreen",
+			"unlockable": 730,
+			"item_type": "alttitle"
+		},
+		"731": {
+			"name": "Egg TV",
+			"label": "Egg TV",
+			"unlockable": 731,
+			"item_type": "eggtv"
+		},
+		"732": {
+			"name": "Sound Test",
+			"label": "Sound Test",
+			"unlockable": 732,
+			"item_type": "soundtest"
+		},
+		"733": {
+			"name": "Playing with Addons",
+			"label": "Playing with Addons",
+			"unlockable": 733,
+			"item_type": "addons"
+		}
+	}
+}

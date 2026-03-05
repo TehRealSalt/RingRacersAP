@@ -1136,14 +1136,17 @@ boolean M_ChallengesInputs(INT32 ch)
 
 			switch (display_type)
 			{
-#if 0 // [RRAP] TODO - finish implementing item types
 				case SECRET_MAP:
 				{
 					// Only for 1p
 					if (setup_numplayers <= 1 && M_MenuConfirmPressed(pid))
 					{
+						UINT16 unlock_id = RRAP_ItemToUnlockableId(item);
+						if (unlock_id >= MAXUNLOCKABLES)
+							break;
+
 						// Map exists...
-						UINT16 mapnum = M_UnlockableMapNum(ref);
+						UINT16 mapnum = M_UnlockableMapNum(&unlockables[unlock_id]);
 						if (mapnum < nummapheaders && mapheaderinfo[mapnum])
 						{
 							// is tutorial...
@@ -1183,7 +1186,6 @@ boolean M_ChallengesInputs(INT32 ch)
 					}
 					break;
 				}
-#endif
 				case SECRET_ALTTITLE:
 				{
 					if (M_MenuConfirmPressed(pid))

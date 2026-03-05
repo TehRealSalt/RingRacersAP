@@ -1,0 +1,66 @@
+{
+	"locations": {
+		"750": {
+			"name": "Challenge - Ancient Gear Playground",
+			"label": "Ancient Gear Playground",
+			"condition_set": 601
+		},
+		"751": {
+			"name": "Challenge - Check Your Brakes",
+			"label": "Check Your Brakes",
+			"condition_set": 602
+		},
+		"752": {
+			"name": "Challenge - The Art of Drifting",
+			"label": "The Art of Drifting",
+			"condition_set": 604
+		},
+		"753": {
+			"name": "Challenge - The Item Gallery",
+			"label": "The Item Gallery",
+			"condition_set": 606
+		},
+		"754": {
+			"name": "Challenge - Springs & Trick Panels",
+			"label": "Springs & Trick Panels",
+			"condition_set": 754
+		}
+	},
+	"items": {
+		"750": {
+			"name": "Sunbeam Paradise: Playground Access",
+			"label": "Ancient Gear Playground",
+			"unlockable": 750,
+			"map": "RR_SunbeamParadisePlayground",
+			"group": "Map Access"
+		},
+		"751": {
+			"name": "Sunbeam Paradise: Brakes Access",
+			"label": "Check Your Brakes",
+			"unlockable": 751,
+			"map": "RR_SunbeamParadiseBrakes",
+			"group": "Map Access"
+		},
+		"752": {
+			"name": "Sunbeam Paradise: Drifting Access",
+			"label": "The Art of Drifting",
+			"unlockable": 752,
+			"map": "RR_SunbeamParadiseDrifting",
+			"group": "Map Access"
+		},
+		"753": {
+			"name": "Sunbeam Paradise: Items Access",
+			"label": "The Item Gallery",
+			"unlockable": 753,
+			"map": "RR_SunbeamParadiseItems",
+			"group": "Map Access"
+		},
+		"754": {
+			"name": "Sunbeam Paradise: Springs Access",
+			"label": "Springs & Trick Panels",
+			"unlockable": 754,
+			"map": "RR_SunbeamParadiseSprings",
+			"group": "Map Access"
+		}
+	}
+}

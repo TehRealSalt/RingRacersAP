@@ -32,13 +32,14 @@ class rrap_location_t
 {
 private:
 	INT64 _id;
-	srb2::String _label;
-	UINT16 _condition_set_id;
-
-	boolean _big_tile;
+	srb2::String _name;
 	boolean _checked;
 	boolean _check_pending;
 
+	UINT16 _condition_set_id;
+	boolean _big_tile;
+
+	srb2::String _label;
 	srb2::String _display_item_label;
 	INT64 _display_item_id;
 
@@ -47,12 +48,14 @@ public:
 	rrap_location_t(INT64 index, srb2::JsonValue json);
 
 	INT64 id() const { return _id; }
-	srb2::String label() const { return _label; }
-	UINT16 condition_set_id() const { return _condition_set_id; }
-	boolean is_big_tile() const { return _big_tile; }
+	srb2::String name() const { return _name; }
 	boolean checked() const { return _checked; }
 	boolean check_pending() const { return _check_pending; }
 
+	UINT16 condition_set_id() const { return _condition_set_id; }
+	boolean is_big_tile() const { return _big_tile; }
+
+	srb2::String label() const { return _label; }
 	srb2::String display_item_label() const { return _display_item_label; }
 	INT64 display_item_id() const { return _display_item_id; }
 
@@ -77,13 +80,14 @@ class rrap_item_t
 {
 private:
 	INT64 _id;
-	srb2::String _label;
+	srb2::String _name;
 	boolean _received;
 
 	UINT16 _unlockable_id;
 	INT32 _skin_id;
 	INT32 _follower_id;
 
+	srb2::String _label;
 	INT32 _display_type;
 	srb2::String _display_icon;
 	UINT16 _display_color;
@@ -93,13 +97,14 @@ public:
 	rrap_item_t(INT64 index, srb2::JsonValue json);
 
 	INT64 id() const { return _id; }
-	srb2::String label() const { return _label; }
+	srb2::String name() const { return _name; }
 	boolean recieved() const { return _received; }
 
 	UINT16 unlockable_id() const { return _unlockable_id; }
 	INT32 skin_id() const { return _skin_id; }
 	INT32 follower_id() const { return _follower_id; }
 
+	srb2::String label() const { return _label; }
 	INT32 display_type() const { return _display_type; }
 	srb2::String display_icon() const { return _display_icon; }
 	UINT16 display_color() const { return _display_color; }

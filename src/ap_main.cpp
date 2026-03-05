@@ -57,9 +57,10 @@ static srb2::HashMap<INT64, rrap_item_t> g_ap_item_info;
 rrap_location_t::rrap_location_t(INT64 index, srb2::JsonValue json)
 {
 	_id = index;
-	_label = json.at("label").get<srb2::String>();
+	_name = json.at("name").get<srb2::String>();
 	_condition_set_id = json.value("condition_set", -1);
 	_big_tile = json.value("big_tile", false);
+	_label = json.value("label", srb2::String(""));
 }
 
 void rrap_location_t::immediate_check()
@@ -93,27 +94,28 @@ void rrap_location_t::update_displayed_item(srb2::String label, INT64 item_id)
 		_id, label.c_str(), item_id
 	);
 
-	_display_item_label = label;
-
 	if (g_ap_item_info.find(item_id) != g_ap_item_info.end())
 	{
 		_display_item_id = item_id;
+		_display_item_label = g_ap_item_info[item_id].label();
 	}
 	else
 	{
 		_display_item_id = 0;
+		_display_item_label = label;
 	}
 }
 
 rrap_item_t::rrap_item_t(INT64 index, srb2::JsonValue json)
 {
 	_id = index;
-	_label = json.at("label").get<srb2::String>();
+	_name = json.at("name").get<srb2::String>();
 
 	_unlockable_id = MAXUNLOCKABLES;
 	_skin_id = -1;
 	_follower_id = -1;
 
+	_label = json.value("label", srb2::String(""));
 	_display_type = SECRET_NONE;
 	_display_icon = "";
 	_display_color = SKINCOLOR_NONE;
@@ -174,6 +176,14 @@ rrap_item_t::rrap_item_t(INT64 index, srb2::JsonValue json)
 		// The ID isn't used, so just update display type
 		SRB2_ASSERT(_display_type == SECRET_NONE);
 		_display_type = SECRET_CUP;
+	}
+
+	srb2::String work_map = json.value("map", srb2::String(""));
+	if (work_map.empty() == false)
+	{
+		// The ID isn't used, so just update display type
+		SRB2_ASSERT(_display_type == SECRET_NONE);
+		_display_type = SECRET_MAP;
 	}
 }
 

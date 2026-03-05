@@ -7176,10 +7176,14 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 				iconid = 2;
 				break;
 			}
-
+#endif
 			case SECRET_MAP:
 			{
-				UINT16 mapnum = M_UnlockableMapNum(ref);
+				UINT16 unlock_id = RRAP_ItemToUnlockableId(item);
+				if (unlock_id >= MAXUNLOCKABLES)
+					break;
+
+				UINT16 mapnum = M_UnlockableMapNum(&unlockables[unlock_id]);
 				if (mapnum < nummapheaders && mapheaderinfo[mapnum]
 					&& (
 					( // Check for visitation
@@ -7191,7 +7195,7 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 					)
 				))
 				{
-					if (ref->majorunlock)
+					if (is_big_tile)
 					{
 						K_DrawMapAsFace(
 							(x + 5) + (32*(FRACUNIT-accordion))/(2*FRACUNIT), (y + 5),
@@ -7214,7 +7218,6 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 				iconid = 0; //14; -- This one suits a little better for "go complete this level normally"
 				break;
 			}
-#endif
 
 			case SECRET_ALTMUSIC:
 				iconid = 16;
@@ -7732,12 +7735,16 @@ static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 
 			break;
 		}
-#if 0 // [RRAP] TODO - finish implementing item types
 		case SECRET_MAP:
 		{
+			UINT16 unlock_id = RRAP_ItemToUnlockableId(item);
+			if (unlock_id >= MAXUNLOCKABLES)
+				break;
+
 			boolean validdraw = false;
 			const char *gtname = "Find your prize...";
-			UINT16 mapnum = M_UnlockableMapNum(ref);
+
+			UINT16 mapnum = M_UnlockableMapNum(&unlockables[unlock_id]);
 
 			y = (BASEVIDHEIGHT-14);
 
@@ -7817,7 +7824,6 @@ static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 
 			break;
 		}
-#endif
 		case SECRET_ENCORE:
 		{
 			static UINT16 encoremapcache = NEXTMAP_INVALID;

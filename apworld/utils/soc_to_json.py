@@ -131,14 +131,16 @@ for id_str, unlockable in soc["unlockable"].items():
 		big_tile = bool(unlockable.get("majorunlock", False))
 
 		location = {}
-		location["label"] = "Challenge - Driver: {}".format(parsed_name)
+		location["name"] = "Challenge - Driver: {}".format(parsed_name)
+		location["label"] = parsed_name
 		if condition_set_id:
 			location["condition_set"] = condition_set_id
 		if big_tile:
 			location["big_tile"] = big_tile
 
 		item = {}
-		item["label"] = "Driver: {}".format(parsed_name)
+		item["name"] = "Driver: {}".format(parsed_name)
+		item["label"] = parsed_name
 		item["unlockable"] = id_int
 		item["skin"] = unlockable["var"].lower()
 		item["group"] = "Drivers"
@@ -152,16 +154,18 @@ for id_str, unlockable in soc["unlockable"].items():
 		big_tile = bool(unlockable.get("majorunlock", False))
 
 		location = {}
-		location["label"] = "Challenge - Follower: {}".format(parsed_name)
+		location["name"] = "Challenge - Follower: {}".format(parsed_name)
+		location["label"] = parsed_name
 		if condition_set_id:
 			location["condition_set"] = condition_set_id
 		if big_tile:
 			location["big_tile"] = big_tile
 
 		item = {}
-		item["label"] = "Follower: {}".format(parsed_name)
+		item["name"] = "Follower: {}".format(parsed_name)
+		item["label"] = parsed_name
 		item["unlockable"] = id_int
-		item["follower"] = unlockable["var"].lower()
+		item["follower"] = unlockable["var"].lower().replace("_", " ")
 		item["group"] = "Followers"
 
 		locations[id_int] = location
@@ -175,14 +179,16 @@ for id_str, unlockable in soc["unlockable"].items():
 		big_tile = bool(unlockable.get("majorunlock", False))
 
 		location = {}
-		location["label"] = "Challenge - Spray Can #{}".format(num_colors)
+		location["name"] = "Challenge - Spray Can #{}".format(num_colors)
+		location["label"] = "Spray Can #{}".format(num_colors)
 		if condition_set_id:
 			location["condition_set"] = condition_set_id
 		if big_tile:
 			location["big_tile"] = big_tile
 
 		item = {}
-		item["label"] = "Spray Can: {}".format(parsed_name)
+		item["name"] = "Spray Can: {}".format(parsed_name)
+		item["label"] = parsed_name
 		item["unlockable"] = id_int
 		item["color"] = unlockable["var"].lower()
 		item["group"] = "Spray Cans"
@@ -196,17 +202,20 @@ for id_str, unlockable in soc["unlockable"].items():
 		big_tile = bool(unlockable.get("majorunlock", False))
 
 		location = {}
-		location["label"] = "Challenge - {}".format(parsed_name)
+		location["name"] = "Challenge - {}".format(parsed_name)
+		location["label"] = parsed_name
 		if condition_set_id:
 			location["condition_set"] = condition_set_id
 		if big_tile:
 			location["big_tile"] = big_tile
 
 		item = {}
-		item["label"] = "{} Access".format(parsed_name)
+		item["name"] = "{} Access".format(parsed_name)
+		item["label"] = parsed_name
 		item["unlockable"] = id_int
-		item["cup"] = unlockable["var"].lower()
+		item["cup"] = unlockable["var"]
 		item["group"] = "Cup Access"
+		item["icon"] = unlockable["icon"]
 
 		locations[id_int] = location
 		items[id_int] = item
@@ -218,14 +227,16 @@ for id_str, unlockable in soc["unlockable"].items():
 		big_tile = bool(unlockable.get("majorunlock", False))
 
 		location = {}
-		location["label"] = "Challenge - {}".format(parsed_name)
+		location["name"] = "Challenge - {}".format(parsed_name)
+		location["label"] = parsed_name
 		if condition_set_id:
 			location["condition_set"] = condition_set_id
 		if big_tile:
 			location["big_tile"] = big_tile
 
 		item = {}
-		item["label"] = "{} Access".format(parsed_name)
+		item["name"] = "{} Access".format(parsed_name)
+		item["label"] = parsed_name
 		item["unlockable"] = id_int
 		item["map"] = unlockable["var"]
 		item["group"] = "Map Access"
@@ -243,13 +254,15 @@ for id_str, unlockable in soc["unlockable"].items():
 		big_tile = bool(unlockable.get("majorunlock", False))
 
 		location = {}
-		location["label"] = "Challenge - Prison Egg CD #{}".format(num_cds)
+		location["name"] = "Challenge - Prison Egg CD #{}".format(num_cds)
+		location["label"] = "Prison Egg CD #{}".format(num_cds)
 		if condition_set_id:
 			location["condition_set"] = condition_set_id
 		if big_tile:
 			location["big_tile"] = big_tile
 
 		item = {}
+		item["name"] = temp_name
 		item["label"] = temp_name
 		item["unlockable"] = id_int
 		item["color"] = unlockable["var"].lower()
@@ -265,6 +278,7 @@ for id_str, unlockable in soc["unlockable"].items():
 		big_tile = bool(unlockable.get("majorunlock", False))
 
 		location = {}
+		location["name"] = "Challenge - {}".format(parsed_name)
 		location["label"] = parsed_name
 		if condition_set_id:
 			location["condition_set"] = condition_set_id
@@ -272,6 +286,7 @@ for id_str, unlockable in soc["unlockable"].items():
 			location["big_tile"] = big_tile
 
 		item = {}
+		item["name"] = parsed_name
 		item["label"] = parsed_name
 		item["unlockable"] = id_int
 		item["item_type"] = type_name

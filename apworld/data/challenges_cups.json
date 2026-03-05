@@ -1,0 +1,412 @@
+{
+	"locations": {
+		"601": {
+			"name": "Challenge - Ring Cup",
+			"label": "Ring Cup",
+			"condition_set": 601
+		},
+		"602": {
+			"name": "Challenge - Sneaker Cup",
+			"label": "Sneaker Cup",
+			"condition_set": 602
+		},
+		"603": {
+			"name": "Challenge - Spring Cup",
+			"label": "Spring Cup",
+			"condition_set": 603
+		},
+		"604": {
+			"name": "Challenge - Barrier Cup",
+			"label": "Barrier Cup",
+			"condition_set": 604
+		},
+		"605": {
+			"name": "Challenge - Invincible Cup",
+			"label": "Invincible Cup",
+			"condition_set": 605
+		},
+		"606": {
+			"name": "Challenge - Emerald Cup",
+			"label": "Emerald Cup",
+			"condition_set": 606
+		},
+		"607": {
+			"name": "Challenge - Extra Cup",
+			"label": "Extra Cup",
+			"condition_set": 610
+		},
+		"608": {
+			"name": "Challenge - S.P.B. Cup",
+			"label": "S.P.B. Cup",
+			"condition_set": 608,
+			"big_tile": true
+		},
+		"609": {
+			"name": "Challenge - Rocket Cup",
+			"label": "Rocket Cup",
+			"condition_set": 608,
+			"big_tile": true
+		},
+		"610": {
+			"name": "Challenge - Aqua Cup",
+			"label": "Aqua Cup",
+			"condition_set": 608,
+			"big_tile": true
+		},
+		"611": {
+			"name": "Challenge - Lightning Cup",
+			"label": "Lightning Cup",
+			"condition_set": 608,
+			"big_tile": true
+		},
+		"612": {
+			"name": "Challenge - Flame Cup",
+			"label": "Flame Cup",
+			"condition_set": 608,
+			"big_tile": true
+		},
+		"613": {
+			"name": "Challenge - Super Cup",
+			"label": "Super Cup",
+			"condition_set": 609,
+			"big_tile": true
+		},
+		"614": {
+			"name": "Challenge - Egg Cup",
+			"label": "Egg Cup",
+			"condition_set": 613,
+			"big_tile": true
+		},
+		"615": {
+			"name": "Challenge - Goggles Cup",
+			"label": "Goggles Cup",
+			"condition_set": 615
+		},
+		"616": {
+			"name": "Challenge - Timer Cup",
+			"label": "Timer Cup",
+			"condition_set": 616
+		},
+		"617": {
+			"name": "Challenge - Grow Cup",
+			"label": "Grow Cup",
+			"condition_set": 617
+		},
+		"618": {
+			"name": "Challenge - Chao Cup",
+			"label": "Chao Cup",
+			"condition_set": 618
+		},
+		"619": {
+			"name": "Challenge - Wing Cup",
+			"label": "Wing Cup",
+			"condition_set": 619
+		},
+		"620": {
+			"name": "Challenge - Mega Cup",
+			"label": "Mega Cup",
+			"condition_set": 620
+		},
+		"621": {
+			"name": "Challenge - Phantom Cup",
+			"label": "Phantom Cup",
+			"condition_set": 621
+		},
+		"622": {
+			"name": "Challenge - Flash Cup",
+			"label": "Flash Cup",
+			"condition_set": 622,
+			"big_tile": true
+		},
+		"623": {
+			"name": "Challenge - Swap Cup",
+			"label": "Swap Cup",
+			"condition_set": 623,
+			"big_tile": true
+		},
+		"624": {
+			"name": "Challenge - Shrink Cup",
+			"label": "Shrink Cup",
+			"condition_set": 624,
+			"big_tile": true
+		},
+		"625": {
+			"name": "Challenge - Bomb Cup",
+			"label": "Bomb Cup",
+			"condition_set": 625,
+			"big_tile": true
+		},
+		"626": {
+			"name": "Challenge - Power Cup",
+			"label": "Power Cup",
+			"condition_set": 626,
+			"big_tile": true
+		},
+		"627": {
+			"name": "Challenge - Genesis Cup",
+			"label": "Genesis Cup",
+			"condition_set": 627,
+			"big_tile": true
+		},
+		"628": {
+			"name": "Challenge - Skate Cup",
+			"label": "Skate Cup",
+			"condition_set": 628,
+			"big_tile": true
+		},
+		"698": {
+			"name": "Challenge - Recycle Cup A",
+			"label": "Recycle Cup A",
+			"condition_set": 698,
+			"big_tile": true
+		},
+		"699": {
+			"name": "Challenge - Recycle Cup B",
+			"label": "Recycle Cup B",
+			"condition_set": 699,
+			"big_tile": true
+		}
+	},
+	"items": {
+		"601": {
+			"name": "Ring Cup Access",
+			"label": "Ring Cup",
+			"unlockable": 601,
+			"cup": "RR_Ring",
+			"group": "Cup Access",
+			"icon": "UN_RRAA"
+		},
+		"602": {
+			"name": "Sneaker Cup Access",
+			"label": "Sneaker Cup",
+			"unlockable": 602,
+			"cup": "RR_Sneaker",
+			"group": "Cup Access",
+			"icon": "UN_RRAB"
+		},
+		"603": {
+			"name": "Spring Cup Access",
+			"label": "Spring Cup",
+			"unlockable": 603,
+			"cup": "RR_Spring",
+			"group": "Cup Access",
+			"icon": "UN_RRAC"
+		},
+		"604": {
+			"name": "Barrier Cup Access",
+			"label": "Barrier Cup",
+			"unlockable": 604,
+			"cup": "RR_Barrier",
+			"group": "Cup Access",
+			"icon": "UN_RRAD"
+		},
+		"605": {
+			"name": "Invincible Cup Access",
+			"label": "Invincible Cup",
+			"unlockable": 605,
+			"cup": "RR_Invincible",
+			"group": "Cup Access",
+			"icon": "UN_RRAE"
+		},
+		"606": {
+			"name": "Emerald Cup Access",
+			"label": "Emerald Cup",
+			"unlockable": 606,
+			"cup": "RR_Emerald",
+			"group": "Cup Access",
+			"icon": "UN_RRAF"
+		},
+		"607": {
+			"name": "Extra Cup Access",
+			"label": "Extra Cup",
+			"unlockable": 607,
+			"cup": "RR_Extra",
+			"group": "Cup Access",
+			"icon": "UN_RRAG"
+		},
+		"608": {
+			"name": "S.P.B. Cup Access",
+			"label": "S.P.B. Cup",
+			"unlockable": 608,
+			"cup": "RR_S.P.B.",
+			"group": "Cup Access",
+			"icon": "UN_RRAH"
+		},
+		"609": {
+			"name": "Rocket Cup Access",
+			"label": "Rocket Cup",
+			"unlockable": 609,
+			"cup": "RR_Rocket",
+			"group": "Cup Access",
+			"icon": "UN_RRAI"
+		},
+		"610": {
+			"name": "Aqua Cup Access",
+			"label": "Aqua Cup",
+			"unlockable": 610,
+			"cup": "RR_Aqua",
+			"group": "Cup Access",
+			"icon": "UN_RRAJ"
+		},
+		"611": {
+			"name": "Lightning Cup Access",
+			"label": "Lightning Cup",
+			"unlockable": 611,
+			"cup": "RR_Lightning",
+			"group": "Cup Access",
+			"icon": "UN_RRAK"
+		},
+		"612": {
+			"name": "Flame Cup Access",
+			"label": "Flame Cup",
+			"unlockable": 612,
+			"cup": "RR_Flame",
+			"group": "Cup Access",
+			"icon": "UN_RRAL"
+		},
+		"613": {
+			"name": "Super Cup Access",
+			"label": "Super Cup",
+			"unlockable": 613,
+			"cup": "RR_Super",
+			"group": "Cup Access",
+			"icon": "UN_RRAM"
+		},
+		"614": {
+			"name": "Egg Cup Access",
+			"label": "Egg Cup",
+			"unlockable": 614,
+			"cup": "RR_Egg",
+			"group": "Cup Access",
+			"icon": "UN_RRAN"
+		},
+		"615": {
+			"name": "Goggles Cup Access",
+			"label": "Goggles Cup",
+			"unlockable": 615,
+			"cup": "RR_Goggles",
+			"group": "Cup Access",
+			"icon": "UN_RRBA"
+		},
+		"616": {
+			"name": "Timer Cup Access",
+			"label": "Timer Cup",
+			"unlockable": 616,
+			"cup": "RR_Timer",
+			"group": "Cup Access",
+			"icon": "UN_RRBB"
+		},
+		"617": {
+			"name": "Grow Cup Access",
+			"label": "Grow Cup",
+			"unlockable": 617,
+			"cup": "RR_Grow",
+			"group": "Cup Access",
+			"icon": "UN_RRBC"
+		},
+		"618": {
+			"name": "Chao Cup Access",
+			"label": "Chao Cup",
+			"unlockable": 618,
+			"cup": "RR_Chao",
+			"group": "Cup Access",
+			"icon": "UN_RRBD"
+		},
+		"619": {
+			"name": "Wing Cup Access",
+			"label": "Wing Cup",
+			"unlockable": 619,
+			"cup": "RR_Wing",
+			"group": "Cup Access",
+			"icon": "UN_RRBE"
+		},
+		"620": {
+			"name": "Mega Cup Access",
+			"label": "Mega Cup",
+			"unlockable": 620,
+			"cup": "RR_Mega",
+			"group": "Cup Access",
+			"icon": "UN_RRBF"
+		},
+		"621": {
+			"name": "Phantom Cup Access",
+			"label": "Phantom Cup",
+			"unlockable": 621,
+			"cup": "RR_Phantom",
+			"group": "Cup Access",
+			"icon": "UN_RRBG"
+		},
+		"622": {
+			"name": "Flash Cup Access",
+			"label": "Flash Cup",
+			"unlockable": 622,
+			"cup": "RR_Flash",
+			"group": "Cup Access",
+			"icon": "UN_RRBH"
+		},
+		"623": {
+			"name": "Swap Cup Access",
+			"label": "Swap Cup",
+			"unlockable": 623,
+			"cup": "RR_Swap",
+			"group": "Cup Access",
+			"icon": "UN_RRBI"
+		},
+		"624": {
+			"name": "Shrink Cup Access",
+			"label": "Shrink Cup",
+			"unlockable": 624,
+			"cup": "RR_Shrink",
+			"group": "Cup Access",
+			"icon": "UN_RRBJ"
+		},
+		"625": {
+			"name": "Bomb Cup Access",
+			"label": "Bomb Cup",
+			"unlockable": 625,
+			"cup": "RR_Bomb",
+			"group": "Cup Access",
+			"icon": "UN_RRBK"
+		},
+		"626": {
+			"name": "Power Cup Access",
+			"label": "Power Cup",
+			"unlockable": 626,
+			"cup": "RR_Power",
+			"group": "Cup Access",
+			"icon": "UN_RRBL"
+		},
+		"627": {
+			"name": "Genesis Cup Access",
+			"label": "Genesis Cup",
+			"unlockable": 627,
+			"cup": "RR_Genesis",
+			"group": "Cup Access",
+			"icon": "UN_RRBM"
+		},
+		"628": {
+			"name": "Skate Cup Access",
+			"label": "Skate Cup",
+			"unlockable": 628,
+			"cup": "RR_Skate",
+			"group": "Cup Access",
+			"icon": "UN_RRBN"
+		},
+		"698": {
+			"name": "Recycle Cup A Access",
+			"label": "Recycle Cup A",
+			"unlockable": 698,
+			"cup": "RR_Recycle_A",
+			"group": "Cup Access",
+			"icon": "UN_RRCA"
+		},
+		"699": {
+			"name": "Recycle Cup B Access",
+			"label": "Recycle Cup B",
+			"unlockable": 699,
+			"cup": "RR_Recycle_B",
+			"group": "Cup Access",
+			"icon": "UN_RRCB"
+		}
+	}
+}

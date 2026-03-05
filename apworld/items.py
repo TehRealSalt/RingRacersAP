@@ -481,7 +481,7 @@ AP_ITEM_NAME_TO_ID = {
     #
     # ARCHIPELAGO ITEMS (10000+)
     #
-    "Temporary Placeholder": 10000, # TODO: Remove
+    "Temporary Filler": 10000, # TODO: Remove
 }
 
 
