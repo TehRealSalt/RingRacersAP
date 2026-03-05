@@ -40,6 +40,15 @@
 #include "sounds.h"
 #include "z_zone.h"
 
+//
+// [RRAP] TODO - passwords need overhauled.
+//
+// Disable any that physically won't work
+// or completely undermine progression.
+//
+// Examples: Follower passwords are OK, tourney isn't.
+//
+
 namespace
 {
 

@@ -112,6 +112,7 @@ rrap_item_t::rrap_item_t(INT64 index, srb2::JsonValue json)
 
 	_unlockable_id = MAXUNLOCKABLES;
 	_skin_id = -1;
+	_follower_id = -1;
 
 	_display_type = SECRET_NONE;
 	_display_icon = "";

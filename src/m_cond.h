@@ -489,8 +489,6 @@ const char *M_GetEmblemPatch(emblem_t *em, boolean big);
 boolean M_GotEnoughMedals(INT32 number);
 boolean M_GotLowEnoughTime(INT32 tictime);
 
-INT32 M_UnlockableSkinNum(unlockable_t *unlock);
-INT32 M_UnlockableFollowerNum(unlockable_t *unlock);
 INT32 M_UnlockableColorNum(unlockable_t *unlock);
 cupheader_t *M_UnlockableCup(unlockable_t *unlock);
 UINT16 M_UnlockableMapNum(unlockable_t *unlock);

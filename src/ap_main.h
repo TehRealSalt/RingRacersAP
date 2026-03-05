@@ -79,9 +79,11 @@ private:
 	INT64 _id;
 	srb2::String _label;
 	boolean _received;
+
 	UINT16 _unlockable_id;
 	INT32 _skin_id;
 	INT32 _follower_id;
+
 	INT32 _display_type;
 	srb2::String _display_icon;
 	UINT16 _display_color;
@@ -93,9 +95,11 @@ public:
 	INT64 id() const { return _id; }
 	srb2::String label() const { return _label; }
 	boolean recieved() const { return _received; }
+
 	UINT16 unlockable_id() const { return _unlockable_id; }
 	INT32 skin_id() const { return _skin_id; }
 	INT32 follower_id() const { return _follower_id; }
+
 	INT32 display_type() const { return _display_type; }
 	srb2::String display_icon() const { return _display_icon; }
 	UINT16 display_color() const { return _display_color; }

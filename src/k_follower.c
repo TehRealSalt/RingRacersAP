@@ -72,6 +72,13 @@ boolean K_FollowerUsable(INT32 skinnum)
 		return true;
 	}
 
+	if (M_GameTrulyStarted() == false)
+	{
+		// [RRAP] Allow profile setup before the game starts
+		// to display all followers.
+		return true;
+	}
+
 	// Determine if this follower is supposed to be unlockable or not
 	rrap_item_t *item = RRAP_GetItem(followers[skinnum].ap_item_id);
 
