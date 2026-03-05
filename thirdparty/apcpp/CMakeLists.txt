@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
-add_library(APCpp SHARED Archipelago.cpp Archipelago_DataStorageSim.cpp Archipelago_Gifting.cpp)
+add_library(APCpp STATIC Archipelago.cpp Archipelago_DataStorageSim.cpp Archipelago_Gifting.cpp)
 add_library(APCpp::APCpp ALIAS APCpp) # [RRAP]
 
 set_target_properties(APCpp PROPERTIES PUBLIC_HEADER Archipelago.h)
@@ -43,28 +43,6 @@ if ((WIN32 AND USE_TLS) OR USE_MBED_TLS)
     set(MBEDCRYPTO_LIBRARY mbedcrypto)
     add_subdirectory(${CMAKE_CURRENT_BINARY_DIR}/mbedtls-${APCPP_MBEDTLS_VER} mbedtls_bin)
 endif ((WIN32 AND USE_TLS) OR USE_MBED_TLS)
-
-# Attempt finding system version of zlib
-if (NOT MINGW)
-    find_package(ZLIB QUIET)
-    if (ZLIB_FOUND)
-        message("Using system zlib installation.")
-    else()
-        message("Using bundled zlib.")
-    endif(ZLIB_FOUND)
-endif (NOT MINGW)
-if (MINGW OR NOT ZLIB_FOUND)
-    # Force static build for zlib if not in system, and alias static to shared for IXWebsocket
-    set(ZLIB_BUILD_SHARED OFF)
-    include(FetchContent)
-    FetchContent_Declare(
-        zlib
-        SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/zlib"
-        OVERRIDE_FIND_PACKAGE
-    )
-    FetchContent_MakeAvailable(zlib)
-    add_library(ZLIB::ZLIB ALIAS zlibstatic)
-endif (MINGW OR NOT ZLIB_FOUND)
 
 set(IXWEBSOCKET_INSTALL OFF CACHE BOOL "" FORCE)
 add_subdirectory(IXWebSocket)
