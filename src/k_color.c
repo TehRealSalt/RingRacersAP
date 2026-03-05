@@ -308,6 +308,7 @@ boolean K_ColorUsable(skincolornum_t color, boolean follower, boolean locked)
 		return true;
 	}
 
+#if 0
 	// Determine if this follower is supposed to be unlockable or not
 	for (i = 0; i < MAXUNLOCKABLES; i++)
 	{
@@ -338,6 +339,10 @@ boolean K_ColorUsable(skincolornum_t color, boolean follower, boolean locked)
 	// Use the unlockables table directly
 	// DEFINITELY not M_CheckNetUnlockByID
 	return (boolean)(gamedata->unlocked[i]);
+#else
+	// [RRAP] TODO - implement this
+	return true;
+#endif
 }
 
 //}

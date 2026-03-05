@@ -921,6 +921,7 @@ void srb2::load_ng_gamedata()
 		converted = true;
 	}
 
+#if 0 // [RRAP]
 	if (minorversion < GD_MINIMUM_TUTORIALLOCK && gamedata->gonerlevel >= GDGONER_DONE)
 	{
 		converted = true;
@@ -930,6 +931,7 @@ void srb2::load_ng_gamedata()
 			gamedata->unlocked[checklock - 1] = true;
 		}
 	}
+#endif
 
 	M_FinaliseGameData();
 
