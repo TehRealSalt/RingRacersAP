@@ -385,12 +385,12 @@ EXTRAS_ITEM_NAME_TO_ID = {
     "Encore Mode": 705,
     "SPB Attack Mode": 706,
 
-    "Online Play": 708,
+    #"Online Play": 708,
 
     "Alternate Title Screen": 730,
-    "Egg TV": 731,
+    #"Egg TV": 731,
     "Sound Test": 732,
-    "Play with Addons": 733,
+    #"Play with Addons": 733,
 }
 
 MAP_ITEM_NAME_TO_ID = {
@@ -520,7 +520,7 @@ class RingRacersItem(Item):
 
 
 def get_random_filler_item_name(world: RingRacersWorld) -> str:
-    return "Temporary Placeholder"
+    return "Temporary Filler"
 
 
 def create_rr_item(world: RingRacersWorld, name: str) -> RingRacersItem:

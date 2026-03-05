@@ -596,11 +596,12 @@ void RRAP_PopulateChallengeGrid(void)
 		big_compact = 1;
 	}
 
+#if 0
 	// [RRAP] The placing algorithm fails HARD with too many big tiles.
 	// Try to just salvage it for now, look into a better way of placing
 	// these down later.
 	INT64 big_tile_area = selection_big.size() * 4;
-	INT64 min_width = (big_tile_area * 2) / CHALLENGEGRIDHEIGHT;
+	INT64 min_width = (big_tile_area * 3 / 2) / CHALLENGEGRIDHEIGHT;
 	if (gamedata->ap_challengegridwidth < min_width)
 	{
 		gamedata->ap_challengegridwidth = min_width;
@@ -610,6 +611,7 @@ void RRAP_PopulateChallengeGrid(void)
 			min_width
 		);
 	}
+#endif
 
 	gamedata->ap_challengegrid = static_cast<int64_t *>(Z_Calloc(
 		(gamedata->ap_challengegridwidth * CHALLENGEGRIDHEIGHT * sizeof(INT64)),

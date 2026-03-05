@@ -113,35 +113,17 @@
 			"unlockable": 706,
 			"item_type": "spbattack"
 		},
-		"708": {
-			"name": "Online Play",
-			"label": "Online Play",
-			"unlockable": 708,
-			"item_type": "online"
-		},
 		"730": {
 			"name": "Alternate Titlescreen",
 			"label": "Alternate Titlescreen",
 			"unlockable": 730,
 			"item_type": "alttitle"
 		},
-		"731": {
-			"name": "Egg TV",
-			"label": "Egg TV",
-			"unlockable": 731,
-			"item_type": "eggtv"
-		},
 		"732": {
 			"name": "Sound Test",
 			"label": "Sound Test",
 			"unlockable": 732,
 			"item_type": "soundtest"
-		},
-		"733": {
-			"name": "Playing with Addons",
-			"label": "Playing with Addons",
-			"unlockable": 733,
-			"item_type": "addons"
 		}
 	}
 }
