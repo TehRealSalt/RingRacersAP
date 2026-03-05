@@ -3282,6 +3282,7 @@ void M_DrawCupSelect(void)
 
 			if (!isGP || id == CUPMENU_CURSORID)
 				;
+#if 0 // [RRAP] Not for Archipelago
 			else if (isLocked)
 			{
 				if (templevelsearch.cup->hintcondition != MAXCONDITIONSETS
@@ -3291,6 +3292,7 @@ void M_DrawCupSelect(void)
 					V_DrawScaledPatch(x + (32-10), y + (32-9), 0, W_CachePatchName("UN_HNT2A", PU_CACHE));
 				}
 			}
+#endif
 			else if (templevelsearch.cup == cupsavedata.cup
 				&& id != CUPMENU_CURSORID)
 			{
@@ -7651,12 +7653,17 @@ static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 
 			break;
 		}
+#endif
 		case SECRET_CUP:
 		{
 			levelsearch_t templevelsearch;
 			UINT32 i, id, maxid, offset;
-			cupheader_t *temp = M_UnlockableCup(ref);
 
+			UINT16 unlock_id = RRAP_ItemToUnlockableId(item);
+			if (unlock_id >= MAXUNLOCKABLES)
+				break;
+
+			cupheader_t *temp = M_UnlockableCup(&unlockables[unlock_id]);
 			if (!temp)
 				break;
 
@@ -7725,6 +7732,7 @@ static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 
 			break;
 		}
+#if 0 // [RRAP] TODO - finish implementing item types
 		case SECRET_MAP:
 		{
 			boolean validdraw = false;

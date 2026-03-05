@@ -194,6 +194,7 @@ static void M_GPTutorialResponse(INT32 choice)
 
 static boolean M_GPTutorialRecommendation(cupheader_t *cup)
 {
+#if 0
 	// Only applies to GP.
 	if (levellist.levelsearch.grandprix == false)
 		return false;
@@ -268,6 +269,10 @@ static boolean M_GPTutorialRecommendation(cupheader_t *cup)
 	);
 
 	return true;
+#else
+	// [RRAP] Not needed for Archipelago
+	return false;
+#endif
 }
 
 static void M_GPBackup(INT32 choice)

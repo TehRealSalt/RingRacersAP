@@ -167,6 +167,14 @@ rrap_item_t::rrap_item_t(INT64 index, srb2::JsonValue json)
 			throw std::runtime_error(srb2::format("invalid follower '{}'", work_follower));
 		}
 	}
+
+	srb2::String work_cup = json.value("cup", srb2::String(""));
+	if (work_cup.empty() == false)
+	{
+		// The ID isn't used, so just update display type
+		SRB2_ASSERT(_display_type == SECRET_NONE);
+		_display_type = SECRET_CUP;
+	}
 }
 
 static void RRAP_LoadArchipelagoJSONLump(uint16_t wad_id, lumpnum_t lump_id)
