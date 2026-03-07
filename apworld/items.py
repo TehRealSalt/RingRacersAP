@@ -550,6 +550,8 @@ def create_all_items(world: RingRacersWorld) -> None:
     for driver_name in DRIVER_ITEM_NAME_TO_ID.keys():
         driver_pool.append(world.create_item(driver_name))
 
+    # TODO: Option for starting driver count
+    # TODO: Option for starting driver distribution (vanilla, random, or random-balanced)
     for i in range(9):
         precollect_driver = driver_pool.pop(world.random.randrange(len(driver_pool)))
         world.push_precollected(precollect_driver)
@@ -558,6 +560,15 @@ def create_all_items(world: RingRacersWorld) -> None:
 
     for cup_name in CUP_ITEM_NAME_TO_ID.keys():
         cup_pool.append(world.create_item(cup_name))
+
+    precollect_cup = cup_pool.pop(world.random.randrange(len(cup_pool)))
+
+    # TODO: Putting it on Ring Cup challenge I think is the coolest option
+    # for when cup challenges are available, but this will break when
+    # the different challenge categories are made into options. Probably
+    # just add to starting inventory in this case. 
+    starting_cup_location = world.get_location("Challenge - Ring Cup")
+    starting_cup_location.place_locked_item(precollect_cup)
 
     item_pool: list[Item] = []
     item_pool += driver_pool
