@@ -3,7 +3,7 @@ from __future__ import annotations
 import logging
 from typing import TYPE_CHECKING
 
-from BaseClasses import CollectionState
+from BaseClasses import CollectionState, LocationProgressType
 from worlds.generic.Rules import add_rule, set_rule
 
 from . import regions, items
@@ -899,9 +899,11 @@ def set_follower_challenge_location_rules(world: RingRacersWorld) -> None:
     #
 
     #
-    # "Challenge - Follower: Motobricks" is always possible, currently...
-    # but also kind of annoying, might need some logic behind it
+    # "Challenge - Follower: Motobricks" is always possible...
+    # ...but it's forced playtime, so make it always filler
     #
+    motobricks_location = world.get_location("Challenge - Follower: Motobricks")
+    motobricks_location.progress_type = LocationProgressType.EXCLUDED
 
     set_rule(
         world.get_location("Challenge - Follower: Uni-Uni"),
@@ -1093,11 +1095,15 @@ def set_follower_challenge_location_rules(world: RingRacersWorld) -> None:
             can_reach_all_emeralds(state, world.player)
     )
 
+    spb_jr_location = world.get_location("Challenge - Follower: S.P.B. Jr.")
     set_rule(
-        world.get_location("Challenge - Follower: S.P.B. Jr."),
+        spb_jr_location,
         lambda state:
             enough_medals(state, 777, world.player)
     )
+    # Needing nearly 100% of all medals in the game, should probably be filler
+    # for the same very good reasons as 100 skulltulas
+    spb_jr_location.progress_type = LocationProgressType.EXCLUDED
 
     set_rule(
         world.get_location("Challenge - Follower: Burboom"),
