@@ -1,31 +1,31 @@
 {
 	"locations": {
 		"760": {
-			"name": "Challenge - Test Run",
+			"name": "Challenge - Lost & Found: Test Run",
 			"label": "Test Run",
 			"condition_set": 760,
 			"big_tile": true
 		},
 		"761": {
-			"name": "Challenge - Leap of Faith",
+			"name": "Challenge - Lost & Found: Hidden Palace",
 			"label": "Leap of Faith",
 			"condition_set": 761,
 			"big_tile": true
 		},
 		"762": {
-			"name": "Challenge - Test Track",
+			"name": "Challenge - Lost & Found: Test Track",
 			"label": "Test Track",
 			"condition_set": 762,
 			"big_tile": true
 		},
 		"763": {
-			"name": "Challenge - Digital Detour",
+			"name": "Challenge - Lost & Found: Route 1980",
 			"label": "Digital Detour",
 			"condition_set": 763,
 			"big_tile": true
 		},
 		"764": {
-			"name": "Challenge - Duel Busters",
+			"name": "Challenge - Lost & Found: Duel Busters",
 			"label": "Duel Busters",
 			"condition_set": 764,
 			"big_tile": true
@@ -37,35 +37,35 @@
 			"label": "Test Run",
 			"unlockable": 760,
 			"map": "RR_TestRun",
-			"group": "Map Access"
+			"group": "Maps"
 		},
 		"761": {
 			"name": "Hidden Palace Access",
 			"label": "Hidden Palace",
 			"unlockable": 761,
 			"map": "RR_HiddenPalace",
-			"group": "Map Access"
+			"group": "Maps"
 		},
 		"762": {
 			"name": "Test Track Access",
 			"label": "Test Track",
 			"unlockable": 762,
 			"map": "RR_TestTrack",
-			"group": "Map Access"
+			"group": "Maps"
 		},
 		"763": {
 			"name": "Route 1980 Access",
 			"label": "Route 1980",
 			"unlockable": 763,
 			"map": "RR_Route1980",
-			"group": "Map Access"
+			"group": "Maps"
 		},
 		"764": {
 			"name": "Duel Busters Access",
 			"label": "Duel Busters",
 			"unlockable": 764,
 			"map": "RR_DuelBuster",
-			"group": "Map Access"
+			"group": "Maps"
 		}
 	}
 }

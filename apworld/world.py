@@ -4,8 +4,10 @@ from typing import Any
 from worlds.AutoWorld import World
 from Utils import visualize_regions
 
-from . import items, locations, regions, rules
+from . import items, locations, regions, rules, jsondata
 from . import options as rr_options
+
+jsondata.load_all()
 
 class RingRacersWorld(World):
     """
@@ -20,12 +22,15 @@ class RingRacersWorld(World):
     options_dataclass = rr_options.RingRacersOptions
     options: rr_options.RingRacersOptions
 
-    location_name_to_id = locations.LOCATION_NAME_TO_ID
-    item_name_to_id = items.ITEM_NAME_TO_ID
-    item_name_groups = items.ITEM_NAME_GROUPS
+    location_name_to_id = jsondata.location_name_to_id
+    item_name_to_id = jsondata.item_name_to_id
+
+    location_name_groups = jsondata.location_name_groups
+    item_name_groups = jsondata.item_name_groups
 
     origin_region_name = "Menu"
     topology_present = True
+
 
     def create_regions(self) -> None:
         regions.create_and_connect_regions(self)

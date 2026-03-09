@@ -75,55 +75,64 @@
 			"name": "Prison Break Mode",
 			"label": "Prison Break Mode",
 			"unlockable": 700,
-			"item_type": "prisonbreak"
+			"item_type": "prisonbreak",
+			"group": "Extras"
 		},
 		"701": {
 			"name": "Special Mode",
 			"label": "Special Mode",
 			"unlockable": 701,
-			"item_type": "specialattack"
+			"item_type": "specialattack",
+			"group": "Extras"
 		},
 		"702": {
 			"name": "Gear 3 + GP Vicious Mode",
 			"label": "Gear 3 + GP Vicious Mode",
 			"unlockable": 702,
-			"item_type": "hardspeed"
+			"item_type": "hardspeed",
+			"group": "Extras"
 		},
 		"703": {
 			"name": "Time Attack Mode",
 			"label": "Time Attack Mode",
 			"unlockable": 703,
-			"item_type": "timeattack"
+			"item_type": "timeattack",
+			"group": "Extras"
 		},
 		"704": {
 			"name": "GP Master Mode",
 			"label": "GP Master Mode",
 			"unlockable": 704,
-			"item_type": "mastermode"
+			"item_type": "mastermode",
+			"group": "Extras"
 		},
 		"705": {
 			"name": "Encore Mode",
 			"label": "Encore Mode",
 			"unlockable": 705,
-			"item_type": "encore"
+			"item_type": "encore",
+			"group": "Extras"
 		},
 		"706": {
 			"name": "SPB Attack Mode",
 			"label": "SPB Attack Mode",
 			"unlockable": 706,
-			"item_type": "spbattack"
+			"item_type": "spbattack",
+			"group": "Extras"
 		},
 		"730": {
 			"name": "Alternate Titlescreen",
 			"label": "Alternate Titlescreen",
 			"unlockable": 730,
-			"item_type": "alttitle"
+			"item_type": "alttitle",
+			"group": "Extras"
 		},
 		"732": {
 			"name": "Sound Test",
 			"label": "Sound Test",
 			"unlockable": 732,
-			"item_type": "soundtest"
+			"item_type": "soundtest",
+			"group": "Extras"
 		}
 	}
 }

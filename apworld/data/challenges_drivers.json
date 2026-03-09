@@ -195,8 +195,8 @@
 			"condition_set": 37
 		},
 		"38": {
-			"name": "Challenge - Driver: Nights",
-			"label": "Nights",
+			"name": "Challenge - Driver: NiGHTS",
+			"label": "NiGHTS",
 			"condition_set": 38,
 			"big_tile": true
 		},
@@ -553,8 +553,8 @@
 			"group": "Drivers"
 		},
 		"38": {
-			"name": "Driver: Nights",
-			"label": "Nights",
+			"name": "Driver: NiGHTS",
+			"label": "NiGHTS",
 			"unlockable": 38,
 			"skin": "nights",
 			"group": "Drivers"

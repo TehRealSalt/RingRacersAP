@@ -1960,7 +1960,9 @@ void D_SRB2Main(void)
 	CON_SetLoadingProgress(LOADED_ACSINIT);
 
 	// [RRAP]
+	CONS_Printf("RRAP_LoadArchipelagoJSON(): Init Archipelago data.\n");
 	RRAP_LoadArchipelagoJSON();
+	CON_SetLoadingProgress(LOADED_AP);
 
 	//------------------------------------------------ COMMAND LINE PARAMS
 

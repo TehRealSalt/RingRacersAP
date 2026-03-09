@@ -54,13 +54,13 @@ def can_reach_sealed_star(state: CollectionState, player: int) -> bool:
 
 
 def have_all_cups(state: CollectionState, player: int) -> bool:
-    return state.has_all(items.CUP_ITEM_NAME_TO_ID.keys(), player)
+    return state.has_all(state.multiworld.worlds[player].item_name_groups["Cups"], player)
 
 
 def have_all_maps_but_test_run(state: CollectionState, player: int) -> bool:
     all_access_items = []
-    all_access_items += list(items.CUP_ITEM_NAME_TO_ID.keys())
-    all_access_items += list(items.MAP_ITEM_NAME_TO_ID.keys())
+    all_access_items += list(state.multiworld.worlds[player].item_name_groups["Cups"])
+    all_access_items += list(state.multiworld.worlds[player].item_name_groups["Maps"])
     all_access_items.remove("Test Run Access")
     return state.has_all(all_access_items, player)
 
@@ -127,6 +127,12 @@ def have_all_guest_drivers(state: CollectionState, player: int) -> bool:
         "Driver: Vectorman",
         "Driver: Wonder Boy"
     ), player)
+
+
+def have_group_percentage(state: CollectionState, group: str, player: int, requirement: int) -> bool:
+    unlocked = state.count_group(group, player)
+    total = len(state.multiworld.worlds[player].item_name_groups[group])
+    return (100 * unlocked) >= (total * requirement)
 
 
 def set_all_rules(world: RingRacersWorld) -> None:
@@ -583,7 +589,7 @@ def set_driver_challenge_location_rules(world: RingRacersWorld) -> None:
     set_rule(
         world.get_location("Challenge - Driver: Gum"),
         lambda state:
-            state.has_group("Spray Cans", world.player, 75) # 75% of colors
+            False #have_group_percentage(state, "Spray Cans", world.player, 75)
     )
 
     set_rule(
@@ -609,7 +615,7 @@ def set_driver_challenge_location_rules(world: RingRacersWorld) -> None:
     set_rule(
         world.get_location("Challenge - Driver: Heavy Magician"),
         lambda state:
-            state.has_group("Drivers", world.player, 27) # 50% of drivers (TODO: Might have changed w/ Trouble Bruin)
+            have_group_percentage(state, "Drivers", world.player, 50)
     )
 
     set_rule(
@@ -1864,7 +1870,7 @@ def set_extras_challenge_location_rules(world: RingRacersWorld) -> None:
     set_rule(
         world.get_location("Challenge - Sound Test"),
         lambda state:
-            state.has_group("Alt Music", world.player, 13) # 25% of alt music
+            False #have_group_percentage(state, "Alt Music", world.player, 25)
     )
 
     #
@@ -1925,11 +1931,16 @@ def set_extras_challenge_location_rules(world: RingRacersWorld) -> None:
     # "Challenge - Lost & Found: Duel Busters" is always possible, currently
     #
 
-    set_rule(
-        world.get_location("Challenge - Alt Music: Popcorn Workshop"),
-        lambda state:
-            map_time_attack(state, "Popcorn Workshop", world.player)
-    )
+    #
+    # This location works right now, but let's wait until we get the
+    # rest of the Alt Music locations implemented.
+    #
+
+    #set_rule(
+    #    world.get_location("Challenge - Alt Music: Popcorn Workshop"),
+    #    lambda state:
+    #        map_time_attack(state, "Popcorn Workshop", world.player)
+    #)
 
 
 def set_challenge_location_rules(world: RingRacersWorld) -> None:

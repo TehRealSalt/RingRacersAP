@@ -1,0 +1,12 @@
+{
+  "files": [
+    "starting_drivers.json",
+    "challenges_drivers.json",
+    "challenges_followers.json",
+    "challenges_cups.json",
+    "challenges_extras.json",
+    "challenges_tutorial.json",
+    "challenges_lostandfound.json",
+    "filler.json"
+  ]
+}

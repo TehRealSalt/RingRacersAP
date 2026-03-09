@@ -173,7 +173,7 @@
 			"label": "Ring Cup",
 			"unlockable": 601,
 			"cup": "RR_Ring",
-			"group": "Cup Access",
+			"group": "Cups",
 			"icon": "UN_RRAA"
 		},
 		"602": {
@@ -181,7 +181,7 @@
 			"label": "Sneaker Cup",
 			"unlockable": 602,
 			"cup": "RR_Sneaker",
-			"group": "Cup Access",
+			"group": "Cups",
 			"icon": "UN_RRAB"
 		},
 		"603": {
@@ -189,7 +189,7 @@
 			"label": "Spring Cup",
 			"unlockable": 603,
 			"cup": "RR_Spring",
-			"group": "Cup Access",
+			"group": "Cups",
 			"icon": "UN_RRAC"
 		},
 		"604": {
@@ -197,7 +197,7 @@
 			"label": "Barrier Cup",
 			"unlockable": 604,
 			"cup": "RR_Barrier",
-			"group": "Cup Access",
+			"group": "Cups",
 			"icon": "UN_RRAD"
 		},
 		"605": {
@@ -205,7 +205,7 @@
 			"label": "Invincible Cup",
 			"unlockable": 605,
 			"cup": "RR_Invincible",
-			"group": "Cup Access",
+			"group": "Cups",
 			"icon": "UN_RRAE"
 		},
 		"606": {
@@ -213,7 +213,7 @@
 			"label": "Emerald Cup",
 			"unlockable": 606,
 			"cup": "RR_Emerald",
-			"group": "Cup Access",
+			"group": "Cups",
 			"icon": "UN_RRAF"
 		},
 		"607": {
@@ -221,7 +221,7 @@
 			"label": "Extra Cup",
 			"unlockable": 607,
 			"cup": "RR_Extra",
-			"group": "Cup Access",
+			"group": "Cups",
 			"icon": "UN_RRAG"
 		},
 		"608": {
@@ -229,7 +229,7 @@
 			"label": "S.P.B. Cup",
 			"unlockable": 608,
 			"cup": "RR_S.P.B.",
-			"group": "Cup Access",
+			"group": "Cups",
 			"icon": "UN_RRAH"
 		},
 		"609": {
@@ -237,7 +237,7 @@
 			"label": "Rocket Cup",
 			"unlockable": 609,
 			"cup": "RR_Rocket",
-			"group": "Cup Access",
+			"group": "Cups",
 			"icon": "UN_RRAI"
 		},
 		"610": {
@@ -245,7 +245,7 @@
 			"label": "Aqua Cup",
 			"unlockable": 610,
 			"cup": "RR_Aqua",
-			"group": "Cup Access",
+			"group": "Cups",
 			"icon": "UN_RRAJ"
 		},
 		"611": {
@@ -253,7 +253,7 @@
 			"label": "Lightning Cup",
 			"unlockable": 611,
 			"cup": "RR_Lightning",
-			"group": "Cup Access",
+			"group": "Cups",
 			"icon": "UN_RRAK"
 		},
 		"612": {
@@ -261,7 +261,7 @@
 			"label": "Flame Cup",
 			"unlockable": 612,
 			"cup": "RR_Flame",
-			"group": "Cup Access",
+			"group": "Cups",
 			"icon": "UN_RRAL"
 		},
 		"613": {
@@ -269,7 +269,7 @@
 			"label": "Super Cup",
 			"unlockable": 613,
 			"cup": "RR_Super",
-			"group": "Cup Access",
+			"group": "Cups",
 			"icon": "UN_RRAM"
 		},
 		"614": {
@@ -277,7 +277,7 @@
 			"label": "Egg Cup",
 			"unlockable": 614,
 			"cup": "RR_Egg",
-			"group": "Cup Access",
+			"group": "Cups",
 			"icon": "UN_RRAN"
 		},
 		"615": {
@@ -285,7 +285,7 @@
 			"label": "Goggles Cup",
 			"unlockable": 615,
 			"cup": "RR_Goggles",
-			"group": "Cup Access",
+			"group": "Cups",
 			"icon": "UN_RRBA"
 		},
 		"616": {
@@ -293,7 +293,7 @@
 			"label": "Timer Cup",
 			"unlockable": 616,
 			"cup": "RR_Timer",
-			"group": "Cup Access",
+			"group": "Cups",
 			"icon": "UN_RRBB"
 		},
 		"617": {
@@ -301,7 +301,7 @@
 			"label": "Grow Cup",
 			"unlockable": 617,
 			"cup": "RR_Grow",
-			"group": "Cup Access",
+			"group": "Cups",
 			"icon": "UN_RRBC"
 		},
 		"618": {
@@ -309,7 +309,7 @@
 			"label": "Chao Cup",
 			"unlockable": 618,
 			"cup": "RR_Chao",
-			"group": "Cup Access",
+			"group": "Cups",
 			"icon": "UN_RRBD"
 		},
 		"619": {
@@ -317,7 +317,7 @@
 			"label": "Wing Cup",
 			"unlockable": 619,
 			"cup": "RR_Wing",
-			"group": "Cup Access",
+			"group": "Cups",
 			"icon": "UN_RRBE"
 		},
 		"620": {
@@ -325,7 +325,7 @@
 			"label": "Mega Cup",
 			"unlockable": 620,
 			"cup": "RR_Mega",
-			"group": "Cup Access",
+			"group": "Cups",
 			"icon": "UN_RRBF"
 		},
 		"621": {
@@ -333,7 +333,7 @@
 			"label": "Phantom Cup",
 			"unlockable": 621,
 			"cup": "RR_Phantom",
-			"group": "Cup Access",
+			"group": "Cups",
 			"icon": "UN_RRBG"
 		},
 		"622": {
@@ -341,7 +341,7 @@
 			"label": "Flash Cup",
 			"unlockable": 622,
 			"cup": "RR_Flash",
-			"group": "Cup Access",
+			"group": "Cups",
 			"icon": "UN_RRBH"
 		},
 		"623": {
@@ -349,7 +349,7 @@
 			"label": "Swap Cup",
 			"unlockable": 623,
 			"cup": "RR_Swap",
-			"group": "Cup Access",
+			"group": "Cups",
 			"icon": "UN_RRBI"
 		},
 		"624": {
@@ -357,7 +357,7 @@
 			"label": "Shrink Cup",
 			"unlockable": 624,
 			"cup": "RR_Shrink",
-			"group": "Cup Access",
+			"group": "Cups",
 			"icon": "UN_RRBJ"
 		},
 		"625": {
@@ -365,7 +365,7 @@
 			"label": "Bomb Cup",
 			"unlockable": 625,
 			"cup": "RR_Bomb",
-			"group": "Cup Access",
+			"group": "Cups",
 			"icon": "UN_RRBK"
 		},
 		"626": {
@@ -373,7 +373,7 @@
 			"label": "Power Cup",
 			"unlockable": 626,
 			"cup": "RR_Power",
-			"group": "Cup Access",
+			"group": "Cups",
 			"icon": "UN_RRBL"
 		},
 		"627": {
@@ -381,7 +381,7 @@
 			"label": "Genesis Cup",
 			"unlockable": 627,
 			"cup": "RR_Genesis",
-			"group": "Cup Access",
+			"group": "Cups",
 			"icon": "UN_RRBM"
 		},
 		"628": {
@@ -389,7 +389,7 @@
 			"label": "Skate Cup",
 			"unlockable": 628,
 			"cup": "RR_Skate",
-			"group": "Cup Access",
+			"group": "Cups",
 			"icon": "UN_RRBN"
 		},
 		"698": {
@@ -397,7 +397,7 @@
 			"label": "Recycle Cup A",
 			"unlockable": 698,
 			"cup": "RR_Recycle_A",
-			"group": "Cup Access",
+			"group": "Cups",
 			"icon": "UN_RRCA"
 		},
 		"699": {
@@ -405,7 +405,7 @@
 			"label": "Recycle Cup B",
 			"unlockable": 699,
 			"cup": "RR_Recycle_B",
-			"group": "Cup Access",
+			"group": "Cups",
 			"icon": "UN_RRCB"
 		}
 	}

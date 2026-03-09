@@ -56,6 +56,7 @@ static srb2::HashMap<INT64, rrap_item_t> g_ap_item_info;
 
 rrap_location_t::rrap_location_t(INT64 index, srb2::JsonValue json)
 {
+	SRB2_ASSERT(index > 0);
 	_id = index;
 	_name = json.at("name").get<srb2::String>();
 	_condition_set_id = json.value("condition_set", -1);
@@ -65,6 +66,8 @@ rrap_location_t::rrap_location_t(INT64 index, srb2::JsonValue json)
 
 void rrap_location_t::immediate_check()
 {
+	SRB2_ASSERT(_id > 0);
+
 	if (!_checked)
 	{
 		// TODO: don't set this on reconnect
@@ -72,7 +75,6 @@ void rrap_location_t::immediate_check()
 	}
 
 	_checked = true;
-
 	AP_SendItem(_id);
 
 	std::set<INT64> scout_ids = {_id};
@@ -81,6 +83,8 @@ void rrap_location_t::immediate_check()
 
 void rrap_location_t::queue_check()
 {
+	SRB2_ASSERT(_id > 0);
+
 	_check_pending = true;
 
 	std::set<INT64> scout_ids = {_id};
@@ -108,6 +112,7 @@ void rrap_location_t::update_displayed_item(srb2::String label, INT64 item_id)
 
 rrap_item_t::rrap_item_t(INT64 index, srb2::JsonValue json)
 {
+	SRB2_ASSERT(index > 0);
 	_id = index;
 	_name = json.at("name").get<srb2::String>();
 
@@ -291,27 +296,59 @@ static void RRAP_LoadArchipelagoJSONLump(uint16_t wad_id, lumpnum_t lump_id)
 
 void RRAP_LoadArchipelagoJSON(void)
 {
-	for (UINT16 wad_num = 0; wad_num < mainwads; wad_num++)
+	bool found_any_manifest = false;
+
+	for (UINT16 wad_id = 0; wad_id < mainwads; wad_id++)
 	{
-		if (wadfiles[wad_num]->type != RET_PK3)
+		if (wadfiles[wad_id]->type != RET_PK3)
 		{
 			continue;
 		}
 
-		UINT16 lump_start = W_CheckNumForFolderStartPK3("archipelago/", wad_num, 0);
-		if (lump_start == INT16_MAX)
+		UINT16 manifest_lump_id = W_CheckNumForFullNamePK3("archipelago/!manifest.json", wad_id, 0);
+		if (manifest_lump_id == INT16_MAX)
 		{
-			return;
+			continue;
 		}
 
-		UINT16 lump_end = W_CheckNumForFolderEndPK3("archipelago/", wad_num, lump_start);
-		for (UINT16 lump_num = lump_start; lump_num < lump_end; lump_num++)
+		CONS_Printf("Reading Archipelago manifest...\n");
+
+		size_t manifest_lump_len = W_LumpLengthPwad(wad_id, manifest_lump_id);
+		const char *manifest_lump = static_cast<const char *>( W_CacheLumpNumPwad(wad_id, manifest_lump_id, PU_CACHE) );
+
+		srb2::String manifest_str { manifest_lump, manifest_lump_len };
+		srb2::JsonObject manifest_obj = srb2::JsonValue::from_json_string(manifest_str).as_object();
+
+		try
 		{
-			lumpinfo_t *lump_p = &wadfiles[wad_num]->lumpinfo[lump_num];
-			srb2::String file_name = srb2::format("{}|{}", wadfiles[wad_num]->filename, lump_p->fullname);
-			CONS_Printf(M_GetText("Loading Archipelago JSON from %s\n"), file_name.c_str());
-			RRAP_LoadArchipelagoJSONLump(wad_num, lump_num);
+			srb2::JsonArray file_list = manifest_obj.at("files").as_array();
+
+			for (size_t i = 0; i < file_list.size(); i++)
+			{
+				srb2::String file_name = file_list.at(i).get<srb2::String>();
+				srb2::String file_path = srb2::format("archipelago/{}", file_name);
+				UINT16 json_lump_id = W_CheckNumForFullNamePK3(file_path.c_str(), wad_id, 0);
+
+				if (json_lump_id == INT16_MAX)
+				{
+					throw std::runtime_error(srb2::format("could not find file in '{}'", file_path));
+				}
+
+				CONS_Printf("  Reading JSON @ %s...\n", file_name.c_str());
+				RRAP_LoadArchipelagoJSONLump(wad_id, json_lump_id);
+			}
 		}
+		catch (const std::exception& ex)
+		{
+			I_Error("Archipelago manifest parse error: %s", ex.what());
+		}
+
+		found_any_manifest = true;
+	}
+
+	if (!found_any_manifest)
+	{
+		I_Error("Could not find Archipelago manifest file");
 	}
 }
 

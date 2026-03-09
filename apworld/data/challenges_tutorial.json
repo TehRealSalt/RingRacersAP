@@ -32,35 +32,35 @@
 			"label": "Ancient Gear Playground",
 			"unlockable": 750,
 			"map": "RR_SunbeamParadisePlayground",
-			"group": "Map Access"
+			"group": "Maps"
 		},
 		"751": {
 			"name": "Sunbeam Paradise: Brakes Access",
 			"label": "Check Your Brakes",
 			"unlockable": 751,
 			"map": "RR_SunbeamParadiseBrakes",
-			"group": "Map Access"
+			"group": "Maps"
 		},
 		"752": {
 			"name": "Sunbeam Paradise: Drifting Access",
 			"label": "The Art of Drifting",
 			"unlockable": 752,
 			"map": "RR_SunbeamParadiseDrifting",
-			"group": "Map Access"
+			"group": "Maps"
 		},
 		"753": {
 			"name": "Sunbeam Paradise: Items Access",
 			"label": "The Item Gallery",
 			"unlockable": 753,
 			"map": "RR_SunbeamParadiseItems",
-			"group": "Map Access"
+			"group": "Maps"
 		},
 		"754": {
 			"name": "Sunbeam Paradise: Springs Access",
 			"label": "Springs & Trick Panels",
 			"unlockable": 754,
 			"map": "RR_SunbeamParadiseSprings",
-			"group": "Map Access"
+			"group": "Maps"
 		}
 	}
 }
