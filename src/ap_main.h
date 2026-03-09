@@ -167,6 +167,8 @@ UINT16 RRAP_ItemDisplayColor(rrap_item_t *item);
 void RRAP_PopulateChallengeGrid(void);
 void RRAP_SanitiseChallengeGrid(void);
 
+UINT32 RRAP_CapCharacterWins(UINT32 input);
+
 int RRAP_TestLocations(void);
 INT64 RRAP_GetNextCheckedLocation(boolean canskipchaokeys);
 void RRAP_ChallengesMenuCountPercent(void);

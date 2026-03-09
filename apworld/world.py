@@ -16,11 +16,11 @@ class RingRacersWorld(World):
     """
 
     game = "Dr. Robotnik's Ring Racers"
-
     # web = web_world.RingRacersWebWorld
-
     options_dataclass = rr_options.RingRacersOptions
     options: rr_options.RingRacersOptions
+
+    apworld_version = "0.1.0"
 
     location_name_to_id = jsondata.location_name_to_id
     item_name_to_id = jsondata.item_name_to_id
@@ -55,6 +55,6 @@ class RingRacersWorld(World):
 
     def fill_slot_data(self) -> dict:
         return {
-            "APVersion": 1,
-            "PlayerNum": self.player,
+            "apworld_version": self.apworld_version,
+            "character_wins_count": self.options.character_wins_count.value,
         }

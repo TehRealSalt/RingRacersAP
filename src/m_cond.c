@@ -1270,10 +1270,13 @@ boolean M_CheckCondition(condition_t *cn, player_t *player)
 			return (G_GetBestTime(cn->extrainfo1) <= (unsigned)cn->requirement);
 
 		case UC_CHARACTERWINS:
+		{
 			if (cn->requirement < 0)
 				return false;
 
-			return (skins[cn->requirement]->records.wins >= (UINT32)cn->extrainfo1);
+			UINT32 wins_required = RRAP_CapCharacterWins(cn->extrainfo1);
+			return (skins[cn->requirement]->records.wins >= wins_required);
+		}
 
 		case UC_ALLCUPRECORDS:
 		{
@@ -2077,12 +2080,15 @@ static const char *M_GetConditionString(condition_t *cn)
 
 		case UC_CHARACTERWINS:
 		{
+			UINT32 wins_required = RRAP_CapCharacterWins(cn->extrainfo1);
+
 			if (cn->requirement < 0 || !skins[cn->requirement]->realname[0])
-				return va("INVALID CHAR CONDITION \"%d:%d:%d\"", cn->type, cn->requirement, cn->extrainfo1);
+				return va("INVALID CHAR CONDITION \"%d:%d:%d\"", cn->type, cn->requirement, wins_required);
+
 			work = M_GetConditionCharacter(cn->requirement, true);
 			return va("win %d Round%s as %s",
-				cn->extrainfo1,
-				cn->extrainfo1 == 1 ? "" : "s",
+				wins_required,
+				wins_required == 1 ? "" : "s",
 				work);
 		}
 

@@ -12,11 +12,6 @@ if TYPE_CHECKING:
     from .world import RingRacersWorld
 
 
-def hundred_wins(state: CollectionState, driver_item: str, player: int) -> bool:
-    # These are long, make them out of logic. Maybe tie to an option later.
-    return False #return state.has(driver_item, player)
-
-
 def map_mystic_melody(state: CollectionState, map_name: str, player: int) -> bool:
     return (
         state.has("Follower: Mystic Melody", player)
@@ -467,21 +462,18 @@ def set_driver_challenge_location_rules(world: RingRacersWorld) -> None:
         world.get_location("Challenge - Driver: Bark"),
         lambda state:
             map_mystic_melody(state, "Sub-Zero Peak", world.player)
-            or hundred_wins(state, "Driver: Bean", world.player)
     )
 
     set_rule(
         world.get_location("Challenge - Driver: Battle Kukku XV"),
         lambda state:
             map_mystic_melody(state, "Vermilion Vessel", world.player)
-            or hundred_wins(state, "Driver: Tails", world.player)
     )
 
     set_rule(
         world.get_location("Challenge - Driver: Bean"),
         lambda state:
             state.can_reach_region("Tinkerer's Arena", world.player)
-            or hundred_wins(state, "Driver: Bark", world.player)
     )
 
     set_rule(
@@ -500,7 +492,6 @@ def set_driver_challenge_location_rules(world: RingRacersWorld) -> None:
         world.get_location("Challenge - Driver: Blaze"),
         lambda state:
             map_time_attack(state, "Blizzard Peaks", world.player)
-            or hundred_wins(state, "Driver: Silver", world.player)
     )
 
     #
@@ -516,8 +507,7 @@ def set_driver_challenge_location_rules(world: RingRacersWorld) -> None:
     set_rule(
         world.get_location("Challenge - Driver: Caterkiller"),
         lambda state:
-            (state.has("Driver: Dr. Eggman", world.player) and state.can_reach_region("Desert Palace", world.player))
-            or hundred_wins(state, "Driver: Motobug", world.player)
+            state.has("Driver: Dr. Eggman", world.player) and state.can_reach_region("Desert Palace", world.player)
     )
 
     set_rule(
@@ -531,14 +521,12 @@ def set_driver_challenge_location_rules(world: RingRacersWorld) -> None:
         world.get_location("Challenge - Driver: Chaos"),
         lambda state:
             (state.has("Driver: Sonic", world.player) and can_reach_sealed_star(state, world.player))
-            or hundred_wins(state, "Driver: Tikal", world.player)
     )
 
     set_rule(
         world.get_location("Challenge - Driver: Charmy"),
         lambda state:
             map_time_attack(state, "Isolated Island", world.player)
-            or hundred_wins(state, "Driver: Espio", world.player)
     )
 
     set_rule(
@@ -609,7 +597,6 @@ def set_driver_challenge_location_rules(world: RingRacersWorld) -> None:
         world.get_location("Challenge - Driver: Heavy"),
         lambda state:
             map_prison_break(state, "Electra Clacker", world.player)
-            or hundred_wins(state, "Driver: Bomb", world.player)
     )
 
     set_rule(
@@ -665,7 +652,6 @@ def set_driver_challenge_location_rules(world: RingRacersWorld) -> None:
         world.get_location("Challenge - Driver: Metal Knuckles"),
         lambda state:
             state.has("Driver: Tails Doll", world.player)
-            or hundred_wins(state, "Driver: Metal Sonic", world.player)
     )
 
     set_rule(
@@ -706,7 +692,6 @@ def set_driver_challenge_location_rules(world: RingRacersWorld) -> None:
         world.get_location("Challenge - Driver: Rouge"),
         lambda state:
             state.can_reach_region("Security Hall", world.player)
-            or hundred_wins(state, "Driver: Knuckles", world.player)
     )
 
     set_rule(
@@ -719,14 +704,12 @@ def set_driver_challenge_location_rules(world: RingRacersWorld) -> None:
         world.get_location("Challenge - Driver: Shadow"),
         lambda state:
             state.can_reach_region("Lost Colony", world.player)
-            or hundred_wins(state, "Driver: Sonic", world.player)
     )
 
     set_rule(
         world.get_location("Challenge - Driver: Silver"),
         lambda state:
             state.can_reach_region("Mega Collision Chaos", world.player)
-            or hundred_wins(state, "Driver: Blaze", world.player)
     )
 
     set_rule(
@@ -745,7 +728,6 @@ def set_driver_challenge_location_rules(world: RingRacersWorld) -> None:
         world.get_location("Challenge - Driver: Tikal"),
         lambda state:
             map_mystic_melody(state, "Coastal Temple", world.player)
-            or hundred_wins(state, "Driver: Chaos", world.player)
     )
 
     set_rule(
@@ -785,6 +767,99 @@ def set_driver_challenge_location_rules(world: RingRacersWorld) -> None:
             state.has_all(("Driver: Headdy", "Gear 3 + GP Vicious Mode"), world.player)
             and state.can_reach_region("Trap Tower", world.player)
     )
+
+    # Only include the character wins in logic if we nerf them
+    if world.options.character_wins_count > 0:
+        add_rule(
+            world.get_location("Challenge - Driver: Bark"),
+            lambda state:
+                state.has("Driver: Bean", world.player),
+            "or"
+        )
+
+        add_rule(
+            world.get_location("Challenge - Driver: Battle Kukku XV"),
+            lambda state:
+                state.has("Driver: Tails", world.player),
+            "or"
+        )
+
+        add_rule(
+            world.get_location("Challenge - Driver: Bean"),
+            lambda state:
+                state.has("Driver: Bark", world.player),
+            "or"
+        )
+        
+        add_rule(
+            world.get_location("Challenge - Driver: Blaze"),
+            lambda state:
+                state.has("Driver: Silver", world.player),
+            "or"
+        )
+
+        add_rule(
+            world.get_location("Challenge - Driver: Caterkiller"),
+            lambda state:
+                state.has("Driver: Motobug", world.player),
+            "or"
+        )
+
+        add_rule(
+            world.get_location("Challenge - Driver: Chaos"),
+            lambda state:
+                state.has("Driver: Tikal", world.player),
+            "or"
+        )
+
+        add_rule(
+            world.get_location("Challenge - Driver: Charmy"),
+            lambda state:
+                state.has("Driver: Espio", world.player),
+            "or"
+        )
+
+        add_rule(
+            world.get_location("Challenge - Driver: Heavy"),
+            lambda state:
+                state.has("Driver: Bomb", world.player),
+            "or"
+        )
+
+        add_rule(
+            world.get_location("Challenge - Driver: Metal Knuckles"),
+            lambda state:
+                state.has("Driver: Metal Sonic", world.player),
+            "or"
+        )
+
+        add_rule(
+            world.get_location("Challenge - Driver: Rouge"),
+            lambda state:
+                state.has("Driver: Knuckles", world.player),
+            "or"
+        )
+
+        add_rule(
+            world.get_location("Challenge - Driver: Shadow"),
+            lambda state:
+                state.has("Driver: Sonic", world.player),
+            "or"
+        )
+
+        add_rule(
+            world.get_location("Challenge - Driver: Silver"),
+            lambda state:
+                state.has("Driver: Blaze", world.player),
+            "or"
+        )
+
+        add_rule(
+            world.get_location("Challenge - Driver: Tikal"),
+            lambda state:
+                state.has("Driver: Chaos", world.player),
+            "or"
+        )
 
 
 def set_follower_challenge_location_rules(world: RingRacersWorld) -> None:
@@ -1229,7 +1304,7 @@ def set_follower_challenge_location_rules(world: RingRacersWorld) -> None:
     set_rule(
         world.get_location("Challenge - Follower: Boo"),
         lambda state:
-            state.has("Driver: Rogue", world.player)
+            state.has("Driver: Rouge", world.player)
             and state.can_reach_region("Darkvile Castle 1", world.player)
     )
 

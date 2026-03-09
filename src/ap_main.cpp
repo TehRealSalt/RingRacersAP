@@ -40,6 +40,8 @@
 
 boolean g_ap_started;
 
+static const std::string g_ap_world_version = "0.1.0";
+
 static const std::string g_ap_file_legal_chars = "abcdefghijklmnopqrstuvwxyz0123456789-_";
 static const std::string g_ap_file_ext = ".apdat";
 
@@ -53,6 +55,8 @@ extern consvar_t cv_dummy_ap_password;
 
 static srb2::HashMap<INT64, rrap_location_t> g_ap_location_info;
 static srb2::HashMap<INT64, rrap_item_t> g_ap_item_info;
+
+static UINT32 g_character_wins_count = 0;
 
 rrap_location_t::rrap_location_t(INT64 index, srb2::JsonValue json)
 {
@@ -93,18 +97,22 @@ void rrap_location_t::queue_check()
 
 void rrap_location_t::update_displayed_item(srb2::String label, INT64 item_id)
 {
+	/*
 	CONS_Printf(
-		"[AP] Updating location %li display item (label: %s, id: %li)\n",
+		"Updating AP location [%li]'s display item (label: %s, id: %li)\n",
 		_id, label.c_str(), item_id
 	);
+	*/
 
 	if (g_ap_item_info.find(item_id) != g_ap_item_info.end())
 	{
+		// Item is from our world, display it directly
 		_display_item_id = item_id;
 		_display_item_label = g_ap_item_info[item_id].label();
 	}
 	else
 	{
+		// Item is not ours, we can only display the name
 		_display_item_id = 0;
 		_display_item_label = label;
 	}
@@ -334,7 +342,7 @@ void RRAP_LoadArchipelagoJSON(void)
 					throw std::runtime_error(srb2::format("could not find file in '{}'", file_path));
 				}
 
-				CONS_Printf("  Reading JSON @ %s...\n", file_name.c_str());
+				CONS_Printf("  Reading AP JSON @ %s...\n", file_name.c_str());
 				RRAP_LoadArchipelagoJSONLump(wad_id, json_lump_id);
 			}
 		}
@@ -546,6 +554,16 @@ UINT16 RRAP_ItemDisplayColor(rrap_item_t *item)
 	}
 
 	return item->display_color();
+}
+
+UINT32 RRAP_CapCharacterWins(UINT32 input)
+{
+	if (g_character_wins_count <= 0 || input < g_character_wins_count)
+	{
+		return input;
+	}
+
+	return g_character_wins_count;
 }
 
 void RRAP_PopulateChallengeGrid(void)
@@ -1238,8 +1256,9 @@ static void RRAP_GotItemReceived(int64_t item_id, bool should_notify)
 {
 	if (!item_id || g_ap_item_info.find(item_id) == g_ap_item_info.end())
 	{
-		CONS_Printf(
-			" == AP == could not receive invalid item ID [%li]\n",
+		CONS_Alert(
+			CONS_WARNING,
+			"Could not receive invalid AP item ID [%li]\n",
 			item_id
 		);
 		return;
@@ -1251,9 +1270,9 @@ static void RRAP_GotItemReceived(int64_t item_id, bool should_notify)
 	{
 		// TEMP?
 		CONS_Printf(
-			" == AP == GOT ITEM ID [%li]: %s\n",
+			"Got AP item ID [%li]: %s\n",
 			item_id,
-			g_ap_item_info[item_id].label().c_str()
+			g_ap_item_info[item_id].name().c_str()
 		);
 	}
 }
@@ -1262,8 +1281,9 @@ static void RRAP_GotLocationChecked(int64_t location_id)
 {
 	if (g_ap_location_info.find(location_id) == g_ap_location_info.end())
 	{
-		CONS_Printf(
-			" == AP == could not check invalid location ID [%li]\n",
+		CONS_Alert(
+			CONS_WARNING,
+			"Could not check invalid AP location ID [%li]\n",
 			location_id
 		);
 		return;
@@ -1274,19 +1294,13 @@ static void RRAP_GotLocationChecked(int64_t location_id)
 
 static void RRAP_GotLocationInfo(std::vector<AP_NetworkItem> network_items)
 {
-	CONS_Printf(" == AP == got location info packet...\n");
-
 	for (auto& net_item : network_items)
 	{
-		CONS_Printf(
-			" == AP == got location info ID [%li]\n",
-			net_item.location
-		);
-
 		if (g_ap_location_info.find(net_item.location) == g_ap_location_info.end())
 		{
-			CONS_Printf(
-				" == AP == could not set location info for invalid location ID [%li]\n",
+			CONS_Alert(
+				CONS_WARNING,
+				"Could not set location info for invalid AP location ID [%li]\n",
 				net_item.location
 			);
 			return;
@@ -1296,6 +1310,37 @@ static void RRAP_GotLocationInfo(std::vector<AP_NetworkItem> network_items)
 			net_item.itemName, net_item.item
 		);
 	}
+}
+
+static void RRAP_SlotData_APWorldVersion(std::string raw_string)
+{
+	srb2::String ap_room_version = srb2::JsonValue::from_json_string(raw_string).get<srb2::String>();
+
+	// TODO: actually comply with semver instead of doing direct comparison
+	if (g_ap_world_version != ap_room_version)
+	{
+		CONS_Alert(
+			CONS_WARNING,
+			"Our game's version is '%s', while the AP room's version is '%s'. Issues may occur!\n",
+			g_ap_world_version.c_str(),
+			ap_room_version.c_str()
+		);
+	}
+}
+
+static void RRAP_SlotData_CharWinsCount(int wins_count)
+{
+	if (wins_count < 0 || wins_count > 100)
+	{
+		CONS_Alert(
+			CONS_WARNING,
+			"Recieved invalid character_wins_count setting (expected 0 to 100, got %d). Resetting to 0, issues may occur!\n",
+			wins_count
+		);
+		wins_count = 0;
+	}
+
+	g_character_wins_count = wins_count;
 }
 
 static void RRAP_Connect(void)
@@ -1311,6 +1356,9 @@ static void RRAP_Connect(void)
 	AP_SetItemRecvCallback(RRAP_GotItemReceived);
 	AP_SetLocationCheckedCallback(RRAP_GotLocationChecked);
 	AP_SetLocationInfoCallback(RRAP_GotLocationInfo);
+
+	AP_RegisterSlotDataRawCallback("apworld_version", RRAP_SlotData_APWorldVersion);
+	AP_RegisterSlotDataIntCallback("character_wins_count", RRAP_SlotData_CharWinsCount);
 
 	RRAP_InitGamedata();
 
