@@ -101,7 +101,7 @@ void rrap_location_t::queue_check()
 	AP_SendLocationScouts(scout_ids, 0);
 }
 
-void rrap_location_t::update_displayed_item(srb2::String label, INT64 item_id)
+void rrap_location_t::update_displayed_item(srb2::String label, INT64 item_id, srb2::String player)
 {
 	/*
 	CONS_Printf(
@@ -121,6 +121,15 @@ void rrap_location_t::update_displayed_item(srb2::String label, INT64 item_id)
 		// Item is not ours, we can only display the name
 		_display_item_id = 0;
 		_display_item_label = label;
+	}
+
+	if (player == g_ap_slot)
+	{
+		_display_item_player = "";
+	}
+	else
+	{
+		_display_item_player = player;
 	}
 }
 
@@ -444,6 +453,21 @@ char *RRAP_LocationDisplayItemLabel(rrap_location_t *location)
 	}
 
 	return Z_StrDup( location->display_item_label().c_str() );
+}
+
+char *RRAP_LocationDisplayItemPlayer(rrap_location_t *location)
+{
+	if (!location)
+	{
+		return nullptr;
+	}
+
+	if (location->display_item_player().empty())
+	{
+		return nullptr;
+	}
+
+	return Z_StrDup( location->display_item_player().c_str() );
 }
 
 rrap_item_t *RRAP_LocationDisplayItem(rrap_location_t *location)
@@ -1328,7 +1352,9 @@ static void RRAP_GotLocationInfo(std::vector<AP_NetworkItem> network_items)
 		}
 
 		g_ap_location_info[net_item.location].update_displayed_item(
-			net_item.itemName, net_item.item
+			net_item.itemName,
+			net_item.item,
+			net_item.playerName
 		);
 	}
 }

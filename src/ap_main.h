@@ -41,6 +41,7 @@ private:
 
 	srb2::String _label;
 	srb2::String _display_item_label;
+	srb2::String _display_item_player;
 	INT64 _display_item_id;
 
 public:
@@ -57,12 +58,13 @@ public:
 
 	srb2::String label() const { return _label; }
 	srb2::String display_item_label() const { return _display_item_label; }
+	srb2::String display_item_player() const { return _display_item_player; }
 	INT64 display_item_id() const { return _display_item_id; }
 
 	void immediate_check();
 	void queue_check();
 
-	void update_displayed_item(srb2::String label, INT64 item_id);
+	void update_displayed_item(srb2::String label, INT64 item_id, srb2::String player);
 
 	void unqueue_check()
 	{
@@ -149,6 +151,7 @@ boolean RRAP_LocationChecked(rrap_location_t *location);
 boolean RRAP_LocationCheckPending(rrap_location_t *location);
 
 char *RRAP_LocationDisplayItemLabel(rrap_location_t *location);
+char *RRAP_LocationDisplayItemPlayer(rrap_location_t *location);
 rrap_item_t *RRAP_LocationDisplayItem(rrap_location_t *location);
 
 void RRAP_LocationImmediateCheck(rrap_location_t *location);

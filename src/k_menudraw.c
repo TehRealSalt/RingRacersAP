@@ -8598,13 +8598,31 @@ challengedesc:
 				z_str = Z_StrDup("???"); //M_CreateSecretMenuOption(str);
 			}
 
-			offset = V_LSTitleLowStringWidth(z_str, 0) / 2;
-			V_DrawLSTitleLowString(BASEVIDWIDTH/2 - offset, y+6, 0, z_str);
-
+			offset = 0;
 			if (z_str)
 			{
+				offset = V_LSTitleLowStringWidth(z_str, 0) / 2;
+				V_DrawLSTitleLowString(BASEVIDWIDTH/2 - offset, y+6, 0, z_str);
 				Z_Free(z_str);
 				z_str = NULL;
+			}
+
+			char *player_name = RRAP_LocationDisplayItemPlayer(ref);
+			if (player_name)
+			{
+				const char *name = va("... for %s", player_name);
+				int name_len = V_ThinStringWidth(name, 0);
+				int name_x_limit = BASEVIDWIDTH - 8 - name_len;
+				int name_x = min((BASEVIDWIDTH / 2) + offset + 1, name_x_limit);
+
+				V_DrawThinString(
+					name_x, y + 17,
+					V_GRAYMAP,
+					name
+				);
+
+				Z_Free(player_name);
+				player_name = NULL;
 			}
 		}
 	}
