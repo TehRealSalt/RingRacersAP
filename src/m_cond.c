@@ -1865,11 +1865,13 @@ static char *M_BuildConditionTitle(UINT16 map)
 {
 	char *title, *ref;
 
+#if 0 // [RRAP]
 	if ((!(mapheaderinfo[map]->menuflags & LF2_NOVISITNEEDED)
 	// the following is intentionally not MV_BEATEN, just in case the title is for "Finish a round on X"
 	&& !(mapheaderinfo[map]->records.mapvisited & MV_VISITED))
 	|| M_MapLocked(map+1))
 		return Z_StrDup("???");
+#endif
 
 	if (mapheaderinfo[map]->menuttl[0])
 	{
@@ -1899,6 +1901,7 @@ static char *M_BuildConditionTitle(UINT16 map)
 
 static const char *M_GetConditionCharacter(INT32 skin, boolean directlyrequires)
 {
+#if 0
 	// First we check for direct unlock.
 	boolean permitname = R_SkinUsable(-1, skin, false);
 
@@ -1943,6 +1946,11 @@ static const char *M_GetConditionCharacter(INT32 skin, boolean directlyrequires)
 	return (permitname)
 		? skins[skin]->realname
 		: "???";
+#else
+	// [RRAP]
+	(void)directlyrequires;
+	return skins[skin]->realname;
+#endif
 }
 
 static const char *M_GetNthType(UINT8 position)
@@ -1976,10 +1984,12 @@ static const char *M_GetConditionString(condition_t *cn)
 		case UC_ROUNDSPLAYED: // Requires any level completed >= x times
 			if (cn->extrainfo1 == GDGT_MAX)
 				work = "";
+#if 0 // [RRAP]
 			else if (cn->extrainfo1 != GDGT_RACE && cn->extrainfo1 != GDGT_BATTLE // Base gametypes
 				&& (cn->extrainfo1 != GDGT_CUSTOM || M_SecretUnlocked(SECRET_ADDONS, true) == false) // Custom is visible at 0 if addons are unlocked
 				&& gamedata->roundsplayed[cn->extrainfo1] == 0)
 					work = " ???";
+#endif
 			else switch (cn->extrainfo1)
 			{
 				case GDGT_RACE:
@@ -2042,10 +2052,18 @@ static const char *M_GetConditionString(condition_t *cn)
 
 			title = M_BuildConditionTitle(cn->requirement);
 
+#if 0
 			if (cn->type == UC_MAPSPBATTACK)
 				prefix = (M_SecretUnlocked(SECRET_SPBATTACK, true) ? "SPB ATTACK: " : "???: ");
 			else if (cn->type == UC_MAPENCORE)
 				prefix = (M_SecretUnlocked(SECRET_ENCORE, true) ? "ENCORE MODE: " : "???: ");
+#else
+			// [RRAP]
+			if (cn->type == UC_MAPSPBATTACK)
+				prefix = "SPB ATTACK: ";
+			else if (cn->type == UC_MAPENCORE)
+				prefix = "ENCORE MODE: ";
+#endif
 
 			work = "finish a round on";
 			if (cn->type == UC_MAPVISITED)
@@ -2119,16 +2137,16 @@ static const char *M_GetConditionString(condition_t *cn)
 			}
 			else if (cn->extrainfo2 == KARTGP_MASTER)
 			{
-				if (M_SecretUnlocked(SECRET_MASTERMODE, true))
-					speedtext = " on Master";
-				else
-					speedtext = " on ???";
+				// [RRAP]
+				speedtext = " on Master";
 			}
 
 			if (cn->requirement == -1)
 				specialtext = "every Cup";
+#if 0 // [RRAP]
 			else if (M_CupSecondRowLocked() == true && cn->requirement+1 >= CUPMENU_COLUMNS)
 				specialtext = "the first ??? Cups";
+#endif
 
 			if (specialtext != NULL)
 				return va("GRAND PRIX: %s%s %s%s", completetype, orbetter, specialtext, speedtext);
@@ -2142,13 +2160,17 @@ static const char *M_GetConditionString(condition_t *cn)
 		{
 			const char *chaostext, *speedtext = "";
 
+#if 0 // [RRAP]
 			if (!gamedata->everseenspecial)
 				return NULL;
+#endif
 
 			if (cn->type == UC_ALLCHAOS)
 				chaostext = "7 Chaos";
+#if 0 // [RRAP]
 			else if (M_CupSecondRowLocked() == true)
 				return NULL;
+#endif
 			else if (cn->type == UC_ALLSUPER)
 				chaostext = "7 Super";
 			else
@@ -2165,10 +2187,8 @@ static const char *M_GetConditionString(condition_t *cn)
 			}
 			else if (cn->requirement == KARTGP_MASTER)
 			{
-				if (M_SecretUnlocked(SECRET_MASTERMODE, true))
-					speedtext = " on Master";
-				else
-					speedtext = " on ???";
+				// [RRAP]
+				speedtext = " on Master";
 			}
 
 			return va("GRAND PRIX: collect all %s Emeralds%s", chaostext, speedtext);
@@ -2194,10 +2214,18 @@ static const char *M_GetConditionString(condition_t *cn)
 			{
 				case ET_MAP:
 					work = "";
+#if 0
 					if (emblemlocations[i].flags & ME_SPBATTACK)
 						work = (M_SecretUnlocked(SECRET_SPBATTACK, true) ? "SPB ATTACK: " : "???: ");
 					else if (emblemlocations[i].flags & ME_ENCORE)
 						work = (M_SecretUnlocked(SECRET_ENCORE, true) ? "ENCORE MODE: " : "???: ");
+#else
+					// [RRAP]
+					if (emblemlocations[i].flags & ME_SPBATTACK)
+						work = "SPB ATTACK: ";
+					else if (emblemlocations[i].flags & ME_ENCORE)
+						work = "ENCORE MODE: ";
+#endif
 
 					work = va("%s%s %s",
 						work,
@@ -2262,15 +2290,17 @@ static const char *M_GetConditionString(condition_t *cn)
 			return va("INVALID CN RECURSION \"%d\"", cn->requirement);
 
 		case UC_UNLOCKABLE: // Requires unlockable x to be obtained
+#if 0 // [RRAP]
 			return va("get %s",
 				gamedata->unlocked[cn->requirement-1]
 				? unlockables[cn->requirement-1].name
 				: "???");
+#else
+			return va("get %s", unlockables[cn->requirement-1].name);
+#endif
 
 		case UC_UNLOCKPERCENT:
 		{
-			boolean checkavailable = false;
-
 			switch (cn->extrainfo1)
 			{
 				case SECRET_NONE:
@@ -2287,24 +2317,21 @@ static const char *M_GetConditionString(condition_t *cn)
 					break;
 				case SECRET_ALTMUSIC:
 					work = "of alternate music";
-					checkavailable = true;
 					break;
 				case SECRET_SKIN:
 					work = "of Characters";
-					checkavailable = true;
 					break;
 				case SECRET_FOLLOWER:
 					work = "of Followers";
-					checkavailable = true;
 					break;
 				case SECRET_COLOR:
-					work = (gamedata->gotspraycans == 0) ? "of ???" : "of Spray Cans";
-					//checkavailable = true;
+					work = "of Spray Cans";
 					break;
 				default:
 					return va("INVALID CHALLENGE FOR PERCENT \"%d\"", cn->requirement);
 			}
 
+#if 0 // [RRAP]
 			if (checkavailable == true)
 			{
 				for (i = 0; i < MAXUNLOCKABLES; ++i)
@@ -2319,22 +2346,29 @@ static const char *M_GetConditionString(condition_t *cn)
 				if (i == MAXUNLOCKABLES)
 					work = "of ???";
 			}
+#endif
 
 			return va("CHALLENGES: get %u%% %s", cn->requirement, work);
 		}
 
 		case UC_ADDON:
+#if 0 // [RRAP]
 			if (!M_SecretUnlocked(SECRET_ADDONS, true))
 				return NULL;
+#endif
 			return "load a custom addon";
 		case UC_CREDITS:
 			return "watch the developer credits all the way from start to finish";
 		case UC_REPLAY:
 			return "save a replay after finishing a round";
 		case UC_CRASH:
+#if 0 // [RRAP]
 			if (gamedata->evercrashed)
 				return "re-launch the game after a crash";
 			return NULL;
+#else
+			return "re-launch the game after a crash";
+#endif
 		case UC_TUTORIALSKIP:
 			return "successfully skip the Tutorial";
 		case UC_TUTORIALDONE:
@@ -2361,8 +2395,10 @@ static const char *M_GetConditionString(condition_t *cn)
 			if (can_id == 0)
 				return "grab a Spray Can"; // Special case for the head of the list
 
+#if 0 // [RRAP]
 			if (gamedata->spraycans[0].map >= nummapheaders)
 				return NULL; // Don't tease that there are many until you have one
+#endif
 
 			return va("grab %d Spray Cans", can_id + 1);
 		}
@@ -2385,14 +2421,18 @@ static const char *M_GetConditionString(condition_t *cn)
 		case UCRP_PREFIX_GRANDPRIX:
 			return "GRAND PRIX:";
 		case UCRP_PREFIX_TIMEATTACK:
+#if 0 // [RRAP]
 			if (!M_SecretUnlocked(SECRET_TIMEATTACK, true))
 				return NULL;
+#endif
 			return "TIME ATTACK:";
 		case UCRP_PREFIX_PRISONBREAK:
 			return "PRISON BREAK:";
 		case UCRP_PREFIX_SEALEDSTAR:
+#if 0 // [RRAP]
 			if (!gamedata->everseenspecial)
 				return NULL;
+#endif
 			return "SEALED STARS:";
 
 		case UCRP_PREFIX_ISMAP:
@@ -2421,9 +2461,14 @@ static const char *M_GetConditionString(condition_t *cn)
 		case UCRP_HASFOLLOWER:
 			if (cn->requirement < 0 || !followers[cn->requirement].name[0])
 				return va("INVALID FOLLOWER CONDITION \"%d:%d\"", cn->type, cn->requirement);
+#if 0
 			work = (K_FollowerUsable(cn->requirement))
 				? followers[cn->requirement].name
 				: "???";
+#else
+			// [RRAP]
+			work = followers[cn->requirement].name;
+#endif
 			return va("with %s in tow", work);
 		case UCRP_ISDIFFICULTY:
 		{
@@ -2439,10 +2484,8 @@ static const char *M_GetConditionString(condition_t *cn)
 			}
 			else if (cn->requirement == KARTGP_MASTER)
 			{
-				if (M_SecretUnlocked(SECRET_MASTERMODE, true))
-					speedtext = "on Master";
-				else
-					speedtext = "on ???";
+				// [RRAP]
+				speedtext = "on Master";
 			}
 
 			return speedtext;
@@ -2499,18 +2542,26 @@ static const char *M_GetConditionString(condition_t *cn)
 					continue;
 				return va("%s%s %s CUP",
 					completetype, orbetter,
+#if 0
 					(M_CupLocked(cup) ? "???" : cup->realname)
+#else
+					cup->realname // [RRAP]
+#endif
 				);
 			}
 			return va("INVALID CUP CONDITION \"%d:%d\"", cn->type, cn->requirement);
 		}
 		case UCRP_PODIUMEMERALD:
+#if 0 // [RRAP]
 			if (!gamedata->everseenspecial)
 				return "???";
+#endif
 			return "collect the Emerald";
 		case UCRP_PODIUMPRIZE:
+#if 0 // [RRAP]
 			if (!gamedata->everseenspecial)
 				return "???";
+#endif
 			return "collect the prize";
 		case UCRP_PODIUMNOCONTINUES:
 			return "without using any continues";
@@ -2527,8 +2578,10 @@ static const char *M_GetConditionString(condition_t *cn)
 			return "NO CONTEST";
 
 		case UCRP_SMASHUFO:
+#if 0 // [RRAP]
 			if (!gamedata->everseenspecial)
 				return NULL;
+#endif
 			return "smash the UFO Catcher";
 		case UCRP_CHASEDBYSPB:
 			return "while chased by a Self-Propelled Bomb";
@@ -2875,7 +2928,7 @@ char *M_BuildConditionSetString(INT64 ap_location_id)
 		}
 	}
 
-#if 0 // [RRAP] TODO? Probably not necessary for Archipelgo
+#if 0 // [RRAP]
 	if (usedTourney
 		&& unlockables[unlockid].conditionset == CH_FURYBIKE
 		&& gamedata->unlocked[unlockid] == false)
