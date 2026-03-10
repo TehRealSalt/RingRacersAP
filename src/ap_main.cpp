@@ -37,6 +37,11 @@
 #include "z_zone.h"
 #include "k_menu.h"
 #include "m_random.h" // TODO remove this
+#include "v_video.h"
+#include "i_time.h"
+#include "r_main.h"
+#include "i_video.h"
+#include "k_hud.h"
 
 boolean g_ap_started;
 
@@ -52,6 +57,8 @@ static srb2::String g_ap_password = "";
 extern consvar_t cv_dummy_ap_address;
 extern consvar_t cv_dummy_ap_slot;
 extern consvar_t cv_dummy_ap_password;
+
+static srb2::String g_ap_seed = "";
 
 static srb2::HashMap<INT64, rrap_location_t> g_ap_location_info;
 static srb2::HashMap<INT64, rrap_item_t> g_ap_item_info;
@@ -74,7 +81,6 @@ void rrap_location_t::immediate_check()
 
 	if (!_checked)
 	{
-		// TODO: don't set this on reconnect
 		_check_pending = true;
 	}
 
@@ -1176,8 +1182,7 @@ static void RRAP_InitGamedata(void)
 	// Determine name of this session's gamedata.
 	// TODO: Can we get some other game identifier instead?
 	// This has lots of collision risk.
-	std::string gamedata_name = g_ap_slot + "_" + g_ap_address;
-	CONS_Printf("gamedata_name: %s\n", gamedata_name.c_str());
+	std::string gamedata_name = g_ap_slot + "_" + g_ap_seed;
 
 	// Convert to lowercase & discard illegal chars
 	std::transform(
@@ -1189,8 +1194,6 @@ static void RRAP_InitGamedata(void)
 		}
 	);
 
-	CONS_Printf("w/o illegal: %s\n", gamedata_name.c_str());
-
 	const size_t file_name_max = sizeof(gamedatafilename) - g_ap_file_ext.size();
 	if (gamedata_name.size() >= file_name_max)
 	{
@@ -1198,30 +1201,24 @@ static void RRAP_InitGamedata(void)
 		// Clamp it, I guess...
 		gamedata_name.resize(file_name_max - 1);
 	}
-	CONS_Printf("resized: %s\n", gamedata_name.c_str());
 
 	// add extension
 	std::string gamedata_file = gamedata_name + g_ap_file_ext;
-	CONS_Printf("gamedata_file: %s\n", gamedata_file.c_str());
 
 	// Copy to the C code...
 	strlcpy(gamedatafilename, gamedata_file.c_str(), sizeof(gamedatafilename));
 	gamedatafilename[std::min(gamedata_file.size(), sizeof(gamedatafilename) - 1)] = '\0';
-	CONS_Printf("gamedatafilename: %s\n", gamedatafilename);
 
 	strlcpy(timeattackfolder, gamedata_name.c_str(), sizeof(timeattackfolder));
 	timeattackfolder[std::min(gamedata_name.size(), sizeof(timeattackfolder) - 1)] = '\0';
-	CONS_Printf("timeattackfolder: %s\n", timeattackfolder);
 
 	strcpy(savegamename, gamedata_name.c_str());
 	strlcat(savegamename, "%u.ssg", sizeof(savegamename));
 	// can't use sprintf since there is %u in savegamename
 	strcatbf(savegamename, srb2home, PATHSEP);
-	CONS_Printf("savegamename: %s\n", savegamename);
 
 	strcpy(gpbackup, va("gp%s.bkp", gamedata_name.c_str()));
 	strcatbf(gpbackup, srb2home, PATHSEP);
-	CONS_Printf("gpbackup: %s\n", gpbackup);
 
 	refreshdirmenu |= REFRESHDIR_GAMEDATA;
 
@@ -1343,8 +1340,110 @@ static void RRAP_SlotData_CharWinsCount(int wins_count)
 	g_character_wins_count = wins_count;
 }
 
+static void RRAP_DrawConnectionStatus(void)
+{
+	tic_t tick = I_GetTime();
+	int anim_time = ((tick / 4) & 15) + 16;
+	constexpr UINT8 pal_start = 32;
+ 
+	M_DrawGonerBack();
+
+	M_DrawTextBox(BASEVIDWIDTH/2-128-8, BASEVIDHEIGHT-24-8, 32, 1);
+	K_DrawGameControl(BASEVIDWIDTH/2, BASEVIDHEIGHT-24-24, 0, "Press <b_animated> or <x_animated> to abort", 1, HU_FONT, V_YELLOWMAP);
+
+	for (int i = 0; i < 16; i++)
+	{
+		V_DrawFill(
+			(BASEVIDWIDTH / 2 - 128) + (i * 16), BASEVIDHEIGHT - 24,
+			16, 8,
+			pal_start + ((anim_time - i) & 15)
+		);
+	}
+
+	V_DrawCenteredString(BASEVIDWIDTH/2, BASEVIDHEIGHT-16-24, V_YELLOWMAP, "Connecting to Archipelago room...");
+}
+
+static int RRAP_StartupTick(void)
+{
+	AP_RoomInfo room;
+	int room_error = AP_GetRoomInfo(&room);
+	if (!room_error)
+	{
+		g_ap_seed = room.seed_name;
+		return 1;
+	}
+
+	static tic_t old_tic = 0;
+	if (old_tic != I_GetTime())
+	{
+		I_OsPolling();
+
+		// Needs to be updated here for M_DrawEggaChannelAlignable
+		renderdeltatics = FRACUNIT;
+		rendertimefrac = FRACUNIT;
+
+		G_ResetAllDeviceResponding();
+
+		for (; eventtail != eventhead; eventtail = (eventtail+1) & (MAXEVENTS-1))
+		{
+			HandleGamepadDeviceEvents(&events[eventtail]);
+			G_MapEventsToControls(&events[eventtail]);
+		}
+
+#ifdef HAVE_THREADS
+		I_lock_mutex(&k_menu_mutex);
+#endif
+		M_UpdateMenuCMD(0, true, false);
+
+		constexpr UINT8 pid = 0;
+		if (M_MenuBackPressed(pid))
+		{
+			return -1;
+		}
+
+		M_ScreenshotTicker();
+
+#ifdef HAVE_THREADS
+		I_unlock_mutex(k_menu_mutex);
+#endif
+
+		old_tic = I_GetTime();
+
+		RRAP_DrawConnectionStatus();
+
+		I_UpdateNoVsync(); // page flip or blit buffer
+
+#ifdef HWRENDER
+		// Only take screenshots after drawing.
+		if (moviemode && rendermode == render_opengl)
+			M_LegacySaveFrame();
+		if (rendermode == render_opengl && takescreenshot)
+			M_DoLegacyGLScreenShot();
+#endif
+
+		if ((moviemode || takescreenshot) && rendermode == render_soft)
+			I_CaptureVideoFrame();
+
+		S_UpdateSounds();
+		S_UpdateClosedCaptions();
+	}
+	else
+	{
+		I_Sleep(cv_sleep.value);
+		I_UpdateTime();
+	}
+
+	return 0;
+}
+
 static void RRAP_Connect(void)
 {
+	if (g_ap_started)
+	{
+		g_ap_started = false;
+		Command_ExitGame_f();
+	}
+
 	AP_Init(
 		g_ap_address.c_str(),
 		"Dr. Robotnik's Ring Racers",
@@ -1360,16 +1459,30 @@ static void RRAP_Connect(void)
 	AP_RegisterSlotDataRawCallback("apworld_version", RRAP_SlotData_APWorldVersion);
 	AP_RegisterSlotDataIntCallback("character_wins_count", RRAP_SlotData_CharWinsCount);
 
-	RRAP_InitGamedata();
-
 	AP_Start();
-	g_ap_started = true;
 
-	if (gamestate == GS_MENU || gamestate == GS_TITLESCREEN)
+	int result = 0;
+	while (result == 0)
 	{
-		menuactive = false;
-		I_UpdateMouseGrab();
-		COM_BufAddText("playintro");
+		result = RRAP_StartupTick();
+	}
+
+	if (result == 1)
+	{
+		g_ap_started = true;
+		RRAP_InitGamedata();
+
+		if (gamestate == GS_MENU || gamestate == GS_TITLESCREEN)
+		{
+			menuactive = false;
+			I_UpdateMouseGrab();
+			COM_BufAddText("playintro");
+		}
+	}
+	else
+	{
+		// Error / cancel occurred.
+		AP_Shutdown();
 	}
 }
 
