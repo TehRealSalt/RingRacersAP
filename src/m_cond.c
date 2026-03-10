@@ -1342,7 +1342,11 @@ boolean M_CheckCondition(condition_t *cn, player_t *player)
 			return false;
 		}
 		case UC_UNLOCKABLE: // Requires unlockable x to be obtained
-			return gamedata->unlocked[cn->requirement-1];
+		{
+			// [RRAP]
+			rrap_item_t *item = RRAP_GetItem(unlockables[cn->requirement-1].ap_item_id);
+			return RRAP_ItemRecieved(item);
+		}
 		case UC_CONDITIONSET: // requires condition set x to already be achieved
 			return M_Achieved(cn->requirement-1);
 
