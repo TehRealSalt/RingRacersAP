@@ -343,9 +343,11 @@ struct gamedata_t
 	// EMBLEMS COLLECTED
 	boolean collected[MAXEMBLEMS];
 
+#if 0 // [RRAP]
 	// UNLOCKABLES UNLOCKED
 	boolean unlocked[MAXUNLOCKABLES];
 	boolean unlockpending[MAXUNLOCKABLES];
+#endif
 
 	// SPRAYCANS COLLECTED
 	UINT16 numspraycans;

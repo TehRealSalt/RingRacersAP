@@ -392,8 +392,6 @@ void M_ClearStats(void)
 void M_ClearSecrets(void)
 {
 	memset(gamedata->collected, 0, sizeof(gamedata->collected));
-	memset(gamedata->unlocked, 0, sizeof(gamedata->unlocked));
-	memset(gamedata->unlockpending, 0, sizeof(gamedata->unlockpending));
 	memset(netUnlocked, 0, sizeof(netUnlocked));
 	memset(gamedata->achieved, 0, sizeof(gamedata->achieved));
 
@@ -1359,7 +1357,7 @@ boolean M_CheckCondition(condition_t *cn, player_t *player)
 			if (netgame || demo.playback || Playing())
 				return false;
 
-			UINT16 i, unlocked = cn->extrainfo2, total = 0;
+			INT64 i, unlocked = cn->extrainfo2, total = 0;
 
 			// Special case for maps
 			if (cn->extrainfo1 == SECRET_MAP)
@@ -1386,39 +1384,13 @@ boolean M_CheckCondition(condition_t *cn, player_t *player)
 			// Special case for SECRET_COLOR
 			else if (cn->extrainfo1 == SECRET_COLOR)
 			{
+				// [RRAP] TODO: implement
 				total = gamedata->numspraycans;
 				unlocked = gamedata->gotspraycans;
 			}
-			// Special case for raw Challenge count
-			else if (cn->extrainfo1 == SECRET_NONE)
-			{
-				for (i = 0; i < MAXUNLOCKABLES; i++)
-				{
-					if (unlockables[i].type == SECRET_NONE)
-						continue;
-
-					total++;
-
-					if (M_Achieved(unlockables[i].conditionset - 1) == false)
-						continue;
-
-					unlocked++;
-				}
-			}
 			else
 			{
-				for (i = 0; i < MAXUNLOCKABLES; i++)
-				{
-					if (unlockables[i].type != cn->extrainfo1)
-						continue;
-
-					total++;
-
-					if (gamedata->unlocked[i] == false)
-						continue;
-
-					unlocked++;
-				}
+				RRAP_CountItems(cn->extrainfo1, &total, &unlocked);
 			}
 
 			if (!total)
@@ -3380,6 +3352,7 @@ INT32 M_CountMedals(boolean all, boolean extraonly)
 		}
 	}
 
+#if 0 // [RRAP] TODO?
 	// Above but for extramedals
 	for (i = 0; i < MAXUNLOCKABLES; ++i)
 	{
@@ -3389,6 +3362,7 @@ INT32 M_CountMedals(boolean all, boolean extraonly)
 			continue;
 		found++;
 	}
+#endif
 
 	return found;
 }
@@ -3425,6 +3399,7 @@ boolean M_GotEnoughMedals(INT32 number)
 		return true;
 	}
 
+#if 0 // [RRAP] TODO?
 	// Above but for extramedals
 	for (i = 0; i < MAXUNLOCKABLES; ++i)
 	{
@@ -3436,6 +3411,7 @@ boolean M_GotEnoughMedals(INT32 number)
 			continue;
 		return true;
 	}
+#endif
 
 	// Didn't hit our counter!
 	return false;

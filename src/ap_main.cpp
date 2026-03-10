@@ -1160,6 +1160,30 @@ INT64 RRAP_ChallengesMenuRandomFocus(INT32 level)
 	return selection[index];
 }
 
+void RRAP_CountItems(INT32 filter, INT64 *total, INT64 *count)
+{
+	for (auto& [id, item] : g_ap_item_info)
+	{
+		INT32 type = item.display_type();
+		if (type == SECRET_NONE)
+		{
+			continue;
+		}
+
+		if (filter != SECRET_NONE && type != filter)
+		{
+			continue;
+		}
+
+		*total += 1;
+
+		if (item.recieved())
+		{
+			*count += 1;
+		}
+	}
+}
+
 void RRAP_TickMessages(void)
 {
 	if (AP_IsMessagePending())

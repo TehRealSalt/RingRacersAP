@@ -9076,6 +9076,7 @@ static void M_DrawStatsMaps(void)
 			goto bottomarrow;
 	}
 
+#if 0 // [RRAP]
 	// Extra Emblems
 	for (i = 0; i < MAXUNLOCKABLES; i++)
 	{
@@ -9112,6 +9113,8 @@ static void M_DrawStatsMaps(void)
 		if (y >= BASEVIDHEIGHT-STATSSTEP)
 			goto bottomarrow;
 	}
+#endif
+
 bottomarrow:
 	if (dobottomarrow)
 		V_DrawMenuString(10, BASEVIDHEIGHT-20 + (skullAnimCounter/5),

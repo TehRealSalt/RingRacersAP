@@ -97,16 +97,6 @@ void srb2::save_ng_gamedata()
 	{
 		ng.emblems[i] = gamedata->collected[i];
 	}
-	ng.unlockables.resize(MAXUNLOCKABLES, false);
-	for (int i = 0; i < MAXUNLOCKABLES; i++)
-	{
-		ng.unlockables[i] = gamedata->unlocked[i];
-	}
-	ng.unlockpending.resize(MAXUNLOCKABLES, false);
-	for (int i = 0; i < MAXUNLOCKABLES; i++)
-	{
-		ng.unlockpending[i] = gamedata->unlockpending[i];
-	}
 	ng.conditionsets.resize(MAXCONDITIONSETS, false);
 	for (int i = 0; i < MAXCONDITIONSETS; i++)
 	{
@@ -490,18 +480,6 @@ void srb2::load_ng_gamedata()
 	for (size_t i = 0; i < std::min((size_t)MAXEMBLEMS, emblems_size); i++)
 	{
 		gamedata->collected[i] = js.emblems[i];
-	}
-
-	size_t unlocks_size = js.unlockables.size();
-	for (size_t i = 0; i < std::min((size_t)MAXUNLOCKABLES, unlocks_size); i++)
-	{
-		gamedata->unlocked[i] = js.unlockables[i];
-	}
-
-	size_t pending_unlocks_size = js.unlockpending.size();
-	for (size_t i = 0; i < std::min((size_t)MAXUNLOCKABLES, pending_unlocks_size); i++)
-	{
-		gamedata->unlockpending[i] = js.unlockpending[i];
 	}
 
 	size_t conditions_size = js.conditionsets.size();

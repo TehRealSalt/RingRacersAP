@@ -110,11 +110,14 @@ void iter_conditions(F&& f)
 
 void f_tournament()
 {
+#if 0
 	UINT16 i;
 	boolean success = false;
 
-	/*if (modifiedgame)
-		return 0;*/
+	/*
+	if (modifiedgame)
+		return 0;
+	*/
 
 	// Unlock EVERYTHING.
 	for (i = 0; i < MAXUNLOCKABLES; i++)
@@ -193,7 +196,17 @@ void f_tournament()
 			usedTourney = true;
 		}
 	}
-
+#else
+	// [RRAP] I'm not really sure how to best
+	// implement this "temporary" state... so
+	// let's just not.
+	const char *text = M_GetText(
+		"This is the correct password,\n"
+		"but this password has been disabled\n"
+		"for Archipelago -- sorry!\n"
+	);
+#endif
+	
 	M_StartMessage("Tournament Mode", text, NULL, MM_NOTHING, NULL, NULL);
 }
 
@@ -241,7 +254,13 @@ void f_4thgear()
 	CV_SetValue(&cv_4thgear, !cv_4thgear.value);
 	if (cv_4thgear.value)
 	{
-		M_StartMessage("Restraint device compromised!", "Local play sped up to ""\x85""4th Gear!""\x80""\nLet's see what you're made of!\n\n""\x86""No effect in netplay and attack modes.", NULL, MM_NOTHING, NULL, NULL);
+		M_StartMessage(
+			"Restraint device compromised!",
+			"Local play sped up to ""\x85""4th Gear!""\x80""\n"
+			"Let's see what you're made of!\n\n"
+			"\x86""No effect in netplay and attack modes.",
+			NULL, MM_NOTHING, NULL, NULL
+		);
 		S_StartSound(NULL, sfx_gshc4);
 	}
 	else
@@ -255,7 +274,12 @@ void f_levelskull()
 	CV_SetValue(&cv_levelskull, !cv_levelskull.value);
 	if (cv_levelskull.value)
 	{
-		M_StartMessage("It's over for humans!", "CPU difficulty raised to ""\x85""TRUE MAXIMUM!""\x80""\nThis isn't even remotely fair!", NULL, MM_NOTHING, NULL, NULL);
+		M_StartMessage(
+			"It's over for humans!",
+			"CPU difficulty raised to ""\x85""TRUE MAXIMUM!""\x80""\n"
+			"This isn't even remotely fair!",
+			NULL, MM_NOTHING, NULL, NULL
+		);
 		S_StartSound(NULL, sfx_gshdf);
 	}
 	else
@@ -269,6 +293,9 @@ void f_colors()
 	UINT16 i;
 	boolean success = false;
 
+	// [RRAP] TODO
+	// Figure out if we can execute !giveitem
+#if 0
 	for (i = 0; i < MAXUNLOCKABLES; i++)
 	{
 		if (!unlockables[i].conditionset)
@@ -283,6 +310,7 @@ void f_colors()
 		gamedata->unlocked[i] = true;
 		success = true;
 	}
+#endif
 
 	if (success)
 	{
@@ -301,6 +329,9 @@ void f_followers()
 	UINT16 i;
 	boolean success = false;
 
+	// [RRAP] TODO
+	// Figure out if we can execute !giveitem
+#if 0
 	for (i = 0; i < MAXUNLOCKABLES; i++)
 	{
 		if (!unlockables[i].conditionset)
@@ -315,6 +346,7 @@ void f_followers()
 		gamedata->unlocked[i] = true;
 		success = true;
 	}
+#endif
 
 	if (success)
 	{
@@ -333,6 +365,9 @@ void f_maps()
 	UINT16 i;
 	boolean success = false;
 
+	// [RRAP] TODO
+	// Figure out if we can execute !giveitem
+#if 0
 	for (i = 0; i < MAXUNLOCKABLES; i++)
 	{
 		if (!unlockables[i].conditionset)
@@ -361,6 +396,7 @@ void f_maps()
 		success = true;
 	}
 #undef GD_MV_SET
+#endif
 
 	if (success)
 	{
@@ -379,6 +415,9 @@ void f_tutorials()
 	UINT16 i;
 	boolean success = false;
 
+	// [RRAP] TODO
+	// Figure out if we can execute !giveitem
+#if 0
 	for (i = 0; i < MAXUNLOCKABLES; i++)
 	{
 		if (!unlockables[i].conditionset)
@@ -400,6 +439,7 @@ void f_tutorials()
 		gamedata->unlocked[i] = true;
 		success = true;
 	}
+#endif
 
 	if (success)
 	{
@@ -484,6 +524,9 @@ void f_characters()
 	UINT16 i;
 	boolean success = false;
 
+	// [RRAP] TODO
+	// Figure out if we can execute !giveitem
+#if 0
 	for (i = 0; i < MAXUNLOCKABLES; i++)
 	{
 		if (!unlockables[i].conditionset)
@@ -498,6 +541,7 @@ void f_characters()
 		gamedata->unlocked[i] = true;
 		success = true;
 	}
+#endif
 
 	if (success)
 	{
@@ -516,6 +560,9 @@ void f_altmusic()
 	UINT16 i;
 	boolean success = false;
 
+	// [RRAP] TODO
+	// Figure out if we can execute !giveitem
+#if 0
 	for (i = 0; i < MAXUNLOCKABLES; i++)
 	{
 		if (!unlockables[i].conditionset)
@@ -530,6 +577,7 @@ void f_altmusic()
 		gamedata->unlocked[i] = true;
 		success = true;
 	}
+#endif
 
 	if (success)
 	{
@@ -549,6 +597,9 @@ void f_timeattack()
 	boolean success = false;
 	boolean already_have_encore = M_SecretUnlocked(SECRET_ENCORE, true);
 
+	// [RRAP] TODO
+	// Figure out if we can execute !giveitem
+#if 0
 	for (i = 0; i < MAXUNLOCKABLES; i++)
 	{
 		if (!unlockables[i].conditionset)
@@ -567,6 +618,7 @@ void f_timeattack()
 			success = true;
 		}
 	}
+#endif
 
 	if (success)
 	{
@@ -597,6 +649,9 @@ void f_encore()
 		&& M_SecretUnlocked(SECRET_SPECIALATTACK, true)
 	);
 
+	// [RRAP] TODO
+	// Figure out if we can execute !giveitem
+#if 0
 	for (i = 0; i < MAXUNLOCKABLES; i++)
 	{
 		if (!unlockables[i].conditionset)
@@ -613,6 +668,7 @@ void f_encore()
 			success = true;
 		}
 	}
+#endif
 
 	if (success)
 	{
@@ -638,6 +694,9 @@ void f_difficulty()
 	UINT16 i;
 	boolean success = false;
 
+	// [RRAP] TODO
+	// Figure out if we can execute !giveitem
+#if 0
 	for (i = 0; i < MAXUNLOCKABLES; i++)
 	{
 		if (!unlockables[i].conditionset)
@@ -653,6 +712,7 @@ void f_difficulty()
 			success = true;
 		}
 	}
+#endif
 
 	if (success)
 	{
@@ -699,12 +759,16 @@ void f_devmode()
 		return;
 
 	// Just unlock all the things and turn on -debug and console devmode.
+	// [RRAP] TODO
+	// Figure out if we can execute !giveitem
+#if 0
 	for (i = 0; i < MAXUNLOCKABLES; i++)
 	{
 		if (!unlockables[i].conditionset)
 			continue;
 		gamedata->unlocked[i] = true;
 	}
+#endif
 
 	// Unlock all hidden levels.
 	for (i = 0; i < nummapheaders; i++)

@@ -81,7 +81,7 @@ class rrap_item_t
 private:
 	INT64 _id;
 	srb2::String _name;
-	boolean _received;
+	INT32 _received;
 
 	UINT16 _unlockable_id;
 	INT32 _skin_id;
@@ -98,7 +98,8 @@ public:
 
 	INT64 id() const { return _id; }
 	srb2::String name() const { return _name; }
-	boolean recieved() const { return _received; }
+	boolean recieved() const { return (_received > 0); }
+	INT32 recieved_count() const { return _received; }
 
 	UINT16 unlockable_id() const { return _unlockable_id; }
 	INT32 skin_id() const { return _skin_id; }
@@ -111,12 +112,12 @@ public:
 
 	void recieve()
 	{
-		_received = true;
+		_received += 1;
 	}
 
 	void on_clear()
 	{
-		_received = false;
+		_received = 0;
 	}
 };
 
@@ -173,6 +174,7 @@ int RRAP_TestLocations(void);
 INT64 RRAP_GetNextCheckedLocation(boolean canskipchaokeys);
 void RRAP_ChallengesMenuCountPercent(void);
 INT64 RRAP_ChallengesMenuRandomFocus(INT32 level);
+void RRAP_CountItems(INT32 filter, INT64 *total, INT64 *count);
 
 void RRAP_TickMessages(void);
 void RRAP_ConnectFromMenu(int32_t choice);

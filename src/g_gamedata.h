@@ -295,8 +295,10 @@ struct GamedataJson final
 	GamedataPrisonEggPickupsJson prisons;
 	uint32_t tafolderhash;
 	Vector<bool> emblems;
+#if 0
 	Vector<bool> unlockables;
 	Vector<bool> unlockpending;
+#endif
 	Vector<bool> conditionsets;
 	GamedataChallengeGridJson ap_challengegrid; // [RRAP]
 	uint32_t timesBeaten;
@@ -317,8 +319,10 @@ struct GamedataJson final
 		prisons,
 		tafolderhash,
 		emblems,
+#if 0
 		unlockables,
 		unlockpending,
+#endif
 		conditionsets,
 		ap_challengegrid,
 		timesBeaten,
