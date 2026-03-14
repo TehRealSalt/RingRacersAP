@@ -87,10 +87,10 @@ jobs:
             vcpkg-binary-${{ runner.os }}-
 
       - name: Configure
-        run: cmake --preset ${{ matrix.config.cmake_preset }}
+        run: cmake --preset ${{ matrix.config.cmake_preset }} -DRRAP_BUILD_APWORLD=OFF
 
       - name: Build
-        run: cmake --build --preset ${{ matrix.config.cmake_preset }} 
+        run: cmake --build --preset ${{ matrix.config.cmake_preset }}
 
       - name: Upload
         uses: actions/upload-artifact@v6
