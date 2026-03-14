@@ -108,6 +108,9 @@ if("${CMAKE_HOST_SYSTEM_NAME}" STREQUAL Windows)
 	endif()
 endif()
 
+option(RRAP_BUILD_GAME "Create main Ring Racers AP executable" ON)
+if(RRAP_BUILD_GAME)
+
 # Dependencies
 add_subdirectory(thirdparty)
 
@@ -149,9 +152,13 @@ if (SRB2_CONFIG_ENABLE_WEBM_MOVIES)
 	find_package(VorbisEnc REQUIRED)
 endif()
 
+endif(RRAP_BUILD_GAME)
+
 if(${PROJECT_SOURCE_DIR} MATCHES ${PROJECT_BINARY_DIR})
 	message(FATAL_ERROR "In-source builds will bring you a world of pain. Please make a separate directory to invoke CMake from.")
 endif()
+
+if(RRAP_BUILD_GAME)
 
 if ((${SRB2_USE_CCACHE}) AND (${CMAKE_C_COMPILER} MATCHES "clang"))
 	message(WARNING "Using clang and CCache: You may want to set environment variable CCACHE_CPP2=yes to prevent include errors during compile.")
@@ -174,6 +181,8 @@ endif()
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 set(CMAKE_PDB_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 
+endif(RRAP_BUILD_GAME)
+
 # Set EXE names so the assets CMakeLists can refer to its target
 set(SRB2_SDL2_EXE_NAME "" CACHE STRING "Override executable binary output name")
 set(SRB2_SDL2_EXE_SUFFIX "" CACHE STRING "Optional executable suffix, separated by an underscore")
@@ -183,10 +192,14 @@ set(GIT_EXECUTABLE "git" CACHE FILEPATH "Path to git binary")
 # [RRAP] Add apworld files
 add_subdirectory(apworld)
 
+if(RRAP_BUILD_GAME)
+
 include_directories(${CMAKE_CURRENT_BINARY_DIR}/src)
 
 add_subdirectory(src)
 add_subdirectory(assets)
+
+endif(RRAP_BUILD_GAME)
 
 include(GitUtilities)
 
@@ -223,4 +236,7 @@ endif()
 list(APPEND EXE_NAME_PARTS ${SRB2_SDL2_EXE_SUFFIX})
 
 list(JOIN EXE_NAME_PARTS "_" EXE_NAME)
+
+if(RRAP_BUILD_GAME) # [RRAP] keeping the EXE_NAME stuff in case I want to use it for the ap files
 set_target_properties(SRB2SDL2 PROPERTIES OUTPUT_NAME ${EXE_NAME})
+endif(RRAP_BUILD_GAME)
