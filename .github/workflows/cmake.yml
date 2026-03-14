@@ -5,7 +5,7 @@ on:
   pull_request:
 
 jobs:
-  build:
+  build-game:
     strategy:
       matrix:
         config:
@@ -48,6 +48,7 @@ jobs:
             mingw-w64-i686-ninja
             mingw-w64-i686-gcc
             git
+            zip
 
       - name: vcpkg bootstrap cache
         uses: actions/cache@v5
@@ -97,3 +98,38 @@ jobs:
         with:
           name: ${{ matrix.config.label }}
           path: build/${{ matrix.config.cmake_preset }}/bin/
+
+      - name: List build directory
+        run: |
+          cd build
+          pwd
+          ls -R .
+
+  build-apworld:
+    name: APWorld
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Configure
+        run: cmake -B build -DRRAP_BUILD_APWORLD=ON -DRRAP_BUILD_GAME=OFF
+
+      - name: Build
+        run: cmake --build build --target rrap_apworld
+
+      - name: Upload
+        uses: actions/upload-artifact@v6
+        with:
+          name: APWorld
+          path: build/bin/ringracers.apworld
+
+      - name: List build directory
+        run: |
+          cd build
+          pwd
+          ls -R .

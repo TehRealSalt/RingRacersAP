@@ -17,6 +17,7 @@ set(RRAP_ARCHIPELAGO_DATA_STAGING_PATH "${CMAKE_BINARY_DIR}/apworld/staging")
 
 if(RRAP_BUILD_ARCHIPELAGO_PK3)
 	if(NOT ZIP_EXECUTABLE)
+		message(WARNING "zip was not found; archipelago.pk3 cannot be created")
 		add_custom_target(
 			rrap_pk3 ALL
 			COMMENT "zip was not found; archipelago.pk3 cannot be created"
@@ -60,6 +61,7 @@ set(RRAP_APWORLD_EXPORT_FILE "${RRAP_APWORLD_EXPORT_PATH}/ringracers.apworld")
 
 if(RRAP_BUILD_APWORLD)
 	if(NOT ZIP_EXECUTABLE)
+		message(WARNING "zip was not found; ringracers.apworld cannot be created")
 		add_custom_target(
 			rrap_apworld ALL
 			COMMENT "zip was not found; ringracers.apworld cannot be created"
