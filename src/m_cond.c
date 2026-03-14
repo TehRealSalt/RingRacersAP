@@ -1237,7 +1237,11 @@ boolean M_CheckCondition(condition_t *cn, player_t *player)
 			return (gamedata->roundsplayed[cn->extrainfo1] >= (unsigned)cn->requirement);
 		}
 		case UC_TOTALRINGS: // Requires grabbing >= x rings
-			return (gamedata->totalrings >= (unsigned)cn->requirement);
+		{
+			// [RRAP] Nerfed Mail requirement
+			UINT32 rings = min(9999, (unsigned)cn->requirement);
+			return (gamedata->totalrings >= rings);
+		}
 		case UC_TOTALTUMBLETIME: // Requires total tumbling time >= x
 			return (gamedata->totaltumbletime >= (unsigned)cn->requirement);
 		case UC_GAMECLEAR: // Requires game beaten >= x times

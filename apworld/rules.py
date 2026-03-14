@@ -631,9 +631,20 @@ def set_driver_challenge_location_rules(world: RingRacersWorld) -> None:
     #
 
     #
-    # "Challenge - Driver: Mail" is always possible, but should probably
-    # have some logic behind it since it takes a while
+    # "Challenge - Driver: Mail" is always possible by technicality,
+    # but we don't want to expect people to get this logically by
+    # standing inside of of the infinite ring machine for 2 million
+    # years. Requirement was nerfed to 9999, and expect enough cups
+    # to be unlocked to get it naturally. My math is that 200 rings
+    # is on the low end of what you can get in a regular race. So,
+    # we need to be able to finish 50 race maps, which means we
+    # need access to 10 cups.
     #
+    set_rule(
+        world.get_location("Challenge - Driver: Mail"),
+        lambda state:
+            state.has_group("Cups", world.player, 10)
+    )
 
     set_rule(
         world.get_location("Challenge - Driver: Maria"),
