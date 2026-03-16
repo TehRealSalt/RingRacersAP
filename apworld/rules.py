@@ -6,7 +6,7 @@ from typing import TYPE_CHECKING
 from BaseClasses import CollectionState, LocationProgressType
 from worlds.generic.Rules import add_rule, set_rule
 
-from . import regions, items
+from . import regions, items, jsondata
 
 if TYPE_CHECKING:
     from .world import RingRacersWorld
@@ -41,11 +41,7 @@ def map_spb_attack(state: CollectionState, map_name: str, player: int) -> bool:
 
 
 def can_reach_sealed_star(state: CollectionState, player: int) -> bool:
-    for map_name in regions.SPECIAL_MAP_LIST:
-        if (state.can_reach_region(map_name, player)):
-            return True
-
-    return False
+    return state.has("!Sealed Star Reachable", player)
 
 
 def have_all_cups(state: CollectionState, player: int) -> bool:
@@ -136,299 +132,42 @@ def set_all_rules(world: RingRacersWorld) -> None:
     set_completion_condition(world)
 
 
-ENTRANCE_TO_ACCESS_ITEM = {
-    "Cup Select to Ring Cup": "Ring Cup Access",
-    "Cup Select to Sneaker Cup": "Sneaker Cup Access",
-    "Cup Select to Spring Cup": "Spring Cup Access",
-    "Cup Select to Barrier Cup": "Barrier Cup Access",
-    "Cup Select to Invincible Cup": "Invincible Cup Access",
-    "Cup Select to Emerald Cup": "Emerald Cup Access",
-    "Cup Select to Extra Cup": "Extra Cup Access",
-
-    "Cup Select to S.P.B. Cup": "S.P.B. Cup Access",
-    "Cup Select to Rocket Cup": "Rocket Cup Access",
-    "Cup Select to Aqua Cup": "Aqua Cup Access",
-    "Cup Select to Lightning Cup": "Lightning Cup Access",
-    "Cup Select to Flame Cup": "Flame Cup Access",
-    "Cup Select to Super Cup": "Super Cup Access",
-    "Cup Select to Egg Cup": "Egg Cup Access",
-
-    "Cup Select to Goggles Cup": "Goggles Cup Access",
-    "Cup Select to Timer Cup": "Timer Cup Access",
-    "Cup Select to Grow Cup": "Grow Cup Access",
-    "Cup Select to Chao Cup": "Chao Cup Access",
-    "Cup Select to Wing Cup": "Wing Cup Access",
-    "Cup Select to Mega Cup": "Mega Cup Access",
-    "Cup Select to Phantom Cup": "Phantom Cup Access",
-
-    "Cup Select to Flash Cup": "Flash Cup Access",
-    "Cup Select to Swap Cup": "Swap Cup Access",
-    "Cup Select to Shrink Cup": "Shrink Cup Access",
-    "Cup Select to Bomb Cup": "Bomb Cup Access",
-    "Cup Select to Power Cup": "Power Cup Access",
-    "Cup Select to Genesis Cup": "Genesis Cup Access",
-    "Cup Select to Skate Cup": "Skate Cup Access",
-
-    "Cup Select to Recycle Cup A": "Recycle Cup A Access",
-    "Cup Select to Recycle Cup B": "Recycle Cup B Access",
-
-    "Tutorial to Sunbeam Paradise: Playground": "Sunbeam Paradise: Playground Access",
-    "Tutorial to Sunbeam Paradise: Brakes": "Sunbeam Paradise: Brakes Access",
-    "Tutorial to Sunbeam Paradise: Drifting": "Sunbeam Paradise: Drifting Access",
-    "Tutorial to Sunbeam Paradise: Items": "Sunbeam Paradise: Items Access",
-    "Tutorial to Sunbeam Paradise: Springs": "Sunbeam Paradise: Springs Access",
-
-    "Lost & Found to Test Run": "Test Run Access",
-    "Lost & Found to Hidden Palace": "Hidden Palace Access",
-    "Lost & Found to Test Track": "Test Track Access",
-    "Lost & Found to Route 1980": "Route 1980 Access",
-    "Lost & Found to Duel Busters": "Duel Busters Access",
-}
-
-
 def set_all_entrance_rules(world: RingRacersWorld) -> None:
     logging.debug('RingRacers:: Setting entrance rules...')
 
-    # Basic menu access rules
-    set_rule(
-        world.get_entrance("Cup Select to Ring Cup"),
-        lambda state:
-            state.has("Ring Cup Access", world.player)
-    )
+    for index, cup_def in jsondata.rr_cup_defs.items():
+        access_item = cup_def.get("item", None)
+        if access_item:
+            cup_entrance_name = "Cup Select to " + cup_def["label"]
+            set_rule(
+                world.get_entrance(cup_entrance_name),
+                lambda state, item=access_item:
+                    state.has(item, world.player)
+            )
 
-    set_rule(
-        world.get_entrance("Cup Select to Sneaker Cup"),
-        lambda state:
-            state.has("Sneaker Cup Access", world.player)
-    )
+    for index, map_def in jsondata.rr_map_defs.items():
+        access_item = map_def.get("item", None)
+        if access_item:
+            if map_def["type"] == "tutorial":
+                map_entrance_name = "Tutorial to " + map_def["label"]
+            elif map_def.get("item", None):
+                map_entrance_name = "Lost & Found to " + map_def["label"]
+            else:
+                continue
 
-    set_rule(
-        world.get_entrance("Cup Select to Spring Cup"),
-        lambda state:
-            state.has("Spring Cup Access", world.player)
-    )
+            map_entrance = world.get_entrance(map_entrance_name)
+            set_rule(
+                map_entrance,
+                lambda state, item=access_item:
+                    state.has(item, world.player)
+            )
 
-    set_rule(
-        world.get_entrance("Cup Select to Barrier Cup"),
-        lambda state:
-            state.has("Barrier Cup Access", world.player)
-    )
-
-    set_rule(
-        world.get_entrance("Cup Select to Invincible Cup"),
-        lambda state:
-            state.has("Invincible Cup Access", world.player)
-    )
-
-    set_rule(
-        world.get_entrance("Cup Select to Emerald Cup"),
-        lambda state:
-            state.has("Emerald Cup Access", world.player)
-    )
-
-    set_rule(
-        world.get_entrance("Cup Select to Extra Cup"),
-        lambda state:
-            state.has("Extra Cup Access", world.player)
-    )
-
-    set_rule(
-        world.get_entrance("Cup Select to S.P.B. Cup"),
-        lambda state:
-            state.has("S.P.B. Cup Access", world.player)
-    )
-
-    set_rule(
-        world.get_entrance("Cup Select to Rocket Cup"),
-        lambda state:
-            state.has("Rocket Cup Access", world.player)
-    )
-
-    set_rule(
-        world.get_entrance("Cup Select to Aqua Cup"),
-        lambda state:
-            state.has("Aqua Cup Access", world.player)
-    )
-
-    set_rule(
-        world.get_entrance("Cup Select to Lightning Cup"),
-        lambda state:
-            state.has("Lightning Cup Access", world.player)
-    )
-
-    set_rule(
-        world.get_entrance("Cup Select to Flame Cup"),
-        lambda state:
-            state.has("Flame Cup Access", world.player)
-    )
-
-    set_rule(
-        world.get_entrance("Cup Select to Super Cup"),
-        lambda state:
-            state.has("Super Cup Access", world.player)
-    )
-
-    set_rule(
-        world.get_entrance("Cup Select to Egg Cup"),
-        lambda state:
-            state.has("Egg Cup Access", world.player)
-    )
-
-    set_rule(
-        world.get_entrance("Cup Select to Goggles Cup"),
-        lambda state:
-            state.has("Goggles Cup Access", world.player)
-    )
-
-    set_rule(
-        world.get_entrance("Cup Select to Timer Cup"),
-        lambda state:
-            state.has("Timer Cup Access", world.player)
-    )
-
-    set_rule(
-        world.get_entrance("Cup Select to Grow Cup"),
-        lambda state:
-            state.has("Grow Cup Access", world.player)
-    )
-
-    set_rule(
-        world.get_entrance("Cup Select to Chao Cup"),
-        lambda state:
-            state.has("Chao Cup Access", world.player)
-    )
-
-    set_rule(
-        world.get_entrance("Cup Select to Wing Cup"),
-        lambda state:
-            state.has("Wing Cup Access", world.player)
-    )
-
-    set_rule(
-        world.get_entrance("Cup Select to Mega Cup"),
-        lambda state:
-            state.has("Mega Cup Access", world.player)
-    )
-
-    set_rule(
-        world.get_entrance("Cup Select to Phantom Cup"),
-        lambda state:
-            state.has("Phantom Cup Access", world.player)
-    )
-
-    set_rule(
-        world.get_entrance("Cup Select to Flash Cup"),
-        lambda state:
-            state.has("Flash Cup Access", world.player)
-    )
-
-    set_rule(
-        world.get_entrance("Cup Select to Swap Cup"),
-        lambda state:
-            state.has("Swap Cup Access", world.player)
-    )
-
-    set_rule(
-        world.get_entrance("Cup Select to Shrink Cup"),
-        lambda state:
-            state.has("Shrink Cup Access", world.player)
-    )
-
-    set_rule(
-        world.get_entrance("Cup Select to Bomb Cup"),
-        lambda state:
-            state.has("Bomb Cup Access", world.player)
-    )
-
-    set_rule(
-        world.get_entrance("Cup Select to Power Cup"),
-        lambda state:
-            state.has("Power Cup Access", world.player)
-    )
-
-    set_rule(
-        world.get_entrance("Cup Select to Genesis Cup"),
-        lambda state:
-            state.has("Genesis Cup Access", world.player)
-    )
-
-    set_rule(
-        world.get_entrance("Cup Select to Skate Cup"),
-        lambda state:
-            state.has("Skate Cup Access", world.player)
-    )
-
-    set_rule(
-        world.get_entrance("Cup Select to Recycle Cup A"),
-        lambda state:
-            state.has("Recycle Cup A Access", world.player)
-    )
-
-    set_rule(
-        world.get_entrance("Cup Select to Recycle Cup B"),
-        lambda state:
-            state.has("Recycle Cup B Access", world.player)
-    )
-
-    set_rule(
-        world.get_entrance("Tutorial to Sunbeam Paradise: Playground"),
-        lambda state:
-            state.has("Sunbeam Paradise: Playground Access", world.player)
-    )
-
-    set_rule(
-        world.get_entrance("Tutorial to Sunbeam Paradise: Brakes"),
-        lambda state:
-            state.has("Sunbeam Paradise: Brakes Access", world.player)
-    )
-
-    set_rule(
-        world.get_entrance("Tutorial to Sunbeam Paradise: Drifting"),
-        lambda state:
-            state.has("Sunbeam Paradise: Drifting Access", world.player)
-    )
-
-    set_rule(
-        world.get_entrance("Tutorial to Sunbeam Paradise: Items"),
-        lambda state:
-            state.has("Sunbeam Paradise: Items Access", world.player)
-    )
-
-    set_rule(
-        world.get_entrance("Tutorial to Sunbeam Paradise: Springs"),
-        lambda state:
-            state.has("Sunbeam Paradise: Springs Access", world.player)
-    )
-
-    set_rule(
-        world.get_entrance("Lost & Found to Test Run"),
-        lambda state:
-            state.has("Test Run Access", world.player)
-    )
-
-    set_rule(
-        world.get_entrance("Lost & Found to Hidden Palace"),
-        lambda state:
-            state.has("Hidden Palace Access", world.player)
-    )
-
-    set_rule(
-        world.get_entrance("Lost & Found to Test Track"),
-        lambda state:
-            state.has("Test Track Access", world.player)
-    )
-
-    set_rule(
-        world.get_entrance("Lost & Found to Route 1980"),
-        lambda state:
-            state.has("Route 1980 Access", world.player)
-    )
-
-    set_rule(
-        world.get_entrance("Lost & Found to Duel Busters"),
-        lambda state:
-            state.has("Duel Busters Access", world.player)
-    )
+            if not map_def.get("no_visit_needed", False):
+                add_rule(
+                    map_entrance,
+                    lambda state, region=map_def["label"]:
+                        state.can_reach_region(region, world.player)
+                )
 
 
 def set_driver_challenge_location_rules(world: RingRacersWorld) -> None:
@@ -442,7 +181,7 @@ def set_driver_challenge_location_rules(world: RingRacersWorld) -> None:
     set_rule(
         world.get_location("Challenge - Driver: Aigis"),
         lambda state:
-            state.can_reach_region("Operators Overspace", world.player)
+            state.can_reach_region("Operator's Overspace", world.player)
     )
 
     set_rule(
@@ -561,7 +300,7 @@ def set_driver_challenge_location_rules(world: RingRacersWorld) -> None:
     set_rule(
         world.get_location("Challenge - Driver: Emerl"),
         lambda state:
-            state.can_reach_region("Tails Lab", world.player)
+            state.can_reach_region("Tails' Lab", world.player)
     )
 
     #
@@ -1029,7 +768,7 @@ def set_follower_challenge_location_rules(world: RingRacersWorld) -> None:
         world.get_location("Challenge - Follower: Nebula"),
         lambda state:
             state.has("Follower: Tornado", world.player)
-            and state.can_reach_region("Silvercloud Island", world.player)
+            and state.can_reach_region("SilverCloud Island", world.player)
     )
 
     set_rule(
@@ -1428,13 +1167,13 @@ def set_follower_challenge_location_rules(world: RingRacersWorld) -> None:
         world.get_location("Challenge - Follower: Cappy"),
         lambda state:
             state.has("Gear 3 + GP Vicious Mode", world.player)
-            and state.can_reach_region("Recycle Cup B", world.player)
+            and state.can_reach_region("Recycle B Cup", world.player)
     )
 
     set_rule(
         world.get_location("Challenge - Follower: Jetarang"),
         lambda state:
-            state.can_reach_region("Recycle Cup A", world.player)
+            state.can_reach_region("Recycle A Cup", world.player)
     )
 
     set_rule(
@@ -1454,7 +1193,7 @@ def set_follower_challenge_location_rules(world: RingRacersWorld) -> None:
     set_rule(
         world.get_location("Challenge - Follower: Gyro"),
         lambda state:
-            state.can_reach_region("Gravtech Dimension", world.player)
+            state.can_reach_region("Gravtech Dimension 5", world.player)
     )
 
     set_rule(
@@ -1687,7 +1426,7 @@ def set_follower_challenge_location_rules(world: RingRacersWorld) -> None:
     set_rule(
         world.get_location("Challenge - Follower: Ancient Gear"),
         lambda state:
-            state.can_reach_region("Sunbeam Paradise: Playground", world.player)
+            state.can_reach_region("The Egg Carrier: Playground", world.player)
     )
 
 
@@ -1895,13 +1634,13 @@ def set_cup_challenge_location_rules(world: RingRacersWorld) -> None:
     # Again, may need revisited, see Page 2
     #
     set_rule(
-        world.get_location("Challenge - Recycle Cup A"),
+        world.get_location("Challenge - Recycle A Cup"),
         lambda state:
             state.has("Phantom Cup Access", world.player)
     )
 
     set_rule(
-        world.get_location("Challenge - Recycle Cup B"),
+        world.get_location("Challenge - Recycle B Cup"),
         lambda state:
             state.has("Skate Cup Access", world.player)
     )
@@ -2047,4 +1786,4 @@ def set_all_location_rules(world: RingRacersWorld) -> None:
 
 
 def set_completion_condition(world: RingRacersWorld) -> None:
-    world.multiworld.completion_condition[world.player] = lambda state: state.has("Cup Trophy", world.player, 14) # TEMP
+    world.multiworld.completion_condition[world.player] = lambda state: state.has("!Cup Trophy", world.player, 14) # TEMP

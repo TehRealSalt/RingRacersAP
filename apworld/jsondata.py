@@ -15,6 +15,9 @@ location_name_groups: dict[str, list[str]] = {}
 item_name_to_id: dict[str, int] = {}
 item_name_groups: dict[str, list[str]] = {}
 
+rr_cup_defs = {}
+rr_map_defs = {}
+
 def load_all() -> None:
 	# We have a manifest file purely because we can't iterate
 	# a directory using pkgutil. But, defining this comes with
@@ -55,3 +58,13 @@ def load_all() -> None:
 				group_keys = item_json.get("group", None)
 				if group_keys: # TODO: list of keys support
 					item_name_groups.setdefault(str(group_keys), []).append(name)
+
+		cups_json = file_json.get("cups", None)
+		if cups_json:
+			for index_str, cup_json in cups_json.items():
+				rr_cup_defs[index_str] = cup_json
+
+		maps_json = file_json.get("maps", None)
+		if maps_json:
+			for index_str, map_json in maps_json.items():
+				rr_map_defs[index_str] = map_json

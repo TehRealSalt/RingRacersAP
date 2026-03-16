@@ -1,0 +1,311 @@
+{
+	"maps": {
+		"rr_duelbuster": {
+			"label": "Duel Busters",
+			"type": "battle",
+			"medals_prisons": 3,
+			"item": "Duel Busters Access",
+			"no_visit_needed": true
+		},
+		"rr_municipalmeadow": {
+			"label": "Municipal Meadow",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_cdspecialstage1": {
+			"label": "CD Special Stage 1",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_tinkerersarena": {
+			"label": "Tinkerer's Arena",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_tricirclemarina": {
+			"label": "Tricircle Marina",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_mysterygate": {
+			"label": "Mystery Gate",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_rustyrig": {
+			"label": "Rusty Rig",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_marblefoyer": {
+			"label": "Marble Foyer",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_rockworld": {
+			"label": "Rock World",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_world1map": {
+			"label": "World 1 Map",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_cdspecialstage8": {
+			"label": "CD Special Stage 8",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_segasaturn": {
+			"label": "SEGA Saturn",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_electraclacker": {
+			"label": "Electra Clacker",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_thundertop": {
+			"label": "Thunder Top",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_treering": {
+			"label": "Tree Ring",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_frigidcove": {
+			"label": "Frigid Cove",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_gizmobastion": {
+			"label": "Gizmo Bastion",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_carboncrucible": {
+			"label": "Carbon Crucible",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_securityhall": {
+			"label": "Security Hall",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_gemsmuseum": {
+			"label": "Gems Museum",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_mediastudio": {
+			"label": "Media Studio",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_honeycombhollow": {
+			"label": "Honeycomb Hollow",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_wood": {
+			"label": "Wood",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_brawlfort": {
+			"label": "Brawl Fort",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_crystalisland": {
+			"label": "Crystal Island",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_cyberarena": {
+			"label": "Cyber Arena",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_neonresort": {
+			"label": "Neon Resort",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_meteorherd": {
+			"label": "Meteor Herd",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_deatheggseye": {
+			"label": "Death Egg's Eye",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_tailslab": {
+			"label": "Tails' Lab",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_powerplant": {
+			"label": "Power Plant",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_cityskyline": {
+			"label": "City Skyline",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_vantablackatrium": {
+			"label": "Vantablack Atrium",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_deadsimple": {
+			"label": "Dead Simple",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_martianmatrix": {
+			"label": "Martian Matrix",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_darkchaogarden": {
+			"label": "Dark Chao Garden",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_herochaogarden": {
+			"label": "Hero Chao Garden",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_whirlwaters": {
+			"label": "Whirl Waters",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_delugedmetroplex": {
+			"label": "Deluged Metroplex",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_megaemeraldbeach": {
+			"label": "Mega Emerald Beach",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_megalabyrinth": {
+			"label": "Mega Labyrinth",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_fungaldimension": {
+			"label": "Fungal Dimension",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_astraldimension": {
+			"label": "Astral Dimension",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_chaosseraph": {
+			"label": "Chaos Seraph",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_toykingdom": {
+			"label": "Toy Kingdom",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_aquaticcathedral1": {
+			"label": "Aquatic Cathedral 1",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_aquaticcathedral2": {
+			"label": "Aquatic Cathedral 2",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_frostycourtyard": {
+			"label": "Frosty Courtyard",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_abyssgate": {
+			"label": "Abyss Gate",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_sonicsschoolhouse": {
+			"label": "Sonic's Schoolhouse",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_recordattack": {
+			"label": "Record Attack",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_peanutpalace": {
+			"label": "Peanut Palace",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_hydroplant": {
+			"label": "Hydro Plant",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_megametropolis": {
+			"label": "Mega Metropolis",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_megamarble": {
+			"label": "Mega Marble",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_thunderlab": {
+			"label": "Thunder Lab",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_maligneggshrine": {
+			"label": "Malign Eggshrine",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_srb2meadowmatch": {
+			"label": "SRB2 Meadow Match",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_armoredarmadillo": {
+			"label": "Armored Armadillo",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_cluckyfarms": {
+			"label": "Clucky Farms",
+			"type": "battle",
+			"medals_prisons": 3
+		},
+		"rr_driedbattledune": {
+			"label": "Dried Battledune",
+			"type": "battle",
+			"medals_prisons": 3
+		}
+	}
+}

@@ -1,0 +1,78 @@
+{
+	"maps": {
+		"rr_sealedstarbalconies": {
+			"label": "Sealed Star 1: Balconies",
+			"label_short": "Balconies",
+			"type": "special"
+		},
+		"rr_sealedstarchurch": {
+			"label": "Sealed Star 2: Church",
+			"label_short": "Church",
+			"type": "special"
+		},
+		"rr_sealedstarcourtyard": {
+			"label": "Sealed Star 3: Courtyard",
+			"label_short": "Courtyard",
+			"type": "special"
+		},
+		"rr_sealedstarvilla": {
+			"label": "Sealed Star 4: Villa",
+			"label_short": "Villa",
+			"type": "special"
+		},
+		"rr_sealedstarvenice": {
+			"label": "Sealed Star 5: Venice",
+			"label_short": "Venice",
+			"type": "special"
+		},
+		"rr_sealedstarspikes": {
+			"label": "Sealed Star 6: Spikes",
+			"label_short": "Spikes",
+			"type": "special"
+		},
+		"rr_sealedstarfountain": {
+			"label": "Sealed Star 7: Fountain",
+			"label_short": "Fountain",
+			"type": "special"
+		},
+		"rr_sealedstargallery": {
+			"label": "Sealed Star 8: Gallery",
+			"label_short": "Gallery",
+			"type": "special"
+		},
+		"rr_sealedstaralley": {
+			"label": "Sealed Star 9: Alley",
+			"label_short": "Alley",
+			"type": "special"
+		},
+		"rr_sealedstarsteeple": {
+			"label": "Sealed Star 10: Steeple",
+			"label_short": "Steeple",
+			"type": "special"
+		},
+		"rr_sealedstarrooftops": {
+			"label": "Sealed Star 11: Rooftops",
+			"label_short": "Rooftops",
+			"type": "special"
+		},
+		"rr_sealedstarroulette": {
+			"label": "Sealed Star 12: Roulette",
+			"label_short": "Roulette",
+			"type": "special"
+		},
+		"rr_sealedstartowers": {
+			"label": "Sealed Star 13: Towers",
+			"label_short": "Towers",
+			"type": "special"
+		},
+		"rr_sealedstaratlantis": {
+			"label": "Sealed Star 14: Atlantis",
+			"label_short": "Atlantis",
+			"type": "special"
+		},
+		"rr_adventureexample": {
+			"label": "Adventure Example",
+			"type": "versus"
+		}
+	}
+}

@@ -155,14 +155,14 @@
 			"big_tile": true
 		},
 		"698": {
-			"name": "Challenge - Recycle Cup A",
-			"label": "Recycle Cup A",
+			"name": "Challenge - Recycle A Cup",
+			"label": "Recycle A Cup",
 			"condition_set": 698,
 			"big_tile": true
 		},
 		"699": {
-			"name": "Challenge - Recycle Cup B",
-			"label": "Recycle Cup B",
+			"name": "Challenge - Recycle B Cup",
+			"label": "Recycle B Cup",
 			"condition_set": 699,
 			"big_tile": true
 		}
@@ -393,16 +393,16 @@
 			"icon": "UN_RRBN"
 		},
 		"698": {
-			"name": "Recycle Cup A Access",
-			"label": "Recycle Cup A",
+			"name": "Recycle A Cup Access",
+			"label": "Recycle A Cup",
 			"unlockable": 698,
 			"cup": "RR_Recycle_A",
 			"group": "Cups",
 			"icon": "UN_RRCA"
 		},
 		"699": {
-			"name": "Recycle Cup B Access",
-			"label": "Recycle Cup B",
+			"name": "Recycle B Cup Access",
+			"label": "Recycle B Cup",
 			"unlockable": 699,
 			"cup": "RR_Recycle_B",
 			"group": "Cups",

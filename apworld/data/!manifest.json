@@ -1,5 +1,10 @@
 {
   "files": [
+    "cups.json",
+    "maps_race.json",
+    "maps_battle.json",
+    "maps_special.json",
+    "maps_tutorial.json",
     "starting_drivers.json",
     "challenges_drivers.json",
     "challenges_followers.json",

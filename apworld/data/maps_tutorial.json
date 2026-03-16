@@ -1,0 +1,50 @@
+{
+	"maps": {
+		"rr_sunbeamparadiseplayground": {
+			"label": "The Egg Carrier: Playground",
+			"label_short": "Playground",
+			"type": "tutorial",
+			"item": "The Egg Carrier: Playground Access",
+			"no_visit_needed": true
+		},
+		"rr_sunbeamparadisecontrols": {
+			"label": "Sunbeam Paradise: Controls",
+			"label_short": "Controls",
+			"type": "tutorial",
+			"no_visit_needed": true
+		},
+		"rr_sunbeamparadiserings": {
+			"label": "Sunbeam Paradise: Rings",
+			"label_short": "Rings",
+			"type": "tutorial"
+		},
+		"rr_sunbeamparadisebrakes": {
+			"label": "Sunbeam Paradise: Brakes",
+			"label_short": "Brakes",
+			"type": "tutorial",
+			"item": "Sunbeam Paradise: Brakes Access",
+			"no_visit_needed": true
+		},
+		"rr_sunbeamparadisedrifting": {
+			"label": "Sunbeam Paradise: Drifting",
+			"label_short": "Drifting",
+			"type": "tutorial",
+			"item": "Sunbeam Paradise: Drifting Access",
+			"no_visit_needed": true
+		},
+		"rr_sunbeamparadiseitems": {
+			"label": "Sunbeam Paradise: Items",
+			"label_short": "Items",
+			"type": "tutorial",
+			"item": "Sunbeam Paradise: Items Access",
+			"no_visit_needed": true
+		},
+		"rr_sunbeamparadisesprings": {
+			"label": "Sunbeam Paradise: Springs",
+			"label_short": "Springs",
+			"type": "tutorial",
+			"item": "Sunbeam Paradise: Springs Access",
+			"no_visit_needed": true
+		}
+	}
+}
