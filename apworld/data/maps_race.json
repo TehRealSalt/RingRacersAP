@@ -1,0 +1,925 @@
+{
+	"maps": {
+		"rr_testrun": {
+			"label": "Test Run",
+			"type": "0",
+			"item": "Test Run Access",
+			"no_visit_needed": true
+		},
+		"rr_testtrack": {
+			"label": "Test Track",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1,
+			"item": "Test Track Access"
+		},
+		"rr_robotnikcoaster": {
+			"label": "Robotnik Coaster",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_northerndistrict": {
+			"label": "Northern District",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_paniccity": {
+			"label": "Panic City",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_sonicspeedway": {
+			"label": "Sonic Speedway",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_greenhills": {
+			"label": "Green Hills",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_emeraldcoast": {
+			"label": "Emerald Coast",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_stormrig": {
+			"label": "Storm Rig",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_lucidpass": {
+			"label": "Lucid Pass",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_autumnring": {
+			"label": "Autumn Ring",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_witheringchateau": {
+			"label": "Withering Chateau",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_popcornworkshop": {
+			"label": "Popcorn Workshop",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_sundaedrive": {
+			"label": "Sundae Drive",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_cadillaccascade": {
+			"label": "Cadillac Cascade",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_opulence": {
+			"label": "Opulence",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_rumbleridge": {
+			"label": "Rumble Ridge",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_angelisland": {
+			"label": "Angel Island",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_roastedruins": {
+			"label": "Roasted Ruins",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_obsidianoasis": {
+			"label": "Obsidian Oasis",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_miragesaloon": {
+			"label": "Mirage Saloon",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_regalruin": {
+			"label": "Regal Ruin",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_isolatedisland": {
+			"label": "Isolated Island",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_gigapolis": {
+			"label": "Gigapolis",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_darkvilecastle1": {
+			"label": "Darkvile Castle 1",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_bronzelake": {
+			"label": "Bronze Lake",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_collisionchaos": {
+			"label": "Collision Chaos",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_emeraldhill": {
+			"label": "Emerald Hill",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_azurecity": {
+			"label": "Azure City",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_gustplanet": {
+			"label": "Gust Planet",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_mysticcave": {
+			"label": "Mystic Cave",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_joypolis": {
+			"label": "Joypolis",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_hiddenpalace": {
+			"label": "Hidden Palace",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1,
+			"item": "Hidden Palace Access"
+		},
+		"rr_hilltop": {
+			"label": "Hill Top",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_marblegarden": {
+			"label": "Marble Garden",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_silvercloudisland": {
+			"label": "SilverCloud Island",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_subzeropeak": {
+			"label": "Sub-Zero Peak",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_launchbase": {
+			"label": "Launch Base",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_azurelake": {
+			"label": "Azure Lake",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_balloonpark": {
+			"label": "Balloon Park",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_chromegadget": {
+			"label": "Chrome Gadget",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_desertpalace": {
+			"label": "Desert Palace",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_endlessmine": {
+			"label": "Endless Mine 1",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_hardboiledstadium": {
+			"label": "Hard-Boiled Stadium",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_hardhathavoc": {
+			"label": "Hardhat Havoc",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_pressgarden": {
+			"label": "Press Garden",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_picopark": {
+			"label": "Pico Park",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_cityescape": {
+			"label": "City Escape",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_palmtreepanic": {
+			"label": "Palmtree Panic",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_darkvilecastle2": {
+			"label": "Darkvile Castle 2",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_scarletgardens": {
+			"label": "Scarlet Gardens",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_motobugmotorway": {
+			"label": "Motobug Motorway",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_starlight": {
+			"label": "Star Light",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_metropolis": {
+			"label": "Metropolis",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_frozenproduction": {
+			"label": "Frozen Production",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_aqueductcrystal": {
+			"label": "Aqueduct Crystal",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_novashore": {
+			"label": "Nova Shore",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_hydrocity": {
+			"label": "Hydro City",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_traptower": {
+			"label": "Trap Tower",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_diamonddust": {
+			"label": "Diamond Dust",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_bluemountain1": {
+			"label": "Blue Mountain 1",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_bluemountain2": {
+			"label": "Blue Mountain 2",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_speedhighway": {
+			"label": "Speed Highway",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_carnivalnight": {
+			"label": "Carnival Night",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_virtualhighway": {
+			"label": "Virtual Highway",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_route1980": {
+			"label": "Route 1980",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1,
+			"item": "Route 1980 Access"
+		},
+		"rr_darkfortress": {
+			"label": "Dark Fortress",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_springyard": {
+			"label": "Spring Yard",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_labyrinth": {
+			"label": "Labyrinth",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_hotshelter": {
+			"label": "Hot Shelter",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_skysanctuary": {
+			"label": "Sky Sanctuary",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_lostcolony": {
+			"label": "Lost Colony",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_deathegg": {
+			"label": "Death Egg",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_765stadium": {
+			"label": "765 Stadium",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_skyscraperleaps": {
+			"label": "Skyscraper Leaps",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_greentriangle": {
+			"label": "Green Triangle",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_zonedcity": {
+			"label": "Zoned City",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_sunsethill": {
+			"label": "Sunset Hill",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_savannahcitadel": {
+			"label": "Savannah Citadel",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_umbrellarushwinds": {
+			"label": "Umbrella Rushwinds",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_avantgarden": {
+			"label": "Avant Garden",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_bigtimebreakdown": {
+			"label": "Bigtime Breakdown",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_vantablackviolet": {
+			"label": "Vantablack Violet",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_chaostube": {
+			"label": "Chaos Chute",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_dimensiondisaster": {
+			"label": "Dimension Disaster",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_auroraatoll": {
+			"label": "Aurora Atoll",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_daytonaspeedway": {
+			"label": "Daytona Speedway",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_turquoisehill": {
+			"label": "Turquoise Hill",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_weisswaterway": {
+			"label": "Weiss Waterway",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_iceparadise": {
+			"label": "Ice Paradise",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_sunsplashedgetaway": {
+			"label": "Sunsplashed Getaway",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_faefalls": {
+			"label": "Fae Falls",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_azureaxiom": {
+			"label": "Azure Axiom",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_hanagumihall": {
+			"label": "Hanagumi Hall",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_crispycanyon": {
+			"label": "Crispy Canyon",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_aerialhighlands": {
+			"label": "Aerial Highlands",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_technologytundra": {
+			"label": "Technology Tundra",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_operatorsoverspace": {
+			"label": "Operator's Overspace",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_megagreenhill": {
+			"label": "Mega Green Hill",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_megabridge": {
+			"label": "Mega Bridge",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_megalavareef": {
+			"label": "Mega Lava Reef",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_megaicecap": {
+			"label": "Mega Ice Cap",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_megascrapbrain": {
+			"label": "Mega Scrap Brain",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_cloudtopdimension": {
+			"label": "Cloudtop Dimension 4",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_nightfalldimension": {
+			"label": "Nightfall Dimension 2",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_wavecrashdimension": {
+			"label": "Wavecrash Dimension 1",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_voiddancedimension": {
+			"label": "Voiddance Dimension 3",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_gravtechdimension": {
+			"label": "Gravtech Dimension 5",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_espressolane": {
+			"label": "Espresso Lane",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_meltymanor": {
+			"label": "Melty Manor",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_leafstorm": {
+			"label": "Leaf Storm",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_lakemargorite": {
+			"label": "Lake Margorite",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_endlessmine2": {
+			"label": "Endless Mine 2",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_cyanbelltower": {
+			"label": "Cyan Belltower",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_quartzquadrant": {
+			"label": "Quartz Quadrant",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_aquatunnel": {
+			"label": "Aqua Tunnel",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_waterpalace": {
+			"label": "Water Palace",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_finalfall": {
+			"label": "Final Fall",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_hauntedship": {
+			"label": "Haunted Ship",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_robotnikwinter": {
+			"label": "Robotnik Winter",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_dragonspiresewer1": {
+			"label": "Dragonspire Sewer 1",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_abyssgarden": {
+			"label": "Abyss Garden",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_blizzardpeaks": {
+			"label": "Blizzard Peaks",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_vermilionvessel": {
+			"label": "Vermilion Vessel",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_dragonspiresewer2": {
+			"label": "Dragonspire Sewer 2",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_chemicalfacility": {
+			"label": "Chemical Facility",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_coastaltemple": {
+			"label": "Coastal Temple",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_monkeymall": {
+			"label": "Monkey Mall",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_ramppark": {
+			"label": "Ramp Park",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_adventangel": {
+			"label": "Advent Angel",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_pestilence": {
+			"label": "Pestilence",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_crimsoncore": {
+			"label": "Crimson Core",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_lasvegas": {
+			"label": "Las Vegas",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_megacollisionchaos": {
+			"label": "Mega Collision Chaos",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_megastarlight": {
+			"label": "Mega Star Light",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_megasandopolis": {
+			"label": "Mega Sandopolis",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_megaaqualake": {
+			"label": "Mega Aqua Lake",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_megaflyingbattery": {
+			"label": "Mega Flying Battery",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_skybabylon": {
+			"label": "Sky Babylon",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_kodachromevoid": {
+			"label": "Kodachrome Void",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_lavendershrine": {
+			"label": "Lavender Shrine",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_hotcrater": {
+			"label": "Hot Crater",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_thunderpiston": {
+			"label": "Thunder Piston",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_srb2frozennight": {
+			"label": "SRB2 Frozen Night",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_barrenbadlands": {
+			"label": "Barren Badlands",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_shufflesquare": {
+			"label": "Shuffle Square",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_bluemountainclassic": {
+			"label": "Blue Mountain Classic",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_angelarrowclassic": {
+			"label": "Angel Arrow Classic",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_cadillaccanyonclassic": {
+			"label": "Cadillac Canyon Classic",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_diamonddustclassic": {
+			"label": "Diamond Dust Classic",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_blizzardpeaksclassic": {
+			"label": "Blizzard Peaks Classic",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_launchbaseclassic": {
+			"label": "Launch Base Classic",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		},
+		"rr_lavendershrineclassic": {
+			"label": "Lavender Shrine Classic",
+			"type": "race",
+			"medals_time": 3,
+			"medals_spb": 1
+		}
+	}
+}

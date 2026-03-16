@@ -31,8 +31,12 @@ soc = {}
 
 class SOCWork:
 	def __init__(self, obj_type, key):
+		print(f"SOCWORK key: {key}")
 		self.obj_type = obj_type.lower()
-		self.key = key.lower()
+		if key:
+			self.key = key.lower()
+		else:
+			self.key = None
 		self.obj = {}
 
 	def set_val(self, key, val):
@@ -76,9 +80,20 @@ for line in lines:
 	parts = line.split()
 	if "=" not in line:
 		commit_working_obj()
-		assert len(parts) == 2
-		key, value = parts[0], parts[1]
-		working = SOCWork(parts[0], parts[1])
+
+		if len(parts) < 1:
+			continue
+
+		key = parts[0]
+		print(key)
+
+		try:
+			value = parts[1]
+		except:
+			value = None
+		print(value)
+
+		working = SOCWork(key, value)
 	elif working is not None:
 		key, value = [i.strip() for i in line.split("=", 1)]
 		working.set_val(key.lower(), value)
@@ -95,7 +110,7 @@ print(json.dumps(soc, indent="\t", allow_nan=False))
 # and into structures better suited for AP
 logic = {}
 
-for id_str, condition_set in soc["conditionset"].items():
+for id_str, condition_set in soc.get("conditionset", {}).items():
 	id_int = int(id_str)
 
 	logic_set = []
@@ -122,7 +137,7 @@ items = {}
 num_colors = 0
 num_cds = 0
 
-for id_str, unlockable in soc["unlockable"].items():
+for id_str, unlockable in soc.get("unlockable", {}).items():
 	type_name = unlockable["type"].lower()
 	if type_name == "skin":
 		id_int = int(id_str)
@@ -295,8 +310,110 @@ for id_str, unlockable in soc["unlockable"].items():
 		items[id_int] = item
 
 
+cups = {}
+maps = {}
+
+for id_str, cup_data in soc.get("cup", {}).items():
+	cup = {}
+
+	race_map_list = cup_data["levellist"].lower().split(",")
+	battle_map_list = cup_data["bonusgame"].lower().split(",")
+	special_map = cup_data["specialstage"].lower()
+
+	bonus_modulo = max(1, (len(race_map_list) + 1) // (len(battle_map_list) + 1));
+
+	all_maps = list()
+	race_index = 0
+	bonus_index = 0
+	while race_index < len(race_map_list):
+		for i in range(bonus_modulo):
+			all_maps.append(race_map_list[race_index])
+			race_index += 1
+
+			if race_index >= len(race_map_list):
+				break
+
+		if (race_index < len(race_map_list) and bonus_index < len(battle_map_list)):
+			all_maps.append(battle_map_list[bonus_index])
+			bonus_index += 1
+
+	all_maps.append(special_map)
+
+	real_name = cup_data.get("realname", "")
+	if not real_name:
+		real_name = id_str.split("_", 1)[1]
+
+	has_credits = bool(cup_data.get("playcredits", False))
+
+	cup["label"] = real_name
+	cup["map_list"] = all_maps
+	if has_credits:
+		cup["has_credits"] = has_credits
+
+	cups[id_str] = cup
+
+
+for id_str, map_data in soc.get("level", {}).items():
+	cur_map = {}
+
+	real_name = map_data.get("levelname", "")
+	zone_title = map_data.get("zonetitle", "")
+	if zone_title:
+		real_name += " " + zone_title
+	act_num = map_data.get("act", "")
+	if act_num:
+		real_name += " " + act_num
+
+	short_name = real_name
+
+	extra_title = map_data.get("menutitle", "")
+	if extra_title:
+		real_name += ": " + extra_title
+		short_name = extra_title
+
+	map_type = map_data["typeoflevel"].lower()
+	time_attack_medals = 0
+	prison_break_medals = 0
+	spb_attack_medals = 0
+
+	attached_locations = []
+	if map_type == "race":
+		time_attack_medals += 3 # Skip platinum (for now?)
+		spb_attack_medals += 1
+		#attached_locations += "Spray Can" # TODO
+	elif map_type == "battle":
+		prison_break_medals += 3 # Skip platinum (for now?)
+		#attached_locations += "Prison CD" # TODO
+
+	# There isn't a way to detect Mystic Melody shrine
+	# from the header alone, so there is some required
+	# manual clean-up
+
+	cur_map["label"] = real_name
+	if short_name != real_name:
+		cur_map["label_short"] = short_name
+	cur_map["type"] = map_type
+
+	if time_attack_medals:
+		cur_map["medals_time"] = time_attack_medals
+
+	if spb_attack_medals:
+		cur_map["medals_spb"] = spb_attack_medals
+
+	if prison_break_medals:
+		cur_map["medals_prisons"] = prison_break_medals
+
+	if len(attached_locations):
+		cur_map["locations"] = attached_locations
+		# TODO: create locations
+
+	maps[id_str] = cur_map
+
+
 all_output = {
 	#"logic": logic,
+	"cups": cups,
+	"maps": maps,
 	"locations": locations,
 	"items": items
 }
