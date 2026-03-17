@@ -23,9 +23,13 @@ if(RRAP_BUILD_ARCHIPELAGO_PK3)
 			COMMENT "zip was not found; archipelago.pk3 cannot be created"
 		)
 	else()
+		file(GLOB_RECURSE PK3_SOURCES
+			"${RRAP_ARCHIPELAGO_DATA_SOURCE_PATH}/*"
+		)
+
 		add_custom_command(
 			COMMENT "Staging archipelago.pk3"
-			DEPENDS "${RRAP_ARCHIPELAGO_DATA_SOURCE_PATH}"
+			DEPENDS ${PK3_SOURCES}
 			WORKING_DIRECTORY "${CMAKE_BINARY_DIR}"
 			OUTPUT "${RRAP_ARCHIPELAGO_DATA_STAGING_PATH}/.prepped"
 
@@ -69,20 +73,20 @@ if(RRAP_BUILD_APWORLD)
 			COMMENT "zip was not found; ringracers.apworld cannot be created"
 		)
 	else()
+		parse_apignore(
+			ROOT "${RRAP_APWORLD_SOURCE_PATH}"
+			OUT_LIST APWORLD_FILE_LIST
+		)
+
 		add_custom_command(
 			COMMENT "Staging ringracers.apworld"
-			DEPENDS "${RRAP_APWORLD_SOURCE_PATH}"
+			DEPENDS ${APWORLD_FILE_LIST}
 			WORKING_DIRECTORY "${CMAKE_BINARY_DIR}"
 			OUTPUT "${RRAP_APWORLD_STAGING_PATH}/.prepped"
 
 			COMMAND ${CMAKE_COMMAND} -E remove_directory "${RRAP_APWORLD_STAGING_PATH}"
 			COMMAND ${CMAKE_COMMAND} -E make_directory "${RRAP_APWORLD_STAGING_PATH}/ringracers"
 			COMMAND ${CMAKE_COMMAND} -E touch "${RRAP_APWORLD_STAGING_PATH}/.prepped"
-		)
-
-		parse_apignore(
-			ROOT "${RRAP_APWORLD_SOURCE_PATH}"
-    		OUT_LIST APWORLD_FILE_LIST
 		)
 
 		set(FILE_COMMANDS "")
