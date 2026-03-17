@@ -90,8 +90,7 @@ def can_reach_all_emeralds(state: CollectionState, player: int) -> bool:
 
 
 def enough_medals(state: CollectionState, count: int, player: int) -> bool:
-    # TODO: medals as items are not implemented yet
-    return False
+    return state.has("!Medal", player, count)
 
 
 def have_all_guest_drivers(state: CollectionState, player: int) -> bool:

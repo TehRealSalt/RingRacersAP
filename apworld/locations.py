@@ -43,11 +43,47 @@ def create_events(world: RingRacersWorld) -> None:
         )
 
     for index, map_def in jsondata.rr_map_defs.items():
-        if map_def["type"] == "special":
-            map_name = map_def["label"]
-            map_region = world.get_region(map_name)
-            event_name = "!" + map_name + " Reachable"
+        map_name = map_def["label"]
+        map_region = world.get_region(map_name)
 
+        time_medal_count = map_def.get("medals_time", 0)
+        for i in range(time_medal_count):
+            event_name = "!" + map_name + " - Time Medal"
+            if time_medal_count > 1:
+                event_name += " " + str(i + 1)
+
+            map_region.add_event(
+                event_name, "!Medal",
+                rule=lambda state: state.has("Time Attack Mode", world.player),
+                location_type=RingRacersLocation, item_type=items.RingRacersItem
+            )
+
+        spb_medal_count = map_def.get("medals_spb", 0)
+        for i in range(spb_medal_count):
+            event_name = "!" + map_name + " - SPB Medal"
+            if spb_medal_count > 1:
+                event_name += " " + str(i + 1)
+
+            map_region.add_event(
+                event_name, "!Medal",
+                rule=lambda state: state.has("SPB Attack Mode", world.player),
+                location_type=RingRacersLocation, item_type=items.RingRacersItem
+            )
+
+        prison_medal_count = map_def.get("medals_prisons", 0)
+        for i in range(prison_medal_count):
+            event_name = "!" + map_name + " - Prisons Medal"
+            if prison_medal_count > 1:
+                event_name += " " + str(i + 1)
+
+            map_region.add_event(
+                event_name, "!Medal",
+                rule=lambda state: state.has("Prison Break Mode", world.player),
+                location_type=RingRacersLocation, item_type=items.RingRacersItem
+            )
+
+        if map_def["type"] == "special":
+            event_name = "!" + map_name + " Reachable"
             map_region.add_event(
                 event_name, "!Sealed Star Reachable",
                 location_type=RingRacersLocation, item_type=items.RingRacersItem
