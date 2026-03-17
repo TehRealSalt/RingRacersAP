@@ -312,11 +312,13 @@ def set_driver_challenge_location_rules(world: RingRacersWorld) -> None:
             state.has("Driver: Motobug", world.player)
     )
 
+    gum_location = world.get_location("Challenge - Driver: Gum")
     set_rule(
-        world.get_location("Challenge - Driver: Gum"),
+        gum_location,
         lambda state:
-            False #have_group_percentage(state, "Spray Cans", world.player, 75)
+            True #have_group_percentage(state, "Spray Cans", world.player, 75)
     )
+    gum_location.progress_type = LocationProgressType.EXCLUDED # TEMPORARY!
 
     set_rule(
         world.get_location("Challenge - Driver: Gutbuster"),
@@ -1697,11 +1699,13 @@ def set_extras_challenge_location_rules(world: RingRacersWorld) -> None:
     # "Challenge - Egg TV" is always possible, currently
     #
 
+    sound_test_location = world.get_location("Challenge - Sound Test")
     set_rule(
-        world.get_location("Challenge - Sound Test"),
+        sound_test_location,
         lambda state:
-            False #have_group_percentage(state, "Alt Music", world.player, 25)
+            True #have_group_percentage(state, "Alt Music", world.player, 25)
     )
+    sound_test_location.progress_type = LocationProgressType.EXCLUDED # TEMPORARY!
 
     #
     # "Challenge - Playing with Addons" is always possible, currently
