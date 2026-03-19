@@ -3453,13 +3453,10 @@ void M_DrawCupSelect(void)
 				{
 					incj = true;
 
-					if (mapheaderinfo[map]->records.spraycan == MCAN_BONUS)
+					if (mapheaderinfo[map]->records.spraycan)
 					{
+						// [RRAP] TODO: draw spraycan if it's a spray can
 						work_array[j].col = MCAN_BONUS;
-					}
-					else if (mapheaderinfo[map]->records.spraycan < gamedata->numspraycans)
-					{
-						work_array[j].col = gamedata->spraycans[mapheaderinfo[map]->records.spraycan].col;
 					}
 
 					if (mapheaderinfo[map]->records.mapvisited & MV_MYSTICMELODY)
@@ -7165,10 +7162,9 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 				}
 				break;
 			}
-#if 0 // [RRAP] TODO - finish implementing item types
 			case SECRET_COLOR:
 			{
-				INT32 colorid = M_UnlockableColorNum(ref);
+				INT32 colorid = RRAP_ItemToColorId(item);
 				if (colorid != SKINCOLOR_NONE)
 				{
 					colormap = R_GetTranslationColormap(TC_DEFAULT, colorid, GTC_MENUCACHE);
@@ -7176,7 +7172,6 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 				iconid = 2;
 				break;
 			}
-#endif
 			case SECRET_MAP:
 			{
 				UINT16 unlock_id = RRAP_ItemToUnlockableId(item);
@@ -7631,10 +7626,9 @@ static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 			}
 			break;
 		}
-#if 0 // [RRAP] TODO - finish implementing item types
 		case SECRET_COLOR:
 		{
-			INT32 colorid = M_UnlockableColorNum(ref);
+			INT32 colorid = RRAP_ItemToColorId(item);
 			if (colorid == SKINCOLOR_NONE)
 				break;
 			INT32 skin = R_SkinAvailableEx(cv_skin[0].string, false);
@@ -7656,7 +7650,6 @@ static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 
 			break;
 		}
-#endif
 		case SECRET_CUP:
 		{
 			levelsearch_t templevelsearch;
@@ -8424,7 +8417,7 @@ static void M_DrawChallengeScrollBar(UINT8 *flashmap)
 		{
 			completionamount++;
 
-			if (!skiplevel && M_Achieved(RRAP_LocationConditionSet(ref) - 1) == false)
+			if (!skiplevel && RRAP_LocationAchieved(ref) == false)
 			{
 				skiplevel = 1;
 			}
@@ -8832,23 +8825,12 @@ static INT32 M_DrawMapMedals(INT32 mapnum, INT32 x, INT32 y, boolean allowtime, 
 	if (hasmedals)
 		x -= 4;
 
-	if (mapheaderinfo[mapnum]->records.spraycan == MCAN_BONUS)
+	if (mapheaderinfo[mapnum]->records.spraycan)
 	{
+		// [RRAP] TODO: draw spraycan if it's a spraycan
 		if (draw)
 			V_DrawScaledPatch(x, y, 0, W_CachePatchName("GOTBON", PU_CACHE));
 
-		x -= 8;
-	}
-	else if (mapheaderinfo[mapnum]->records.spraycan < gamedata->numspraycans)
-	{
-		UINT16 col = gamedata->spraycans[mapheaderinfo[mapnum]->records.spraycan].col;
-
-		if (draw && col < numskincolors)
-		{
-			V_DrawMappedPatch(x, y, 0, W_CachePatchName("GOTCAN", PU_CACHE),
-				R_GetTranslationColormap(TC_DEFAULT, col, GTC_MENUCACHE));
-			//V_DrawRightAlignedThinString(x - 2, y, 0, skincolors[col].name);
-		}
 		x -= 8;
 	}
 
@@ -8886,6 +8868,7 @@ static void M_DrawStatsMaps(void)
 	V_DrawMappedPatch(20, 60, 0, W_CachePatchName("GOTITA", PU_CACHE),
 				                       R_GetTranslationColormap(TC_DEFAULT, SKINCOLOR_GOLD, GTC_MENUCACHE));
 
+#if 0 // [RRAP]
 	if (gamedata->numspraycans)
 	{
 		medalspos = 30 + V_ThinStringWidth(medalcountstr, 0);
@@ -8894,7 +8877,9 @@ static void M_DrawStatsMaps(void)
 		V_DrawMappedPatch(10 + medalspos, 60, 0, W_CachePatchName("GOTCAN", PU_CACHE),
 										   R_GetTranslationColormap(TC_DEFAULT, gamedata->spraycans[0].col, GTC_MENUCACHE));
 	}
-	else if (statisticsmenu.numcanbonus)
+	else
+#endif
+	if (statisticsmenu.numcanbonus)
 	{
 		medalspos = 30 + V_ThinStringWidth(medalcountstr, 0);
 		medalcountstr = va("x %d", statisticsmenu.numcanbonus);

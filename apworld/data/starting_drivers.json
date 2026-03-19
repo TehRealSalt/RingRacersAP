@@ -1,58 +1,85 @@
 {
-	"items": {
-		"191": {
+	"items": [
+		{
+			"id": 191,
 			"name": "Driver: Tails",
 			"label": "Tails",
 			"skin": "tails",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"192": {
+		{
+			"id": 192,
 			"name": "Driver: Amy",
 			"label": "Amy",
 			"skin": "amy",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"193": {
+		{
+			"id": 193,
 			"name": "Driver: Sonic",
 			"label": "Sonic",
 			"skin": "sonic",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"194": {
+		{
+			"id": 194,
 			"name": "Driver: Motobug",
 			"label": "Motobug",
 			"skin": "motobug",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"195": {
+		{
+			"id": 195,
 			"name": "Driver: Knuckles",
 			"label": "Knuckles",
 			"skin": "knuckles",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"196": {
+		{
+			"id": 196,
 			"name": "Driver: Fang",
 			"label": "Fang",
 			"skin": "fang",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"197": {
+		{
+			"id": 197,
 			"name": "Driver: Dr. Eggman",
 			"label": "Dr. Eggman",
 			"skin": "eggman",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"198": {
+		{
+			"id": 198,
 			"name": "Driver: Mighty",
 			"label": "Mighty",
 			"skin": "mighty",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"199": {
+		{
+			"id": 199,
 			"name": "Driver: Metal Sonic",
 			"label": "Metal Sonic",
 			"skin": "metalsonic",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		}
-	}
+	]
 }

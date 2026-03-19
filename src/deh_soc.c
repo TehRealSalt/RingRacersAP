@@ -224,12 +224,14 @@ void clear_levels(void)
 		}
 	}
 
+#if 0 // [RRAP]
 	if (gamedata && gamedata->spraycans)
 	{
 		UINT16 i;
 		for (i = 0; i < gamedata->numspraycans; i++)
 			gamedata->spraycans[i].map = NEXTMAP_INVALID;
 	}
+#endif
 
 	// Exit the current gamemap as a safeguard
 	if (Playing())
@@ -334,7 +336,7 @@ void readfreeslots(MYFILE *f)
 						CONS_Printf("Skincolor SKINCOLOR_%s allocated.\n",word);
 						FREE_SKINCOLORS[i] = Z_Malloc(strlen(word)+1, PU_STATIC, NULL);
 						strcpy(FREE_SKINCOLORS[i],word);
-						skincolors[SKINCOLOR_FIRSTFREESLOT+i].cache_spraycan = UINT16_MAX;
+						skincolors[SKINCOLOR_FIRSTFREESLOT+i].ap_item_id = 0;
 						numskincolors++;
 						break;
 					}

@@ -1,71 +1,111 @@
 {
-	"locations": {
-		"760": {
+	"locations": [
+		{
+			"id": 760,
 			"name": "Challenge - Lost & Found: Test Run",
 			"label": "Test Run",
 			"condition_set": 760,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Maps"
+			]
 		},
-		"761": {
+		{
+			"id": 761,
 			"name": "Challenge - Lost & Found: Hidden Palace",
 			"label": "Leap of Faith",
 			"condition_set": 761,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Maps"
+			]
 		},
-		"762": {
+		{
+			"id": 762,
 			"name": "Challenge - Lost & Found: Test Track",
 			"label": "Test Track",
 			"condition_set": 762,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Maps"
+			]
 		},
-		"763": {
+		{
+			"id": 763,
 			"name": "Challenge - Lost & Found: Route 1980",
 			"label": "Digital Detour",
 			"condition_set": 763,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Maps"
+			]
 		},
-		"764": {
+		{
+			"id": 764,
 			"name": "Challenge - Lost & Found: Duel Busters",
 			"label": "Duel Busters",
 			"condition_set": 764,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Maps"
+			]
 		}
-	},
-	"items": {
-		"760": {
+	],
+	"items": [
+		{
+			"id": 760,
 			"name": "Test Run Access",
 			"label": "Test Run",
 			"unlockable": 760,
 			"map": "RR_TestRun",
-			"group": "Maps"
+			"tags": [
+				"Maps"
+			]
 		},
-		"761": {
+		{
+			"id": 761,
 			"name": "Hidden Palace Access",
-			"label": "Hidden Palace",
+			"label": "Leap of Faith",
 			"unlockable": 761,
 			"map": "RR_HiddenPalace",
-			"group": "Maps"
+			"tags": [
+				"Maps"
+			]
 		},
-		"762": {
+		{
+			"id": 762,
 			"name": "Test Track Access",
 			"label": "Test Track",
 			"unlockable": 762,
 			"map": "RR_TestTrack",
-			"group": "Maps"
+			"tags": [
+				"Maps"
+			]
 		},
-		"763": {
+		{
+			"id": 763,
 			"name": "Route 1980 Access",
-			"label": "Route 1980",
+			"label": "Digital Detour",
 			"unlockable": 763,
 			"map": "RR_Route1980",
-			"group": "Maps"
+			"tags": [
+				"Maps"
+			]
 		},
-		"764": {
+		{
+			"id": 764,
 			"name": "Duel Busters Access",
 			"label": "Duel Busters",
 			"unlockable": 764,
 			"map": "RR_DuelBuster",
-			"group": "Maps"
+			"tags": [
+				"Maps"
+			]
 		}
-	}
+	]
 }

@@ -19,6 +19,8 @@
 #include "typedef.h"
 #include "doomtype.h"
 #include "doomdef.h"
+#include "doomstat.h"
+#include "m_cond.h"
 
 #include "core/string.h"
 #ifdef __cplusplus
@@ -37,6 +39,7 @@ private:
 	boolean _check_pending;
 
 	UINT16 _condition_set_id;
+	INT32 _spray_can_map_id;
 	boolean _big_tile;
 
 	srb2::String _label;
@@ -46,7 +49,7 @@ private:
 
 public:
 	rrap_location_t() = default;
-	rrap_location_t(INT64 index, srb2::JsonValue json);
+	rrap_location_t(srb2::JsonValue json);
 
 	INT64 id() const { return _id; }
 	srb2::String name() const { return _name; }
@@ -54,6 +57,7 @@ public:
 	boolean check_pending() const { return _check_pending; }
 
 	UINT16 condition_set_id() const { return _condition_set_id; }
+	INT32 spray_can_map_id() const { return _spray_can_map_id; }
 	boolean is_big_tile() const { return _big_tile; }
 
 	srb2::String label() const { return _label; }
@@ -76,6 +80,32 @@ public:
 		_checked = false;
 		_check_pending = false;
 	}
+
+	boolean available() const
+	{
+		// Returns if this location
+		// is allowed. Return false
+		// when we add location-type
+		// filtering
+		return true;
+	}
+
+	boolean achieved() const
+	{
+		INT32 spray_can_map = spray_can_map_id();
+		if (spray_can_map > 0)
+		{
+			return mapheaderinfo[spray_can_map - 1]->records.spraycan;
+		}
+
+		UINT16 condition_set = condition_set_id();
+		if (condition_set > 0)
+		{
+			return M_Achieved(condition_set - 1);
+		}
+
+		return false;
+	}
 };
 
 class rrap_item_t
@@ -88,6 +118,7 @@ private:
 	UINT16 _unlockable_id;
 	INT32 _skin_id;
 	INT32 _follower_id;
+	INT32 _color_id;
 
 	srb2::String _label;
 	INT32 _display_type;
@@ -96,7 +127,7 @@ private:
 
 public:
 	rrap_item_t() = default;
-	rrap_item_t(INT64 index, srb2::JsonValue json);
+	rrap_item_t(srb2::JsonValue json);
 
 	INT64 id() const { return _id; }
 	srb2::String name() const { return _name; }
@@ -106,6 +137,7 @@ public:
 	UINT16 unlockable_id() const { return _unlockable_id; }
 	INT32 skin_id() const { return _skin_id; }
 	INT32 follower_id() const { return _follower_id; }
+	INT32 color_id() const { return _color_id; }
 
 	srb2::String label() const { return _label; }
 	INT32 display_type() const { return _display_type; }
@@ -144,8 +176,11 @@ rrap_location_t *RRAP_GetLocation(INT64 location_id);
 rrap_item_t *RRAP_GetItem(INT64 item_id);
 void RRAP_LoadArchipelagoJSON(void);
 
+boolean RRAP_LocationAvailable(rrap_location_t *location);
+boolean RRAP_LocationAchieved(rrap_location_t *location);
 char *RRAP_LocationLabel(rrap_location_t *location);
 UINT16 RRAP_LocationConditionSet(rrap_location_t *location);
+INT32 RRAP_LocationSprayCanMapID(rrap_location_t *location);
 boolean RRAP_LocationIsBigTile(rrap_location_t *location);
 boolean RRAP_LocationChecked(rrap_location_t *location);
 boolean RRAP_LocationCheckPending(rrap_location_t *location);
@@ -163,6 +198,7 @@ boolean RRAP_ItemRecieved(rrap_item_t *item);
 UINT16 RRAP_ItemToUnlockableId(rrap_item_t *item);
 INT32 RRAP_ItemToSkinId(rrap_item_t *item);
 INT32 RRAP_ItemToFollowerId(rrap_item_t *item);
+INT32 RRAP_ItemToColorId(rrap_item_t *item);
 
 INT32 RRAP_ItemDisplayType(rrap_item_t *item);
 char *RRAP_ItemDisplayIcon(rrap_item_t *item);

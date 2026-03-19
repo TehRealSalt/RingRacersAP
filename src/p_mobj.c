@@ -13421,55 +13421,25 @@ static boolean P_SetupEmblem(mapthing_t *mthing, mobj_t *mobj)
 
 void P_SprayCanInit(mobj_t* mobj)
 {
+	// [RRAP]
 	// See also P_TouchSpecialThing
-	UINT16 can_id = mapheaderinfo[gamemap-1]->records.spraycan;
+	boolean got_can = mapheaderinfo[gamemap-1]->records.spraycan;
 
-	if (can_id < gamedata->numspraycans || can_id == MCAN_BONUS)
+	if (got_can)
 	{
 		// Assigned to this level, has been grabbed
 		mobj->renderflags = (tr_trans50 << RF_TRANSSHIFT);
 	}
-	// Prevent footguns - these won't persist when custom levels are unloaded
-	else if (gamemap-1 < basenummapheaders)
+	else
 	{
-		if (gamedata->gotspraycans >= gamedata->numspraycans)
-		{
-			can_id = MCAN_BONUS;
-		}
-		else
-		{
-			// Unassigned, get the next grabbable colour (offset by threshold)
-			can_id = gamedata->gotspraycans;
-
-			// It's ok if this goes over gamedata->numspraycans, as they're
-			// capped below in this func... but NEVER let this go backwards!!
-			if (mobj->threshold != 0)
-				can_id += (mobj->threshold & UINT8_MAX);
-		}
-
 		mobj->renderflags = 0;
 	}
-	else
-	{
-		// Custom course, bonus only
-		can_id = MCAN_BONUS;
-	}
 
-	if (can_id == MCAN_BONUS && mobj->threshold == 0)
-	{
-		// Only one bonus possible
-		// We modify sprite instead of state for netsync reasons
-		mobj->sprite = SPR_SBON;
-	}
-	else if (can_id < gamedata->numspraycans)
-	{
-		mobj->sprite = mobj->state->sprite;
-		mobj->color = gamedata->spraycans[can_id].col;
-	}
-	else
-	{
-		mobj->renderflags = RF_DONTDRAW;
-	}
+	// [RRAP] TODO: use location scouts and add some sprites?
+
+	// Only one bonus possible
+	// We modify sprite instead of state for netsync reasons
+	mobj->sprite = SPR_SBON;
 }
 
 static boolean P_SetupMace(mapthing_t *mthing, mobj_t *mobj)
@@ -13908,7 +13878,10 @@ static boolean P_SetupSpawnedMapThing(mapthing_t *mthing, mobj_t *mobj)
 	{
 		if (nummapspraycans == UINT8_MAX
 		|| modeattacking != ATTACKING_NONE
-		|| (tutorialchallenge == TUTORIALSKIP_INPROGRESS && gamedata->gotspraycans == 0))
+#if 0 // [RRAP]
+		|| (tutorialchallenge == TUTORIALSKIP_INPROGRESS && gamedata->gotspraycans == 0)
+#endif
+		)
 		{
 			P_RemoveMobj(mobj);
 			return false;

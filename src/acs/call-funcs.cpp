@@ -1938,6 +1938,7 @@ bool CallFunc_GetGrabbedSprayCan(ACSVM::Thread *thread, const ACSVM::Word *argV,
 	if (netgame == false // cans are per-player and completely unsyncable
 	&& gamemap-1 < basenummapheaders)
 	{
+#if 0
 		// See also P_SprayCanInit
 		UINT16 can_id = mapheaderinfo[gamemap-1]->records.spraycan;
 
@@ -1955,6 +1956,18 @@ bool CallFunc_GetGrabbedSprayCan(ACSVM::Thread *thread, const ACSVM::Word *argV,
 			thread->dataStk.push(~env->getString( "_Completed" )->idx);
 			return false;
 		}
+#else
+		// [RRAP] TODO: Send a location scout on level load
+		// to determine what our item name is. Without doing that,
+		// this is the best I got...
+		boolean got_can = mapheaderinfo[gamemap-1]->records.spraycan;
+
+		if (got_can)
+		{
+			thread->dataStk.push(~env->getString( "Archipelago" )->idx);
+			return false;
+		}
+#endif
 	}
 
 	thread->dataStk.push(0);

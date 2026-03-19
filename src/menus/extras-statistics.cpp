@@ -320,7 +320,7 @@ void M_Statistics(INT32 choice)
 	{
 		if (!mapheaderinfo[i])
 			continue;
-		if (mapheaderinfo[i]->records.spraycan != MCAN_BONUS)
+		if (!mapheaderinfo[i]->records.spraycan) // [RRAP]
 			continue;
 		statisticsmenu.numcanbonus++;
 	}

@@ -144,6 +144,7 @@ void srb2::save_ng_gamedata()
 		ng.skins[name] = std::move(skin);
 	}
 
+#if 0 // [RRAP]
 	for (int i = 0; i < gamedata->numspraycans; i++)
 	{
 		uint16_t col = gamedata->spraycans[i].col;
@@ -155,6 +156,7 @@ void srb2::save_ng_gamedata()
 
 		ng.spraycans_v2.emplace_back(String(skincolors[col].name));
 	}
+#endif
 
 	auto maptojson = [](recorddata_t *records)
 	{
@@ -625,15 +627,13 @@ void srb2::load_ng_gamedata()
 		dummyrecord.modetimeplayed[GDGT_CUSTOM] = mappair.second.stats.time.custom;
 		dummyrecord.timeattacktimeplayed = mappair.second.stats.time.timeattack;
 		dummyrecord.spbattacktimeplayed = mappair.second.stats.time.spbattack;
-
-		dummyrecord.spraycan = (minorversion >= GD_MINIMUM_SPRAYCANSV2)
-			? mappair.second.spraycan
-			: MCAN_INVALID;
+		dummyrecord.spraycan = mappair.second.spraycan;
 
 		if (mapnum < nummapheaders && mapheaderinfo[mapnum])
 		{
 			// Valid mapheader, time to populate with record data.
 
+#if 0 // [RRAP]
 			// Infill Spray Can info
 			if (
 				dummyrecord.spraycan < tempcans.size()
@@ -650,13 +650,17 @@ void srb2::load_ng_gamedata()
 				// Yes, even if it's valid. We reassign later.
 				dummyrecord.spraycan = MCAN_BONUS;
 			}
+#endif
 
 			mapheaderinfo[mapnum]->records = dummyrecord;
 		}
 		else if (dummyrecord.mapvisited & (MV_VISITED|MV_BEATEN)
 		|| dummyrecord.timeattack.time != 0 || dummyrecord.timeattack.lap != 0
 		|| dummyrecord.spbattack.time != 0 || dummyrecord.spbattack.lap != 0
-		|| dummyrecord.spraycan != MCAN_INVALID)
+#if 0
+		|| dummyrecord.spraycan != MCAN_INVALID
+#endif
+		)
 		{
 			// Invalid, but we don't want to lose all the juicy statistics.
 			// Instead, update a FILO linked list of "unloaded mapheaders".
@@ -675,17 +679,20 @@ void srb2::load_ng_gamedata()
 			unloadedmap->next = unloadedmapheaders;
 			unloadedmapheaders = unloadedmap;
 
+#if 0
 			if (dummyrecord.spraycan != MCAN_INVALID)
 			{
 				// Invalidate non-bonus spraycans.
 				dummyrecord.spraycan = MCAN_BONUS;
 			}
+#endif
 
 			// Finally, copy into.
 			unloadedmap->records = dummyrecord;
 		}
 	}
 
+#if 0 // [RRAP]
 	if ((minorversion < GD_MINIMUM_SPRAYCANSV2) && (js.spraycans.size() > 1))
 	{
 		// Deprecated behaviour! Look above for spraycans_v2 handling
@@ -768,6 +775,7 @@ void srb2::load_ng_gamedata()
 			}
 		}
 	}
+#endif
 
 	for (auto& cuppair : js.cups)
 	{

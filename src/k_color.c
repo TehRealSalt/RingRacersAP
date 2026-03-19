@@ -20,6 +20,9 @@
 #include "g_demo.h"
 #include "k_follower.h"
 
+// [RRAP]
+#include "ap_main.h"
+
 /*--------------------------------------------------
 	UINT8 K_ColorRelativeLuminance(UINT8 r, UINT8 g, UINT8 b)
 
@@ -288,8 +291,6 @@ void K_GenerateKartColormap(UINT8 *dest_colormap, INT32 skinnum, skincolornum_t 
 --------------------------------------------------*/
 boolean K_ColorUsable(skincolornum_t color, boolean follower, boolean locked)
 {
-	INT32 i = MAXUNLOCKABLES;
-
 	if (color == FOLLOWERCOLOR_MATCH || color == FOLLOWERCOLOR_OPPOSITE)
 	{
 		// Special follower colors, always allow if follower.
@@ -308,41 +309,19 @@ boolean K_ColorUsable(skincolornum_t color, boolean follower, boolean locked)
 		return true;
 	}
 
-#if 0
-	// Determine if this follower is supposed to be unlockable or not
-	for (i = 0; i < MAXUNLOCKABLES; i++)
+	if (M_GameTrulyStarted() == false)
 	{
-		skincolornum_t cid = SKINCOLOR_NONE;
-
-		if (unlockables[i].type != SECRET_COLOR)
-		{
-			continue;
-		}
-
-		cid = M_UnlockableColorNum(&unlockables[i]);
-
-		if (cid != color)
-		{
-			continue;
-		}
-
-		// i is now the unlockable index, we can use this later
-		break;
-	}
-
-	if (i == MAXUNLOCKABLES)
-	{
-		// Didn't trip anything, so we can use this color.
+		// [RRAP] Allow profile setup before the game starts
+		// to display all followers.
 		return true;
 	}
 
+	// Determine if this color is supposed to be unlockable or not
+	rrap_item_t *item = RRAP_GetItem(skincolors[color].ap_item_id);
+
 	// Use the unlockables table directly
 	// DEFINITELY not M_CheckNetUnlockByID
-	return (boolean)(gamedata->unlocked[i]);
-#else
-	// [RRAP] TODO - implement this
-	return true;
-#endif
+	return RRAP_ItemRecieved(item);
 }
 
 //}

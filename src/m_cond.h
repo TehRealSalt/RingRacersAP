@@ -347,12 +347,12 @@ struct gamedata_t
 	// UNLOCKABLES UNLOCKED
 	boolean unlocked[MAXUNLOCKABLES];
 	boolean unlockpending[MAXUNLOCKABLES];
-#endif
 
 	// SPRAYCANS COLLECTED
 	UINT16 numspraycans;
 	UINT16 gotspraycans;
 	candata_t* spraycans;
+#endif
 
 	// PRISON EGG PICKUPS
 	UINT16 numprisoneggpickups;

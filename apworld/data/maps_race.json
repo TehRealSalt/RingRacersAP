@@ -11,915 +11,2744 @@
 			"type": "race",
 			"medals_time": 3,
 			"medals_spb": 1,
-			"item": "Test Track Access"
+			"item": "Test Track Access",
+			"locations": [
+				"Test Track - Spray Can"
+			]
 		},
 		"rr_robotnikcoaster": {
 			"label": "Robotnik Coaster",
 			"type": "race",
+			"no_visit_needed": true,
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Robotnik Coaster - Spray Can"
+			]
 		},
 		"rr_northerndistrict": {
 			"label": "Northern District",
 			"type": "race",
+			"no_visit_needed": true,
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Northern District - Spray Can"
+			]
 		},
 		"rr_paniccity": {
 			"label": "Panic City",
 			"type": "race",
+			"no_visit_needed": true,
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Panic City - Spray Can"
+			]
 		},
 		"rr_sonicspeedway": {
 			"label": "Sonic Speedway",
 			"type": "race",
+			"no_visit_needed": true,
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Sonic Speedway - Spray Can"
+			]
 		},
 		"rr_greenhills": {
 			"label": "Green Hills",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Green Hills - Spray Can"
+			]
 		},
 		"rr_emeraldcoast": {
 			"label": "Emerald Coast",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Emerald Coast - Spray Can"
+			]
 		},
 		"rr_stormrig": {
 			"label": "Storm Rig",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Storm Rig - Spray Can"
+			]
 		},
 		"rr_lucidpass": {
 			"label": "Lucid Pass",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Lucid Pass - Spray Can"
+			]
 		},
 		"rr_autumnring": {
 			"label": "Autumn Ring",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Autumn Ring - Spray Can"
+			]
 		},
 		"rr_witheringchateau": {
 			"label": "Withering Chateau",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Withering Chateau - Spray Can"
+			]
 		},
 		"rr_popcornworkshop": {
 			"label": "Popcorn Workshop",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Popcorn Workshop - Spray Can"
+			]
 		},
 		"rr_sundaedrive": {
 			"label": "Sundae Drive",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Sundae Drive - Spray Can"
+			]
 		},
 		"rr_cadillaccascade": {
 			"label": "Cadillac Cascade",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Cadillac Cascade - Spray Can"
+			]
 		},
 		"rr_opulence": {
 			"label": "Opulence",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Opulence - Spray Can"
+			]
 		},
 		"rr_rumbleridge": {
 			"label": "Rumble Ridge",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Rumble Ridge - Spray Can"
+			]
 		},
 		"rr_angelisland": {
 			"label": "Angel Island",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Angel Island - Spray Can"
+			]
 		},
 		"rr_roastedruins": {
 			"label": "Roasted Ruins",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Roasted Ruins - Spray Can"
+			]
 		},
 		"rr_obsidianoasis": {
 			"label": "Obsidian Oasis",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Obsidian Oasis - Spray Can"
+			]
 		},
 		"rr_miragesaloon": {
 			"label": "Mirage Saloon",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Mirage Saloon - Spray Can"
+			]
 		},
 		"rr_regalruin": {
 			"label": "Regal Ruin",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Regal Ruin - Spray Can"
+			]
 		},
 		"rr_isolatedisland": {
 			"label": "Isolated Island",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Isolated Island - Spray Can"
+			]
 		},
 		"rr_gigapolis": {
 			"label": "Gigapolis",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Gigapolis - Spray Can"
+			]
 		},
 		"rr_darkvilecastle1": {
 			"label": "Darkvile Castle 1",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Darkvile Castle 1 - Spray Can"
+			]
 		},
 		"rr_bronzelake": {
 			"label": "Bronze Lake",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Bronze Lake - Spray Can"
+			]
 		},
 		"rr_collisionchaos": {
 			"label": "Collision Chaos",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Collision Chaos - Spray Can"
+			]
 		},
 		"rr_emeraldhill": {
 			"label": "Emerald Hill",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Emerald Hill - Spray Can"
+			]
 		},
 		"rr_azurecity": {
 			"label": "Azure City",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Azure City - Spray Can"
+			]
 		},
 		"rr_gustplanet": {
 			"label": "Gust Planet",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Gust Planet - Spray Can"
+			]
 		},
 		"rr_mysticcave": {
 			"label": "Mystic Cave",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Mystic Cave - Spray Can"
+			]
 		},
 		"rr_joypolis": {
 			"label": "Joypolis",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Joypolis - Spray Can"
+			]
 		},
 		"rr_hiddenpalace": {
 			"label": "Hidden Palace",
 			"type": "race",
 			"medals_time": 3,
 			"medals_spb": 1,
-			"item": "Hidden Palace Access"
+			"item": "Hidden Palace Access",
+			"locations": [
+				"Hidden Palace - Spray Can"
+			]
 		},
 		"rr_hilltop": {
 			"label": "Hill Top",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Hill Top - Spray Can"
+			]
 		},
 		"rr_marblegarden": {
 			"label": "Marble Garden",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Marble Garden - Spray Can"
+			]
 		},
 		"rr_silvercloudisland": {
 			"label": "SilverCloud Island",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"SilverCloud Island - Spray Can"
+			]
 		},
 		"rr_subzeropeak": {
 			"label": "Sub-Zero Peak",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Sub-Zero Peak - Spray Can"
+			]
 		},
 		"rr_launchbase": {
 			"label": "Launch Base",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Launch Base - Spray Can"
+			]
 		},
 		"rr_azurelake": {
 			"label": "Azure Lake",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Azure Lake - Spray Can"
+			]
 		},
 		"rr_balloonpark": {
 			"label": "Balloon Park",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Balloon Park - Spray Can"
+			]
 		},
 		"rr_chromegadget": {
 			"label": "Chrome Gadget",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Chrome Gadget - Spray Can"
+			]
 		},
 		"rr_desertpalace": {
 			"label": "Desert Palace",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Desert Palace - Spray Can"
+			]
 		},
 		"rr_endlessmine": {
 			"label": "Endless Mine 1",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Endless Mine 1 - Spray Can"
+			]
 		},
 		"rr_hardboiledstadium": {
 			"label": "Hard-Boiled Stadium",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Hard-Boiled Stadium - Spray Can"
+			]
 		},
 		"rr_hardhathavoc": {
 			"label": "Hardhat Havoc",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Hardhat Havoc - Spray Can"
+			]
 		},
 		"rr_pressgarden": {
 			"label": "Press Garden",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Press Garden - Spray Can"
+			]
 		},
 		"rr_picopark": {
 			"label": "Pico Park",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Pico Park - Spray Can"
+			]
 		},
 		"rr_cityescape": {
 			"label": "City Escape",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"City Escape - Spray Can"
+			]
 		},
 		"rr_palmtreepanic": {
 			"label": "Palmtree Panic",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Palmtree Panic - Spray Can"
+			]
 		},
 		"rr_darkvilecastle2": {
 			"label": "Darkvile Castle 2",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Darkvile Castle 2 - Spray Can"
+			]
 		},
 		"rr_scarletgardens": {
 			"label": "Scarlet Gardens",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Scarlet Gardens - Spray Can"
+			]
 		},
 		"rr_motobugmotorway": {
 			"label": "Motobug Motorway",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Motobug Motorway - Spray Can"
+			]
 		},
 		"rr_starlight": {
 			"label": "Star Light",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Star Light - Spray Can"
+			]
 		},
 		"rr_metropolis": {
 			"label": "Metropolis",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Metropolis - Spray Can"
+			]
 		},
 		"rr_frozenproduction": {
 			"label": "Frozen Production",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Frozen Production - Spray Can"
+			]
 		},
 		"rr_aqueductcrystal": {
 			"label": "Aqueduct Crystal",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Aqueduct Crystal - Spray Can"
+			]
 		},
 		"rr_novashore": {
 			"label": "Nova Shore",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Nova Shore - Spray Can"
+			]
 		},
 		"rr_hydrocity": {
 			"label": "Hydro City",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Hydro City - Spray Can"
+			]
 		},
 		"rr_traptower": {
 			"label": "Trap Tower",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Trap Tower - Spray Can"
+			]
 		},
 		"rr_diamonddust": {
 			"label": "Diamond Dust",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Diamond Dust - Spray Can"
+			]
 		},
 		"rr_bluemountain1": {
 			"label": "Blue Mountain 1",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Blue Mountain 1 - Spray Can"
+			]
 		},
 		"rr_bluemountain2": {
 			"label": "Blue Mountain 2",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Blue Mountain 2 - Spray Can"
+			]
 		},
 		"rr_speedhighway": {
 			"label": "Speed Highway",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Speed Highway - Spray Can"
+			]
 		},
 		"rr_carnivalnight": {
 			"label": "Carnival Night",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Carnival Night - Spray Can"
+			]
 		},
 		"rr_virtualhighway": {
 			"label": "Virtual Highway",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Virtual Highway - Spray Can"
+			]
 		},
 		"rr_route1980": {
 			"label": "Route 1980",
 			"type": "race",
 			"medals_time": 3,
 			"medals_spb": 1,
-			"item": "Route 1980 Access"
+			"locations": [
+				"Route 1980 - Spray Can"
+			]
 		},
 		"rr_darkfortress": {
 			"label": "Dark Fortress",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Dark Fortress - Spray Can"
+			]
 		},
 		"rr_springyard": {
 			"label": "Spring Yard",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Spring Yard - Spray Can"
+			]
 		},
 		"rr_labyrinth": {
 			"label": "Labyrinth",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Labyrinth - Spray Can"
+			]
 		},
 		"rr_hotshelter": {
 			"label": "Hot Shelter",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Hot Shelter - Spray Can"
+			]
 		},
 		"rr_skysanctuary": {
 			"label": "Sky Sanctuary",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Sky Sanctuary - Spray Can"
+			]
 		},
 		"rr_lostcolony": {
 			"label": "Lost Colony",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Lost Colony - Spray Can"
+			]
 		},
 		"rr_deathegg": {
 			"label": "Death Egg",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Death Egg - Spray Can"
+			]
 		},
 		"rr_765stadium": {
 			"label": "765 Stadium",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"765 Stadium - Spray Can"
+			]
 		},
 		"rr_skyscraperleaps": {
 			"label": "Skyscraper Leaps",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Skyscraper Leaps - Spray Can"
+			]
 		},
 		"rr_greentriangle": {
 			"label": "Green Triangle",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Green Triangle - Spray Can"
+			]
 		},
 		"rr_zonedcity": {
 			"label": "Zoned City",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Zoned City - Spray Can"
+			]
 		},
 		"rr_sunsethill": {
 			"label": "Sunset Hill",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Sunset Hill - Spray Can"
+			]
 		},
 		"rr_savannahcitadel": {
 			"label": "Savannah Citadel",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Savannah Citadel - Spray Can"
+			]
 		},
 		"rr_umbrellarushwinds": {
 			"label": "Umbrella Rushwinds",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Umbrella Rushwinds - Spray Can"
+			]
 		},
 		"rr_avantgarden": {
 			"label": "Avant Garden",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Avant Garden - Spray Can"
+			]
 		},
 		"rr_bigtimebreakdown": {
 			"label": "Bigtime Breakdown",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Bigtime Breakdown - Spray Can"
+			]
 		},
 		"rr_vantablackviolet": {
 			"label": "Vantablack Violet",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Vantablack Violet - Spray Can"
+			]
 		},
 		"rr_chaostube": {
 			"label": "Chaos Chute",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Chaos Chute - Spray Can"
+			]
 		},
 		"rr_dimensiondisaster": {
 			"label": "Dimension Disaster",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Dimension Disaster - Spray Can"
+			]
 		},
 		"rr_auroraatoll": {
 			"label": "Aurora Atoll",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Aurora Atoll - Spray Can"
+			]
 		},
 		"rr_daytonaspeedway": {
 			"label": "Daytona Speedway",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Daytona Speedway - Spray Can"
+			]
 		},
 		"rr_turquoisehill": {
 			"label": "Turquoise Hill",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Turquoise Hill - Spray Can"
+			]
 		},
 		"rr_weisswaterway": {
 			"label": "Weiss Waterway",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Weiss Waterway - Spray Can"
+			]
 		},
 		"rr_iceparadise": {
 			"label": "Ice Paradise",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Ice Paradise - Spray Can"
+			]
 		},
 		"rr_sunsplashedgetaway": {
 			"label": "Sunsplashed Getaway",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Sunsplashed Getaway - Spray Can"
+			]
 		},
 		"rr_faefalls": {
 			"label": "Fae Falls",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Fae Falls - Spray Can"
+			]
 		},
 		"rr_azureaxiom": {
 			"label": "Azure Axiom",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Azure Axiom - Spray Can"
+			]
 		},
 		"rr_hanagumihall": {
 			"label": "Hanagumi Hall",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Hanagumi Hall - Spray Can"
+			]
 		},
 		"rr_crispycanyon": {
 			"label": "Crispy Canyon",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Crispy Canyon - Spray Can"
+			]
 		},
 		"rr_aerialhighlands": {
 			"label": "Aerial Highlands",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Aerial Highlands - Spray Can"
+			]
 		},
 		"rr_technologytundra": {
 			"label": "Technology Tundra",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Technology Tundra - Spray Can"
+			]
 		},
 		"rr_operatorsoverspace": {
 			"label": "Operator's Overspace",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Operator's Overspace - Spray Can"
+			]
 		},
 		"rr_megagreenhill": {
 			"label": "Mega Green Hill",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Mega Green Hill - Spray Can"
+			]
 		},
 		"rr_megabridge": {
 			"label": "Mega Bridge",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Mega Bridge - Spray Can"
+			]
 		},
 		"rr_megalavareef": {
 			"label": "Mega Lava Reef",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Mega Lava Reef - Spray Can"
+			]
 		},
 		"rr_megaicecap": {
 			"label": "Mega Ice Cap",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Mega Ice Cap - Spray Can"
+			]
 		},
 		"rr_megascrapbrain": {
 			"label": "Mega Scrap Brain",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Mega Scrap Brain - Spray Can"
+			]
 		},
 		"rr_cloudtopdimension": {
 			"label": "Cloudtop Dimension 4",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Cloudtop Dimension 4 - Spray Can"
+			]
 		},
 		"rr_nightfalldimension": {
 			"label": "Nightfall Dimension 2",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Nightfall Dimension 2 - Spray Can"
+			]
 		},
 		"rr_wavecrashdimension": {
 			"label": "Wavecrash Dimension 1",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Wavecrash Dimension 1 - Spray Can"
+			]
 		},
 		"rr_voiddancedimension": {
 			"label": "Voiddance Dimension 3",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Voiddance Dimension 3 - Spray Can"
+			]
 		},
 		"rr_gravtechdimension": {
 			"label": "Gravtech Dimension 5",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Gravtech Dimension 5 - Spray Can"
+			]
 		},
 		"rr_espressolane": {
 			"label": "Espresso Lane",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Espresso Lane - Spray Can"
+			]
 		},
 		"rr_meltymanor": {
 			"label": "Melty Manor",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Melty Manor - Spray Can"
+			]
 		},
 		"rr_leafstorm": {
 			"label": "Leaf Storm",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Leaf Storm - Spray Can"
+			]
 		},
 		"rr_lakemargorite": {
 			"label": "Lake Margorite",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Lake Margorite - Spray Can"
+			]
 		},
 		"rr_endlessmine2": {
 			"label": "Endless Mine 2",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Endless Mine 2 - Spray Can"
+			]
 		},
 		"rr_cyanbelltower": {
 			"label": "Cyan Belltower",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Cyan Belltower - Spray Can"
+			]
 		},
 		"rr_quartzquadrant": {
 			"label": "Quartz Quadrant",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Quartz Quadrant - Spray Can"
+			]
 		},
 		"rr_aquatunnel": {
 			"label": "Aqua Tunnel",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Aqua Tunnel - Spray Can"
+			]
 		},
 		"rr_waterpalace": {
 			"label": "Water Palace",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Water Palace - Spray Can"
+			]
 		},
 		"rr_finalfall": {
 			"label": "Final Fall",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Final Fall - Spray Can"
+			]
 		},
 		"rr_hauntedship": {
 			"label": "Haunted Ship",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Haunted Ship - Spray Can"
+			]
 		},
 		"rr_robotnikwinter": {
 			"label": "Robotnik Winter",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Robotnik Winter - Spray Can"
+			]
 		},
 		"rr_dragonspiresewer1": {
 			"label": "Dragonspire Sewer 1",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Dragonspire Sewer 1 - Spray Can"
+			]
 		},
 		"rr_abyssgarden": {
 			"label": "Abyss Garden",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Abyss Garden - Spray Can"
+			]
 		},
 		"rr_blizzardpeaks": {
 			"label": "Blizzard Peaks",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Blizzard Peaks - Spray Can"
+			]
 		},
 		"rr_vermilionvessel": {
 			"label": "Vermilion Vessel",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Vermilion Vessel - Spray Can"
+			]
 		},
 		"rr_dragonspiresewer2": {
 			"label": "Dragonspire Sewer 2",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Dragonspire Sewer 2 - Spray Can"
+			]
 		},
 		"rr_chemicalfacility": {
 			"label": "Chemical Facility",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Chemical Facility - Spray Can"
+			]
 		},
 		"rr_coastaltemple": {
 			"label": "Coastal Temple",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Coastal Temple - Spray Can"
+			]
 		},
 		"rr_monkeymall": {
 			"label": "Monkey Mall",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Monkey Mall - Spray Can"
+			]
 		},
 		"rr_ramppark": {
 			"label": "Ramp Park",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Ramp Park - Spray Can"
+			]
 		},
 		"rr_adventangel": {
 			"label": "Advent Angel",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Advent Angel - Spray Can"
+			]
 		},
 		"rr_pestilence": {
 			"label": "Pestilence",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Pestilence - Spray Can"
+			]
 		},
 		"rr_crimsoncore": {
 			"label": "Crimson Core",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Crimson Core - Spray Can"
+			]
 		},
 		"rr_lasvegas": {
 			"label": "Las Vegas",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Las Vegas - Spray Can"
+			]
 		},
 		"rr_megacollisionchaos": {
 			"label": "Mega Collision Chaos",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Mega Collision Chaos - Spray Can"
+			]
 		},
 		"rr_megastarlight": {
 			"label": "Mega Star Light",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Mega Star Light - Spray Can"
+			]
 		},
 		"rr_megasandopolis": {
 			"label": "Mega Sandopolis",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Mega Sandopolis - Spray Can"
+			]
 		},
 		"rr_megaaqualake": {
 			"label": "Mega Aqua Lake",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Mega Aqua Lake - Spray Can"
+			]
 		},
 		"rr_megaflyingbattery": {
 			"label": "Mega Flying Battery",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Mega Flying Battery - Spray Can"
+			]
 		},
 		"rr_skybabylon": {
 			"label": "Sky Babylon",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Sky Babylon - Spray Can"
+			]
 		},
 		"rr_kodachromevoid": {
 			"label": "Kodachrome Void",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Kodachrome Void - Spray Can"
+			]
 		},
 		"rr_lavendershrine": {
 			"label": "Lavender Shrine",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Lavender Shrine - Spray Can"
+			]
 		},
 		"rr_hotcrater": {
 			"label": "Hot Crater",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Hot Crater - Spray Can"
+			]
 		},
 		"rr_thunderpiston": {
 			"label": "Thunder Piston",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Thunder Piston - Spray Can"
+			]
 		},
 		"rr_srb2frozennight": {
 			"label": "SRB2 Frozen Night",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"SRB2 Frozen Night - Spray Can"
+			]
 		},
 		"rr_barrenbadlands": {
 			"label": "Barren Badlands",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Barren Badlands - Spray Can"
+			]
 		},
 		"rr_shufflesquare": {
 			"label": "Shuffle Square",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Shuffle Square - Spray Can"
+			]
 		},
 		"rr_bluemountainclassic": {
 			"label": "Blue Mountain Classic",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Blue Mountain Classic - Spray Can"
+			]
 		},
 		"rr_angelarrowclassic": {
 			"label": "Angel Arrow Classic",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Angel Arrow Classic - Spray Can"
+			]
 		},
 		"rr_cadillaccanyonclassic": {
 			"label": "Cadillac Canyon Classic",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Cadillac Canyon Classic - Spray Can"
+			]
 		},
 		"rr_diamonddustclassic": {
 			"label": "Diamond Dust Classic",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Diamond Dust Classic - Spray Can"
+			]
 		},
 		"rr_blizzardpeaksclassic": {
 			"label": "Blizzard Peaks Classic",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Blizzard Peaks Classic - Spray Can"
+			]
 		},
 		"rr_launchbaseclassic": {
 			"label": "Launch Base Classic",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Launch Base Classic - Spray Can"
+			]
 		},
 		"rr_lavendershrineclassic": {
 			"label": "Lavender Shrine Classic",
 			"type": "race",
 			"medals_time": 3,
-			"medals_spb": 1
+			"medals_spb": 1,
+			"locations": [
+				"Lavender Shrine Classic - Spray Can"
+			]
 		}
-	}
+	},
+	"locations": [
+		{
+			"id": 9001,
+			"name": "Test Track - Spray Can",
+			"label": "Test Track: Spray Can",
+			"spray_can_map": "rr_testtrack",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9002,
+			"name": "Robotnik Coaster - Spray Can",
+			"label": "Robotnik Coaster: Spray Can",
+			"spray_can_map": "rr_robotnikcoaster",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9003,
+			"name": "Northern District - Spray Can",
+			"label": "Northern District: Spray Can",
+			"spray_can_map": "rr_northerndistrict",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9004,
+			"name": "Panic City - Spray Can",
+			"label": "Panic City: Spray Can",
+			"spray_can_map": "rr_paniccity",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9005,
+			"name": "Sonic Speedway - Spray Can",
+			"label": "Sonic Speedway: Spray Can",
+			"spray_can_map": "rr_sonicspeedway",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9006,
+			"name": "Green Hills - Spray Can",
+			"label": "Green Hills: Spray Can",
+			"spray_can_map": "rr_greenhills",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9007,
+			"name": "Emerald Coast - Spray Can",
+			"label": "Emerald Coast: Spray Can",
+			"spray_can_map": "rr_emeraldcoast",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9008,
+			"name": "Storm Rig - Spray Can",
+			"label": "Storm Rig: Spray Can",
+			"spray_can_map": "rr_stormrig",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9009,
+			"name": "Lucid Pass - Spray Can",
+			"label": "Lucid Pass: Spray Can",
+			"spray_can_map": "rr_lucidpass",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9010,
+			"name": "Autumn Ring - Spray Can",
+			"label": "Autumn Ring: Spray Can",
+			"spray_can_map": "rr_autumnring",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9011,
+			"name": "Withering Chateau - Spray Can",
+			"label": "Withering Chateau: Spray Can",
+			"spray_can_map": "rr_witheringchateau",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9012,
+			"name": "Popcorn Workshop - Spray Can",
+			"label": "Popcorn Workshop: Spray Can",
+			"spray_can_map": "rr_popcornworkshop",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9013,
+			"name": "Sundae Drive - Spray Can",
+			"label": "Sundae Drive: Spray Can",
+			"spray_can_map": "rr_sundaedrive",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9014,
+			"name": "Cadillac Cascade - Spray Can",
+			"label": "Cadillac Cascade: Spray Can",
+			"spray_can_map": "rr_cadillaccascade",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9015,
+			"name": "Opulence - Spray Can",
+			"label": "Opulence: Spray Can",
+			"spray_can_map": "rr_opulence",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9016,
+			"name": "Rumble Ridge - Spray Can",
+			"label": "Rumble Ridge: Spray Can",
+			"spray_can_map": "rr_rumbleridge",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9017,
+			"name": "Angel Island - Spray Can",
+			"label": "Angel Island: Spray Can",
+			"spray_can_map": "rr_angelisland",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9018,
+			"name": "Roasted Ruins - Spray Can",
+			"label": "Roasted Ruins: Spray Can",
+			"spray_can_map": "rr_roastedruins",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9019,
+			"name": "Obsidian Oasis - Spray Can",
+			"label": "Obsidian Oasis: Spray Can",
+			"spray_can_map": "rr_obsidianoasis",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9020,
+			"name": "Mirage Saloon - Spray Can",
+			"label": "Mirage Saloon: Spray Can",
+			"spray_can_map": "rr_miragesaloon",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9021,
+			"name": "Regal Ruin - Spray Can",
+			"label": "Regal Ruin: Spray Can",
+			"spray_can_map": "rr_regalruin",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9022,
+			"name": "Isolated Island - Spray Can",
+			"label": "Isolated Island: Spray Can",
+			"spray_can_map": "rr_isolatedisland",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9023,
+			"name": "Gigapolis - Spray Can",
+			"label": "Gigapolis: Spray Can",
+			"spray_can_map": "rr_gigapolis",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9024,
+			"name": "Darkvile Castle 1 - Spray Can",
+			"label": "Darkvile Castle 1: Spray Can",
+			"spray_can_map": "rr_darkvilecastle1",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9025,
+			"name": "Bronze Lake - Spray Can",
+			"label": "Bronze Lake: Spray Can",
+			"spray_can_map": "rr_bronzelake",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9026,
+			"name": "Collision Chaos - Spray Can",
+			"label": "Collision Chaos: Spray Can",
+			"spray_can_map": "rr_collisionchaos",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9027,
+			"name": "Emerald Hill - Spray Can",
+			"label": "Emerald Hill: Spray Can",
+			"spray_can_map": "rr_emeraldhill",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9028,
+			"name": "Azure City - Spray Can",
+			"label": "Azure City: Spray Can",
+			"spray_can_map": "rr_azurecity",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9029,
+			"name": "Gust Planet - Spray Can",
+			"label": "Gust Planet: Spray Can",
+			"spray_can_map": "rr_gustplanet",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9030,
+			"name": "Mystic Cave - Spray Can",
+			"label": "Mystic Cave: Spray Can",
+			"spray_can_map": "rr_mysticcave",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9031,
+			"name": "Joypolis - Spray Can",
+			"label": "Joypolis: Spray Can",
+			"spray_can_map": "rr_joypolis",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9032,
+			"name": "Hidden Palace - Spray Can",
+			"label": "Hidden Palace: Spray Can",
+			"spray_can_map": "rr_hiddenpalace",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9033,
+			"name": "Hill Top - Spray Can",
+			"label": "Hill Top: Spray Can",
+			"spray_can_map": "rr_hilltop",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9034,
+			"name": "Marble Garden - Spray Can",
+			"label": "Marble Garden: Spray Can",
+			"spray_can_map": "rr_marblegarden",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9035,
+			"name": "SilverCloud Island - Spray Can",
+			"label": "SilverCloud Island: Spray Can",
+			"spray_can_map": "rr_silvercloudisland",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9036,
+			"name": "Sub-Zero Peak - Spray Can",
+			"label": "Sub-Zero Peak: Spray Can",
+			"spray_can_map": "rr_subzeropeak",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9037,
+			"name": "Launch Base - Spray Can",
+			"label": "Launch Base: Spray Can",
+			"spray_can_map": "rr_launchbase",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9038,
+			"name": "Azure Lake - Spray Can",
+			"label": "Azure Lake: Spray Can",
+			"spray_can_map": "rr_azurelake",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9039,
+			"name": "Balloon Park - Spray Can",
+			"label": "Balloon Park: Spray Can",
+			"spray_can_map": "rr_balloonpark",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9040,
+			"name": "Chrome Gadget - Spray Can",
+			"label": "Chrome Gadget: Spray Can",
+			"spray_can_map": "rr_chromegadget",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9041,
+			"name": "Desert Palace - Spray Can",
+			"label": "Desert Palace: Spray Can",
+			"spray_can_map": "rr_desertpalace",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9042,
+			"name": "Endless Mine 1 - Spray Can",
+			"label": "Endless Mine 1: Spray Can",
+			"spray_can_map": "rr_endlessmine",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9043,
+			"name": "Hard-Boiled Stadium - Spray Can",
+			"label": "Hard-Boiled Stadium: Spray Can",
+			"spray_can_map": "rr_hardboiledstadium",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9044,
+			"name": "Hardhat Havoc - Spray Can",
+			"label": "Hardhat Havoc: Spray Can",
+			"spray_can_map": "rr_hardhathavoc",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9045,
+			"name": "Press Garden - Spray Can",
+			"label": "Press Garden: Spray Can",
+			"spray_can_map": "rr_pressgarden",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9046,
+			"name": "Pico Park - Spray Can",
+			"label": "Pico Park: Spray Can",
+			"spray_can_map": "rr_picopark",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9047,
+			"name": "City Escape - Spray Can",
+			"label": "City Escape: Spray Can",
+			"spray_can_map": "rr_cityescape",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9048,
+			"name": "Palmtree Panic - Spray Can",
+			"label": "Palmtree Panic: Spray Can",
+			"spray_can_map": "rr_palmtreepanic",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9049,
+			"name": "Darkvile Castle 2 - Spray Can",
+			"label": "Darkvile Castle 2: Spray Can",
+			"spray_can_map": "rr_darkvilecastle2",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9050,
+			"name": "Scarlet Gardens - Spray Can",
+			"label": "Scarlet Gardens: Spray Can",
+			"spray_can_map": "rr_scarletgardens",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9051,
+			"name": "Motobug Motorway - Spray Can",
+			"label": "Motobug Motorway: Spray Can",
+			"spray_can_map": "rr_motobugmotorway",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9052,
+			"name": "Star Light - Spray Can",
+			"label": "Star Light: Spray Can",
+			"spray_can_map": "rr_starlight",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9053,
+			"name": "Metropolis - Spray Can",
+			"label": "Metropolis: Spray Can",
+			"spray_can_map": "rr_metropolis",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9054,
+			"name": "Frozen Production - Spray Can",
+			"label": "Frozen Production: Spray Can",
+			"spray_can_map": "rr_frozenproduction",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9055,
+			"name": "Aqueduct Crystal - Spray Can",
+			"label": "Aqueduct Crystal: Spray Can",
+			"spray_can_map": "rr_aqueductcrystal",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9056,
+			"name": "Nova Shore - Spray Can",
+			"label": "Nova Shore: Spray Can",
+			"spray_can_map": "rr_novashore",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9057,
+			"name": "Hydro City - Spray Can",
+			"label": "Hydro City: Spray Can",
+			"spray_can_map": "rr_hydrocity",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9058,
+			"name": "Trap Tower - Spray Can",
+			"label": "Trap Tower: Spray Can",
+			"spray_can_map": "rr_traptower",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9059,
+			"name": "Diamond Dust - Spray Can",
+			"label": "Diamond Dust: Spray Can",
+			"spray_can_map": "rr_diamonddust",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9060,
+			"name": "Blue Mountain 1 - Spray Can",
+			"label": "Blue Mountain 1: Spray Can",
+			"spray_can_map": "rr_bluemountain1",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9061,
+			"name": "Blue Mountain 2 - Spray Can",
+			"label": "Blue Mountain 2: Spray Can",
+			"spray_can_map": "rr_bluemountain2",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9062,
+			"name": "Speed Highway - Spray Can",
+			"label": "Speed Highway: Spray Can",
+			"spray_can_map": "rr_speedhighway",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9063,
+			"name": "Carnival Night - Spray Can",
+			"label": "Carnival Night: Spray Can",
+			"spray_can_map": "rr_carnivalnight",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9064,
+			"name": "Virtual Highway - Spray Can",
+			"label": "Virtual Highway: Spray Can",
+			"spray_can_map": "rr_virtualhighway",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9065,
+			"name": "Route 1980 - Spray Can",
+			"label": "Route 1980: Spray Can",
+			"spray_can_map": "rr_route1980",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9066,
+			"name": "Dark Fortress - Spray Can",
+			"label": "Dark Fortress: Spray Can",
+			"spray_can_map": "rr_darkfortress",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9067,
+			"name": "Spring Yard - Spray Can",
+			"label": "Spring Yard: Spray Can",
+			"spray_can_map": "rr_springyard",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9068,
+			"name": "Labyrinth - Spray Can",
+			"label": "Labyrinth: Spray Can",
+			"spray_can_map": "rr_labyrinth",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9069,
+			"name": "Hot Shelter - Spray Can",
+			"label": "Hot Shelter: Spray Can",
+			"spray_can_map": "rr_hotshelter",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9070,
+			"name": "Sky Sanctuary - Spray Can",
+			"label": "Sky Sanctuary: Spray Can",
+			"spray_can_map": "rr_skysanctuary",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9071,
+			"name": "Lost Colony - Spray Can",
+			"label": "Lost Colony: Spray Can",
+			"spray_can_map": "rr_lostcolony",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9072,
+			"name": "Death Egg - Spray Can",
+			"label": "Death Egg: Spray Can",
+			"spray_can_map": "rr_deathegg",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9073,
+			"name": "765 Stadium - Spray Can",
+			"label": "765 Stadium: Spray Can",
+			"spray_can_map": "rr_765stadium",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9074,
+			"name": "Skyscraper Leaps - Spray Can",
+			"label": "Skyscraper Leaps: Spray Can",
+			"spray_can_map": "rr_skyscraperleaps",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9075,
+			"name": "Green Triangle - Spray Can",
+			"label": "Green Triangle: Spray Can",
+			"spray_can_map": "rr_greentriangle",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9076,
+			"name": "Zoned City - Spray Can",
+			"label": "Zoned City: Spray Can",
+			"spray_can_map": "rr_zonedcity",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9077,
+			"name": "Sunset Hill - Spray Can",
+			"label": "Sunset Hill: Spray Can",
+			"spray_can_map": "rr_sunsethill",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9078,
+			"name": "Savannah Citadel - Spray Can",
+			"label": "Savannah Citadel: Spray Can",
+			"spray_can_map": "rr_savannahcitadel",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9079,
+			"name": "Umbrella Rushwinds - Spray Can",
+			"label": "Umbrella Rushwinds: Spray Can",
+			"spray_can_map": "rr_umbrellarushwinds",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9080,
+			"name": "Avant Garden - Spray Can",
+			"label": "Avant Garden: Spray Can",
+			"spray_can_map": "rr_avantgarden",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9081,
+			"name": "Bigtime Breakdown - Spray Can",
+			"label": "Bigtime Breakdown: Spray Can",
+			"spray_can_map": "rr_bigtimebreakdown",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9082,
+			"name": "Vantablack Violet - Spray Can",
+			"label": "Vantablack Violet: Spray Can",
+			"spray_can_map": "rr_vantablackviolet",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9083,
+			"name": "Chaos Chute - Spray Can",
+			"label": "Chaos Chute: Spray Can",
+			"spray_can_map": "rr_chaostube",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9084,
+			"name": "Dimension Disaster - Spray Can",
+			"label": "Dimension Disaster: Spray Can",
+			"spray_can_map": "rr_dimensiondisaster",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9085,
+			"name": "Aurora Atoll - Spray Can",
+			"label": "Aurora Atoll: Spray Can",
+			"spray_can_map": "rr_auroraatoll",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9086,
+			"name": "Daytona Speedway - Spray Can",
+			"label": "Daytona Speedway: Spray Can",
+			"spray_can_map": "rr_daytonaspeedway",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9087,
+			"name": "Turquoise Hill - Spray Can",
+			"label": "Turquoise Hill: Spray Can",
+			"spray_can_map": "rr_turquoisehill",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9088,
+			"name": "Weiss Waterway - Spray Can",
+			"label": "Weiss Waterway: Spray Can",
+			"spray_can_map": "rr_weisswaterway",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9089,
+			"name": "Ice Paradise - Spray Can",
+			"label": "Ice Paradise: Spray Can",
+			"spray_can_map": "rr_iceparadise",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9090,
+			"name": "Sunsplashed Getaway - Spray Can",
+			"label": "Sunsplashed Getaway: Spray Can",
+			"spray_can_map": "rr_sunsplashedgetaway",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9091,
+			"name": "Fae Falls - Spray Can",
+			"label": "Fae Falls: Spray Can",
+			"spray_can_map": "rr_faefalls",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9092,
+			"name": "Azure Axiom - Spray Can",
+			"label": "Azure Axiom: Spray Can",
+			"spray_can_map": "rr_azureaxiom",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9093,
+			"name": "Hanagumi Hall - Spray Can",
+			"label": "Hanagumi Hall: Spray Can",
+			"spray_can_map": "rr_hanagumihall",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9094,
+			"name": "Crispy Canyon - Spray Can",
+			"label": "Crispy Canyon: Spray Can",
+			"spray_can_map": "rr_crispycanyon",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9095,
+			"name": "Aerial Highlands - Spray Can",
+			"label": "Aerial Highlands: Spray Can",
+			"spray_can_map": "rr_aerialhighlands",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9096,
+			"name": "Technology Tundra - Spray Can",
+			"label": "Technology Tundra: Spray Can",
+			"spray_can_map": "rr_technologytundra",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9097,
+			"name": "Operator's Overspace - Spray Can",
+			"label": "Operator's Overspace: Spray Can",
+			"spray_can_map": "rr_operatorsoverspace",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9098,
+			"name": "Mega Green Hill - Spray Can",
+			"label": "Mega Green Hill: Spray Can",
+			"spray_can_map": "rr_megagreenhill",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9099,
+			"name": "Mega Bridge - Spray Can",
+			"label": "Mega Bridge: Spray Can",
+			"spray_can_map": "rr_megabridge",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9100,
+			"name": "Mega Lava Reef - Spray Can",
+			"label": "Mega Lava Reef: Spray Can",
+			"spray_can_map": "rr_megalavareef",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9101,
+			"name": "Mega Ice Cap - Spray Can",
+			"label": "Mega Ice Cap: Spray Can",
+			"spray_can_map": "rr_megaicecap",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9102,
+			"name": "Mega Scrap Brain - Spray Can",
+			"label": "Mega Scrap Brain: Spray Can",
+			"spray_can_map": "rr_megascrapbrain",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9103,
+			"name": "Cloudtop Dimension 4 - Spray Can",
+			"label": "Cloudtop Dimension 4: Spray Can",
+			"spray_can_map": "rr_cloudtopdimension",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9104,
+			"name": "Nightfall Dimension 2 - Spray Can",
+			"label": "Nightfall Dimension 2: Spray Can",
+			"spray_can_map": "rr_nightfalldimension",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9105,
+			"name": "Wavecrash Dimension 1 - Spray Can",
+			"label": "Wavecrash Dimension 1: Spray Can",
+			"spray_can_map": "rr_wavecrashdimension",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9106,
+			"name": "Voiddance Dimension 3 - Spray Can",
+			"label": "Voiddance Dimension 3: Spray Can",
+			"spray_can_map": "rr_voiddancedimension",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9107,
+			"name": "Gravtech Dimension 5 - Spray Can",
+			"label": "Gravtech Dimension 5: Spray Can",
+			"spray_can_map": "rr_gravtechdimension",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9108,
+			"name": "Espresso Lane - Spray Can",
+			"label": "Espresso Lane: Spray Can",
+			"spray_can_map": "rr_espressolane",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9109,
+			"name": "Melty Manor - Spray Can",
+			"label": "Melty Manor: Spray Can",
+			"spray_can_map": "rr_meltymanor",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9110,
+			"name": "Leaf Storm - Spray Can",
+			"label": "Leaf Storm: Spray Can",
+			"spray_can_map": "rr_leafstorm",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9111,
+			"name": "Lake Margorite - Spray Can",
+			"label": "Lake Margorite: Spray Can",
+			"spray_can_map": "rr_lakemargorite",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9112,
+			"name": "Endless Mine 2 - Spray Can",
+			"label": "Endless Mine 2: Spray Can",
+			"spray_can_map": "rr_endlessmine2",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9113,
+			"name": "Cyan Belltower - Spray Can",
+			"label": "Cyan Belltower: Spray Can",
+			"spray_can_map": "rr_cyanbelltower",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9114,
+			"name": "Quartz Quadrant - Spray Can",
+			"label": "Quartz Quadrant: Spray Can",
+			"spray_can_map": "rr_quartzquadrant",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9115,
+			"name": "Aqua Tunnel - Spray Can",
+			"label": "Aqua Tunnel: Spray Can",
+			"spray_can_map": "rr_aquatunnel",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9116,
+			"name": "Water Palace - Spray Can",
+			"label": "Water Palace: Spray Can",
+			"spray_can_map": "rr_waterpalace",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9117,
+			"name": "Final Fall - Spray Can",
+			"label": "Final Fall: Spray Can",
+			"spray_can_map": "rr_finalfall",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9118,
+			"name": "Haunted Ship - Spray Can",
+			"label": "Haunted Ship: Spray Can",
+			"spray_can_map": "rr_hauntedship",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9119,
+			"name": "Robotnik Winter - Spray Can",
+			"label": "Robotnik Winter: Spray Can",
+			"spray_can_map": "rr_robotnikwinter",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9120,
+			"name": "Dragonspire Sewer 1 - Spray Can",
+			"label": "Dragonspire Sewer 1: Spray Can",
+			"spray_can_map": "rr_dragonspiresewer1",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9121,
+			"name": "Abyss Garden - Spray Can",
+			"label": "Abyss Garden: Spray Can",
+			"spray_can_map": "rr_abyssgarden",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9122,
+			"name": "Blizzard Peaks - Spray Can",
+			"label": "Blizzard Peaks: Spray Can",
+			"spray_can_map": "rr_blizzardpeaks",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9123,
+			"name": "Vermilion Vessel - Spray Can",
+			"label": "Vermilion Vessel: Spray Can",
+			"spray_can_map": "rr_vermilionvessel",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9124,
+			"name": "Dragonspire Sewer 2 - Spray Can",
+			"label": "Dragonspire Sewer 2: Spray Can",
+			"spray_can_map": "rr_dragonspiresewer2",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9125,
+			"name": "Chemical Facility - Spray Can",
+			"label": "Chemical Facility: Spray Can",
+			"spray_can_map": "rr_chemicalfacility",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9126,
+			"name": "Coastal Temple - Spray Can",
+			"label": "Coastal Temple: Spray Can",
+			"spray_can_map": "rr_coastaltemple",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9127,
+			"name": "Monkey Mall - Spray Can",
+			"label": "Monkey Mall: Spray Can",
+			"spray_can_map": "rr_monkeymall",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9128,
+			"name": "Ramp Park - Spray Can",
+			"label": "Ramp Park: Spray Can",
+			"spray_can_map": "rr_ramppark",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9129,
+			"name": "Advent Angel - Spray Can",
+			"label": "Advent Angel: Spray Can",
+			"spray_can_map": "rr_adventangel",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9130,
+			"name": "Pestilence - Spray Can",
+			"label": "Pestilence: Spray Can",
+			"spray_can_map": "rr_pestilence",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9131,
+			"name": "Crimson Core - Spray Can",
+			"label": "Crimson Core: Spray Can",
+			"spray_can_map": "rr_crimsoncore",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9132,
+			"name": "Las Vegas - Spray Can",
+			"label": "Las Vegas: Spray Can",
+			"spray_can_map": "rr_lasvegas",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9133,
+			"name": "Mega Collision Chaos - Spray Can",
+			"label": "Mega Collision Chaos: Spray Can",
+			"spray_can_map": "rr_megacollisionchaos",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9134,
+			"name": "Mega Star Light - Spray Can",
+			"label": "Mega Star Light: Spray Can",
+			"spray_can_map": "rr_megastarlight",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9135,
+			"name": "Mega Sandopolis - Spray Can",
+			"label": "Mega Sandopolis: Spray Can",
+			"spray_can_map": "rr_megasandopolis",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9136,
+			"name": "Mega Aqua Lake - Spray Can",
+			"label": "Mega Aqua Lake: Spray Can",
+			"spray_can_map": "rr_megaaqualake",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9137,
+			"name": "Mega Flying Battery - Spray Can",
+			"label": "Mega Flying Battery: Spray Can",
+			"spray_can_map": "rr_megaflyingbattery",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9138,
+			"name": "Sky Babylon - Spray Can",
+			"label": "Sky Babylon: Spray Can",
+			"spray_can_map": "rr_skybabylon",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9139,
+			"name": "Kodachrome Void - Spray Can",
+			"label": "Kodachrome Void: Spray Can",
+			"spray_can_map": "rr_kodachromevoid",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9140,
+			"name": "Lavender Shrine - Spray Can",
+			"label": "Lavender Shrine: Spray Can",
+			"spray_can_map": "rr_lavendershrine",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9141,
+			"name": "Hot Crater - Spray Can",
+			"label": "Hot Crater: Spray Can",
+			"spray_can_map": "rr_hotcrater",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9142,
+			"name": "Thunder Piston - Spray Can",
+			"label": "Thunder Piston: Spray Can",
+			"spray_can_map": "rr_thunderpiston",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9143,
+			"name": "SRB2 Frozen Night - Spray Can",
+			"label": "SRB2 Frozen Night: Spray Can",
+			"spray_can_map": "rr_srb2frozennight",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9144,
+			"name": "Barren Badlands - Spray Can",
+			"label": "Barren Badlands: Spray Can",
+			"spray_can_map": "rr_barrenbadlands",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9145,
+			"name": "Shuffle Square - Spray Can",
+			"label": "Shuffle Square: Spray Can",
+			"spray_can_map": "rr_shufflesquare",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9146,
+			"name": "Blue Mountain Classic - Spray Can",
+			"label": "Blue Mountain Classic: Spray Can",
+			"spray_can_map": "rr_bluemountainclassic",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9147,
+			"name": "Angel Arrow Classic - Spray Can",
+			"label": "Angel Arrow Classic: Spray Can",
+			"spray_can_map": "rr_angelarrowclassic",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9148,
+			"name": "Cadillac Canyon Classic - Spray Can",
+			"label": "Cadillac Canyon Classic: Spray Can",
+			"spray_can_map": "rr_cadillaccanyonclassic",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9149,
+			"name": "Diamond Dust Classic - Spray Can",
+			"label": "Diamond Dust Classic: Spray Can",
+			"spray_can_map": "rr_diamonddustclassic",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9150,
+			"name": "Blizzard Peaks Classic - Spray Can",
+			"label": "Blizzard Peaks Classic: Spray Can",
+			"spray_can_map": "rr_blizzardpeaksclassic",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9151,
+			"name": "Launch Base Classic - Spray Can",
+			"label": "Launch Base Classic: Spray Can",
+			"spray_can_map": "rr_launchbaseclassic",
+			"tags": [
+				"Spray Cans"
+			]
+		},
+		{
+			"id": 9152,
+			"name": "Lavender Shrine Classic - Spray Can",
+			"label": "Lavender Shrine Classic: Spray Can",
+			"spray_can_map": "rr_lavendershrineclassic",
+			"tags": [
+				"Spray Cans"
+			]
+		}
+	]
 }

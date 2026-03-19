@@ -170,7 +170,7 @@ struct recorddata_t
 	UINT8 mapvisited; ///< Generalised flags
 	recordtimes_t timeattack; ///< Best times for Time Attack
 	recordtimes_t spbattack; ///< Best times for SPB Attack
-	UINT16 spraycan; ///< Associated spraycan id
+	boolean spraycan; ///< [RRAP] Got spraycan or not
 	UINT32 timeplayed;
 	UINT32 netgametimeplayed;
 	UINT32 modetimeplayed[GDGT_MAX];
@@ -599,6 +599,9 @@ struct mapheader_t
 	UINT8 destroyforchallenge_size;						///< Number for above
 
 	UINT16 cache_maplock;				///< Cached Unlockable ID
+
+	// [RRAP]
+	INT64 ap_spraycan_location_id;		///< Archipelago: location ID for our Spray Can
 
 	// Lua information
 	UINT8 numCustomOptions;				///< Internal. For Lua custom value support.

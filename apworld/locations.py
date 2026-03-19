@@ -26,9 +26,18 @@ def create_all_locations(world: RingRacersWorld) -> None:
 def create_regular_locations(world: RingRacersWorld) -> None:
     challenges = world.get_region("Challenge Grid")
 
-    # TODO: Actually filter down to just challenges
-    all_challenge_locations = get_location_names_with_ids(world, list(world.location_name_to_id.keys()))
+    all_challenge_locations = get_location_names_with_ids(world, world.location_name_groups["Challenges"])
     challenges.add_locations(all_challenge_locations, RingRacersLocation)
+
+    for index, map_def in jsondata.rr_map_defs.items():
+        location_suffix_list = map_def.get("locations", None)
+        if location_suffix_list:
+            map_name = map_def["label"]
+            map_region = world.get_region(map_name)
+            map_location_names = map_def["locations"]
+            if len(map_location_names):
+                all_map_locations = get_location_names_with_ids(world, map_location_names)
+                map_region.add_locations(all_map_locations)
 
 
 def create_events(world: RingRacersWorld) -> None:

@@ -2,6 +2,7 @@
 	"cups": {
 		"rr_ring": {
 			"label": "Ring Cup",
+			"item": "Ring Cup Access",
 			"map_list": [
 				"rr_robotnikcoaster",
 				"rr_northerndistrict",
@@ -11,11 +12,11 @@
 				"rr_cdspecialstage1",
 				"rr_greenhills",
 				"rr_sealedstarbalconies"
-			],
-			"item": "Ring Cup Access"
+			]
 		},
 		"rr_sneaker": {
 			"label": "Sneaker Cup",
+			"item": "Sneaker Cup Access",
 			"map_list": [
 				"rr_emeraldcoast",
 				"rr_stormrig",
@@ -25,11 +26,11 @@
 				"rr_tricirclemarina",
 				"rr_witheringchateau",
 				"rr_sealedstarchurch"
-			],
-			"item": "Sneaker Cup Access"
+			]
 		},
 		"rr_spring": {
 			"label": "Spring Cup",
+			"item": "Spring Cup Access",
 			"map_list": [
 				"rr_popcornworkshop",
 				"rr_sundaedrive",
@@ -39,11 +40,11 @@
 				"rr_rustyrig",
 				"rr_opulence",
 				"rr_sealedstarcourtyard"
-			],
-			"item": "Spring Cup Access"
+			]
 		},
 		"rr_barrier": {
 			"label": "Barrier Cup",
+			"item": "Barrier Cup Access",
 			"map_list": [
 				"rr_angelisland",
 				"rr_roastedruins",
@@ -53,11 +54,11 @@
 				"rr_rockworld",
 				"rr_regalruin",
 				"rr_sealedstarvilla"
-			],
-			"item": "Barrier Cup Access"
+			]
 		},
 		"rr_invincible": {
 			"label": "Invincible Cup",
+			"item": "Invincible Cup Access",
 			"map_list": [
 				"rr_isolatedisland",
 				"rr_gigapolis",
@@ -67,11 +68,11 @@
 				"rr_cdspecialstage8",
 				"rr_collisionchaos",
 				"rr_sealedstarvenice"
-			],
-			"item": "Invincible Cup Access"
+			]
 		},
 		"rr_emerald": {
 			"label": "Emerald Cup",
+			"item": "Emerald Cup Access",
 			"map_list": [
 				"rr_emeraldhill",
 				"rr_azurecity",
@@ -81,11 +82,11 @@
 				"rr_electraclacker",
 				"rr_joypolis",
 				"rr_sealedstarspikes"
-			],
-			"item": "Emerald Cup Access"
+			]
 		},
 		"rr_extra": {
 			"label": "Extra Cup",
+			"item": "Extra Cup Access",
 			"map_list": [
 				"rr_hilltop",
 				"rr_marblegarden",
@@ -96,11 +97,11 @@
 				"rr_launchbase",
 				"rr_sealedstarfountain"
 			],
-			"has_credits": true,
-			"item": "Extra Cup Access"
+			"has_credits": true
 		},
 		"rr_s.p.b.": {
 			"label": "S.P.B. Cup",
+			"item": "S.P.B. Cup Access",
 			"map_list": [
 				"rr_azurelake",
 				"rr_balloonpark",
@@ -110,11 +111,11 @@
 				"rr_gizmobastion",
 				"rr_endlessmine",
 				"rr_sealedstargallery"
-			],
-			"item": "S.P.B. Cup Access"
+			]
 		},
 		"rr_rocket": {
 			"label": "Rocket Cup",
+			"item": "Rocket Cup Access",
 			"map_list": [
 				"rr_hardboiledstadium",
 				"rr_hardhathavoc",
@@ -124,11 +125,11 @@
 				"rr_securityhall",
 				"rr_cityescape",
 				"rr_sealedstaralley"
-			],
-			"item": "Rocket Cup Access"
+			]
 		},
 		"rr_aqua": {
 			"label": "Aqua Cup",
+			"item": "Aqua Cup Access",
 			"map_list": [
 				"rr_palmtreepanic",
 				"rr_darkvilecastle2",
@@ -138,11 +139,11 @@
 				"rr_mediastudio",
 				"rr_starlight",
 				"rr_sealedstarsteeple"
-			],
-			"item": "Aqua Cup Access"
+			]
 		},
 		"rr_lightning": {
 			"label": "Lightning Cup",
+			"item": "Lightning Cup Access",
 			"map_list": [
 				"rr_metropolis",
 				"rr_frozenproduction",
@@ -152,11 +153,11 @@
 				"rr_wood",
 				"rr_hydrocity",
 				"rr_sealedstarrooftops"
-			],
-			"item": "Lightning Cup Access"
+			]
 		},
 		"rr_flame": {
 			"label": "Flame Cup",
+			"item": "Flame Cup Access",
 			"map_list": [
 				"rr_traptower",
 				"rr_diamonddust",
@@ -166,11 +167,11 @@
 				"rr_crystalisland",
 				"rr_speedhighway",
 				"rr_sealedstarroulette"
-			],
-			"item": "Flame Cup Access"
+			]
 		},
 		"rr_super": {
 			"label": "Super Cup",
+			"item": "Super Cup Access",
 			"map_list": [
 				"rr_carnivalnight",
 				"rr_virtualhighway",
@@ -180,11 +181,11 @@
 				"rr_neonresort",
 				"rr_labyrinth",
 				"rr_sealedstartowers"
-			],
-			"item": "Super Cup Access"
+			]
 		},
 		"rr_egg": {
 			"label": "Egg Cup",
+			"item": "Egg Cup Access",
 			"map_list": [
 				"rr_hotshelter",
 				"rr_meteorherd",
@@ -194,11 +195,11 @@
 				"rr_deathegg",
 				"rr_sealedstaratlantis"
 			],
-			"has_credits": true,
-			"item": "Egg Cup Access"
+			"has_credits": true
 		},
 		"rr_goggles": {
 			"label": "Goggles Cup",
+			"item": "Goggles Cup Access",
 			"map_list": [
 				"rr_765stadium",
 				"rr_skyscraperleaps",
@@ -208,11 +209,11 @@
 				"rr_powerplant",
 				"rr_sunsethill",
 				"rr_sealedstarbalconies"
-			],
-			"item": "Goggles Cup Access"
+			]
 		},
 		"rr_timer": {
 			"label": "Timer Cup",
+			"item": "Timer Cup Access",
 			"map_list": [
 				"rr_savannahcitadel",
 				"rr_umbrellarushwinds",
@@ -222,11 +223,11 @@
 				"rr_vantablackatrium",
 				"rr_vantablackviolet",
 				"rr_sealedstarchurch"
-			],
-			"item": "Timer Cup Access"
+			]
 		},
 		"rr_grow": {
 			"label": "Grow Cup",
+			"item": "Grow Cup Access",
 			"map_list": [
 				"rr_chaostube",
 				"rr_dimensiondisaster",
@@ -236,11 +237,11 @@
 				"rr_martianmatrix",
 				"rr_turquoisehill",
 				"rr_sealedstarcourtyard"
-			],
-			"item": "Grow Cup Access"
+			]
 		},
 		"rr_chao": {
 			"label": "Chao Cup",
+			"item": "Chao Cup Access",
 			"map_list": [
 				"rr_weisswaterway",
 				"rr_iceparadise",
@@ -250,11 +251,11 @@
 				"rr_herochaogarden",
 				"rr_azureaxiom",
 				"rr_sealedstarvilla"
-			],
-			"item": "Chao Cup Access"
+			]
 		},
 		"rr_wing": {
 			"label": "Wing Cup",
+			"item": "Wing Cup Access",
 			"map_list": [
 				"rr_hanagumihall",
 				"rr_aerialhighlands",
@@ -264,11 +265,11 @@
 				"rr_delugedmetroplex",
 				"rr_operatorsoverspace",
 				"rr_sealedstarvenice"
-			],
-			"item": "Wing Cup Access"
+			]
 		},
 		"rr_mega": {
 			"label": "Mega Cup",
+			"item": "Mega Cup Access",
 			"map_list": [
 				"rr_megagreenhill",
 				"rr_megabridge",
@@ -278,11 +279,11 @@
 				"rr_megalabyrinth",
 				"rr_megascrapbrain",
 				"rr_sealedstarspikes"
-			],
-			"item": "Mega Cup Access"
+			]
 		},
 		"rr_phantom": {
 			"label": "Phantom Cup",
+			"item": "Phantom Cup Access",
 			"map_list": [
 				"rr_wavecrashdimension",
 				"rr_nightfalldimension",
@@ -292,11 +293,11 @@
 				"rr_astraldimension",
 				"rr_gravtechdimension",
 				"rr_sealedstarfountain"
-			],
-			"item": "Phantom Cup Access"
+			]
 		},
 		"rr_flash": {
 			"label": "Flash Cup",
+			"item": "Flash Cup Access",
 			"map_list": [
 				"rr_espressolane",
 				"rr_meltymanor",
@@ -306,11 +307,11 @@
 				"rr_toykingdom",
 				"rr_endlessmine2",
 				"rr_sealedstargallery"
-			],
-			"item": "Flash Cup Access"
+			]
 		},
 		"rr_swap": {
 			"label": "Swap Cup",
+			"item": "Swap Cup Access",
 			"map_list": [
 				"rr_cyanbelltower",
 				"rr_quartzquadrant",
@@ -320,11 +321,11 @@
 				"rr_aquaticcathedral2",
 				"rr_finalfall",
 				"rr_sealedstaralley"
-			],
-			"item": "Swap Cup Access"
+			]
 		},
 		"rr_shrink": {
 			"label": "Shrink Cup",
+			"item": "Shrink Cup Access",
 			"map_list": [
 				"rr_hauntedship",
 				"rr_robotnikwinter",
@@ -334,11 +335,11 @@
 				"rr_abyssgate",
 				"rr_blizzardpeaks",
 				"rr_sealedstarsteeple"
-			],
-			"item": "Shrink Cup Access"
+			]
 		},
 		"rr_bomb": {
 			"label": "Bomb Cup",
+			"item": "Bomb Cup Access",
 			"map_list": [
 				"rr_vermilionvessel",
 				"rr_dragonspiresewer2",
@@ -348,11 +349,11 @@
 				"rr_recordattack",
 				"rr_monkeymall",
 				"rr_sealedstarrooftops"
-			],
-			"item": "Bomb Cup Access"
+			]
 		},
 		"rr_power": {
 			"label": "Power Cup",
+			"item": "Power Cup Access",
 			"map_list": [
 				"rr_ramppark",
 				"rr_adventangel",
@@ -362,11 +363,11 @@
 				"rr_hydroplant",
 				"rr_lasvegas",
 				"rr_sealedstarroulette"
-			],
-			"item": "Power Cup Access"
+			]
 		},
 		"rr_genesis": {
 			"label": "Genesis Cup",
+			"item": "Genesis Cup Access",
 			"map_list": [
 				"rr_megacollisionchaos",
 				"rr_megastarlight",
@@ -376,11 +377,11 @@
 				"rr_megamarble",
 				"rr_megaflyingbattery",
 				"rr_sealedstartowers"
-			],
-			"item": "Genesis Cup Access"
+			]
 		},
 		"rr_skate": {
 			"label": "Skate Cup",
+			"item": "Skate Cup Access",
 			"map_list": [
 				"rr_skybabylon",
 				"rr_kodachromevoid",
@@ -391,11 +392,11 @@
 				"rr_thunderpiston",
 				"rr_sealedstaratlantis"
 			],
-			"has_credits": true,
-			"item": "Skate Cup Access"
+			"has_credits": true
 		},
 		"rr_recycle_a": {
 			"label": "Recycle A Cup",
+			"item": "Recycle A Cup Access",
 			"map_list": [
 				"rr_srb2frozennight",
 				"rr_barrenbadlands",
@@ -405,11 +406,11 @@
 				"rr_armoredarmadillo",
 				"rr_angelarrowclassic",
 				"rr_sealedstarbalconies"
-			],
-			"item": "Recycle A Cup Access"
+			]
 		},
 		"rr_recycle_b": {
 			"label": "Recycle B Cup",
+			"item": "Recycle B Cup Access",
 			"map_list": [
 				"rr_cadillaccanyonclassic",
 				"rr_diamonddustclassic",
@@ -419,8 +420,7 @@
 				"rr_driedbattledune",
 				"rr_lavendershrineclassic",
 				"rr_sealedstarchurch"
-			],
-			"item": "Recycle B Cup Access"
+			]
 		}
 	}
 }

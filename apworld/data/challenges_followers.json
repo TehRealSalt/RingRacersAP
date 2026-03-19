@@ -1,1620 +1,2684 @@
 {
-	"locations": {
-		"200": {
+	"locations": [
+		{
+			"id": 200,
 			"name": "Challenge - Follower: Motobuddy",
 			"label": "Motobuddy",
-			"condition_set": 200
+			"condition_set": 200,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"201": {
+		{
+			"id": 201,
 			"name": "Challenge - Follower: Buzz Bomber",
 			"label": "Buzz Bomber",
-			"condition_set": 201
+			"condition_set": 201,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"202": {
+		{
+			"id": 202,
 			"name": "Challenge - Follower: Newtron",
 			"label": "Newtron",
-			"condition_set": 202
+			"condition_set": 202,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"203": {
+		{
+			"id": 203,
 			"name": "Challenge - Follower: Orbinaut",
 			"label": "Orbinaut",
-			"condition_set": 203
+			"condition_set": 203,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"204": {
+		{
+			"id": 204,
 			"name": "Challenge - Follower: Jaws",
 			"label": "Jaws",
-			"condition_set": 204
+			"condition_set": 204,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"205": {
+		{
+			"id": 205,
 			"name": "Challenge - Follower: Bomb",
 			"label": "Bomb",
-			"condition_set": 205
+			"condition_set": 205,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"206": {
+		{
+			"id": 206,
 			"name": "Challenge - Follower: Motobricks",
 			"label": "Motobricks",
-			"condition_set": 206
+			"condition_set": 206,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"207": {
+		{
+			"id": 207,
 			"name": "Challenge - Follower: Uni-Uni",
 			"label": "Uni-Uni",
-			"condition_set": 207
+			"condition_set": 207,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"208": {
+		{
+			"id": 208,
 			"name": "Challenge - Follower: Chaos Emerald",
 			"label": "Chaos Emerald",
-			"condition_set": 208
+			"condition_set": 208,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"215": {
+		{
+			"id": 215,
 			"name": "Challenge - Follower: Anton",
 			"label": "Anton",
-			"condition_set": 215
+			"condition_set": 215,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"216": {
+		{
+			"id": 216,
 			"name": "Challenge - Follower: Mosqui",
 			"label": "Mosqui",
-			"condition_set": 216
+			"condition_set": 216,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"217": {
+		{
+			"id": 217,
 			"name": "Challenge - Follower: Ga",
 			"label": "Ga",
-			"condition_set": 217
+			"condition_set": 217,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"218": {
+		{
+			"id": 218,
 			"name": "Challenge - Follower: Tonbo",
 			"label": "Tonbo",
-			"condition_set": 218
+			"condition_set": 218,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"219": {
+		{
+			"id": 219,
 			"name": "Challenge - Follower: Poh-Bee",
 			"label": "Poh-Bee",
-			"condition_set": 219
+			"condition_set": 219,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"220": {
+		{
+			"id": 220,
 			"name": "Challenge - Follower: Bata-pyon",
 			"label": "Bata-pyon",
-			"condition_set": 220
+			"condition_set": 220,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"221": {
+		{
+			"id": 221,
 			"name": "Challenge - Follower: Kabasira",
 			"label": "Kabasira",
-			"condition_set": 221
+			"condition_set": 221,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"222": {
+		{
+			"id": 222,
 			"name": "Challenge - Follower: Hotaru",
 			"label": "Hotaru",
-			"condition_set": 222
+			"condition_set": 222,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"223": {
+		{
+			"id": 223,
 			"name": "Challenge - Follower: UFO",
 			"label": "UFO",
-			"condition_set": 223
+			"condition_set": 223,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"224": {
+		{
+			"id": 224,
 			"name": "Challenge - Follower: Goddess",
 			"label": "Goddess",
-			"condition_set": 224
+			"condition_set": 224,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"230": {
+		{
+			"id": 230,
 			"name": "Challenge - Follower: Sol",
 			"label": "Sol",
-			"condition_set": 230
+			"condition_set": 230,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"231": {
+		{
+			"id": 231,
 			"name": "Challenge - Follower: Flasher",
 			"label": "Flasher",
-			"condition_set": 231
+			"condition_set": 231,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"232": {
+		{
+			"id": 232,
 			"name": "Challenge - Follower: Jellygnite",
 			"label": "Jellygnite",
-			"condition_set": 232
+			"condition_set": 232,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"233": {
+		{
+			"id": 233,
 			"name": "Challenge - Follower: Aquis",
 			"label": "Aquis",
-			"condition_set": 233
+			"condition_set": 233,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"234": {
+		{
+			"id": 234,
 			"name": "Challenge - Follower: Octus",
 			"label": "Octus",
-			"condition_set": 234
+			"condition_set": 234,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"235": {
+		{
+			"id": 235,
 			"name": "Challenge - Follower: Asteron",
 			"label": "Asteron",
-			"condition_set": 235
+			"condition_set": 235,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"236": {
+		{
+			"id": 236,
 			"name": "Challenge - Follower: Egg Pod",
 			"label": "Egg Pod",
-			"condition_set": 236
+			"condition_set": 236,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"237": {
+		{
+			"id": 237,
 			"name": "Challenge - Follower: Nebula",
 			"label": "Nebula",
-			"condition_set": 237
+			"condition_set": 237,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"238": {
+		{
+			"id": 238,
 			"name": "Challenge - Follower: Tornado",
 			"label": "Tornado",
-			"condition_set": 238
+			"condition_set": 238,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"245": {
+		{
+			"id": 245,
 			"name": "Challenge - Follower: Meramora Jr.",
 			"label": "Meramora Jr.",
-			"condition_set": 245
+			"condition_set": 245,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"246": {
+		{
+			"id": 246,
 			"name": "Challenge - Follower: Buggernaut",
 			"label": "Buggernaut",
-			"condition_set": 246
+			"condition_set": 246,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"247": {
+		{
+			"id": 247,
 			"name": "Challenge - Follower: Bubbles",
 			"label": "Bubbles",
-			"condition_set": 247
+			"condition_set": 247,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"248": {
+		{
+			"id": 248,
 			"name": "Challenge - Follower: Balloon",
 			"label": "Balloon",
-			"condition_set": 248
+			"condition_set": 248,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"249": {
+		{
+			"id": 249,
 			"name": "Challenge - Follower: Barrel",
 			"label": "Barrel",
-			"condition_set": 249
+			"condition_set": 249,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"250": {
+		{
+			"id": 250,
 			"name": "Challenge - Follower: Mushmeanie",
 			"label": "Mushmeanie",
-			"condition_set": 250
+			"condition_set": 250,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"251": {
+		{
+			"id": 251,
 			"name": "Challenge - Follower: Technosqueek",
 			"label": "Technosqueek",
-			"condition_set": 251
+			"condition_set": 251,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"252": {
+		{
+			"id": 252,
 			"name": "Challenge - Follower: Chainspike",
 			"label": "Chainspike",
-			"condition_set": 252
+			"condition_set": 252,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"253": {
+		{
+			"id": 253,
 			"name": "Challenge - Follower: Spikebonker",
 			"label": "Spikebonker",
-			"condition_set": 253
+			"condition_set": 253,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"254": {
+		{
+			"id": 254,
 			"name": "Challenge - Follower: Hyudoro",
 			"label": "Hyudoro",
-			"condition_set": 254
+			"condition_set": 254,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"255": {
+		{
+			"id": 255,
 			"name": "Challenge - Follower: Super Emerald",
 			"label": "Super Emerald",
-			"condition_set": 255
+			"condition_set": 255,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"256": {
+		{
+			"id": 256,
 			"name": "Challenge - Follower: S.P.B. Jr.",
 			"label": "S.P.B. Jr.",
 			"condition_set": 256,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"257": {
+		{
+			"id": 257,
 			"name": "Challenge - Follower: Prison Egg",
 			"label": "Prison Egg",
 			"condition_set": 257,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"261": {
+		{
+			"id": 261,
 			"name": "Challenge - Follower: Burboom",
 			"label": "Burboom",
-			"condition_set": 261
+			"condition_set": 261,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"262": {
+		{
+			"id": 262,
 			"name": "Challenge - Follower: Bushbubble",
 			"label": "Bushbubble",
-			"condition_set": 262
+			"condition_set": 262,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"263": {
+		{
+			"id": 263,
 			"name": "Challenge - Follower: Gotcha",
 			"label": "Gotcha",
-			"condition_set": 263
+			"condition_set": 263,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"264": {
+		{
+			"id": 264,
 			"name": "Challenge - Follower: Motorspike",
 			"label": "Motorspike",
-			"condition_set": 264
+			"condition_set": 264,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"265": {
+		{
+			"id": 265,
 			"name": "Challenge - Follower: Piranhy",
 			"label": "Piranhy",
-			"condition_set": 265
+			"condition_set": 265,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"266": {
+		{
+			"id": 266,
 			"name": "Challenge - Follower: Ticktock",
 			"label": "Ticktock",
-			"condition_set": 266
+			"condition_set": 266,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"276": {
+		{
+			"id": 276,
 			"name": "Challenge - Follower: Scouter",
 			"label": "Scouter",
-			"condition_set": 276
+			"condition_set": 276,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"277": {
+		{
+			"id": 277,
 			"name": "Challenge - Follower: Snowman",
 			"label": "Snowman",
-			"condition_set": 277
+			"condition_set": 277,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"278": {
+		{
+			"id": 278,
 			"name": "Challenge - Follower: Firefly",
 			"label": "Firefly",
-			"condition_set": 278
+			"condition_set": 278,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"279": {
+		{
+			"id": 279,
 			"name": "Challenge - Follower: Whirl",
 			"label": "Whirl",
-			"condition_set": 279
+			"condition_set": 279,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"291": {
+		{
+			"id": 291,
 			"name": "Challenge - Follower: Mecha Hiyoko",
 			"label": "Mecha Hiyoko",
-			"condition_set": 291
+			"condition_set": 291,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"292": {
+		{
+			"id": 292,
 			"name": "Challenge - Follower: Silver Sonic",
 			"label": "Silver Sonic",
-			"condition_set": 292
+			"condition_set": 292,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"293": {
+		{
+			"id": 293,
 			"name": "Challenge - Follower: Frogger",
 			"label": "Frogger",
-			"condition_set": 293
+			"condition_set": 293,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"294": {
+		{
+			"id": 294,
 			"name": "Challenge - Follower: Bombaberry",
 			"label": "Bombaberry",
-			"condition_set": 294
+			"condition_set": 294,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"295": {
+		{
+			"id": 295,
 			"name": "Challenge - Follower: Spidal Tap",
 			"label": "Spidal Tap",
-			"condition_set": 295
+			"condition_set": 295,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"296": {
+		{
+			"id": 296,
 			"name": "Challenge - Follower: Bomblur",
 			"label": "Bomblur",
-			"condition_set": 296
+			"condition_set": 296,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"297": {
+		{
+			"id": 297,
 			"name": "Challenge - Follower: Mukaka",
 			"label": "Mukaka",
-			"condition_set": 297
+			"condition_set": 297,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"298": {
+		{
+			"id": 298,
 			"name": "Challenge - Follower: Sandoom",
 			"label": "Sandoom",
-			"condition_set": 298
+			"condition_set": 298,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"299": {
+		{
+			"id": 299,
 			"name": "Challenge - Follower: Gaikoko",
 			"label": "Gaikoko",
-			"condition_set": 299
+			"condition_set": 299,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"306": {
+		{
+			"id": 306,
 			"name": "Challenge - Follower: Chao",
 			"label": "Chao",
-			"condition_set": 306
+			"condition_set": 306,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"307": {
+		{
+			"id": 307,
 			"name": "Challenge - Follower: Chao Egg",
 			"label": "Chao Egg",
-			"condition_set": 307
+			"condition_set": 307,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"308": {
+		{
+			"id": 308,
 			"name": "Challenge - Follower: Froggy",
 			"label": "Froggy",
-			"condition_set": 308
+			"condition_set": 308,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"309": {
+		{
+			"id": 309,
 			"name": "Challenge - Follower: Spinner",
 			"label": "Spinner",
-			"condition_set": 309
+			"condition_set": 309,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"310": {
+		{
+			"id": 310,
 			"name": "Challenge - Follower: Kart Kiki",
 			"label": "Kart Kiki",
-			"condition_set": 310
+			"condition_set": 310,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"311": {
+		{
+			"id": 311,
 			"name": "Challenge - Follower: Bowling Pin",
 			"label": "Bowling Pin",
-			"condition_set": 311
+			"condition_set": 311,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"312": {
+		{
+			"id": 312,
 			"name": "Challenge - Follower: Hint Orb",
 			"label": "Hint Orb",
-			"condition_set": 312
+			"condition_set": 312,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"313": {
+		{
+			"id": 313,
 			"name": "Challenge - Follower: Jet Booster",
 			"label": "Jet Booster",
-			"condition_set": 313
+			"condition_set": 313,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"314": {
+		{
+			"id": 314,
 			"name": "Challenge - Follower: Chaclon",
 			"label": "Chaclon",
 			"condition_set": 314,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"321": {
+		{
+			"id": 321,
 			"name": "Challenge - Follower: Hero Chao",
 			"label": "Hero Chao",
-			"condition_set": 321
+			"condition_set": 321,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"322": {
+		{
+			"id": 322,
 			"name": "Challenge - Follower: Dark Chao",
 			"label": "Dark Chao",
-			"condition_set": 322
+			"condition_set": 322,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"323": {
+		{
+			"id": 323,
 			"name": "Challenge - Follower: Mono Beetle",
 			"label": "Mono Beetle",
-			"condition_set": 323
+			"condition_set": 323,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"324": {
+		{
+			"id": 324,
 			"name": "Challenge - Follower: Gold Beetle",
 			"label": "Gold Beetle",
-			"condition_set": 324
+			"condition_set": 324,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"325": {
+		{
+			"id": 325,
 			"name": "Challenge - Follower: Attack Boo",
 			"label": "Attack Boo",
-			"condition_set": 325
+			"condition_set": 325,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"326": {
+		{
+			"id": 326,
 			"name": "Challenge - Follower: Boo",
 			"label": "Boo",
-			"condition_set": 326
+			"condition_set": 326,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"327": {
+		{
+			"id": 327,
 			"name": "Challenge - Follower: Chaos Drive",
 			"label": "Chaos Drive",
-			"condition_set": 327
+			"condition_set": 327,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"328": {
+		{
+			"id": 328,
 			"name": "Challenge - Follower: Emerald Radar",
 			"label": "Emerald Radar",
-			"condition_set": 328
+			"condition_set": 328,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"329": {
+		{
+			"id": 329,
 			"name": "Challenge - Follower: Mystic Melody",
 			"label": "Mystic Melody",
-			"condition_set": 329
+			"condition_set": 329,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"336": {
+		{
+			"id": 336,
 			"name": "Challenge - Follower: Cheese",
 			"label": "Cheese",
-			"condition_set": 336
+			"condition_set": 336,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"337": {
+		{
+			"id": 337,
 			"name": "Challenge - Follower: Egg Flapper",
 			"label": "Egg Flapper",
-			"condition_set": 337
+			"condition_set": 337,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"338": {
+		{
+			"id": 338,
 			"name": "Challenge - Follower: Klagen",
 			"label": "Klagen",
-			"condition_set": 338
+			"condition_set": 338,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"339": {
+		{
+			"id": 339,
 			"name": "Challenge - Follower: Gold Klagen",
 			"label": "Gold Klagen",
-			"condition_set": 339
+			"condition_set": 339,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"340": {
+		{
+			"id": 340,
 			"name": "Challenge - Follower: Hermit Crab",
 			"label": "Hermit Crab",
-			"condition_set": 340
+			"condition_set": 340,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"351": {
+		{
+			"id": 351,
 			"name": "Challenge - Follower: Splats",
 			"label": "Splats",
-			"condition_set": 351
+			"condition_set": 351,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"352": {
+		{
+			"id": 352,
 			"name": "Challenge - Follower: Marble UAP",
 			"label": "Marble UAP",
-			"condition_set": 352
+			"condition_set": 352,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"353": {
+		{
+			"id": 353,
 			"name": "Challenge - Follower: Claw Guy",
 			"label": "Claw Guy",
-			"condition_set": 353
+			"condition_set": 353,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"354": {
+		{
+			"id": 354,
 			"name": "Challenge - Follower: Bubbler's Mother",
 			"label": "Bubbler's Mother",
-			"condition_set": 354
+			"condition_set": 354,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"355": {
+		{
+			"id": 355,
 			"name": "Challenge - Follower: Spinpole",
 			"label": "Spinpole",
-			"condition_set": 355
+			"condition_set": 355,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"356": {
+		{
+			"id": 356,
 			"name": "Challenge - Follower: Flysquid",
 			"label": "Flysquid",
-			"condition_set": 356
+			"condition_set": 356,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"357": {
+		{
+			"id": 357,
 			"name": "Challenge - Follower: Final Duck",
 			"label": "Final Duck",
-			"condition_set": 357
+			"condition_set": 357,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"366": {
+		{
+			"id": 366,
 			"name": "Challenge - Follower: Tridrill",
 			"label": "Tridrill",
-			"condition_set": 366
+			"condition_set": 366,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"367": {
+		{
+			"id": 367,
 			"name": "Challenge - Follower: Cappy",
 			"label": "Cappy",
-			"condition_set": 367
+			"condition_set": 367,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"368": {
+		{
+			"id": 368,
 			"name": "Challenge - Follower: Jetarang",
 			"label": "Jetarang",
-			"condition_set": 368
+			"condition_set": 368,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"369": {
+		{
+			"id": 369,
 			"name": "Challenge - Follower: Balldron",
 			"label": "Balldron",
-			"condition_set": 369
+			"condition_set": 369,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"370": {
+		{
+			"id": 370,
 			"name": "Challenge - Follower: Bomber",
 			"label": "Bomber",
-			"condition_set": 370
+			"condition_set": 370,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"371": {
+		{
+			"id": 371,
 			"name": "Challenge - Follower: Gyro",
 			"label": "Gyro",
-			"condition_set": 371
+			"condition_set": 371,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"381": {
+		{
+			"id": 381,
 			"name": "Challenge - Follower: SRB1 Crawla",
 			"label": "SRB1 Crawla",
-			"condition_set": 381
+			"condition_set": 381,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"382": {
+		{
+			"id": 382,
 			"name": "Challenge - Follower: GuardRobo",
 			"label": "GuardRobo",
-			"condition_set": 382
+			"condition_set": 382,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"383": {
+		{
+			"id": 383,
 			"name": "Challenge - Follower: HotRobo",
 			"label": "HotRobo",
-			"condition_set": 383
+			"condition_set": 383,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"384": {
+		{
+			"id": 384,
 			"name": "Challenge - Follower: Pyrex",
 			"label": "Pyrex",
-			"condition_set": 384
+			"condition_set": 384,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"385": {
+		{
+			"id": 385,
 			"name": "Challenge - Follower: Spybot 2000",
 			"label": "Spybot 2000",
-			"condition_set": 385
+			"condition_set": 385,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"396": {
+		{
+			"id": 396,
 			"name": "Challenge - Follower: SRB2 Crawla",
 			"label": "SRB2 Crawla",
-			"condition_set": 396
+			"condition_set": 396,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"397": {
+		{
+			"id": 397,
 			"name": "Challenge - Follower: Mean Bean",
 			"label": "Mean Bean",
-			"condition_set": 397
+			"condition_set": 397,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"398": {
+		{
+			"id": 398,
 			"name": "Challenge - Follower: C.H.R.O.M.E.",
 			"label": "C.H.R.O.M.E.",
-			"condition_set": 398
+			"condition_set": 398,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"399": {
+		{
+			"id": 399,
 			"name": "Challenge - Follower: Tridentz",
 			"label": "Tridentz",
-			"condition_set": 399
+			"condition_set": 399,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"400": {
+		{
+			"id": 400,
 			"name": "Challenge - Follower: Stegospike",
 			"label": "Stegospike",
-			"condition_set": 400
+			"condition_set": 400,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"401": {
+		{
+			"id": 401,
 			"name": "Challenge - Follower: Flicky Turncoat",
 			"label": "Flicky Turncoat",
-			"condition_set": 401
+			"condition_set": 401,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"402": {
+		{
+			"id": 402,
 			"name": "Challenge - Follower: Manegg",
 			"label": "Manegg",
 			"condition_set": 402,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"403": {
+		{
+			"id": 403,
 			"name": "Challenge - Follower: Blend Eye",
 			"label": "Blend Eye",
 			"condition_set": 403,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"411": {
+		{
+			"id": 411,
 			"name": "Challenge - Follower: Flicky",
 			"label": "Flicky",
-			"condition_set": 411
+			"condition_set": 411,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"412": {
+		{
+			"id": 412,
 			"name": "Challenge - Follower: Red Flicky",
 			"label": "Red Flicky",
-			"condition_set": 412
+			"condition_set": 412,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"413": {
+		{
+			"id": 413,
 			"name": "Challenge - Follower: Pink Flicky",
 			"label": "Pink Flicky",
-			"condition_set": 413
+			"condition_set": 413,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"414": {
+		{
+			"id": 414,
 			"name": "Challenge - Follower: Green Flicky",
 			"label": "Green Flicky",
-			"condition_set": 414
+			"condition_set": 414,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"415": {
+		{
+			"id": 415,
 			"name": "Challenge - Follower: Clucky",
 			"label": "Clucky",
-			"condition_set": 415
+			"condition_set": 415,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"416": {
+		{
+			"id": 416,
 			"name": "Challenge - Follower: Fish",
 			"label": "Fish",
-			"condition_set": 416
+			"condition_set": 416,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"417": {
+		{
+			"id": 417,
 			"name": "Challenge - Follower: Puffin",
 			"label": "Puffin",
-			"condition_set": 417
+			"condition_set": 417,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"418": {
+		{
+			"id": 418,
 			"name": "Challenge - Follower: Dove",
 			"label": "Dove",
-			"condition_set": 418
+			"condition_set": 418,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"419": {
+		{
+			"id": 419,
 			"name": "Challenge - Follower: Canary",
 			"label": "Canary",
-			"condition_set": 419
+			"condition_set": 419,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"420": {
+		{
+			"id": 420,
 			"name": "Challenge - Follower: Bat",
 			"label": "Bat",
-			"condition_set": 420
+			"condition_set": 420,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"426": {
+		{
+			"id": 426,
 			"name": "Challenge - Follower: Has Bean",
 			"label": "Has Bean",
 			"condition_set": 426,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"427": {
+		{
+			"id": 427,
 			"name": "Challenge - Follower: Nomi",
 			"label": "Nomi",
 			"condition_set": 427,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"428": {
+		{
+			"id": 428,
 			"name": "Challenge - Follower: Glyph",
 			"label": "Glyph",
 			"condition_set": 428,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"429": {
+		{
+			"id": 429,
 			"name": "Challenge - Follower: Asterite",
 			"label": "Asterite",
 			"condition_set": 429,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"430": {
+		{
+			"id": 430,
 			"name": "Challenge - Follower: Controller",
 			"label": "Controller",
 			"condition_set": 430,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"431": {
+		{
+			"id": 431,
 			"name": "Challenge - Follower: Orblet",
 			"label": "Orblet",
 			"condition_set": 431,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"432": {
+		{
+			"id": 432,
 			"name": "Challenge - Follower: Kobu",
 			"label": "Kobu",
 			"condition_set": 432,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"433": {
+		{
+			"id": 433,
 			"name": "Challenge - Follower: The Cake From Hell",
 			"label": "The Cake From Hell",
 			"condition_set": 433,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"434": {
+		{
+			"id": 434,
 			"name": "Challenge - Follower: Billiards Cactus",
 			"label": "Billiards Cactus",
 			"condition_set": 434,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"435": {
+		{
+			"id": 435,
 			"name": "Challenge - Follower: Mag",
 			"label": "Mag",
 			"condition_set": 435,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"436": {
+		{
+			"id": 436,
 			"name": "Challenge - Follower: Bacura",
 			"label": "Bacura",
 			"condition_set": 436,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"437": {
+		{
+			"id": 437,
 			"name": "Challenge - Follower: Cacodemon",
 			"label": "Cacodemon",
 			"condition_set": 437,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"438": {
+		{
+			"id": 438,
 			"name": "Challenge - Follower: Shade Core",
 			"label": "Shade Core",
 			"condition_set": 438,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		},
-		"439": {
+		{
+			"id": 439,
 			"name": "Challenge - Follower: Ancient Gear",
 			"label": "Ancient Gear",
-			"condition_set": 439
+			"condition_set": 439,
+			"tags": [
+				"Challenges",
+				"Followers"
+			]
 		}
-	},
-	"items": {
-		"200": {
+	],
+	"items": [
+		{
+			"id": 200,
 			"name": "Follower: Motobuddy",
 			"label": "Motobuddy",
 			"unlockable": 200,
 			"follower": "motobuddy",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"201": {
+		{
+			"id": 201,
 			"name": "Follower: Buzz Bomber",
 			"label": "Buzz Bomber",
 			"unlockable": 201,
 			"follower": "buzz bomber",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"202": {
+		{
+			"id": 202,
 			"name": "Follower: Newtron",
 			"label": "Newtron",
 			"unlockable": 202,
 			"follower": "newtron",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"203": {
+		{
+			"id": 203,
 			"name": "Follower: Orbinaut",
 			"label": "Orbinaut",
 			"unlockable": 203,
 			"follower": "orbinaut",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"204": {
+		{
+			"id": 204,
 			"name": "Follower: Jaws",
 			"label": "Jaws",
 			"unlockable": 204,
 			"follower": "jaws",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"205": {
+		{
+			"id": 205,
 			"name": "Follower: Bomb",
 			"label": "Bomb",
 			"unlockable": 205,
 			"follower": "bomb",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"206": {
+		{
+			"id": 206,
 			"name": "Follower: Motobricks",
 			"label": "Motobricks",
 			"unlockable": 206,
 			"follower": "motobricks",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"207": {
+		{
+			"id": 207,
 			"name": "Follower: Uni-Uni",
 			"label": "Uni-Uni",
 			"unlockable": 207,
 			"follower": "uni-uni",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"208": {
+		{
+			"id": 208,
 			"name": "Follower: Chaos Emerald",
 			"label": "Chaos Emerald",
 			"unlockable": 208,
 			"follower": "chaos emerald",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"215": {
+		{
+			"id": 215,
 			"name": "Follower: Anton",
 			"label": "Anton",
 			"unlockable": 215,
 			"follower": "anton",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"216": {
+		{
+			"id": 216,
 			"name": "Follower: Mosqui",
 			"label": "Mosqui",
 			"unlockable": 216,
 			"follower": "mosqui",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"217": {
+		{
+			"id": 217,
 			"name": "Follower: Ga",
 			"label": "Ga",
 			"unlockable": 217,
 			"follower": "ga",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"218": {
+		{
+			"id": 218,
 			"name": "Follower: Tonbo",
 			"label": "Tonbo",
 			"unlockable": 218,
 			"follower": "tonbo",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"219": {
+		{
+			"id": 219,
 			"name": "Follower: Poh-Bee",
 			"label": "Poh-Bee",
 			"unlockable": 219,
 			"follower": "poh-bee",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"220": {
+		{
+			"id": 220,
 			"name": "Follower: Bata-pyon",
 			"label": "Bata-pyon",
 			"unlockable": 220,
 			"follower": "bata-pyon",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"221": {
+		{
+			"id": 221,
 			"name": "Follower: Kabasira",
 			"label": "Kabasira",
 			"unlockable": 221,
 			"follower": "kabasira",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"222": {
+		{
+			"id": 222,
 			"name": "Follower: Hotaru",
 			"label": "Hotaru",
 			"unlockable": 222,
 			"follower": "hotaru",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"223": {
+		{
+			"id": 223,
 			"name": "Follower: UFO",
 			"label": "UFO",
 			"unlockable": 223,
 			"follower": "ufo",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"224": {
+		{
+			"id": 224,
 			"name": "Follower: Goddess",
 			"label": "Goddess",
 			"unlockable": 224,
 			"follower": "goddess",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"230": {
+		{
+			"id": 230,
 			"name": "Follower: Sol",
 			"label": "Sol",
 			"unlockable": 230,
 			"follower": "sol",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"231": {
+		{
+			"id": 231,
 			"name": "Follower: Flasher",
 			"label": "Flasher",
 			"unlockable": 231,
 			"follower": "flasher",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"232": {
+		{
+			"id": 232,
 			"name": "Follower: Jellygnite",
 			"label": "Jellygnite",
 			"unlockable": 232,
 			"follower": "jellygnite",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"233": {
+		{
+			"id": 233,
 			"name": "Follower: Aquis",
 			"label": "Aquis",
 			"unlockable": 233,
 			"follower": "aquis",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"234": {
+		{
+			"id": 234,
 			"name": "Follower: Octus",
 			"label": "Octus",
 			"unlockable": 234,
 			"follower": "octus",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"235": {
+		{
+			"id": 235,
 			"name": "Follower: Asteron",
 			"label": "Asteron",
 			"unlockable": 235,
 			"follower": "asteron",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"236": {
+		{
+			"id": 236,
 			"name": "Follower: Egg Pod",
 			"label": "Egg Pod",
 			"unlockable": 236,
 			"follower": "egg pod",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"237": {
+		{
+			"id": 237,
 			"name": "Follower: Nebula",
 			"label": "Nebula",
 			"unlockable": 237,
 			"follower": "nebula",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"238": {
+		{
+			"id": 238,
 			"name": "Follower: Tornado",
 			"label": "Tornado",
 			"unlockable": 238,
 			"follower": "tornado",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"245": {
+		{
+			"id": 245,
 			"name": "Follower: Meramora Jr.",
 			"label": "Meramora Jr.",
 			"unlockable": 245,
 			"follower": "meramora jr",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"246": {
+		{
+			"id": 246,
 			"name": "Follower: Buggernaut",
 			"label": "Buggernaut",
 			"unlockable": 246,
 			"follower": "buggernaut",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"247": {
+		{
+			"id": 247,
 			"name": "Follower: Bubbles",
 			"label": "Bubbles",
 			"unlockable": 247,
 			"follower": "bubbles",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"248": {
+		{
+			"id": 248,
 			"name": "Follower: Balloon",
 			"label": "Balloon",
 			"unlockable": 248,
 			"follower": "balloon",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"249": {
+		{
+			"id": 249,
 			"name": "Follower: Barrel",
 			"label": "Barrel",
 			"unlockable": 249,
 			"follower": "barrel",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"250": {
+		{
+			"id": 250,
 			"name": "Follower: Mushmeanie",
 			"label": "Mushmeanie",
 			"unlockable": 250,
 			"follower": "mushmeanie",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"251": {
+		{
+			"id": 251,
 			"name": "Follower: Technosqueek",
 			"label": "Technosqueek",
 			"unlockable": 251,
 			"follower": "technosqueek",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"252": {
+		{
+			"id": 252,
 			"name": "Follower: Chainspike",
 			"label": "Chainspike",
 			"unlockable": 252,
 			"follower": "chainspike",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"253": {
+		{
+			"id": 253,
 			"name": "Follower: Spikebonker",
 			"label": "Spikebonker",
 			"unlockable": 253,
 			"follower": "spikebonker",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"254": {
+		{
+			"id": 254,
 			"name": "Follower: Hyudoro",
 			"label": "Hyudoro",
 			"unlockable": 254,
 			"follower": "hyudoro",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"255": {
+		{
+			"id": 255,
 			"name": "Follower: Super Emerald",
 			"label": "Super Emerald",
 			"unlockable": 255,
 			"follower": "super emerald",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"256": {
+		{
+			"id": 256,
 			"name": "Follower: S.P.B. Jr.",
 			"label": "S.P.B. Jr.",
 			"unlockable": 256,
 			"follower": "s.p.b. jr.",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"257": {
+		{
+			"id": 257,
 			"name": "Follower: Prison Egg",
 			"label": "Prison Egg",
 			"unlockable": 257,
 			"follower": "prison egg",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"261": {
+		{
+			"id": 261,
 			"name": "Follower: Burboom",
 			"label": "Burboom",
 			"unlockable": 261,
 			"follower": "burboom",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"262": {
+		{
+			"id": 262,
 			"name": "Follower: Bushbubble",
 			"label": "Bushbubble",
 			"unlockable": 262,
 			"follower": "bushbubble",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"263": {
+		{
+			"id": 263,
 			"name": "Follower: Gotcha",
 			"label": "Gotcha",
 			"unlockable": 263,
 			"follower": "gotcha",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"264": {
+		{
+			"id": 264,
 			"name": "Follower: Motorspike",
 			"label": "Motorspike",
 			"unlockable": 264,
 			"follower": "motorspike",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"265": {
+		{
+			"id": 265,
 			"name": "Follower: Piranhy",
 			"label": "Piranhy",
 			"unlockable": 265,
 			"follower": "piranhy",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"266": {
+		{
+			"id": 266,
 			"name": "Follower: Ticktock",
 			"label": "Ticktock",
 			"unlockable": 266,
 			"follower": "ticktock",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"276": {
+		{
+			"id": 276,
 			"name": "Follower: Scouter",
 			"label": "Scouter",
 			"unlockable": 276,
 			"follower": "scouter",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"277": {
+		{
+			"id": 277,
 			"name": "Follower: Snowman",
 			"label": "Snowman",
 			"unlockable": 277,
 			"follower": "snowman",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"278": {
+		{
+			"id": 278,
 			"name": "Follower: Firefly",
 			"label": "Firefly",
 			"unlockable": 278,
 			"follower": "firefly",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"279": {
+		{
+			"id": 279,
 			"name": "Follower: Whirl",
 			"label": "Whirl",
 			"unlockable": 279,
 			"follower": "whirl",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"291": {
+		{
+			"id": 291,
 			"name": "Follower: Mecha Hiyoko",
 			"label": "Mecha Hiyoko",
 			"unlockable": 291,
 			"follower": "mecha hiyoko",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"292": {
+		{
+			"id": 292,
 			"name": "Follower: Silver Sonic",
 			"label": "Silver Sonic",
 			"unlockable": 292,
 			"follower": "silver sonic",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"293": {
+		{
+			"id": 293,
 			"name": "Follower: Frogger",
 			"label": "Frogger",
 			"unlockable": 293,
 			"follower": "frogger",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"294": {
+		{
+			"id": 294,
 			"name": "Follower: Bombaberry",
 			"label": "Bombaberry",
 			"unlockable": 294,
 			"follower": "bombaberry",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"295": {
+		{
+			"id": 295,
 			"name": "Follower: Spidal Tap",
 			"label": "Spidal Tap",
 			"unlockable": 295,
 			"follower": "spidal tap",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"296": {
+		{
+			"id": 296,
 			"name": "Follower: Bomblur",
 			"label": "Bomblur",
 			"unlockable": 296,
 			"follower": "bomblur",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"297": {
+		{
+			"id": 297,
 			"name": "Follower: Mukaka",
 			"label": "Mukaka",
 			"unlockable": 297,
 			"follower": "mukaka",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"298": {
+		{
+			"id": 298,
 			"name": "Follower: Sandoom",
 			"label": "Sandoom",
 			"unlockable": 298,
 			"follower": "sandoom",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"299": {
+		{
+			"id": 299,
 			"name": "Follower: Gaikoko",
 			"label": "Gaikoko",
 			"unlockable": 299,
 			"follower": "gaikoko",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"306": {
+		{
+			"id": 306,
 			"name": "Follower: Chao",
 			"label": "Chao",
 			"unlockable": 306,
 			"follower": "chao",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"307": {
+		{
+			"id": 307,
 			"name": "Follower: Chao Egg",
 			"label": "Chao Egg",
 			"unlockable": 307,
 			"follower": "chao egg",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"308": {
+		{
+			"id": 308,
 			"name": "Follower: Froggy",
 			"label": "Froggy",
 			"unlockable": 308,
 			"follower": "froggy",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"309": {
+		{
+			"id": 309,
 			"name": "Follower: Spinner",
 			"label": "Spinner",
 			"unlockable": 309,
 			"follower": "spinner",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"310": {
+		{
+			"id": 310,
 			"name": "Follower: Kart Kiki",
 			"label": "Kart Kiki",
 			"unlockable": 310,
 			"follower": "kart kiki",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"311": {
+		{
+			"id": 311,
 			"name": "Follower: Bowling Pin",
 			"label": "Bowling Pin",
 			"unlockable": 311,
 			"follower": "bowling pin",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"312": {
+		{
+			"id": 312,
 			"name": "Follower: Hint Orb",
 			"label": "Hint Orb",
 			"unlockable": 312,
 			"follower": "hint orb",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"313": {
+		{
+			"id": 313,
 			"name": "Follower: Jet Booster",
 			"label": "Jet Booster",
 			"unlockable": 313,
 			"follower": "jet booster",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"314": {
+		{
+			"id": 314,
 			"name": "Follower: Chaclon",
 			"label": "Chaclon",
 			"unlockable": 314,
 			"follower": "chaclon",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"321": {
+		{
+			"id": 321,
 			"name": "Follower: Hero Chao",
 			"label": "Hero Chao",
 			"unlockable": 321,
 			"follower": "hero chao",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"322": {
+		{
+			"id": 322,
 			"name": "Follower: Dark Chao",
 			"label": "Dark Chao",
 			"unlockable": 322,
 			"follower": "dark chao",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"323": {
+		{
+			"id": 323,
 			"name": "Follower: Mono Beetle",
 			"label": "Mono Beetle",
 			"unlockable": 323,
 			"follower": "mono beetle",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"324": {
+		{
+			"id": 324,
 			"name": "Follower: Gold Beetle",
 			"label": "Gold Beetle",
 			"unlockable": 324,
 			"follower": "gold beetle",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"325": {
+		{
+			"id": 325,
 			"name": "Follower: Attack Boo",
 			"label": "Attack Boo",
 			"unlockable": 325,
 			"follower": "attack boo",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"326": {
+		{
+			"id": 326,
 			"name": "Follower: Boo",
 			"label": "Boo",
 			"unlockable": 326,
 			"follower": "boo",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"327": {
+		{
+			"id": 327,
 			"name": "Follower: Chaos Drive",
 			"label": "Chaos Drive",
 			"unlockable": 327,
 			"follower": "chaos drive",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"328": {
+		{
+			"id": 328,
 			"name": "Follower: Emerald Radar",
 			"label": "Emerald Radar",
 			"unlockable": 328,
 			"follower": "emerald radar",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"329": {
+		{
+			"id": 329,
 			"name": "Follower: Mystic Melody",
 			"label": "Mystic Melody",
 			"unlockable": 329,
 			"follower": "mystic melody",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"336": {
+		{
+			"id": 336,
 			"name": "Follower: Cheese",
 			"label": "Cheese",
 			"unlockable": 336,
 			"follower": "cheese",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"337": {
+		{
+			"id": 337,
 			"name": "Follower: Egg Flapper",
 			"label": "Egg Flapper",
 			"unlockable": 337,
 			"follower": "egg flapper",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"338": {
+		{
+			"id": 338,
 			"name": "Follower: Klagen",
 			"label": "Klagen",
 			"unlockable": 338,
 			"follower": "klagen",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"339": {
+		{
+			"id": 339,
 			"name": "Follower: Gold Klagen",
 			"label": "Gold Klagen",
 			"unlockable": 339,
 			"follower": "gold klagen",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"340": {
+		{
+			"id": 340,
 			"name": "Follower: Hermit Crab",
 			"label": "Hermit Crab",
 			"unlockable": 340,
 			"follower": "hermit crab",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"351": {
+		{
+			"id": 351,
 			"name": "Follower: Splats",
 			"label": "Splats",
 			"unlockable": 351,
 			"follower": "splats",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"352": {
+		{
+			"id": 352,
 			"name": "Follower: Marble UAP",
 			"label": "Marble UAP",
 			"unlockable": 352,
 			"follower": "marble uap",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"353": {
+		{
+			"id": 353,
 			"name": "Follower: Claw Guy",
 			"label": "Claw Guy",
 			"unlockable": 353,
 			"follower": "claw guy",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"354": {
+		{
+			"id": 354,
 			"name": "Follower: Bubbler's Mother",
 			"label": "Bubbler's Mother",
 			"unlockable": 354,
 			"follower": "bubbler's mother",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"355": {
+		{
+			"id": 355,
 			"name": "Follower: Spinpole",
 			"label": "Spinpole",
 			"unlockable": 355,
 			"follower": "spinpole",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"356": {
+		{
+			"id": 356,
 			"name": "Follower: Flysquid",
 			"label": "Flysquid",
 			"unlockable": 356,
 			"follower": "flysquid",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"357": {
+		{
+			"id": 357,
 			"name": "Follower: Final Duck",
 			"label": "Final Duck",
 			"unlockable": 357,
 			"follower": "final duck",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"366": {
+		{
+			"id": 366,
 			"name": "Follower: Tridrill",
 			"label": "Tridrill",
 			"unlockable": 366,
 			"follower": "tridrill",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"367": {
+		{
+			"id": 367,
 			"name": "Follower: Cappy",
 			"label": "Cappy",
 			"unlockable": 367,
 			"follower": "cappy",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"368": {
+		{
+			"id": 368,
 			"name": "Follower: Jetarang",
 			"label": "Jetarang",
 			"unlockable": 368,
 			"follower": "jetarang",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"369": {
+		{
+			"id": 369,
 			"name": "Follower: Balldron",
 			"label": "Balldron",
 			"unlockable": 369,
 			"follower": "balldron",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"370": {
+		{
+			"id": 370,
 			"name": "Follower: Bomber",
 			"label": "Bomber",
 			"unlockable": 370,
 			"follower": "bomber",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"371": {
+		{
+			"id": 371,
 			"name": "Follower: Gyro",
 			"label": "Gyro",
 			"unlockable": 371,
 			"follower": "gyro",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"381": {
+		{
+			"id": 381,
 			"name": "Follower: SRB1 Crawla",
 			"label": "SRB1 Crawla",
 			"unlockable": 381,
 			"follower": "srb1 crawla",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"382": {
+		{
+			"id": 382,
 			"name": "Follower: GuardRobo",
 			"label": "GuardRobo",
 			"unlockable": 382,
 			"follower": "guardrobo",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"383": {
+		{
+			"id": 383,
 			"name": "Follower: HotRobo",
 			"label": "HotRobo",
 			"unlockable": 383,
 			"follower": "hotrobo",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"384": {
+		{
+			"id": 384,
 			"name": "Follower: Pyrex",
 			"label": "Pyrex",
 			"unlockable": 384,
 			"follower": "pyrex",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"385": {
+		{
+			"id": 385,
 			"name": "Follower: Spybot 2000",
 			"label": "Spybot 2000",
 			"unlockable": 385,
 			"follower": "spybot 2000",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"396": {
+		{
+			"id": 396,
 			"name": "Follower: SRB2 Crawla",
 			"label": "SRB2 Crawla",
 			"unlockable": 396,
 			"follower": "srb2 crawla",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"397": {
+		{
+			"id": 397,
 			"name": "Follower: Mean Bean",
 			"label": "Mean Bean",
 			"unlockable": 397,
 			"follower": "mean bean",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"398": {
+		{
+			"id": 398,
 			"name": "Follower: C.H.R.O.M.E.",
 			"label": "C.H.R.O.M.E.",
 			"unlockable": 398,
 			"follower": "c.h.r.o.m.e.",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"399": {
+		{
+			"id": 399,
 			"name": "Follower: Tridentz",
 			"label": "Tridentz",
 			"unlockable": 399,
 			"follower": "tridentz",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"400": {
+		{
+			"id": 400,
 			"name": "Follower: Stegospike",
 			"label": "Stegospike",
 			"unlockable": 400,
 			"follower": "stegospike",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"401": {
+		{
+			"id": 401,
 			"name": "Follower: Flicky Turncoat",
 			"label": "Flicky Turncoat",
 			"unlockable": 401,
 			"follower": "flicky turncoat",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"402": {
+		{
+			"id": 402,
 			"name": "Follower: Manegg",
 			"label": "Manegg",
 			"unlockable": 402,
 			"follower": "manegg",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"403": {
+		{
+			"id": 403,
 			"name": "Follower: Blend Eye",
 			"label": "Blend Eye",
 			"unlockable": 403,
 			"follower": "blend eye",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"411": {
+		{
+			"id": 411,
 			"name": "Follower: Flicky",
 			"label": "Flicky",
 			"unlockable": 411,
 			"follower": "flicky",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"412": {
+		{
+			"id": 412,
 			"name": "Follower: Red Flicky",
 			"label": "Red Flicky",
 			"unlockable": 412,
 			"follower": "red flicky",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"413": {
+		{
+			"id": 413,
 			"name": "Follower: Pink Flicky",
 			"label": "Pink Flicky",
 			"unlockable": 413,
 			"follower": "pink flicky",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"414": {
+		{
+			"id": 414,
 			"name": "Follower: Green Flicky",
 			"label": "Green Flicky",
 			"unlockable": 414,
 			"follower": "green flicky",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"415": {
+		{
+			"id": 415,
 			"name": "Follower: Clucky",
 			"label": "Clucky",
 			"unlockable": 415,
 			"follower": "clucky",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"416": {
+		{
+			"id": 416,
 			"name": "Follower: Fish",
 			"label": "Fish",
 			"unlockable": 416,
 			"follower": "fish",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"417": {
+		{
+			"id": 417,
 			"name": "Follower: Puffin",
 			"label": "Puffin",
 			"unlockable": 417,
 			"follower": "puffin",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"418": {
+		{
+			"id": 418,
 			"name": "Follower: Dove",
 			"label": "Dove",
 			"unlockable": 418,
 			"follower": "dove",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"419": {
+		{
+			"id": 419,
 			"name": "Follower: Canary",
 			"label": "Canary",
 			"unlockable": 419,
 			"follower": "canary",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"420": {
+		{
+			"id": 420,
 			"name": "Follower: Bat",
 			"label": "Bat",
 			"unlockable": 420,
 			"follower": "bat",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"426": {
+		{
+			"id": 426,
 			"name": "Follower: Has Bean",
 			"label": "Has Bean",
 			"unlockable": 426,
 			"follower": "has bean",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"427": {
+		{
+			"id": 427,
 			"name": "Follower: Nomi",
 			"label": "Nomi",
 			"unlockable": 427,
 			"follower": "nomi",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"428": {
+		{
+			"id": 428,
 			"name": "Follower: Glyph",
 			"label": "Glyph",
 			"unlockable": 428,
 			"follower": "glyph",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"429": {
+		{
+			"id": 429,
 			"name": "Follower: Asterite",
 			"label": "Asterite",
 			"unlockable": 429,
 			"follower": "asterite",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"430": {
+		{
+			"id": 430,
 			"name": "Follower: Controller",
 			"label": "Controller",
 			"unlockable": 430,
 			"follower": "controller",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"431": {
+		{
+			"id": 431,
 			"name": "Follower: Orblet",
 			"label": "Orblet",
 			"unlockable": 431,
 			"follower": "orblet",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"432": {
+		{
+			"id": 432,
 			"name": "Follower: Kobu",
 			"label": "Kobu",
 			"unlockable": 432,
 			"follower": "kobu",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"433": {
+		{
+			"id": 433,
 			"name": "Follower: The Cake From Hell",
 			"label": "The Cake From Hell",
 			"unlockable": 433,
 			"follower": "cake from hell",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"434": {
+		{
+			"id": 434,
 			"name": "Follower: Billiards Cactus",
 			"label": "Billiards Cactus",
 			"unlockable": 434,
 			"follower": "billiards cactus",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"435": {
+		{
+			"id": 435,
 			"name": "Follower: Mag",
 			"label": "Mag",
 			"unlockable": 435,
 			"follower": "mag",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"436": {
+		{
+			"id": 436,
 			"name": "Follower: Bacura",
 			"label": "Bacura",
 			"unlockable": 436,
 			"follower": "bacura",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"437": {
+		{
+			"id": 437,
 			"name": "Follower: Cacodemon",
 			"label": "Cacodemon",
 			"unlockable": 437,
 			"follower": "cacodemon",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"438": {
+		{
+			"id": 438,
 			"name": "Follower: Shade Core",
 			"label": "Shade Core",
 			"unlockable": 438,
 			"follower": "shade core",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		},
-		"439": {
+		{
+			"id": 439,
 			"name": "Follower: Ancient Gear",
 			"label": "Ancient Gear",
 			"unlockable": 439,
 			"follower": "ancient gear",
-			"group": "Followers"
+			"tags": [
+				"Followers"
+			]
 		}
-	}
+	]
 }

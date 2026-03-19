@@ -33,31 +33,33 @@ def load_all() -> None:
 
 		locations_json = file_json.get("locations", None)
 		if locations_json:
-			for index_str, location_json in locations_json.items():
-				index = int(index_str)
+			for location_json in locations_json:
+				index = int(location_json["id"])
 				assert(index > 0)
 				assert(index not in location_name_to_id)
 
 				name = location_json["name"]
 				location_name_to_id[name] = index
 
-				group_keys = location_json.get("group", None)
-				if group_keys: # TODO: list of keys support
-					location_name_groups.setdefault(group_keys, []).append(name)
+				group_keys = location_json.get("tags", None)
+				if group_keys:
+					for key in group_keys:
+						location_name_groups.setdefault(key, []).append(name)
 
 		items_json = file_json.get("items", None)
 		if items_json:
-			for index_str, item_json in items_json.items():
-				index = int(index_str)
+			for item_json in items_json:
+				index = int(item_json["id"])
 				assert(index > 0)
 				assert(index not in item_name_to_id)
 
 				name = item_json["name"]
 				item_name_to_id[name] = index
 
-				group_keys = item_json.get("group", None)
-				if group_keys: # TODO: list of keys support
-					item_name_groups.setdefault(str(group_keys), []).append(name)
+				group_keys = item_json.get("tags", None)
+				if group_keys:
+					for key in group_keys:
+						item_name_groups.setdefault(key, []).append(name)
 
 		cups_json = file_json.get("cups", None)
 		if cups_json:
