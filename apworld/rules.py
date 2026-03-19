@@ -856,6 +856,16 @@ def set_follower_challenge_location_rules(world: RingRacersWorld) -> None:
     # for the same very good reasons as 100 skulltulas
     spb_jr_location.progress_type = LocationProgressType.EXCLUDED
 
+    # "Challenge - Follower: Prison Egg" has been nerfed to 40 Prisons rounds.
+    # Getting this naturally expects 10 cups to be played in both Grand Prix
+    # and in Prison Break Mode.
+    set_rule(
+        world.get_location("Challenge - Follower: Prison Egg"),
+        lambda state:
+            state.has_group("Cups", world.player, 10)
+            and state.has("Prison Break Mode", world.player)
+    )
+
     set_rule(
         world.get_location("Challenge - Follower: Burboom"),
         lambda state:

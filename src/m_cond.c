@@ -1223,6 +1223,31 @@ boolean M_CheckCondition(condition_t *cn, player_t *player)
 			return (gamedata->totalplaytime >= (unsigned)cn->requirement);
 		case UC_ROUNDSPLAYED: // Requires any level completed >= x times
 		{
+			// [RRAP] Cap required rounds,
+			// mainly for Prison Egg requirement
+			INT32 max_requirement = 5;
+
+			switch (cn->extrainfo1)
+			{
+				case GDGT_RACE:
+					max_requirement = 100;
+					break;
+				case GDGT_PRISONS:
+				case GDGT_BATTLE:
+					max_requirement = 40;
+					break;
+				case GDGT_SPECIAL:
+					max_requirement = 20;
+					break;
+				case GDGT_MAX:
+					max_requirement = 150;
+					break;
+				default:
+					break;
+			}
+
+			UINT32 requirement = min(cn->requirement, max_requirement);
+
 			if (cn->extrainfo1 == GDGT_MAX)
 			{
 				UINT8 i;
@@ -1233,9 +1258,9 @@ boolean M_CheckCondition(condition_t *cn, player_t *player)
 					sum += gamedata->roundsplayed[i];
 				}
 
-				return (sum >= (unsigned)cn->requirement);
+				return (sum >= requirement);
 			}
-			return (gamedata->roundsplayed[cn->extrainfo1] >= (unsigned)cn->requirement);
+			return (gamedata->roundsplayed[cn->extrainfo1] >= requirement);
 		}
 		case UC_TOTALRINGS: // Requires grabbing >= x rings
 		{
@@ -1961,6 +1986,32 @@ static const char *M_GetConditionString(condition_t *cn)
 				G_TicsToSeconds(cn->requirement));
 
 		case UC_ROUNDSPLAYED: // Requires any level completed >= x times
+		{
+			// [RRAP] Cap required rounds,
+			// mainly for Prison Egg requirement
+			INT32 max_requirement = 5;
+
+			switch (cn->extrainfo1)
+			{
+				case GDGT_RACE:
+					max_requirement = 100;
+					break;
+				case GDGT_PRISONS:
+				case GDGT_BATTLE:
+					max_requirement = 40;
+					break;
+				case GDGT_SPECIAL:
+					max_requirement = 20;
+					break;
+				case GDGT_MAX:
+					max_requirement = 150;
+					break;
+				default:
+					break;
+			}
+
+			UINT32 requirement = min(cn->requirement, max_requirement);
+
 			if (cn->extrainfo1 == GDGT_MAX)
 				work = "";
 #if 0 // [RRAP]
@@ -1987,12 +2038,12 @@ static const char *M_GetConditionString(condition_t *cn)
 					work = " custom gametype";
 					break;
 				default:
-					return va("INVALID GAMETYPE CONDITION \"%d:%d:%d\"", cn->type, cn->extrainfo1, cn->requirement);
+					return va("INVALID GAMETYPE CONDITION \"%d:%d:%d\"", cn->type, cn->extrainfo1, requirement);
 			}
 
-			return va("clear %d%s Round%s", cn->requirement, work,
-				(cn->requirement == 1 ? "" : "s"));
-
+			return va("clear %d%s Round%s", requirement, work,
+				(requirement == 1 ? "" : "s"));
+		}
 		case UC_TOTALRINGS: // Requires collecting >= x rings
 		{
 			// [RRAP] Nerfed Mail requirement
