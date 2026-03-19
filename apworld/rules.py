@@ -854,8 +854,7 @@ def set_follower_challenge_location_rules(world: RingRacersWorld) -> None:
         lambda state:
             enough_medals(state, 777, world.player)
     )
-    # Needing nearly 100% of all medals in the game, should probably be filler
-    # for the same very good reasons as 100 skulltulas
+    # Requires over 50% of medals, exclude
     spb_jr_location.progress_type = LocationProgressType.EXCLUDED
 
     # "Challenge - Follower: Prison Egg" has been nerfed to 40 Prisons rounds.
@@ -1688,18 +1687,24 @@ def set_extras_challenge_location_rules(world: RingRacersWorld) -> None:
             can_reach_all_emeralds(state, world.player)
     )
 
+    encore_location = world.get_location("Challenge - Encore Mode")
     set_rule(
-        world.get_location("Challenge - Encore Mode"),
+        encore_location,
         lambda state:
             have_all_cups(state, world.player)
     )
+    # Requires over 50% of cups, exclude
+    encore_location.progress_type = LocationProgressType.EXCLUDED
 
+    spb_attack_location = world.get_location("Challenge - SPB Attack Mode")
     set_rule(
-        world.get_location("Challenge - SPB Attack Mode"),
+        spb_attack_location,
         lambda state:
             state.has_all(("Encore Mode", "Time Attack Mode"), world.player)
             and enough_medals(state, 500, world.player)
     )
+    # Requires over 50% of medals, exclude
+    spb_attack_location.progress_type = LocationProgressType.EXCLUDED
 
     #
     # "Challenge - Online Play" is always possible, currently
