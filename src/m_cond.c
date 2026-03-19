@@ -1994,12 +1994,16 @@ static const char *M_GetConditionString(condition_t *cn)
 				(cn->requirement == 1 ? "" : "s"));
 
 		case UC_TOTALRINGS: // Requires collecting >= x rings
-			if (cn->requirement >= 1000000)
-				return va("collect %u,%03u,%03u Rings", (cn->requirement/1000000), (cn->requirement/1000)%1000, (cn->requirement%1000));
-			if (cn->requirement >= 1000)
-				return va("collect %u,%03u Rings", (cn->requirement/1000), (cn->requirement%1000));
-			return va("collect %u Rings", cn->requirement);
+		{
+			// [RRAP] Nerfed Mail requirement
+			UINT32 rings = min(9999, (unsigned)cn->requirement);
 
+			if (rings >= 1000000)
+				return va("collect %u,%03u,%03u Rings", (rings/1000000), (rings/1000)%1000, (rings%1000));
+			if (rings >= 1000)
+				return va("collect %u,%03u Rings", (rings/1000), (rings%1000));
+			return va("collect %u Rings", rings);
+		}
 		case UC_TOTALTUMBLETIME:
 			return va("tumble through the air for %i:%02i.%02i",
 				G_TicsToMinutes(cn->requirement, true),
