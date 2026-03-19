@@ -1758,11 +1758,15 @@ def set_extras_challenge_location_rules(world: RingRacersWorld) -> None:
             state.has_any(("Rocket Cup Access", "Goggles Cup Access"), world.player)
     )
 
+    test_run_location = world.get_location("Challenge - Lost & Found: Test Run")
     set_rule(
-        world.get_location("Challenge - Lost & Found: Test Run"),
+        test_run_location,
         lambda state:
             have_all_maps_but_test_run(state, world.player)
     )
+    # Requires over 50% of cups+maps, exclude
+    # (even if you can load an addon to get out of logic)
+    test_run_location.progress_type = LocationProgressType.EXCLUDED
 
     set_rule(
         world.get_location("Challenge - Lost & Found: Hidden Palace"),
