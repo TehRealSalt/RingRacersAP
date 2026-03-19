@@ -316,7 +316,7 @@ def set_driver_challenge_location_rules(world: RingRacersWorld) -> None:
     set_rule(
         gum_location,
         lambda state:
-            True #have_group_percentage(state, "Spray Cans", world.player, 75)
+            have_group_percentage(state, "Spray Cans", world.player, 75)
     )
     gum_location.progress_type = LocationProgressType.EXCLUDED # TEMPORARY!
 
@@ -1712,29 +1712,29 @@ def set_extras_challenge_location_rules(world: RingRacersWorld) -> None:
     #
 
     #
-    # "Challenge - Ancient Gear Playground" is always possible, currently
+    # "Challenge - The Egg Carrier: Playground" is always possible, currently
     #
 
     set_rule(
-        world.get_location("Challenge - Check Your Brakes"),
+        world.get_location("Challenge - Sunbeam Paradise: Brakes"),
         lambda state:
             state.has("Sneaker Cup Access", world.player)
     )
 
     set_rule(
-        world.get_location("Challenge - The Art of Drifting"),
+        world.get_location("Challenge - Sunbeam Paradise: Drifting"),
         lambda state:
             state.has("Barrier Cup Access", world.player)
     )
 
     set_rule(
-        world.get_location("Challenge - The Item Gallery"),
+        world.get_location("Challenge - Sunbeam Paradise: Items"),
         lambda state:
             state.has("Emerald Cup Access", world.player)
     )
 
     set_rule(
-        world.get_location("Challenge - Springs & Trick Panels"),
+        world.get_location("Challenge - Sunbeam Paradise: Springs"),
         lambda state:
             state.has_any(("Rocket Cup Access", "Goggles Cup Access"), world.player)
     )

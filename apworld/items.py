@@ -33,6 +33,9 @@ def create_rr_item(world: RingRacersWorld, name: str) -> RingRacersItem:
     elif name in CHALLENGE_FOLLOWERS:
         # Only mark followers that are required for challenges as progression
         classification = ItemClassification.progression_deprioritized_skip_balancing
+    elif name in world.item_name_groups["Spray Cans"]:
+        # Progression by technicality, because of Gum's Challenge
+        classification = ItemClassification.progression_deprioritized_skip_balancing
     elif name in world.item_name_groups["Drivers"]:
         # There's probably 1 or 2 drivers that aren't required for challenges,
         # but the vast majority of them are, so just mark them all as progression
@@ -74,9 +77,19 @@ def create_all_items(world: RingRacersWorld) -> None:
     starting_cup_location = world.get_location("Challenge - Ring Cup")
     starting_cup_location.place_locked_item(precollect_cup)
 
+    color_pool: list[Item] = []
+    for color_name in world.item_name_groups["Spray Cans"]:
+        color_pool.append(world.create_item(color_name)) 
+
+    num_spray_cans_left = len(world.location_name_groups["Spray Cans"]) - len(color_pool)
+    for _ in range(num_spray_cans_left):
+        color_pool.append(world.create_item("KKD Honor"))
+    logging.debug('RingRacers:: Created {} filler honors'.format(num_spray_cans_left))
+
     item_pool: list[Item] = []
     item_pool += driver_pool
     item_pool += cup_pool
+    item_pool += color_pool
 
     for follower_name in world.item_name_groups["Followers"]:
         item_pool.append(world.create_item(follower_name))

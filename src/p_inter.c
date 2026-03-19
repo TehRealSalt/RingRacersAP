@@ -826,69 +826,18 @@ void P_TouchSpecialThing(mobj_t *special, mobj_t *toucher, boolean heightcheck)
 					return;
 				}
 
-				// See also P_SprayCanInit
-				UINT16 can_id = mapheaderinfo[gamemap-1]->records.spraycan;
-
-				if (can_id < gamedata->numspraycans || can_id == MCAN_BONUS)
+				// [RRAP]
+				boolean got_can = mapheaderinfo[gamemap-1]->records.spraycan;
+				if (got_can)
 				{
 					// Assigned to this level, has been grabbed
 					return;
 				}
 
-				if (
-					(gamemap-1 >= basenummapheaders)
-					|| (gamedata->gotspraycans >= gamedata->numspraycans)
-				)
-				{
-					// Custom course OR we ran out of assignables.
+				if (special->threshold != 0)
+					return;
 
-					if (special->threshold != 0)
-						return;
-
-					can_id = MCAN_BONUS;
-				}
-				else
-				{
-					// Unassigned, get the next grabbable colour
-					can_id = gamedata->gotspraycans;
-
-					// Multiple cans in one map?
-					if (special->threshold != 0)
-					{
-						UINT16 ref_id = can_id + (special->threshold & UINT8_MAX);
-						if (ref_id >= gamedata->numspraycans)
-							return;
-
-						// Swap this specific can to the head of the list.
-						UINT16 swapcol = gamedata->spraycans[ref_id].col;
-
-						gamedata->spraycans[ref_id].col =
-							gamedata->spraycans[can_id].col;
-						skincolors[gamedata->spraycans[ref_id].col].cache_spraycan = ref_id;
-
-						gamedata->spraycans[can_id].col = swapcol;
-						skincolors[swapcol].cache_spraycan = can_id;
-					}
-
-					gamedata->spraycans[can_id].map = gamemap-1;
-
-					if (gamedata->gotspraycans == 0
-					&& gametype == GT_TUTORIAL
-					&& cv_ttlprofilen.value > 0
-					&& cv_ttlprofilen.value < PR_GetNumProfiles())
-					{
-						profile_t *p = PR_GetProfile(cv_ttlprofilen.value);
-						if (p->color == SKINCOLOR_NONE)
-						{
-							// Apply your favourite colour to the profile!
-							p->color = gamedata->spraycans[can_id].col;
-						}
-					}
-
-					gamedata->gotspraycans++;
-				}
-
-				mapheaderinfo[gamemap-1]->records.spraycan = can_id;
+				mapheaderinfo[gamemap-1]->records.spraycan = true;
 
 				if (!M_UpdateUnlockablesAndExtraEmblems(true, true))
 					S_StartSound(NULL, sfx_ncitem);

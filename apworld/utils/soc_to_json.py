@@ -131,8 +131,8 @@ for id_str, condition_set in soc.get("conditionset", {}).items():
 
 	logic[id_int] = logic_set
 
-locations = {}
-items = {}
+locations = []
+items = []
 
 num_colors = 0
 num_cds = 0
@@ -146,22 +146,25 @@ for id_str, unlockable in soc.get("unlockable", {}).items():
 		big_tile = bool(unlockable.get("majorunlock", False))
 
 		location = {}
+		location["id"] = id_int
 		location["name"] = "Challenge - Driver: {}".format(parsed_name)
 		location["label"] = parsed_name
 		if condition_set_id:
 			location["condition_set"] = condition_set_id
 		if big_tile:
 			location["big_tile"] = big_tile
+		location["tags"] = ["Challenges", "Drivers"]
 
 		item = {}
+		item["id"] = id_int
 		item["name"] = "Driver: {}".format(parsed_name)
 		item["label"] = parsed_name
 		item["unlockable"] = id_int
 		item["skin"] = unlockable["var"].lower()
-		item["group"] = "Drivers"
+		item["tags"] = ["Drivers"]
 
-		locations[id_int] = location
-		items[id_int] = item
+		locations.append(location)
+		items.append(item)
 	elif type_name == "follower":
 		id_int = int(id_str)
 		parsed_name = unlockable["name"].replace("_", " ")
@@ -169,22 +172,25 @@ for id_str, unlockable in soc.get("unlockable", {}).items():
 		big_tile = bool(unlockable.get("majorunlock", False))
 
 		location = {}
+		location["id"] = id_int
 		location["name"] = "Challenge - Follower: {}".format(parsed_name)
 		location["label"] = parsed_name
 		if condition_set_id:
 			location["condition_set"] = condition_set_id
 		if big_tile:
 			location["big_tile"] = big_tile
+		location["tags"] = ["Challenges", "Followers"]
 
 		item = {}
+		item["id"] = id_int
 		item["name"] = "Follower: {}".format(parsed_name)
 		item["label"] = parsed_name
 		item["unlockable"] = id_int
 		item["follower"] = unlockable["var"].lower().replace("_", " ")
-		item["group"] = "Followers"
+		item["tags"] = ["Followers"]
 
-		locations[id_int] = location
-		items[id_int] = item
+		locations.append(location)
+		items.append(item)
 	elif type_name == "color":
 		num_colors += 1
 
@@ -194,22 +200,25 @@ for id_str, unlockable in soc.get("unlockable", {}).items():
 		big_tile = bool(unlockable.get("majorunlock", False))
 
 		location = {}
+		location["id"] = id_int
 		location["name"] = "Challenge - Spray Can #{}".format(num_colors)
 		location["label"] = "Spray Can #{}".format(num_colors)
 		if condition_set_id:
 			location["condition_set"] = condition_set_id
 		if big_tile:
 			location["big_tile"] = big_tile
+		location["tags"] = ["Challenges", "Spray Can Milestones"]
 
 		item = {}
+		item["id"] = id_int
 		item["name"] = "Spray Can: {}".format(parsed_name)
 		item["label"] = parsed_name
 		item["unlockable"] = id_int
 		item["color"] = unlockable["var"].lower()
-		item["group"] = "Spray Cans"
+		item["tags"] = ["Spray Cans"]
 
-		locations[id_int] = location
-		items[id_int] = item
+		locations.append(location)
+		items.append(item)
 	elif type_name == "cup":
 		id_int = int(id_str)
 		parsed_name = unlockable["name"].replace("_", " ")
@@ -217,23 +226,26 @@ for id_str, unlockable in soc.get("unlockable", {}).items():
 		big_tile = bool(unlockable.get("majorunlock", False))
 
 		location = {}
+		location["id"] = id_int
 		location["name"] = "Challenge - {}".format(parsed_name)
 		location["label"] = parsed_name
 		if condition_set_id:
 			location["condition_set"] = condition_set_id
 		if big_tile:
 			location["big_tile"] = big_tile
+		location["tags"] = ["Challenges", "Cups"]
 
 		item = {}
+		item["id"] = id_int
 		item["name"] = "{} Access".format(parsed_name)
 		item["label"] = parsed_name
 		item["unlockable"] = id_int
 		item["cup"] = unlockable["var"]
-		item["group"] = "Cup Access"
+		item["tags"] = ["Cups"]
 		item["icon"] = unlockable["icon"]
 
-		locations[id_int] = location
-		items[id_int] = item
+		locations.append(location)
+		items.append(item)
 	elif type_name == "map":
 		# These may need a tiny bit of manual cleanup
 		id_int = int(id_str)
@@ -242,22 +254,25 @@ for id_str, unlockable in soc.get("unlockable", {}).items():
 		big_tile = bool(unlockable.get("majorunlock", False))
 
 		location = {}
+		location["id"] = id_int
 		location["name"] = "Challenge - {}".format(parsed_name)
 		location["label"] = parsed_name
 		if condition_set_id:
 			location["condition_set"] = condition_set_id
 		if big_tile:
 			location["big_tile"] = big_tile
+		location["tags"] = ["Challenges", "Maps"]
 
 		item = {}
+		item["id"] = id_int
 		item["name"] = "{} Access".format(parsed_name)
 		item["label"] = parsed_name
 		item["unlockable"] = id_int
 		item["map"] = unlockable["var"]
-		item["group"] = "Map Access"
+		item["tags"] = ["Maps"]
 
-		locations[id_int] = location
-		items[id_int] = item
+		locations.append(location)
+		items.append(item)
 	elif type_name == "altmusic":
 		# These need a LOT of manual cleanup.
 		# Doesn't even account for the special time attack alt music.
@@ -269,22 +284,25 @@ for id_str, unlockable in soc.get("unlockable", {}).items():
 		big_tile = bool(unlockable.get("majorunlock", False))
 
 		location = {}
+		location["id"] = id_int
 		location["name"] = "Challenge - Prison Egg CD #{}".format(num_cds)
 		location["label"] = "Prison Egg CD #{}".format(num_cds)
 		if condition_set_id:
 			location["condition_set"] = condition_set_id
 		if big_tile:
 			location["big_tile"] = big_tile
+		location["tags"] = ["Challenges", "CD Milestones"]
 
 		item = {}
+		item["id"] = id_int
 		item["name"] = temp_name
 		item["label"] = temp_name
 		item["unlockable"] = id_int
 		item["color"] = unlockable["var"].lower()
-		item["group"] = "Alt. Music"
+		item["tags"] = ["Alt. Music"]
 
-		locations[id_int] = location
-		items[id_int] = item
+		locations.append(location)
+		items.append(item)
 	else:
 		# These may need a tiny bit of manual cleanup
 		id_int = int(id_str)
@@ -293,21 +311,25 @@ for id_str, unlockable in soc.get("unlockable", {}).items():
 		big_tile = bool(unlockable.get("majorunlock", False))
 
 		location = {}
+		location["id"] = id_int
 		location["name"] = "Challenge - {}".format(parsed_name)
 		location["label"] = parsed_name
 		if condition_set_id:
 			location["condition_set"] = condition_set_id
 		if big_tile:
 			location["big_tile"] = big_tile
+		location["tags"] = ["Challenges", "Extras"]
 
 		item = {}
+		item["id"] = id_int
 		item["name"] = parsed_name
 		item["label"] = parsed_name
 		item["unlockable"] = id_int
 		item["item_type"] = type_name
+		item["tags"] = ["Extras"]
 
-		locations[id_int] = location
-		items[id_int] = item
+		locations.append(location)
+		items.append(item)
 
 
 cups = {}
@@ -380,10 +402,12 @@ for id_str, map_data in soc.get("level", {}).items():
 	if map_type == "race":
 		time_attack_medals += 3 # Skip platinum (for now?)
 		spb_attack_medals += 1
-		#attached_locations += "Spray Can" # TODO
+		attached_locations.append("Spray Can")
 	elif map_type == "battle":
 		prison_break_medals += 3 # Skip platinum (for now?)
-		#attached_locations += "Prison CD" # TODO
+		#attached_locations.append("Prison CD") # TODO
+
+	no_visit_needed = bool(map_data.get("novisitneeded", False))
 
 	# There isn't a way to detect Mystic Melody shrine
 	# from the header alone, so there is some required
@@ -393,6 +417,9 @@ for id_str, map_data in soc.get("level", {}).items():
 	if short_name != real_name:
 		cur_map["label_short"] = short_name
 	cur_map["type"] = map_type
+
+	if no_visit_needed:
+		cur_map["no_visit_needed"] = no_visit_needed
 
 	if time_attack_medals:
 		cur_map["medals_time"] = time_attack_medals
@@ -404,8 +431,21 @@ for id_str, map_data in soc.get("level", {}).items():
 		cur_map["medals_prisons"] = prison_break_medals
 
 	if len(attached_locations):
-		cur_map["locations"] = attached_locations
-		# TODO: create locations
+		all_location_names = []
+
+		for location_suffix in attached_locations:
+			location_name = "{} - {}".format(real_name, location_suffix)
+			all_location_names.append(location_name)
+
+			location = {}
+			location["id"] = 0 # Needs manual cleanup
+			location["name"] = location_name
+			location["label"] = "{}: {}".format(short_name, location_suffix)
+			location["spray_can_map"] = id_str
+			location["tags"] = ["Spray Cans"]
+			locations.append(location)
+
+		cur_map["locations"] = all_location_names
 
 	maps[id_str] = cur_map
 

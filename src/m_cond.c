@@ -395,11 +395,6 @@ void M_ClearSecrets(void)
 	memset(netUnlocked, 0, sizeof(netUnlocked));
 	memset(gamedata->achieved, 0, sizeof(gamedata->achieved));
 
-	Z_Free(gamedata->spraycans);
-	gamedata->spraycans = NULL;
-	gamedata->numspraycans = 0;
-	gamedata->gotspraycans = 0;
-
 	Z_Free(gamedata->prisoneggpickups);
 	gamedata->prisoneggpickups = NULL;
 	gamedata->numprisoneggpickups = 0;
@@ -414,7 +409,7 @@ void M_ClearSecrets(void)
 			continue;
 
 		mapheaderinfo[i]->records.mapvisited = 0;
-		mapheaderinfo[i]->records.spraycan = MCAN_INVALID;
+		mapheaderinfo[i]->records.spraycan = false; // [RRAP]
 
 		mapheaderinfo[i]->cache_maplock = MAXUNLOCKABLES;
 
@@ -430,10 +425,12 @@ void M_ClearSecrets(void)
 		cup->cache_cuplock = MAXUNLOCKABLES;
 	}
 
+#if 0 // [RRAP]
 	for (i = 0; i < numskincolors; i++)
 	{
 		skincolors[i].cache_spraycan = UINT16_MAX;
 	}
+#endif
 
 	memset(gamedata->sealedswaps, 0, sizeof(gamedata->sealedswaps));
 
@@ -474,6 +471,7 @@ static void M_Shuffle_UINT16(UINT16 *list, size_t len)
 	}
 }
 
+#if 0 // [RRAP]
 static void M_AssignSpraycans(void)
 {
 	// Very convenient I'm programming this on
@@ -614,6 +612,7 @@ static void M_AssignSpraycans(void)
 		gamedata->numspraycans++;
 	}
 }
+#endif
 
 static void M_InitPrisonEggPickups(void)
 {
@@ -965,8 +964,10 @@ void M_FinaliseGameData(void)
 	// Precache as many unlockables as is meaningfully feasible
 	M_PrecacheLevelLocks();
 
+#if 0 // [RRAP]
 	// Place the spraycans, which CAN'T be done lazily.
 	M_AssignSpraycans();
+#endif
 
 	// You could probably do the Prison Egg Pickups lazily, but it'd be a lagspike mid-combat.
 	M_InitPrisonEggPickups();
@@ -1385,13 +1386,6 @@ boolean M_CheckCondition(condition_t *cn, player_t *player)
 					unlocked++;
 				}
 			}
-			// Special case for SECRET_COLOR
-			else if (cn->extrainfo1 == SECRET_COLOR)
-			{
-				// [RRAP] TODO: implement
-				total = gamedata->numspraycans;
-				unlocked = gamedata->gotspraycans;
-			}
 			else
 			{
 				RRAP_CountItems(cn->extrainfo1, &total, &unlocked);
@@ -1430,6 +1424,7 @@ boolean M_CheckCondition(condition_t *cn, player_t *player)
 
 		case UC_SPRAYCAN:
 		{
+#if 0
 			if (cn->requirement <= 0
 			|| cn->requirement >= numskincolors)
 				return false;
@@ -1440,6 +1435,10 @@ boolean M_CheckCondition(condition_t *cn, player_t *player)
 				return false;
 
 			return (gamedata->spraycans[can_id].map < nummapheaders);
+#else
+			// [RRAP] TODO
+			return true;
+#endif
 		}
 
 		case UC_PRISONEGGCD:
@@ -2360,6 +2359,7 @@ static const char *M_GetConditionString(condition_t *cn)
 
 		case UC_SPRAYCAN:
 		{
+#if 0
 			if (cn->requirement <= 0
 			|| cn->requirement >= numskincolors)
 				return va("INVALID SPRAYCAN COLOR \"%d\"", cn->requirement);
@@ -2375,12 +2375,15 @@ static const char *M_GetConditionString(condition_t *cn)
 			if (can_id == 0)
 				return "grab a Spray Can"; // Special case for the head of the list
 
-#if 0 // [RRAP]
+
 			if (gamedata->spraycans[0].map >= nummapheaders)
 				return NULL; // Don't tease that there are many until you have one
-#endif
 
 			return va("grab %d Spray Cans", can_id + 1);
+#else
+			// [RRAP] TODO
+			return NULL;
+#endif
 		}
 
 		case UC_PRISONEGGCD:
@@ -2759,18 +2762,40 @@ char *M_BuildConditionSetString(INT64 ap_location_id)
 		return NULL;
 	}
 
-	UINT16 condition_set = RRAP_LocationConditionSet(location);
-	if (!condition_set)
-	{
-		return NULL;
-	}
-
 	if (RRAP_LocationChecked(location) == true
-		&& M_Achieved(condition_set - 1) == false)
+		&& RRAP_LocationAchieved(location) == false)
 	{
 		message[0] = '\x86'; // the following text will be grey
 		message[1] = '\0';
 		len--;
+	}
+
+	INT32 spray_can_map = RRAP_LocationSprayCanMapID(location);
+	if (spray_can_map)
+	{
+		// [RRAP]
+		char *title = M_BuildConditionTitle(spray_can_map - 1);
+
+		work = va("Get the Spray Can in %s", title);
+		worklen = strlen(work);
+		strncat(message, work, len);
+		len -= worklen;
+
+		Z_Free(title);
+
+		return V_ScaledWordWrap(
+			DESCRIPTIONWIDTH << FRACBITS,
+			FRACUNIT, FRACUNIT, FRACUNIT,
+			0,
+			TINY_FONT,
+			message
+		);
+	}
+
+	UINT16 condition_set = RRAP_LocationConditionSet(location);
+	if (!condition_set)
+	{
+		return NULL;
 	}
 
 	struct conditionset_traverser_s {

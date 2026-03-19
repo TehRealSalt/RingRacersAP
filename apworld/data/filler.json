@@ -1,8 +1,9 @@
 {
-	"items": {
-		"10000": {
+	"items": [
+		{
+			"id": 10000,
 			"name": "Temporary Filler",
 			"label": "Temporary Filler"
 		}
-	}
+	]
 }

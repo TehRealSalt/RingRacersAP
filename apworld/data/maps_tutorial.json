@@ -16,7 +16,10 @@
 		"rr_sunbeamparadiserings": {
 			"label": "Sunbeam Paradise: Rings",
 			"label_short": "Rings",
-			"type": "tutorial"
+			"type": "tutorial",
+			"locations": [
+				"Sunbeam Paradise: Rings - Spray Can"
+			]
 		},
 		"rr_sunbeamparadisebrakes": {
 			"label": "Sunbeam Paradise: Brakes",
@@ -46,5 +49,16 @@
 			"item": "Sunbeam Paradise: Springs Access",
 			"no_visit_needed": true
 		}
-	}
+	},
+	"locations": [
+		{
+			"id": 9000,
+			"name": "Sunbeam Paradise: Rings - Spray Can",
+			"label": "Rings Tutorial: Spray Can",
+			"spray_can_map": "rr_sunbeamparadiserings",
+			"tags": [
+				"Spray Cans"
+			]
+		}
+	]
 }

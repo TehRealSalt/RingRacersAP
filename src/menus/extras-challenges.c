@@ -1267,12 +1267,11 @@ boolean M_ChallengesInputs(INT32 ch)
 					}
 					break;
 				}
-#if 0 // [RRAP] TODO - finish implementing item types
 				case SECRET_COLOR:
 				{
 					if (setup_numplayers <= 1 && cv_lastprofile[0].value != PROFILE_GUEST && M_MenuConfirmPressed(pid))
 					{
-						INT32 colorid = M_UnlockableColorNum(ref);
+						INT32 colorid = RRAP_ItemToColorId(item);
 						if (colorid != SKINCOLOR_NONE)
 						{
 							profile_t *pr = PR_GetProfile(cv_lastprofile[0].value);
@@ -1295,6 +1294,7 @@ boolean M_ChallengesInputs(INT32 ch)
 					}
 					break;
 				}
+#if 0 // [RRAP] TODO - finish implementing item types
 				case SECRET_ALTMUSIC:
 				{
 					UINT8 trymus = 0, musicid = MAXMUSNAMES;

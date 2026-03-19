@@ -1,689 +1,1129 @@
 {
-	"locations": {
-		"1": {
+	"locations": [
+		{
+			"id": 1,
 			"name": "Challenge - Driver: AiAi",
 			"label": "AiAi",
 			"condition_set": 1,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"2": {
+		{
+			"id": 2,
 			"name": "Challenge - Driver: Aigis",
 			"label": "Aigis",
 			"condition_set": 2,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"3": {
+		{
+			"id": 3,
 			"name": "Challenge - Driver: Arle",
 			"label": "Arle",
 			"condition_set": 3,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"4": {
+		{
+			"id": 4,
 			"name": "Challenge - Driver: Azusa Miura",
 			"label": "Azusa Miura",
 			"condition_set": 4,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"5": {
+		{
+			"id": 5,
 			"name": "Challenge - Driver: Bark",
 			"label": "Bark",
-			"condition_set": 5
+			"condition_set": 5,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"6": {
+		{
+			"id": 6,
 			"name": "Challenge - Driver: Battle Kukku XV",
 			"label": "Battle Kukku XV",
-			"condition_set": 6
+			"condition_set": 6,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"7": {
+		{
+			"id": 7,
 			"name": "Challenge - Driver: Bean",
 			"label": "Bean",
-			"condition_set": 7
+			"condition_set": 7,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"8": {
+		{
+			"id": 8,
 			"name": "Challenge - Driver: Big",
 			"label": "Big",
-			"condition_set": 8
+			"condition_set": 8,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"9": {
+		{
+			"id": 9,
 			"name": "Challenge - Driver: Billy Hatcher",
 			"label": "Billy Hatcher",
 			"condition_set": 9,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"10": {
+		{
+			"id": 10,
 			"name": "Challenge - Driver: Blaze",
 			"label": "Blaze",
-			"condition_set": 10
+			"condition_set": 10,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"11": {
+		{
+			"id": 11,
 			"name": "Challenge - Driver: Bomb",
 			"label": "Bomb",
-			"condition_set": 11
+			"condition_set": 11,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"12": {
+		{
+			"id": 12,
 			"name": "Challenge - Driver: Carol",
 			"label": "Carol",
 			"condition_set": 12,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"13": {
+		{
+			"id": 13,
 			"name": "Challenge - Driver: Caterkiller",
 			"label": "Caterkiller",
-			"condition_set": 13
+			"condition_set": 13,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"14": {
+		{
+			"id": 14,
 			"name": "Challenge - Driver: Chao",
 			"label": "Chao",
-			"condition_set": 14
+			"condition_set": 14,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"15": {
+		{
+			"id": 15,
 			"name": "Challenge - Driver: Chaos",
 			"label": "Chaos",
-			"condition_set": 15
+			"condition_set": 15,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"16": {
+		{
+			"id": 16,
 			"name": "Challenge - Driver: Charmy",
 			"label": "Charmy",
-			"condition_set": 16
+			"condition_set": 16,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"17": {
+		{
+			"id": 17,
 			"name": "Challenge - Driver: Chuchu",
 			"label": "Chuchu",
 			"condition_set": 17,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"18": {
+		{
+			"id": 18,
 			"name": "Challenge - Driver: Cluckoid",
 			"label": "Cluckoid",
-			"condition_set": 18
+			"condition_set": 18,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"19": {
+		{
+			"id": 19,
 			"name": "Challenge - Driver: Cream",
 			"label": "Cream",
-			"condition_set": 19
+			"condition_set": 19,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"20": {
+		{
+			"id": 20,
 			"name": "Challenge - Driver: Ecco",
 			"label": "Ecco",
 			"condition_set": 20,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"21": {
+		{
+			"id": 21,
 			"name": "Challenge - Driver: Eggrobo",
 			"label": "Eggrobo",
-			"condition_set": 21
+			"condition_set": 21,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"22": {
+		{
+			"id": 22,
 			"name": "Challenge - Driver: Emerl",
 			"label": "Emerl",
-			"condition_set": 22
+			"condition_set": 22,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"23": {
+		{
+			"id": 23,
 			"name": "Challenge - Driver: Espio",
 			"label": "Espio",
-			"condition_set": 23
+			"condition_set": 23,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"24": {
+		{
+			"id": 24,
 			"name": "Challenge - Driver: Flicky",
 			"label": "Flicky",
-			"condition_set": 24
+			"condition_set": 24,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"25": {
+		{
+			"id": 25,
 			"name": "Challenge - Driver: Gum",
 			"label": "Gum",
 			"condition_set": 25,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"26": {
+		{
+			"id": 26,
 			"name": "Challenge - Driver: Gutbuster",
 			"label": "Gutbuster",
 			"condition_set": 26,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"27": {
+		{
+			"id": 27,
 			"name": "Challenge - Driver: Headdy",
 			"label": "Headdy",
 			"condition_set": 27,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"28": {
+		{
+			"id": 28,
 			"name": "Challenge - Driver: Heavy",
 			"label": "Heavy",
-			"condition_set": 28
+			"condition_set": 28,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"29": {
+		{
+			"id": 29,
 			"name": "Challenge - Driver: Heavy Magician",
 			"label": "Heavy Magician",
 			"condition_set": 29,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"30": {
+		{
+			"id": 30,
 			"name": "Challenge - Driver: Honey",
 			"label": "Honey",
-			"condition_set": 30
+			"condition_set": 30,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"31": {
+		{
+			"id": 31,
 			"name": "Challenge - Driver: Jack Frost",
 			"label": "Jack Frost",
 			"condition_set": 31,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"32": {
+		{
+			"id": 32,
 			"name": "Challenge - Driver: Jet",
 			"label": "Jet",
-			"condition_set": 32
+			"condition_set": 32,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"34": {
+		{
+			"id": 34,
 			"name": "Challenge - Driver: Mail",
 			"label": "Mail",
 			"condition_set": 34,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"35": {
+		{
+			"id": 35,
 			"name": "Challenge - Driver: Maria",
 			"label": "Maria",
-			"condition_set": 35
+			"condition_set": 35,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"36": {
+		{
+			"id": 36,
 			"name": "Challenge - Driver: Mecha Sonic",
 			"label": "Mecha Sonic",
-			"condition_set": 36
+			"condition_set": 36,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"37": {
+		{
+			"id": 37,
 			"name": "Challenge - Driver: Metal Knuckles",
 			"label": "Metal Knuckles",
-			"condition_set": 37
+			"condition_set": 37,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"38": {
+		{
+			"id": 38,
 			"name": "Challenge - Driver: NiGHTS",
 			"label": "NiGHTS",
 			"condition_set": 38,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"39": {
+		{
+			"id": 39,
 			"name": "Challenge - Driver: Orta",
 			"label": "Orta",
 			"condition_set": 39,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"40": {
+		{
+			"id": 40,
 			"name": "Challenge - Driver: Pulseman",
 			"label": "Pulseman",
 			"condition_set": 40,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"41": {
+		{
+			"id": 41,
 			"name": "Challenge - Driver: Rappy",
 			"label": "Rappy",
 			"condition_set": 41,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"42": {
+		{
+			"id": 42,
 			"name": "Challenge - Driver: Ray",
 			"label": "Ray",
-			"condition_set": 42
+			"condition_set": 42,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"43": {
+		{
+			"id": 43,
 			"name": "Challenge - Driver: Redz",
 			"label": "Redz",
-			"condition_set": 43
+			"condition_set": 43,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"44": {
+		{
+			"id": 44,
 			"name": "Challenge - Driver: Rouge",
 			"label": "Rouge",
-			"condition_set": 44
+			"condition_set": 44,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"45": {
+		{
+			"id": 45,
 			"name": "Challenge - Driver: Sakura Shinguji",
 			"label": "Sakura Shinguji",
 			"condition_set": 45,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"46": {
+		{
+			"id": 46,
 			"name": "Challenge - Driver: Shadow",
 			"label": "Shadow",
-			"condition_set": 46
+			"condition_set": 46,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"47": {
+		{
+			"id": 47,
 			"name": "Challenge - Driver: Silver",
 			"label": "Silver",
-			"condition_set": 47
+			"condition_set": 47,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"48": {
+		{
+			"id": 48,
 			"name": "Challenge - Driver: Surge",
 			"label": "Surge",
-			"condition_set": 48
+			"condition_set": 48,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"49": {
+		{
+			"id": 49,
 			"name": "Challenge - Driver: Tails Doll",
 			"label": "Tails Doll",
-			"condition_set": 49
+			"condition_set": 49,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"50": {
+		{
+			"id": 50,
 			"name": "Challenge - Driver: Tikal",
 			"label": "Tikal",
-			"condition_set": 50
+			"condition_set": 50,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"51": {
+		{
+			"id": 51,
 			"name": "Challenge - Driver: Vectorman",
 			"label": "Vectorman",
 			"condition_set": 51,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"52": {
+		{
+			"id": 52,
 			"name": "Challenge - Driver: Whisper",
 			"label": "Whisper",
-			"condition_set": 52
+			"condition_set": 52,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"53": {
+		{
+			"id": 53,
 			"name": "Challenge - Driver: Wonder Boy",
 			"label": "Wonder Boy",
 			"condition_set": 53,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"54": {
+		{
+			"id": 54,
 			"name": "Challenge - Driver: Zipp",
 			"label": "Zipp",
-			"condition_set": 54
+			"condition_set": 54,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"55": {
+		{
+			"id": 55,
 			"name": "Challenge - Driver: Ring the Racer",
 			"label": "Ring the Racer",
 			"condition_set": 55,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		},
-		"56": {
+		{
+			"id": 56,
 			"name": "Challenge - Driver: Trouble Bruin",
 			"label": "Trouble Bruin",
 			"condition_set": 56,
-			"big_tile": true
+			"big_tile": true,
+			"tags": [
+				"Challenges",
+				"Drivers"
+			]
 		}
-	},
-	"items": {
-		"1": {
+	],
+	"items": [
+		{
+			"id": 1,
 			"name": "Driver: AiAi",
 			"label": "AiAi",
 			"unlockable": 1,
 			"skin": "aiai",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"2": {
+		{
+			"id": 2,
 			"name": "Driver: Aigis",
 			"label": "Aigis",
 			"unlockable": 2,
 			"skin": "aigis",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"3": {
+		{
+			"id": 3,
 			"name": "Driver: Arle",
 			"label": "Arle",
 			"unlockable": 3,
 			"skin": "arle",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"4": {
+		{
+			"id": 4,
 			"name": "Driver: Azusa Miura",
 			"label": "Azusa Miura",
 			"unlockable": 4,
 			"skin": "azusa",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"5": {
+		{
+			"id": 5,
 			"name": "Driver: Bark",
 			"label": "Bark",
 			"unlockable": 5,
 			"skin": "bark",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"6": {
+		{
+			"id": 6,
 			"name": "Driver: Battle Kukku XV",
 			"label": "Battle Kukku XV",
 			"unlockable": 6,
 			"skin": "battlekukku",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"7": {
+		{
+			"id": 7,
 			"name": "Driver: Bean",
 			"label": "Bean",
 			"unlockable": 7,
 			"skin": "bean",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"8": {
+		{
+			"id": 8,
 			"name": "Driver: Big",
 			"label": "Big",
 			"unlockable": 8,
 			"skin": "big",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"9": {
+		{
+			"id": 9,
 			"name": "Driver: Billy Hatcher",
 			"label": "Billy Hatcher",
 			"unlockable": 9,
 			"skin": "billyh",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"10": {
+		{
+			"id": 10,
 			"name": "Driver: Blaze",
 			"label": "Blaze",
 			"unlockable": 10,
 			"skin": "blaze",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"11": {
+		{
+			"id": 11,
 			"name": "Driver: Bomb",
 			"label": "Bomb",
 			"unlockable": 11,
 			"skin": "bomb",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"12": {
+		{
+			"id": 12,
 			"name": "Driver: Carol",
 			"label": "Carol",
 			"unlockable": 12,
 			"skin": "carol",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"13": {
+		{
+			"id": 13,
 			"name": "Driver: Caterkiller",
 			"label": "Caterkiller",
 			"unlockable": 13,
 			"skin": "caterkiller",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"14": {
+		{
+			"id": 14,
 			"name": "Driver: Chao",
 			"label": "Chao",
 			"unlockable": 14,
 			"skin": "chao",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"15": {
+		{
+			"id": 15,
 			"name": "Driver: Chaos",
 			"label": "Chaos",
 			"unlockable": 15,
 			"skin": "chaos",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"16": {
+		{
+			"id": 16,
 			"name": "Driver: Charmy",
 			"label": "Charmy",
 			"unlockable": 16,
 			"skin": "charmy",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"17": {
+		{
+			"id": 17,
 			"name": "Driver: Chuchu",
 			"label": "Chuchu",
 			"unlockable": 17,
 			"skin": "chuchu",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"18": {
+		{
+			"id": 18,
 			"name": "Driver: Cluckoid",
 			"label": "Cluckoid",
 			"unlockable": 18,
 			"skin": "cluckoid",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"19": {
+		{
+			"id": 19,
 			"name": "Driver: Cream",
 			"label": "Cream",
 			"unlockable": 19,
 			"skin": "cream",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"20": {
+		{
+			"id": 20,
 			"name": "Driver: Ecco",
 			"label": "Ecco",
 			"unlockable": 20,
 			"skin": "ecco",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"21": {
+		{
+			"id": 21,
 			"name": "Driver: Eggrobo",
 			"label": "Eggrobo",
 			"unlockable": 21,
 			"skin": "eggrobo",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"22": {
+		{
+			"id": 22,
 			"name": "Driver: Emerl",
 			"label": "Emerl",
 			"unlockable": 22,
 			"skin": "emerl",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"23": {
+		{
+			"id": 23,
 			"name": "Driver: Espio",
 			"label": "Espio",
 			"unlockable": 23,
 			"skin": "espio",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"24": {
+		{
+			"id": 24,
 			"name": "Driver: Flicky",
 			"label": "Flicky",
 			"unlockable": 24,
 			"skin": "flicky",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"25": {
+		{
+			"id": 25,
 			"name": "Driver: Gum",
 			"label": "Gum",
 			"unlockable": 25,
 			"skin": "gum",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"26": {
+		{
+			"id": 26,
 			"name": "Driver: Gutbuster",
 			"label": "Gutbuster",
 			"unlockable": 26,
 			"skin": "gutbuster",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"27": {
+		{
+			"id": 27,
 			"name": "Driver: Headdy",
 			"label": "Headdy",
 			"unlockable": 27,
 			"skin": "headdy",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"28": {
+		{
+			"id": 28,
 			"name": "Driver: Heavy",
 			"label": "Heavy",
 			"unlockable": 28,
 			"skin": "heavy",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"29": {
+		{
+			"id": 29,
 			"name": "Driver: Heavy Magician",
 			"label": "Heavy Magician",
 			"unlockable": 29,
 			"skin": "heavymagician",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"30": {
+		{
+			"id": 30,
 			"name": "Driver: Honey",
 			"label": "Honey",
 			"unlockable": 30,
 			"skin": "honey",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"31": {
+		{
+			"id": 31,
 			"name": "Driver: Jack Frost",
 			"label": "Jack Frost",
 			"unlockable": 31,
 			"skin": "jackfrost",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"32": {
+		{
+			"id": 32,
 			"name": "Driver: Jet",
 			"label": "Jet",
 			"unlockable": 32,
 			"skin": "jet",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"34": {
+		{
+			"id": 34,
 			"name": "Driver: Mail",
 			"label": "Mail",
 			"unlockable": 34,
 			"skin": "mail",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"35": {
+		{
+			"id": 35,
 			"name": "Driver: Maria",
 			"label": "Maria",
 			"unlockable": 35,
 			"skin": "maria",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"36": {
+		{
+			"id": 36,
 			"name": "Driver: Mecha Sonic",
 			"label": "Mecha Sonic",
 			"unlockable": 36,
 			"skin": "mechasonic",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"37": {
+		{
+			"id": 37,
 			"name": "Driver: Metal Knuckles",
 			"label": "Metal Knuckles",
 			"unlockable": 37,
 			"skin": "metalknuckles",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"38": {
+		{
+			"id": 38,
 			"name": "Driver: NiGHTS",
 			"label": "NiGHTS",
 			"unlockable": 38,
 			"skin": "nights",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"39": {
+		{
+			"id": 39,
 			"name": "Driver: Orta",
 			"label": "Orta",
 			"unlockable": 39,
 			"skin": "orta",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"40": {
+		{
+			"id": 40,
 			"name": "Driver: Pulseman",
 			"label": "Pulseman",
 			"unlockable": 40,
 			"skin": "pulseman",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"41": {
+		{
+			"id": 41,
 			"name": "Driver: Rappy",
 			"label": "Rappy",
 			"unlockable": 41,
 			"skin": "rappy",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"42": {
+		{
+			"id": 42,
 			"name": "Driver: Ray",
 			"label": "Ray",
 			"unlockable": 42,
 			"skin": "ray",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"43": {
+		{
+			"id": 43,
 			"name": "Driver: Redz",
 			"label": "Redz",
 			"unlockable": 43,
 			"skin": "redz",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"44": {
+		{
+			"id": 44,
 			"name": "Driver: Rouge",
 			"label": "Rouge",
 			"unlockable": 44,
 			"skin": "rouge",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"45": {
+		{
+			"id": 45,
 			"name": "Driver: Sakura Shinguji",
 			"label": "Sakura Shinguji",
 			"unlockable": 45,
 			"skin": "sakura",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"46": {
+		{
+			"id": 46,
 			"name": "Driver: Shadow",
 			"label": "Shadow",
 			"unlockable": 46,
 			"skin": "shadow",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"47": {
+		{
+			"id": 47,
 			"name": "Driver: Silver",
 			"label": "Silver",
 			"unlockable": 47,
 			"skin": "silver",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"48": {
+		{
+			"id": 48,
 			"name": "Driver: Surge",
 			"label": "Surge",
 			"unlockable": 48,
 			"skin": "surge",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"49": {
+		{
+			"id": 49,
 			"name": "Driver: Tails Doll",
 			"label": "Tails Doll",
 			"unlockable": 49,
 			"skin": "tailsdoll",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"50": {
+		{
+			"id": 50,
 			"name": "Driver: Tikal",
 			"label": "Tikal",
 			"unlockable": 50,
 			"skin": "tikal",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"51": {
+		{
+			"id": 51,
 			"name": "Driver: Vectorman",
 			"label": "Vectorman",
 			"unlockable": 51,
 			"skin": "vectorman",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"52": {
+		{
+			"id": 52,
 			"name": "Driver: Whisper",
 			"label": "Whisper",
 			"unlockable": 52,
 			"skin": "whisper",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"53": {
+		{
+			"id": 53,
 			"name": "Driver: Wonder Boy",
 			"label": "Wonder Boy",
 			"unlockable": 53,
 			"skin": "wonderboy",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"54": {
+		{
+			"id": 54,
 			"name": "Driver: Zipp",
 			"label": "Zipp",
 			"unlockable": 54,
 			"skin": "zipp",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"55": {
+		{
+			"id": 55,
 			"name": "Driver: Ring the Racer",
 			"label": "Ring the Racer",
 			"unlockable": 55,
 			"skin": "ring",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		},
-		"56": {
+		{
+			"id": 56,
 			"name": "Driver: Trouble Bruin",
 			"label": "Trouble Bruin",
 			"unlockable": 56,
 			"skin": "troublebruin",
-			"group": "Drivers"
+			"tags": [
+				"Drivers"
+			]
 		}
-	}
+	]
 }

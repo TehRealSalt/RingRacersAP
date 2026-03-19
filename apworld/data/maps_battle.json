@@ -3,18 +3,20 @@
 		"rr_duelbuster": {
 			"label": "Duel Busters",
 			"type": "battle",
+			"no_visit_needed": true,
 			"medals_prisons": 3,
-			"item": "Duel Busters Access",
-			"no_visit_needed": true
+			"item": "Duel Busters Access"
 		},
 		"rr_municipalmeadow": {
 			"label": "Municipal Meadow",
 			"type": "battle",
+			"no_visit_needed": true,
 			"medals_prisons": 3
 		},
 		"rr_cdspecialstage1": {
 			"label": "CD Special Stage 1",
 			"type": "battle",
+			"no_visit_needed": true,
 			"medals_prisons": 3
 		},
 		"rr_tinkerersarena": {

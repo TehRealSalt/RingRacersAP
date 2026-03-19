@@ -140,11 +140,16 @@ void M_StartEditProfile(INT32 c)
 		}
 
 		// Setup variable tooltips.
+#if 0
 		OPTIONS_EditProfile[popt_char].tooltip = (
 			(gamedata && gamedata->numspraycans != 0 && gamedata->gotspraycans != 0)
 				? "Default character and color."
 				: "Default character."
 		);
+#else
+		// [RRAP]
+		OPTIONS_EditProfile[popt_char].tooltip = "Default character and color.";
+#endif
 
 		OPTIONS_EditProfileDef.prevMenu = currentMenu;
 		M_SetupNextMenu(&OPTIONS_EditProfileDef, false);

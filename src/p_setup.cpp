@@ -499,7 +499,7 @@ static void P_ClearSingleMapHeaderInfo(INT16 num)
 #endif
 
 	memset(&mapheaderinfo[num]->records, 0, sizeof(recorddata_t));
-	mapheaderinfo[num]->records.spraycan = MCAN_INVALID;
+	mapheaderinfo[num]->records.spraycan = false; // [RRAP]
 
 	mapheaderinfo[num]->justPlayed = 0;
 	mapheaderinfo[num]->anger = 0;
@@ -890,7 +890,10 @@ static void P_SpawnMapThings(boolean spawnemblems)
 	if (spawnemblems
 		&& gametype != GT_TUTORIAL
 		&& !modeattacking
-		&& !(tutorialchallenge == TUTORIALSKIP_INPROGRESS && gamedata->gotspraycans == 0))
+#if 0 // [RRAP]
+		&& !(tutorialchallenge == TUTORIALSKIP_INPROGRESS && gamedata->gotspraycans == 0)
+#endif
+		)
 	{
 		const UINT8 recommendedcans =
 #ifdef DEVELOP

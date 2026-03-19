@@ -1655,7 +1655,7 @@ static boolean S_SoundTestDefLocked(musicdef_t *def)
 		{
 			// Alt music requires unlocking the alt
 			if ((header->cache_muslock[def->sequence.altref - 1] < MAXUNLOCKABLES)
-#if 0 // [RRAP] TODO
+#if 0 // [RRAP] TODO: Alt music
 			&& gamedata->unlocked[header->cache_muslock[def->sequence.altref - 1]] == false
 #endif
 			)
@@ -1670,7 +1670,7 @@ static boolean S_SoundTestDefLocked(musicdef_t *def)
 			// Side B of the same CD
 			if (def->sequence.altref > MAXMUSNAMES
 			&& (header->cache_muslock[def->sequence.altref - (1 + MAXMUSNAMES)] < MAXUNLOCKABLES)
-#if 0 // [RRAP] TODO
+#if 0 // [RRAP] TODO: Alt music
 			&& gamedata->unlocked[header->cache_muslock[def->sequence.altref - (1 + MAXMUSNAMES)]] == false
 #endif
 			)

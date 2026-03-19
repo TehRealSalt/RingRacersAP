@@ -246,7 +246,7 @@ struct GamedataMapJson final
 {
 	GamedataMapVisitedJson visited;
 	GamedataMapStatsJson stats;
-	uint16_t spraycan;
+	boolean spraycan;
 
 	SRB2_JSON_DEFINE_TYPE_INTRUSIVE_WITH_DEFAULT(GamedataMapJson, visited, stats, spraycan)
 };

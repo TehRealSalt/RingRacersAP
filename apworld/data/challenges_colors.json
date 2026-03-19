@@ -1,0 +1,1004 @@
+{
+	"locations": [
+		{
+			"id": 500,
+			"name": "Challenge - Spray Can #1",
+			"label": "Spray Can #1",
+			"condition_set": 500,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 501,
+			"name": "Challenge - Spray Can #2",
+			"label": "Spray Can #2",
+			"condition_set": 501,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 502,
+			"name": "Challenge - Spray Can #3",
+			"label": "Spray Can #3",
+			"condition_set": 502,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 503,
+			"name": "Challenge - Spray Can #4",
+			"label": "Spray Can #4",
+			"condition_set": 503,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 504,
+			"name": "Challenge - Spray Can #5",
+			"label": "Spray Can #5",
+			"condition_set": 504,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 505,
+			"name": "Challenge - Spray Can #6",
+			"label": "Spray Can #6",
+			"condition_set": 505,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 506,
+			"name": "Challenge - Spray Can #7",
+			"label": "Spray Can #7",
+			"condition_set": 506,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 507,
+			"name": "Challenge - Spray Can #8",
+			"label": "Spray Can #8",
+			"condition_set": 507,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 508,
+			"name": "Challenge - Spray Can #9",
+			"label": "Spray Can #9",
+			"condition_set": 508,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 509,
+			"name": "Challenge - Spray Can #10",
+			"label": "Spray Can #10",
+			"condition_set": 509,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 510,
+			"name": "Challenge - Spray Can #11",
+			"label": "Spray Can #11",
+			"condition_set": 510,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 511,
+			"name": "Challenge - Spray Can #12",
+			"label": "Spray Can #12",
+			"condition_set": 511,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 512,
+			"name": "Challenge - Spray Can #13",
+			"label": "Spray Can #13",
+			"condition_set": 512,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 513,
+			"name": "Challenge - Spray Can #14",
+			"label": "Spray Can #14",
+			"condition_set": 513,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 514,
+			"name": "Challenge - Spray Can #15",
+			"label": "Spray Can #15",
+			"condition_set": 514,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 515,
+			"name": "Challenge - Spray Can #16",
+			"label": "Spray Can #16",
+			"condition_set": 515,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 516,
+			"name": "Challenge - Spray Can #17",
+			"label": "Spray Can #17",
+			"condition_set": 516,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 517,
+			"name": "Challenge - Spray Can #18",
+			"label": "Spray Can #18",
+			"condition_set": 517,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 518,
+			"name": "Challenge - Spray Can #19",
+			"label": "Spray Can #19",
+			"condition_set": 518,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 519,
+			"name": "Challenge - Spray Can #20",
+			"label": "Spray Can #20",
+			"condition_set": 519,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 520,
+			"name": "Challenge - Spray Can #21",
+			"label": "Spray Can #21",
+			"condition_set": 520,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 521,
+			"name": "Challenge - Spray Can #22",
+			"label": "Spray Can #22",
+			"condition_set": 521,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 522,
+			"name": "Challenge - Spray Can #23",
+			"label": "Spray Can #23",
+			"condition_set": 522,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 523,
+			"name": "Challenge - Spray Can #24",
+			"label": "Spray Can #24",
+			"condition_set": 523,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 524,
+			"name": "Challenge - Spray Can #25",
+			"label": "Spray Can #25",
+			"condition_set": 524,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 525,
+			"name": "Challenge - Spray Can #26",
+			"label": "Spray Can #26",
+			"condition_set": 525,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 526,
+			"name": "Challenge - Spray Can #27",
+			"label": "Spray Can #27",
+			"condition_set": 526,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 527,
+			"name": "Challenge - Spray Can #28",
+			"label": "Spray Can #28",
+			"condition_set": 527,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 528,
+			"name": "Challenge - Spray Can #29",
+			"label": "Spray Can #29",
+			"condition_set": 528,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 529,
+			"name": "Challenge - Spray Can #30",
+			"label": "Spray Can #30",
+			"condition_set": 529,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 530,
+			"name": "Challenge - Spray Can #31",
+			"label": "Spray Can #31",
+			"condition_set": 530,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 531,
+			"name": "Challenge - Spray Can #32",
+			"label": "Spray Can #32",
+			"condition_set": 531,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 532,
+			"name": "Challenge - Spray Can #33",
+			"label": "Spray Can #33",
+			"condition_set": 532,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 533,
+			"name": "Challenge - Spray Can #34",
+			"label": "Spray Can #34",
+			"condition_set": 533,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 534,
+			"name": "Challenge - Spray Can #35",
+			"label": "Spray Can #35",
+			"condition_set": 534,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 535,
+			"name": "Challenge - Spray Can #36",
+			"label": "Spray Can #36",
+			"condition_set": 535,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 536,
+			"name": "Challenge - Spray Can #37",
+			"label": "Spray Can #37",
+			"condition_set": 536,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 537,
+			"name": "Challenge - Spray Can #38",
+			"label": "Spray Can #38",
+			"condition_set": 537,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 538,
+			"name": "Challenge - Spray Can #39",
+			"label": "Spray Can #39",
+			"condition_set": 538,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 539,
+			"name": "Challenge - Spray Can #40",
+			"label": "Spray Can #40",
+			"condition_set": 539,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 540,
+			"name": "Challenge - Spray Can #41",
+			"label": "Spray Can #41",
+			"condition_set": 540,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 541,
+			"name": "Challenge - Spray Can #42",
+			"label": "Spray Can #42",
+			"condition_set": 541,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 542,
+			"name": "Challenge - Spray Can #43",
+			"label": "Spray Can #43",
+			"condition_set": 542,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 543,
+			"name": "Challenge - Spray Can #44",
+			"label": "Spray Can #44",
+			"condition_set": 543,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 544,
+			"name": "Challenge - Spray Can #45",
+			"label": "Spray Can #45",
+			"condition_set": 544,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 545,
+			"name": "Challenge - Spray Can #46",
+			"label": "Spray Can #46",
+			"condition_set": 545,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 546,
+			"name": "Challenge - Spray Can #47",
+			"label": "Spray Can #47",
+			"condition_set": 546,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 547,
+			"name": "Challenge - Spray Can #48",
+			"label": "Spray Can #48",
+			"condition_set": 547,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 548,
+			"name": "Challenge - Spray Can #49",
+			"label": "Spray Can #49",
+			"condition_set": 548,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 549,
+			"name": "Challenge - Spray Can #50",
+			"label": "Spray Can #50",
+			"condition_set": 549,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 550,
+			"name": "Challenge - Spray Can #51",
+			"label": "Spray Can #51",
+			"condition_set": 550,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 551,
+			"name": "Challenge - Spray Can #52",
+			"label": "Spray Can #52",
+			"condition_set": 551,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 552,
+			"name": "Challenge - Spray Can #53",
+			"label": "Spray Can #53",
+			"condition_set": 552,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 553,
+			"name": "Challenge - Spray Can #54",
+			"label": "Spray Can #54",
+			"condition_set": 553,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 554,
+			"name": "Challenge - Spray Can #55",
+			"label": "Spray Can #55",
+			"condition_set": 554,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 555,
+			"name": "Challenge - Spray Can #56",
+			"label": "Spray Can #56",
+			"condition_set": 555,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 556,
+			"name": "Challenge - Spray Can #57",
+			"label": "Spray Can #57",
+			"condition_set": 556,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 557,
+			"name": "Challenge - Spray Can #58",
+			"label": "Spray Can #58",
+			"condition_set": 557,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 558,
+			"name": "Challenge - Spray Can #59",
+			"label": "Spray Can #59",
+			"condition_set": 558,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 559,
+			"name": "Challenge - Spray Can #60",
+			"label": "Spray Can #60",
+			"condition_set": 559,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 560,
+			"name": "Challenge - Spray Can #61",
+			"label": "Spray Can #61",
+			"condition_set": 560,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 561,
+			"name": "Challenge - Spray Can #62",
+			"label": "Spray Can #62",
+			"condition_set": 561,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 562,
+			"name": "Challenge - Spray Can #63",
+			"label": "Spray Can #63",
+			"condition_set": 562,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 563,
+			"name": "Challenge - Spray Can #64",
+			"label": "Spray Can #64",
+			"condition_set": 563,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 564,
+			"name": "Challenge - Spray Can #65",
+			"label": "Spray Can #65",
+			"condition_set": 564,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 565,
+			"name": "Challenge - Spray Can #66",
+			"label": "Spray Can #66",
+			"condition_set": 565,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 566,
+			"name": "Challenge - Spray Can #67",
+			"label": "Spray Can #67",
+			"condition_set": 566,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 567,
+			"name": "Challenge - Spray Can #68",
+			"label": "Spray Can #68",
+			"condition_set": 567,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 568,
+			"name": "Challenge - Spray Can #69",
+			"label": "Spray Can #69",
+			"condition_set": 568,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 569,
+			"name": "Challenge - Spray Can #70",
+			"label": "Spray Can #70",
+			"condition_set": 569,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 570,
+			"name": "Challenge - Spray Can #71",
+			"label": "Spray Can #71",
+			"condition_set": 570,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 571,
+			"name": "Challenge - Spray Can #72",
+			"label": "Spray Can #72",
+			"condition_set": 571,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 572,
+			"name": "Challenge - Spray Can #73",
+			"label": "Spray Can #73",
+			"condition_set": 572,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 573,
+			"name": "Challenge - Spray Can #74",
+			"label": "Spray Can #74",
+			"condition_set": 573,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 574,
+			"name": "Challenge - Spray Can #75",
+			"label": "Spray Can #75",
+			"condition_set": 574,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 575,
+			"name": "Challenge - Spray Can #76",
+			"label": "Spray Can #76",
+			"condition_set": 575,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 576,
+			"name": "Challenge - Spray Can #77",
+			"label": "Spray Can #77",
+			"condition_set": 576,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 577,
+			"name": "Challenge - Spray Can #78",
+			"label": "Spray Can #78",
+			"condition_set": 577,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 578,
+			"name": "Challenge - Spray Can #79",
+			"label": "Spray Can #79",
+			"condition_set": 578,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 579,
+			"name": "Challenge - Spray Can #80",
+			"label": "Spray Can #80",
+			"condition_set": 579,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 580,
+			"name": "Challenge - Spray Can #81",
+			"label": "Spray Can #81",
+			"condition_set": 580,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 581,
+			"name": "Challenge - Spray Can #82",
+			"label": "Spray Can #82",
+			"condition_set": 581,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 582,
+			"name": "Challenge - Spray Can #83",
+			"label": "Spray Can #83",
+			"condition_set": 582,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 583,
+			"name": "Challenge - Spray Can #84",
+			"label": "Spray Can #84",
+			"condition_set": 583,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 584,
+			"name": "Challenge - Spray Can #85",
+			"label": "Spray Can #85",
+			"condition_set": 584,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 585,
+			"name": "Challenge - Spray Can #86",
+			"label": "Spray Can #86",
+			"condition_set": 585,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 586,
+			"name": "Challenge - Spray Can #87",
+			"label": "Spray Can #87",
+			"condition_set": 586,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 587,
+			"name": "Challenge - Spray Can #88",
+			"label": "Spray Can #88",
+			"condition_set": 587,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 588,
+			"name": "Challenge - Spray Can #89",
+			"label": "Spray Can #89",
+			"condition_set": 588,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 589,
+			"name": "Challenge - Spray Can #90",
+			"label": "Spray Can #90",
+			"condition_set": 589,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 590,
+			"name": "Challenge - Spray Can #91",
+			"label": "Spray Can #91",
+			"condition_set": 590,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 591,
+			"name": "Challenge - Spray Can #92",
+			"label": "Spray Can #92",
+			"condition_set": 591,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 592,
+			"name": "Challenge - Spray Can #93",
+			"label": "Spray Can #93",
+			"condition_set": 592,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 593,
+			"name": "Challenge - Spray Can #94",
+			"label": "Spray Can #94",
+			"condition_set": 593,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 594,
+			"name": "Challenge - Spray Can #95",
+			"label": "Spray Can #95",
+			"condition_set": 594,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 595,
+			"name": "Challenge - Spray Can #96",
+			"label": "Spray Can #96",
+			"condition_set": 595,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 596,
+			"name": "Challenge - Spray Can #97",
+			"label": "Spray Can #97",
+			"condition_set": 596,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 597,
+			"name": "Challenge - Spray Can #98",
+			"label": "Spray Can #98",
+			"condition_set": 597,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 598,
+			"name": "Challenge - Spray Can #99",
+			"label": "Spray Can #99",
+			"condition_set": 598,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		},
+		{
+			"id": 599,
+			"name": "Challenge - Spray Can #100",
+			"label": "Spray Can #100",
+			"condition_set": 599,
+			"tags": [
+				"Challenges",
+				"Spray Can Milestones"
+			]
+		}
+	]
+}

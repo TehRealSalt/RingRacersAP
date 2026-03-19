@@ -65,14 +65,32 @@ static srb2::HashMap<INT64, rrap_item_t> g_ap_item_info;
 
 static UINT32 g_character_wins_count = 0;
 
-rrap_location_t::rrap_location_t(INT64 index, srb2::JsonValue json)
+rrap_location_t::rrap_location_t(srb2::JsonValue json)
 {
-	SRB2_ASSERT(index > 0);
-	_id = index;
+	_id = json.at("id").get<INT64>();
+	SRB2_ASSERT(_id > 0);
+
 	_name = json.at("name").get<srb2::String>();
-	_condition_set_id = json.value("condition_set", -1);
-	_big_tile = json.value("big_tile", false);
 	_label = json.value("label", srb2::String(""));
+	_big_tile = json.value("big_tile", false);
+
+	_condition_set_id = json.value("condition_set", 0);
+	_spray_can_map_id = 0;
+
+	srb2::String spray_can_map_name = json.value("spray_can_map", srb2::String(""));
+	if (!spray_can_map_name.empty())
+	{
+		INT32 map_id = G_FindMapByNameOrCode(spray_can_map_name.c_str(), 0);
+		if (map_id > 0)
+		{
+			_spray_can_map_id = map_id;
+			mapheaderinfo[_spray_can_map_id - 1]->ap_spraycan_location_id = _id;
+		}
+		else
+		{
+			throw std::runtime_error(srb2::format("invalid spray can location map '{}'", spray_can_map_name));
+		}
+	}
 }
 
 void rrap_location_t::immediate_check()
@@ -133,15 +151,17 @@ void rrap_location_t::update_displayed_item(srb2::String label, INT64 item_id, s
 	}
 }
 
-rrap_item_t::rrap_item_t(INT64 index, srb2::JsonValue json)
+rrap_item_t::rrap_item_t(srb2::JsonValue json)
 {
-	SRB2_ASSERT(index > 0);
-	_id = index;
+	_id = json.at("id").get<INT64>();
+	SRB2_ASSERT(_id > 0);
+
 	_name = json.at("name").get<srb2::String>();
 
 	_unlockable_id = MAXUNLOCKABLES;
 	_skin_id = -1;
 	_follower_id = -1;
+	_color_id = SKINCOLOR_NONE;
 
 	_label = json.value("label", srb2::String(""));
 	_display_type = SECRET_NONE;
@@ -155,7 +175,7 @@ rrap_item_t::rrap_item_t(INT64 index, srb2::JsonValue json)
 		// purely to maintain compatibility w/ non-Archipelago
 		// clients. Multiplayer!!
 		_unlockable_id = work_unlock_id - 1;
-		unlockables[_unlockable_id].ap_item_id = index;
+		unlockables[_unlockable_id].ap_item_id = _id;
 	}
 	else if (work_unlock_id != 0)
 	{
@@ -169,7 +189,7 @@ rrap_item_t::rrap_item_t(INT64 index, srb2::JsonValue json)
 		if (skin_id != -1)
 		{
 			_skin_id = skin_id;
-			skins[_skin_id]->ap_item_id = index;
+			skins[_skin_id]->ap_item_id = _id;
 
 			SRB2_ASSERT(_display_type == SECRET_NONE);
 			_display_type = SECRET_SKIN;
@@ -187,7 +207,7 @@ rrap_item_t::rrap_item_t(INT64 index, srb2::JsonValue json)
 		if (follower_id != -1)
 		{
 			_follower_id = follower_id;
-			followers[_follower_id].ap_item_id = index;
+			followers[_follower_id].ap_item_id = _id;
 
 			SRB2_ASSERT(_display_type == SECRET_NONE);
 			_display_type = SECRET_FOLLOWER;
@@ -195,6 +215,33 @@ rrap_item_t::rrap_item_t(INT64 index, srb2::JsonValue json)
 		else
 		{
 			throw std::runtime_error(srb2::format("invalid follower '{}'", work_follower));
+		}
+	}
+
+	srb2::String work_color = json.value("color", srb2::String(""));
+	if (work_color.empty() == false)
+	{
+		int color_id = SKINCOLOR_NONE;
+		for (int i = SKINCOLOR_NONE+1; i < numskincolors; ++i)
+		{
+			if (!strcasecmp(skincolors[i].name, work_color.c_str()))
+			{
+				color_id = i;
+				break;
+			}
+		}
+
+		if (color_id != SKINCOLOR_NONE)
+		{
+			_color_id = color_id;
+			skincolors[_color_id].ap_item_id = _id;
+
+			SRB2_ASSERT(_display_type == SECRET_NONE);
+			_display_type = SECRET_COLOR;
+		}
+		else
+		{
+			throw std::runtime_error(srb2::format("invalid color '{}'", work_color));
 		}
 	}
 
@@ -219,53 +266,24 @@ rrap_item_t::rrap_item_t(INT64 index, srb2::JsonValue json)
 	{
 		SRB2_ASSERT(_display_type == SECRET_NONE);
 
-		if (work_type == "hardspeed")
+		static const srb2::HashMap<srb2::String, INT32> name_to_type = {
+			{"hardspeed", SECRET_HARDSPEED},
+			{"mastermode", SECRET_MASTERMODE},
+			{"encore", SECRET_ENCORE},
+			{"timeattack", SECRET_TIMEATTACK},
+			{"prisonbreak", SECRET_PRISONBREAK},
+			{"specialattack", SECRET_SPECIALATTACK},
+			{"spbattack", SECRET_SPBATTACK},
+			{"online", SECRET_ONLINE},
+			{"addons", SECRET_ADDONS},
+			{"eggtv", SECRET_EGGTV},
+			{"soundtest", SECRET_SOUNDTEST},
+			{"alttitle", SECRET_ALTTITLE}
+		};
+
+		if (auto final_type = name_to_type.find(work_type) != name_to_type.end())
 		{
-			_display_type = SECRET_HARDSPEED;
-		}
-		else if (work_type == "mastermode")
-		{
-			_display_type = SECRET_MASTERMODE;
-		}
-		else if (work_type == "encore")
-		{
-			_display_type = SECRET_ENCORE;
-		}
-		else if (work_type == "timeattack")
-		{
-			_display_type = SECRET_TIMEATTACK;
-		}
-		else if (work_type == "prisonbreak")
-		{
-			_display_type = SECRET_PRISONBREAK;
-		}
-		else if (work_type == "specialattack")
-		{
-			_display_type = SECRET_SPECIALATTACK;
-		}
-		else if (work_type == "spbattack")
-		{
-			_display_type = SECRET_SPBATTACK;
-		}
-		else if (work_type == "online")
-		{
-			_display_type = SECRET_ONLINE;
-		}
-		else if (work_type == "addons")
-		{
-			_display_type = SECRET_ADDONS;
-		}
-		else if (work_type == "eggtv")
-		{
-			_display_type = SECRET_EGGTV;
-		}
-		else if (work_type == "soundtest")
-		{
-			_display_type = SECRET_SOUNDTEST;
-		}
-		else if (work_type == "alttitle")
-		{
-			_display_type = SECRET_ALTTITLE;
+			_display_type = final_type;
 		}
 		else
 		{
@@ -285,29 +303,29 @@ static void RRAP_LoadArchipelagoJSONLump(uint16_t wad_id, lumpnum_t lump_id)
 	{
 		if (parsed_obj.find("locations") != parsed_obj.end())
 		{
-			srb2::JsonObject locations = parsed_obj.at("locations").as_object();
-			for (auto& [key_string, location_obj] : locations)
+			srb2::JsonArray locations = parsed_obj.at("locations").as_array();
+			for (auto& location_obj : locations)
 			{
-				INT64 key_index = std::stol(key_string);
-				SRB2_ASSERT(key_index > 0);
-				SRB2_ASSERT(g_ap_location_info.find(key_index) == g_ap_location_info.end());
+				rrap_location_t location(location_obj);
 
-				rrap_location_t location(key_index, location_obj);
-				g_ap_location_info.try_emplace(key_index, location);
+				INT64 index = location.id();
+				SRB2_ASSERT(index > 0);
+				SRB2_ASSERT(g_ap_location_info.find(index) == g_ap_location_info.end());
+				g_ap_location_info.try_emplace(index, location);
 			}
 		}
 		
 		if (parsed_obj.find("items") != parsed_obj.end())
 		{
-			srb2::JsonObject items = parsed_obj.at("items").as_object();
-			for (auto& [key_string, item_obj] : items)
+			srb2::JsonArray items = parsed_obj.at("items").as_array();
+			for (auto& item_obj : items)
 			{
-				INT64 key_index = std::stol(key_string);
-				SRB2_ASSERT(key_index > 0);
-				SRB2_ASSERT(g_ap_item_info.find(key_index) == g_ap_item_info.end());
+				rrap_item_t item(item_obj);
 
-				rrap_item_t item(key_index, item_obj);
-				g_ap_item_info.try_emplace(key_index, item);
+				INT64 index = item.id();
+				SRB2_ASSERT(index > 0);
+				SRB2_ASSERT(g_ap_item_info.find(index) == g_ap_item_info.end());
+				g_ap_item_info.try_emplace(index, item);
 			}
 		}
 	}
@@ -395,6 +413,26 @@ rrap_item_t *RRAP_GetItem(INT64 item_id)
 	return &g_ap_item_info[item_id];
 }
 
+boolean RRAP_LocationAvailable(rrap_location_t *location)
+{
+	if (!location)
+	{
+		return false;
+	}
+
+	return location->available();
+}
+
+boolean RRAP_LocationAchieved(rrap_location_t *location)
+{
+	if (!location)
+	{
+		return false;
+	}
+
+	return location->achieved();
+}
+
 char *RRAP_LocationLabel(rrap_location_t *location)
 {
 	if (!location)
@@ -403,6 +441,16 @@ char *RRAP_LocationLabel(rrap_location_t *location)
 	}
 
 	return Z_StrDup( location->label().c_str() );
+}
+
+INT32 RRAP_LocationSprayCanMapID(rrap_location_t *location)
+{
+	if (!location)
+	{
+		return 0;
+	}
+
+	return location->spray_can_map_id();
 }
 
 UINT16 RRAP_LocationConditionSet(rrap_location_t *location)
@@ -556,6 +604,16 @@ INT32 RRAP_ItemToFollowerId(rrap_item_t *item)
 	return item->follower_id();
 }
 
+INT32 RRAP_ItemToColorId(rrap_item_t *item)
+{
+	if (!item)
+	{
+		return SKINCOLOR_NONE;
+	}
+
+	return item->color_id();
+}
+
 INT32 RRAP_ItemDisplayType(rrap_item_t *item)
 {
 	if (!item)
@@ -613,8 +671,7 @@ void RRAP_PopulateChallengeGrid(void)
 	// Go through unlockables
 	for (auto& [id, location] : g_ap_location_info)
 	{
-		UINT16 condition_set = location.condition_set_id();
-		if (!condition_set)
+		if (!location.available())
 		{
 			continue;
 		}
@@ -927,7 +984,7 @@ void RRAP_SanitiseChallengeGrid(void)
 		i = gamedata->ap_challengegrid[j];
 
 		rrap_location_t &ref = g_ap_location_info[i];
-		if (i <= 0 || !ref.condition_set_id())
+		if (i <= 0 || !ref.available())
 		{
 			empty.emplace_back(j);
 			continue;
@@ -954,7 +1011,7 @@ void RRAP_SanitiseChallengeGrid(void)
 	// Go through unlockables to identify if any haven't been seen.
 	for (auto& [id, location] : g_ap_location_info)
 	{
-		if (!location.condition_set_id())
+		if (!location.available())
 		{
 			continue;
 		}
@@ -1008,19 +1065,17 @@ int RRAP_TestLocations(void)
 
 	for (auto& [index, location] : g_ap_location_info)
 	{
-		UINT16 condition_set = location.condition_set_id();
-		if (!condition_set)
+		if (!location.available())
 		{
 			continue;
 		}
 
-		if (location.checked() == true
-			|| location.check_pending() == true)
+		if (location.checked() || location.check_pending())
 		{
 			continue;
 		}
 
-		if (M_Achieved(condition_set - 1) == false)
+		if (!location.achieved())
 		{
 			continue;
 		}
@@ -1037,8 +1092,7 @@ INT64 RRAP_GetNextCheckedLocation(boolean canskipchaokeys)
 	// Go through unlockables
 	for (auto& [id, location] : g_ap_location_info)
 	{
-		UINT16 condition_set = location.condition_set_id();
-		if (!condition_set)
+		if (!location.available())
 		{
 			// Not worthy of consideration
 			continue;
@@ -1103,8 +1157,7 @@ void RRAP_ChallengesMenuCountPercent(void)
 
 	for (auto& [id, location] : g_ap_location_info)
 	{
-		UINT16 condition_set = location.condition_set_id();
-		if (!condition_set)
+		if (!location.available())
 		{
 			continue;
 		}
@@ -1118,7 +1171,7 @@ void RRAP_ChallengesMenuCountPercent(void)
 
 		challengesmenu.unlockcount[CMC_UNLOCKED]++;
 
-		if (M_Achieved(condition_set - 1) == true)
+		if (location.achieved())
 		{
 			continue;
 		}
@@ -1147,8 +1200,7 @@ INT64 RRAP_ChallengesMenuRandomFocus(INT32 level)
 	// Get a random available location.
 	for (auto& [id, location] : g_ap_location_info)
 	{
-		UINT16 condition_set = location.condition_set_id();
-		if (!condition_set)
+		if (!location.available())
 		{
 			continue;
 		}
