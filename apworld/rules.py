@@ -1015,7 +1015,9 @@ def set_follower_challenge_location_rules(world: RingRacersWorld) -> None:
     )
 
     #
-    # "Challenge - Follower: Bowling Pin" is always possible, currently
+    # "Challenge - Follower: Bowling Pin" is always possible, currently.
+    # The condition has been nerfed to 1 minute instead of 10 to
+    # make it less annoying.
     #
 
     set_rule(

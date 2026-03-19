@@ -1269,7 +1269,12 @@ boolean M_CheckCondition(condition_t *cn, player_t *player)
 			return (gamedata->totalrings >= rings);
 		}
 		case UC_TOTALTUMBLETIME: // Requires total tumbling time >= x
-			return (gamedata->totaltumbletime >= (unsigned)cn->requirement);
+		{
+			// [RRAP] Nerfed Bowling Pin requirement
+			// Possibly too high still? revisit later
+			UINT32 tumble_time = min(60 * TICRATE, (unsigned)cn->requirement);
+			return (gamedata->totaltumbletime >= tumble_time);
+		}
 		case UC_GAMECLEAR: // Requires game beaten >= x times
 			return (gamedata->timesBeaten >= (unsigned)cn->requirement);
 		case UC_OVERALLTIME: // Requires overall time <= x
@@ -2056,11 +2061,15 @@ static const char *M_GetConditionString(condition_t *cn)
 			return va("collect %u Rings", rings);
 		}
 		case UC_TOTALTUMBLETIME:
+		{
+			// [RRAP] Nerfed Bowling Pin requirement
+			// Possibly too high still? revisit later
+			UINT32 tumble_time = min(60 * TICRATE, (unsigned)cn->requirement);
 			return va("tumble through the air for %i:%02i.%02i",
-				G_TicsToMinutes(cn->requirement, true),
-				G_TicsToSeconds(cn->requirement),
-				G_TicsToCentiseconds(cn->requirement));
-
+				G_TicsToMinutes(tumble_time, true),
+				G_TicsToSeconds(tumble_time),
+				G_TicsToCentiseconds(tumble_time));
+		}
 		case UC_GAMECLEAR: // Requires game beaten >= x times
 			if (cn->requirement > 1)
 				return va("beat the game %d times", cn->requirement);
