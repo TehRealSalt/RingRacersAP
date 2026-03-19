@@ -505,12 +505,14 @@ def set_driver_challenge_location_rules(world: RingRacersWorld) -> None:
             map_mystic_melody(state, "Hidden Palace", world.player)
     )
 
+    ring_the_racer_location = world.get_location("Challenge - Driver: Ring the Racer")
     set_rule(
-        world.get_location("Challenge - Driver: Ring the Racer"),
+        ring_the_racer_location,
         lambda state:
             state.has("Driver: Mail", world.player)
             and state.can_reach_region("Sunbeam Paradise: Controls", world.player)
     )
+    ring_the_racer_location.progress_type = LocationProgressType.EXCLUDED
 
     set_rule(
         world.get_location("Challenge - Driver: Trouble Bruin"),
