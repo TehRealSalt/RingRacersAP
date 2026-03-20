@@ -28,6 +28,11 @@
 #include "core/json.hpp"
 #endif
 
+#define AP_CLASSIFICATION_FILLER 0b000
+#define AP_CLASSIFICATION_PROGRESSION 0b001
+#define AP_CLASSIFICATION_USEFUL 0b010
+#define AP_CLASSIFICATION_TRAP 0b100
+
 #ifdef __cplusplus
 
 class rrap_location_t
@@ -45,6 +50,7 @@ private:
 	srb2::String _label;
 	srb2::String _display_item_label;
 	srb2::String _display_item_player;
+	UINT8 _display_item_class;
 	INT64 _display_item_id;
 
 public:
@@ -63,12 +69,13 @@ public:
 	srb2::String label() const { return _label; }
 	srb2::String display_item_label() const { return _display_item_label; }
 	srb2::String display_item_player() const { return _display_item_player; }
+	UINT8 display_item_class() const { return _display_item_class; }
 	INT64 display_item_id() const { return _display_item_id; }
 
 	void immediate_check();
 	void queue_check();
 
-	void update_displayed_item(srb2::String label, INT64 item_id, srb2::String player);
+	void update_displayed_item(srb2::String label, INT64 item_id, srb2::String player, UINT8 flags);
 
 	void unqueue_check()
 	{
@@ -176,6 +183,10 @@ rrap_location_t *RRAP_GetLocation(INT64 location_id);
 rrap_item_t *RRAP_GetItem(INT64 item_id);
 void RRAP_LoadArchipelagoJSON(void);
 
+UINT16 RRAP_ItemClassToSkinColor(UINT8 item_class);
+UINT8 RRAP_ItemClassToTextColor(UINT8 item_class);
+UINT8 RRAP_ItemClassToStars(UINT8 item_class);
+
 boolean RRAP_LocationAvailable(rrap_location_t *location);
 boolean RRAP_LocationAchieved(rrap_location_t *location);
 char *RRAP_LocationLabel(rrap_location_t *location);
@@ -187,6 +198,7 @@ boolean RRAP_LocationCheckPending(rrap_location_t *location);
 
 char *RRAP_LocationDisplayItemLabel(rrap_location_t *location);
 char *RRAP_LocationDisplayItemPlayer(rrap_location_t *location);
+UINT8 RRAP_LocationDisplayItemClass(rrap_location_t *location);
 rrap_item_t *RRAP_LocationDisplayItem(rrap_location_t *location);
 
 void RRAP_LocationImmediateCheck(rrap_location_t *location);
