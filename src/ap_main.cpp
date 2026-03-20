@@ -128,7 +128,15 @@ void rrap_location_t::update_displayed_item(srb2::String label, INT64 item_id, s
 	);
 	*/
 
+	bool is_ours = false;
 	if (g_ap_item_info.find(item_id) != g_ap_item_info.end())
+	{
+		// Item ID exists, but IDs can overlap between games.
+		// So double check the name matches, too.
+		is_ours = (label == g_ap_item_info[item_id].name());
+	}
+
+	if (is_ours)
 	{
 		// Item is from our world, display it directly
 		_display_item_id = item_id;
