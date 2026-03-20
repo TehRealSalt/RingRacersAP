@@ -8581,8 +8581,10 @@ challengedesc:
 		rrap_location_t *ref = RRAP_GetLocation(challengesmenu.current_ap_location);
 		if (ref != NULL)
 		{
+			boolean checked = RRAP_LocationChecked(ref);
 			char *z_str = NULL;
-			if (RRAP_LocationChecked(ref))
+
+			if (checked)
 			{
 				z_str = RRAP_LocationDisplayItemLabel(ref);
 			}
@@ -8594,8 +8596,44 @@ challengedesc:
 			offset = 0;
 			if (z_str)
 			{
+				UINT8 item_class = RRAP_LocationDisplayItemClass(ref);
+				UINT16 label_color = SKINCOLOR_NONE;
+				UINT8 star_count = 0;
+
+				if (checked)
+				{
+					label_color = RRAP_ItemClassToSkinColor(item_class);
+					star_count = RRAP_ItemClassToStars(item_class);
+				}
+
 				offset = V_LSTitleLowStringWidth(z_str, 0) / 2;
-				V_DrawLSTitleLowString(BASEVIDWIDTH/2 - offset, y+6, 0, z_str);
+				V_DrawStringScaled(
+					(BASEVIDWIDTH * FRACUNIT / 2) - (offset * FRACUNIT), (y + 6) * FRACUNIT,
+					FRACUNIT, FRACUNIT, FRACUNIT,
+					0,
+					R_GetTranslationColormap(TC_MULT, label_color, GTC_MENUCACHE),
+					LSLOW_FONT,
+					z_str
+				);
+
+				patch_t *class_star = W_CachePatchName("RHFAV", PU_CACHE);
+				INT32 star_x = (BASEVIDWIDTH / 2) - offset - 4 - (star_count * 10);
+				if (star_x < 8)
+				{
+					star_x = 8;
+				}
+
+				for (i = 0; i < star_count; i++)
+				{
+					V_DrawFixedPatch(
+						star_x * FRACUNIT, (y + 11) * FRACUNIT,
+						FRACUNIT, 0,
+						class_star,
+						R_GetTranslationColormap(TC_RAINBOW, label_color, GTC_MENUCACHE)
+					);
+					star_x += 10;
+				}
+
 				Z_Free(z_str);
 				z_str = NULL;
 			}

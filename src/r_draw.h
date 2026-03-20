@@ -147,6 +147,7 @@ enum
 	TC_DASHMODE,   // For Metal Sonic's dashmode
 	TC_HITLAG,     // Damage hitlag effect
 	TC_INTERMISSION, // Intermission / menu background
+	TC_MULT, // Older version of TC_RAINBOW, looks a bit darker / different per skincolor
 
 	TC_DEFAULT
 };

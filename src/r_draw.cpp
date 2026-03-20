@@ -147,7 +147,8 @@ float zeroheight;
 #define DASHMODE_TT_CACHE_INDEX (MAXSKINS + 6)
 #define HITLAG_TT_CACHE_INDEX (MAXSKINS + 7)
 #define INTERMISSION_TT_CACHE_INDEX (MAXSKINS + 8)
-#define TT_CACHE_SIZE (MAXSKINS + 9)
+#define MULT_TT_CACHE_INDEX (MAXSKINS + 9)
+#define TT_CACHE_SIZE (MAXSKINS + 10)
 
 #define SKIN_RAMP_LENGTH 16
 #define DEFAULT_STARTTRANSCOLOR 96
@@ -160,16 +161,17 @@ static INT32 SkinToCacheIndex(INT32 skinnum)
 {
 	switch (skinnum)
 	{
-		case TC_DEFAULT:    return DEFAULT_TT_CACHE_INDEX;
-		case TC_BOSS:       return BOSS_TT_CACHE_INDEX;
-		case TC_METALSONIC: return METALSONIC_TT_CACHE_INDEX;
-		case TC_ALLWHITE:   return ALLWHITE_TT_CACHE_INDEX;
-		case TC_RAINBOW:    return RAINBOW_TT_CACHE_INDEX;
-		case TC_BLINK:      return BLINK_TT_CACHE_INDEX;
-		case TC_DASHMODE:   return DASHMODE_TT_CACHE_INDEX;
-		case TC_HITLAG:     return HITLAG_TT_CACHE_INDEX;
-		case TC_INTERMISSION: return INTERMISSION_TT_CACHE_INDEX;
-		     default:       break;
+		case TC_DEFAULT:		return DEFAULT_TT_CACHE_INDEX;
+		case TC_BOSS:			return BOSS_TT_CACHE_INDEX;
+		case TC_METALSONIC:		return METALSONIC_TT_CACHE_INDEX;
+		case TC_ALLWHITE:		return ALLWHITE_TT_CACHE_INDEX;
+		case TC_RAINBOW:		return RAINBOW_TT_CACHE_INDEX;
+		case TC_BLINK:			return BLINK_TT_CACHE_INDEX;
+		case TC_DASHMODE:		return DASHMODE_TT_CACHE_INDEX;
+		case TC_HITLAG:			return HITLAG_TT_CACHE_INDEX;
+		case TC_INTERMISSION:	return INTERMISSION_TT_CACHE_INDEX;
+		case TC_MULT:			return MULT_TT_CACHE_INDEX;
+		default:				break;
 	}
 
 	return skinnum;
@@ -179,16 +181,17 @@ static INT32 CacheIndexToSkin(INT32 ttc)
 {
 	switch (ttc)
 	{
-		case DEFAULT_TT_CACHE_INDEX:    return TC_DEFAULT;
-		case BOSS_TT_CACHE_INDEX:       return TC_BOSS;
-		case METALSONIC_TT_CACHE_INDEX: return TC_METALSONIC;
-		case ALLWHITE_TT_CACHE_INDEX:   return TC_ALLWHITE;
-		case RAINBOW_TT_CACHE_INDEX:    return TC_RAINBOW;
-		case BLINK_TT_CACHE_INDEX:      return TC_BLINK;
-		case DASHMODE_TT_CACHE_INDEX:   return TC_DASHMODE;
-		case HITLAG_TT_CACHE_INDEX:     return TC_HITLAG;
-		case INTERMISSION_TT_CACHE_INDEX: return TC_INTERMISSION;
-		     default:                   break;
+		case DEFAULT_TT_CACHE_INDEX:		return TC_DEFAULT;
+		case BOSS_TT_CACHE_INDEX:			return TC_BOSS;
+		case METALSONIC_TT_CACHE_INDEX:		return TC_METALSONIC;
+		case ALLWHITE_TT_CACHE_INDEX:		return TC_ALLWHITE;
+		case RAINBOW_TT_CACHE_INDEX:		return TC_RAINBOW;
+		case BLINK_TT_CACHE_INDEX:			return TC_BLINK;
+		case DASHMODE_TT_CACHE_INDEX:		return TC_DASHMODE;
+		case HITLAG_TT_CACHE_INDEX:			return TC_HITLAG;
+		case INTERMISSION_TT_CACHE_INDEX:	return TC_INTERMISSION;
+		case MULT_TT_CACHE_INDEX:			return TC_MULT;
+		default:						break;
 	}
 
 	return ttc;

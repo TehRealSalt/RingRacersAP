@@ -104,6 +104,37 @@ void K_RainbowColormap(UINT8 *dest_colormap, skincolornum_t skincolor)
 }
 
 /*--------------------------------------------------
+	static void K_MultColormap(UINT8 *dest_colormap, skincolornum_t skincolor)
+
+		Derived from older TC_RAINBOW code. Tries to replicate the
+		same kind of highlighting on text as the V_ flag text can do.
+--------------------------------------------------*/
+static void K_MultColormap(UINT8 *dest_colormap, skincolornum_t skincolor)
+{
+	INT32 i;
+	RGBA_t color;
+	UINT16 brightness;
+
+	// next, for every colour in the palette, choose the transcolor that has the closest brightness
+	for (i = 0; i < NUM_PALETTE_ENTRIES; i++)
+	{
+		color = V_GetColor(i);
+		brightness = color.s.red + color.s.green + color.s.blue;
+
+		brightness = (brightness * 4) / 5; // I want white to become the top-middle of the range, not the top
+		brightness /= 48; // 768 -> 16
+
+		if (brightness > 15)
+		{
+			brightness = 15;
+		}
+		brightness = 15 - brightness;
+
+		dest_colormap[i] = skincolors[skincolor].ramp[brightness];
+	}
+}
+
+/*--------------------------------------------------
 	UINT8 K_HitlagColorValue(RGBA_t color)
 
 		See header file for description.
@@ -264,6 +295,11 @@ void K_GenerateKartColormap(UINT8 *dest_colormap, INT32 skinnum, skincolornum_t 
 	else if (skinnum == TC_RAINBOW)
 	{
 		K_RainbowColormap(dest_colormap, color);
+		return;
+	}
+	else if (skinnum == TC_MULT)
+	{
+		K_MultColormap(dest_colormap, color);
 		return;
 	}
 

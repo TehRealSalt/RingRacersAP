@@ -119,7 +119,7 @@ void rrap_location_t::queue_check()
 	AP_SendLocationScouts(scout_ids, 0);
 }
 
-void rrap_location_t::update_displayed_item(srb2::String label, INT64 item_id, srb2::String player)
+void rrap_location_t::update_displayed_item(srb2::String label, INT64 item_id, srb2::String player, UINT8 item_class)
 {
 	/*
 	CONS_Printf(
@@ -157,6 +157,8 @@ void rrap_location_t::update_displayed_item(srb2::String label, INT64 item_id, s
 	{
 		_display_item_player = player;
 	}
+
+	_display_item_class = item_class;
 }
 
 rrap_item_t::rrap_item_t(srb2::JsonValue json)
@@ -421,6 +423,64 @@ rrap_item_t *RRAP_GetItem(INT64 item_id)
 	return &g_ap_item_info[item_id];
 }
 
+UINT16 RRAP_ItemClassToSkinColor(UINT8 item_class)
+{
+	if (item_class & AP_CLASSIFICATION_PROGRESSION)
+	{
+		return SKINCOLOR_LAVENDER;
+	}
+	else if (item_class & AP_CLASSIFICATION_USEFUL)
+	{
+		return SKINCOLOR_BLUE;
+	}
+	else if (item_class & AP_CLASSIFICATION_TRAP)
+	{
+		return SKINCOLOR_RED;
+	}
+	else
+	{
+		return SKINCOLOR_CERULEAN;
+	}
+}
+
+UINT8 RRAP_ItemClassToTextColor(UINT8 item_class)
+{
+	if (item_class & AP_CLASSIFICATION_PROGRESSION)
+	{
+		return 0x89; // lavendermap
+	}
+	else if (item_class & AP_CLASSIFICATION_USEFUL)
+	{
+		return 0x84; // bluemap 
+	}
+	else if (item_class & AP_CLASSIFICATION_TRAP)
+	{
+		return 0x85; // redmap
+	}
+	else
+	{
+		return 0x88; // skymap
+	}
+}
+
+UINT8 RRAP_ItemClassToStars(UINT8 item_class)
+{
+	// Color-blind friendly iconography
+
+	if (item_class & AP_CLASSIFICATION_PROGRESSION)
+	{
+		return 2;
+	}
+	else if (item_class & AP_CLASSIFICATION_USEFUL)
+	{
+		return 1; 
+	}
+	else
+	{
+		return 0;
+	}
+}
+
 boolean RRAP_LocationAvailable(rrap_location_t *location)
 {
 	if (!location)
@@ -524,6 +584,16 @@ char *RRAP_LocationDisplayItemPlayer(rrap_location_t *location)
 	}
 
 	return Z_StrDup( location->display_item_player().c_str() );
+}
+
+UINT8 RRAP_LocationDisplayItemClass(rrap_location_t *location)
+{
+	if (!location)
+	{
+		return AP_CLASSIFICATION_FILLER;
+	}
+
+	return location->display_item_class();
 }
 
 rrap_item_t *RRAP_LocationDisplayItem(rrap_location_t *location)
@@ -1414,7 +1484,8 @@ static void RRAP_GotLocationInfo(std::vector<AP_NetworkItem> network_items)
 		g_ap_location_info[net_item.location].update_displayed_item(
 			net_item.itemName,
 			net_item.item,
-			net_item.playerName
+			net_item.playerName,
+			net_item.flags
 		);
 	}
 }
