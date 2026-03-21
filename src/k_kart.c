@@ -412,8 +412,6 @@ void K_TimerInit(void)
 		battleprisons == true
 		&& grandprixinfo.gp == true
 		&& netgame == false
-		&& gamedata->thisprisoneggpickup_cached != NULL
-		&& gamedata->prisoneggstothispickup == 0
 		&& maptargets > 1
 	)
 	{
@@ -421,7 +419,7 @@ void K_TimerInit(void)
 		// - You can't get a Prison Egg Drop on the last broken target
 		// - If it were 0 at minimum there'd be a slight bias towards the start of the round
 		//    - This is bad because it benefits CD farming like in Brawl :D
-		gamedata->prisoneggstothispickup = 1 + M_RandomKey(maptargets - 1);
+		g_prisoneggstothispickup = 1 + M_RandomKey(maptargets - 1);
 	}
 }
 

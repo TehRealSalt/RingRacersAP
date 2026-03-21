@@ -115,14 +115,6 @@ struct GamedataMilestonesJson final
 	)
 };
 
-struct GamedataPrisonEggPickupsJson final
-{
-	uint16_t thisprisoneggpickup;
-	uint16_t prisoneggstothispickup;
-
-	SRB2_JSON_DEFINE_TYPE_INTRUSIVE_WITH_DEFAULT(GamedataPrisonEggPickupsJson, thisprisoneggpickup, prisoneggstothispickup)
-};
-
 struct GamedataChallengeGridJson final
 {
 	// [RRAP]
@@ -292,7 +284,9 @@ struct GamedataJson final
 	GamedataRoundsJson rounds;
 	GamedataChallengeKeysJson challengekeys;
 	GamedataMilestonesJson milestones;
+#if 0
 	GamedataPrisonEggPickupsJson prisons;
+#endif
 	uint32_t tafolderhash;
 	Vector<bool> emblems;
 #if 0
@@ -316,7 +310,9 @@ struct GamedataJson final
 		rounds,
 		challengekeys,
 		milestones,
+#if 0
 		prisons,
+#endif
 		tafolderhash,
 		emblems,
 #if 0

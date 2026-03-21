@@ -76,6 +76,7 @@ rrap_location_t::rrap_location_t(srb2::JsonValue json)
 	_big_tile = json.value("big_tile", false);
 
 	_condition_set_id = json.value("condition_set", 0);
+	_prison_cd_count = json.value("cd_count", 0);
 	_spray_can_map_id = 0;
 
 	srb2::String spray_can_map_name = json.value("spray_can_map", srb2::String(""));
@@ -510,6 +511,16 @@ char *RRAP_LocationLabel(rrap_location_t *location)
 	}
 
 	return Z_StrDup( location->label().c_str() );
+}
+
+UINT8 RRAP_LocationPrisonCDCount(rrap_location_t *location)
+{
+	if (!location)
+	{
+		return 0;
+	}
+
+	return location->prison_cd_count();
 }
 
 INT32 RRAP_LocationSprayCanMapID(rrap_location_t *location)

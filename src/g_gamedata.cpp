@@ -89,8 +89,6 @@ void srb2::save_ng_gamedata()
 	ng.milestones.tutorialdone = gamedata->tutorialdone;
 	ng.milestones.playgroundroute = gamedata->playgroundroute;
 	ng.milestones.gonerlevel = gamedata->gonerlevel;
-	ng.prisons.thisprisoneggpickup = gamedata->thisprisoneggpickup;
-	ng.prisons.prisoneggstothispickup = gamedata->prisoneggstothispickup;
 	ng.tafolderhash = quickncasehash(timeattackfolder, 64);
 	ng.emblems.resize(MAXEMBLEMS, false);
 	for (int i = 0; i < MAXEMBLEMS; i++)
@@ -470,13 +468,6 @@ void srb2::load_ng_gamedata()
 	gamedata->tutorialdone = js.milestones.tutorialdone;
 	gamedata->playgroundroute = js.milestones.playgroundroute;
 	gamedata->gonerlevel = js.milestones.gonerlevel;
-	gamedata->thisprisoneggpickup = js.prisons.thisprisoneggpickup;
-
-	gamedata->prisoneggstothispickup = js.prisons.prisoneggstothispickup;
-	if (gamedata->prisoneggstothispickup > GDINIT_PRISONSTOPRIZE)
-	{
-		gamedata->prisoneggstothispickup = GDINIT_PRISONSTOPRIZE;
-	}
 
 	size_t emblems_size = js.emblems.size();
 	for (size_t i = 0; i < std::min((size_t)MAXEMBLEMS, emblems_size); i++)

@@ -318,6 +318,9 @@ tic_t attacktimingstarted; // For Time Attack
 boolean inDuel; // Boolean, keeps track of if it is a 1v1
 UINT8 overtimecheckpoints; // Duel overtime speedups!
 
+// [RRAP]
+UINT8 g_prisoneggstothispickup = UINT8_MAX;
+
 // Client-sided, unsynched variables (NEVER use in anything that needs to be synced with other players)
 tic_t bombflashtimer = 0;	// Cooldown before another FlashPal can be intialized by a bomb exploding near a displayplayer. Avoids seizures.
 boolean legitimateexit; // Did this client actually finish the match?

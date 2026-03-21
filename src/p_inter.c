@@ -911,18 +911,13 @@ void P_TouchSpecialThing(mobj_t *special, mobj_t *toucher, boolean heightcheck)
 				if (
 					grandprixinfo.gp == true // Bonus Round
 					&& netgame == false // game design + makes it easier to implement
-					&& gamedata->thisprisoneggpickup_cached != NULL
 				)
 				{
-					gamedata->thisprisoneggpickupgrabbed = true;
-					if (gamedata->prisoneggstothispickup < GDINIT_PRISONSTOPRIZE)
-					{
-						// Just in case it's set absurdly low for testing.
-						gamedata->prisoneggstothispickup = GDINIT_PRISONSTOPRIZE;
-					}
+					gamedata->numprisoneggpickups++;
 
 					if (!M_UpdateUnlockablesAndExtraEmblems(true, true))
 						S_StartSound(NULL, sfx_ncitem);
+
 					gamedata->deferredsave = true;
 				}
 
@@ -1234,9 +1229,9 @@ static void P_AddBrokenPrison(mobj_t *target, mobj_t *inflictor, mobj_t *source)
 
 	P_TrackRoundConditionTargetDamage(targetdamaging);
 
-	if (gamedata->prisoneggstothispickup)
+	if (g_prisoneggstothispickup)
 	{
-		gamedata->prisoneggstothispickup--;
+		g_prisoneggstothispickup--;
 	}
 
 	// Standard progression.
@@ -1309,17 +1304,15 @@ static void P_AddBrokenPrison(mobj_t *target, mobj_t *inflictor, mobj_t *source)
 			grandprixinfo.gp == true // Bonus Round
 			&& demo.playback == false // Not playback
 			&& netgame == false // game design + makes it easier to implement
-			&& gamedata->thisprisoneggpickup_cached != NULL
-			&& gamedata->prisoneggstothispickup == 0
-			&& gamedata->thisprisoneggpickupgrabbed == false
+			&& g_prisoneggstothispickup == 0
 			)
 #ifdef DEVELOP
-			|| (cv_debugprisoncd.value && gamedata->thisprisoneggpickup_cached != NULL)
+			|| (cv_debugprisoncd.value)
 #endif
 		)
 		{
 			// Will be 0 for the next level
-			gamedata->prisoneggstothispickup = (maptargets - numtargets);
+			g_prisoneggstothispickup = (maptargets - numtargets);
 
 			mobj_t *secretpickup = P_SpawnMobj(
 				target->x, target->y,

@@ -44,6 +44,7 @@ private:
 	boolean _check_pending;
 
 	UINT16 _condition_set_id;
+	UINT8 _prison_cd_count;
 	INT32 _spray_can_map_id;
 	boolean _big_tile;
 
@@ -63,6 +64,7 @@ public:
 	boolean check_pending() const { return _check_pending; }
 
 	UINT16 condition_set_id() const { return _condition_set_id; }
+	UINT8 prison_cd_count() const { return _prison_cd_count; }
 	INT32 spray_can_map_id() const { return _spray_can_map_id; }
 	boolean is_big_tile() const { return _big_tile; }
 
@@ -99,6 +101,12 @@ public:
 
 	boolean achieved() const
 	{
+		UINT8 prison_cds = prison_cd_count();
+		if (prison_cds > 0)
+		{
+			return (gamedata->numprisoneggpickups >= prison_cds);
+		}
+
 		INT32 spray_can_map = spray_can_map_id();
 		if (spray_can_map > 0)
 		{
@@ -191,6 +199,7 @@ boolean RRAP_LocationAvailable(rrap_location_t *location);
 boolean RRAP_LocationAchieved(rrap_location_t *location);
 char *RRAP_LocationLabel(rrap_location_t *location);
 UINT16 RRAP_LocationConditionSet(rrap_location_t *location);
+UINT8 RRAP_LocationPrisonCDCount(rrap_location_t *location);
 INT32 RRAP_LocationSprayCanMapID(rrap_location_t *location);
 boolean RRAP_LocationIsBigTile(rrap_location_t *location);
 boolean RRAP_LocationChecked(rrap_location_t *location);
