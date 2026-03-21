@@ -1638,10 +1638,12 @@ static boolean S_SoundTestDefLocked(musicdef_t *def)
 
 	mapheader_t *header = mapheaderinfo[def->sequence.map];
 
+#if 0 // [RRAP] Make Sound Test more useful
 	// Visitation required?
 	if (!(header->menuflags & LF2_NOVISITNEEDED)
 	&& !(header->records.mapvisited & MV_VISITED))
 		return true;
+#endif
 
 	if (def->sequence.altref != 0)
 	{

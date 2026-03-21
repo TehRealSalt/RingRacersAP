@@ -55,12 +55,14 @@ static boolean M_StatisticsAddMap(UINT16 map, cupheader_t *cup, boolean *headere
 	if (mapheaderinfo[map]->menuflags & LF2_HIDEINMENU)
 		return false;
 
+#if 0 // [RRAP]
 	// Check for visitation
 	// (M_CanShowLevelInList also checks being the first map in a cup,
 	// but we don't need to do this here because it'd just muddy stats!)
 	if (!(mapheaderinfo[map]->menuflags & LF2_NOVISITNEEDED)
 	&& !(mapheaderinfo[map]->records.mapvisited & MV_VISITED))
 		return false;
+#endif
 
 #if 0
 	// Check for completion
