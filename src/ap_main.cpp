@@ -64,6 +64,7 @@ static srb2::HashMap<INT64, rrap_location_t> g_ap_location_info;
 static srb2::HashMap<INT64, rrap_item_t> g_ap_item_info;
 
 static UINT32 g_character_wins_count = 0;
+static boolean g_simple_map_access = false;
 
 rrap_location_t::rrap_location_t(srb2::JsonValue json)
 {
@@ -730,6 +731,11 @@ UINT32 RRAP_CapCharacterWins(UINT32 input)
 	}
 
 	return g_character_wins_count;
+}
+
+boolean RRAP_SimplifyMapAccess(void)
+{
+	return g_simple_map_access;
 }
 
 void RRAP_PopulateChallengeGrid(void)
@@ -1521,6 +1527,11 @@ static void RRAP_SlotData_CharWinsCount(int wins_count)
 	g_character_wins_count = wins_count;
 }
 
+static void RRAP_SlotData_SimpleMapAccess(int toggle)
+{
+	g_simple_map_access = (bool)toggle;
+}
+
 static void RRAP_DrawConnectionStatus(void)
 {
 	tic_t tick = I_GetTime();
@@ -1639,6 +1650,7 @@ static void RRAP_Connect(void)
 
 	AP_RegisterSlotDataRawCallback("apworld_version", RRAP_SlotData_APWorldVersion);
 	AP_RegisterSlotDataIntCallback("character_wins_count", RRAP_SlotData_CharWinsCount);
+	AP_RegisterSlotDataIntCallback("simple_map_access", RRAP_SlotData_SimpleMapAccess);
 
 	AP_Start();
 

@@ -3846,7 +3846,7 @@ static INT32 TOLMaps(UINT8 pgametype)
 		}
 
 		// Only care about restrictions if the host is a listen server.
-		if (!dedicated)
+		if (!dedicated && !RRAP_SimplifyMapAccess())
 		{
 			if (!(mapheaderinfo[i]->menuflags & LF2_NOVISITNEEDED)
 			&& !(mapheaderinfo[i]->records.mapvisited & MV_VISITED)
@@ -3969,7 +3969,7 @@ tryAgain:
 		}
 
 		// Only care about restrictions if the host is a listen server.
-		if (!dedicated)
+		if (!dedicated && !RRAP_SimplifyMapAccess())
 		{
 			if (!(mapheaderinfo[i]->menuflags & LF2_NOVISITNEEDED)
 			&& !(mapheaderinfo[i]->records.mapvisited & MV_VISITED)
@@ -4114,7 +4114,7 @@ void G_AddMapToBuffer(UINT16 map)
 		}
 
 		// Only care about restrictions if the host is a listen server.
-		if (!dedicated)
+		if (!dedicated && !RRAP_SimplifyMapAccess())
 		{
 			if (!(mapheaderinfo[i]->menuflags & LF2_NOVISITNEEDED)
 			&& !(mapheaderinfo[i]->records.mapvisited & MV_VISITED)
@@ -4713,7 +4713,7 @@ void G_GetNextMap(void)
 					}
 
 					// Only care about restrictions if the host is a listen server.
-					if (!dedicated && !marathonmode)
+					if (!dedicated && !marathonmode && !RRAP_SimplifyMapAccess())
 					{
 						if (!(mapheaderinfo[cm]->menuflags & LF2_NOVISITNEEDED)
 						&& !(mapheaderinfo[cm]->records.mapvisited & MV_VISITED)
@@ -4797,7 +4797,7 @@ void G_GetNextMap(void)
 				}
 
 				// Only care about restrictions if the host is a listen server.
-				if (!dedicated && !marathonmode)
+				if (!dedicated && !marathonmode && !RRAP_SimplifyMapAccess())
 				{
 					if (!(mapheaderinfo[cm]->menuflags & LF2_NOVISITNEEDED)
 					&& !(mapheaderinfo[cm]->records.mapvisited & MV_VISITED)

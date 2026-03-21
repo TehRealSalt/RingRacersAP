@@ -220,6 +220,7 @@ void RRAP_PopulateChallengeGrid(void);
 void RRAP_SanitiseChallengeGrid(void);
 
 UINT32 RRAP_CapCharacterWins(UINT32 input);
+boolean RRAP_SimplifyMapAccess(void);
 
 int RRAP_TestLocations(void);
 INT64 RRAP_GetNextCheckedLocation(boolean canskipchaokeys);

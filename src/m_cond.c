@@ -1404,10 +1404,13 @@ boolean M_CheckCondition(condition_t *cn, player_t *player)
 
 					total++;
 
-					// Check for completion
-					if ((mapheaderinfo[i]->menuflags & LF2_FINISHNEEDED)
-					&& !(mapheaderinfo[i]->records.mapvisited & MV_BEATEN))
-						continue;
+					if (!RRAP_SimplifyMapAccess())
+					{
+						// Check for completion
+						if ((mapheaderinfo[i]->menuflags & LF2_FINISHNEEDED)
+						&& !(mapheaderinfo[i]->records.mapvisited & MV_BEATEN))
+							continue;
+					}
 
 					// Check for unlock
 					if (M_MapLocked(i+1))

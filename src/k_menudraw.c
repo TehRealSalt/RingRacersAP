@@ -220,15 +220,18 @@ void M_PickMenuBGMap(void)
 			continue;
 		}
 
-		if (!(mapheaderinfo[i]->menuflags & LF2_NOVISITNEEDED)
-		&& !(mapheaderinfo[i]->records.mapvisited & MV_VISITED)
-		&& !(
-			mapheaderinfo[i]->cup
-			&& mapheaderinfo[i]->cup->cachedlevels[0] == i
-		))
+		if (!RRAP_SimplifyMapAccess())
 		{
-			// Not visited OR head of cup
-			continue;
+			if (!(mapheaderinfo[i]->menuflags & LF2_NOVISITNEEDED)
+			&& !(mapheaderinfo[i]->records.mapvisited & MV_VISITED)
+			&& !(
+				mapheaderinfo[i]->cup
+				&& mapheaderinfo[i]->cup->cachedlevels[0] == i
+			))
+			{
+				// Not visited OR head of cup
+				continue;
+			}
 		}
 
 		if (M_MapLocked(i + 1) == true)
@@ -7179,36 +7182,45 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 					break;
 
 				UINT16 mapnum = M_UnlockableMapNum(&unlockables[unlock_id]);
-				if (mapnum < nummapheaders && mapheaderinfo[mapnum]
-					&& (
-					( // Check for visitation
-						(mapheaderinfo[mapnum]->menuflags & LF2_NOVISITNEEDED)
-						|| (mapheaderinfo[mapnum]->records.mapvisited & MV_VISITED)
-					) && ( // Check for completion
-						!(mapheaderinfo[mapnum]->menuflags & LF2_FINISHNEEDED)
-						|| (mapheaderinfo[mapnum]->records.mapvisited & MV_BEATEN)
-					)
-				))
+
+				if (mapnum < nummapheaders && mapheaderinfo[mapnum])
 				{
-					if (is_big_tile)
+					boolean visited = RRAP_SimplifyMapAccess();
+					if (!visited)
 					{
-						K_DrawMapAsFace(
-							(x + 5) + (32*(FRACUNIT-accordion))/(2*FRACUNIT), (y + 5),
-							tileflags,
-							mapnum,
-							NULL, accordion, 2
+						visited = (
+							( // Check for visitation
+								(mapheaderinfo[mapnum]->menuflags & LF2_NOVISITNEEDED)
+								|| (mapheaderinfo[mapnum]->records.mapvisited & MV_VISITED)
+							) && ( // Check for completion
+								!(mapheaderinfo[mapnum]->menuflags & LF2_FINISHNEEDED)
+								|| (mapheaderinfo[mapnum]->records.mapvisited & MV_BEATEN)
+							)
 						);
 					}
-					else
+
+					if (visited)
 					{
-						K_DrawMapAsFace(
-							(x + 2) + (16*(FRACUNIT-accordion))/(2*FRACUNIT), (y + 2),
-							tileflags,
-							mapnum,
-							NULL, accordion, 1
-						);
+						if (is_big_tile)
+						{
+							K_DrawMapAsFace(
+								(x + 5) + (32*(FRACUNIT-accordion))/(2*FRACUNIT), (y + 5),
+								tileflags,
+								mapnum,
+								NULL, accordion, 2
+							);
+						}
+						else
+						{
+							K_DrawMapAsFace(
+								(x + 2) + (16*(FRACUNIT-accordion))/(2*FRACUNIT), (y + 2),
+								tileflags,
+								mapnum,
+								NULL, accordion, 1
+							);
+						}
+						pat = NULL;
 					}
-					pat = NULL;
 				}
 				iconid = 0; //14; -- This one suits a little better for "go complete this level normally"
 				break;
@@ -7747,17 +7759,26 @@ static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 			{
 				gtname = "INVALID HEADER";
 			}
-			else if (
-				( // Check for visitation
-					(mapheaderinfo[mapnum]->menuflags & LF2_NOVISITNEEDED)
-					|| (mapheaderinfo[mapnum]->records.mapvisited & MV_VISITED)
-				) && ( // Check for completion
-					!(mapheaderinfo[mapnum]->menuflags & LF2_FINISHNEEDED)
-					|| (mapheaderinfo[mapnum]->records.mapvisited & MV_BEATEN)
-				)
-			)
+			else
 			{
-				validdraw = true;
+				boolean visited = RRAP_SimplifyMapAccess();
+				if (!visited)
+				{
+					visited = (
+						( // Check for visitation
+							(mapheaderinfo[mapnum]->menuflags & LF2_NOVISITNEEDED)
+							|| (mapheaderinfo[mapnum]->records.mapvisited & MV_VISITED)
+						) && ( // Check for completion
+							!(mapheaderinfo[mapnum]->menuflags & LF2_FINISHNEEDED)
+							|| (mapheaderinfo[mapnum]->records.mapvisited & MV_BEATEN)
+						)
+					);
+				}
+
+				if (visited)
+				{
+					validdraw = true;
+				}
 			}
 
 			if (validdraw)

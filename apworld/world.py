@@ -57,4 +57,5 @@ class RingRacersWorld(World):
         return {
             "apworld_version": self.apworld_version,
             "character_wins_count": self.options.character_wins_count.value,
+            "simple_map_access": self.options.simple_map_access.value,
         }

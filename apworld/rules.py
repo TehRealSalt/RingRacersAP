@@ -161,7 +161,8 @@ def set_all_entrance_rules(world: RingRacersWorld) -> None:
                     state.has(item, world.player)
             )
 
-            if not map_def.get("no_visit_needed", False):
+            if (world.options.simple_map_access
+            and not map_def.get("no_visit_needed", False)):
                 add_rule(
                     map_entrance,
                     lambda state, region=map_def["label"]:
