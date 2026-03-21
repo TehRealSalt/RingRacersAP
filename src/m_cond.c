@@ -395,12 +395,7 @@ void M_ClearSecrets(void)
 	memset(netUnlocked, 0, sizeof(netUnlocked));
 	memset(gamedata->achieved, 0, sizeof(gamedata->achieved));
 
-	Z_Free(gamedata->prisoneggpickups);
-	gamedata->prisoneggpickups = NULL;
 	gamedata->numprisoneggpickups = 0;
-	gamedata->thisprisoneggpickup = MAXCONDITIONSETS;
-	gamedata->thisprisoneggpickup_cached = NULL;
-	gamedata->thisprisoneggpickupgrabbed = false;
 
 	UINT16 i, j;
 	for (i = 0; i < nummapheaders; i++)
@@ -443,7 +438,6 @@ void M_ClearSecrets(void)
 	gamedata->keyspending = 0;
 
 	gamedata->chaokeys = GDINIT_CHAOKEYS;
-	gamedata->prisoneggstothispickup = GDINIT_PRISONSTOPRIZE;
 
 	gamedata->tutorialdone = false;
 	gamedata->playgroundroute = false;
@@ -612,7 +606,6 @@ static void M_AssignSpraycans(void)
 		gamedata->numspraycans++;
 	}
 }
-#endif
 
 static void M_InitPrisonEggPickups(void)
 {
@@ -822,6 +815,7 @@ cacheprisoneggpickup:
 
 #endif // DEVELOP
 }
+#endif
 
 static void M_PrecacheLevelLocks(void)
 {
@@ -967,10 +961,10 @@ void M_FinaliseGameData(void)
 #if 0 // [RRAP]
 	// Place the spraycans, which CAN'T be done lazily.
 	M_AssignSpraycans();
-#endif
 
 	// You could probably do the Prison Egg Pickups lazily, but it'd be a lagspike mid-combat.
 	M_InitPrisonEggPickups();
+#endif
 
 	// Don't consider loaded until it's a success!
 	// It used to do this much earlier, but this would cause the gamedata
@@ -1475,7 +1469,11 @@ boolean M_CheckCondition(condition_t *cn, player_t *player)
 		}
 
 		case UC_PRISONEGGCD:
+#if 0
 			return ((gamedata->thisprisoneggpickupgrabbed == true) && (cn == gamedata->thisprisoneggpickup_cached));
+#else
+			return false; // [RRAP]
+#endif
 
 		// Just for string building
 		case UC_AND:
@@ -2837,6 +2835,27 @@ char *M_BuildConditionSetString(INT64 ap_location_id)
 		len--;
 	}
 
+	UINT8 cd_count = RRAP_LocationPrisonCDCount(location);
+	if (cd_count)
+	{
+		work = va(
+			"GRAND PRIX: grab %d CD%s from Prison Eggs",
+			cd_count,
+			(cd_count == 1) ? "" : "s"
+		);
+		worklen = strlen(work);
+		strncat(message, work, len);
+		len -= worklen;
+
+		return V_ScaledWordWrap(
+			DESCRIPTIONWIDTH << FRACBITS,
+			FRACUNIT, FRACUNIT, FRACUNIT,
+			0,
+			TINY_FONT,
+			message
+		);
+	}
+
 	INT32 spray_can_map = RRAP_LocationSprayCanMapID(location);
 	if (spray_can_map)
 	{
@@ -3070,7 +3089,9 @@ boolean M_UpdateUnlockablesAndExtraEmblems(boolean loud, boolean doall)
 	{
 		response = M_CheckUnlockConditions(NULL);
 
+#if 0 // [RRAP]
 		M_UpdateNextPrisonEggPickup();
+#endif
 
 		if (gamedata->pendingkeyrounds == 0
 			|| (gamedata->chaokeys >= GDMAX_CHAOKEYS))

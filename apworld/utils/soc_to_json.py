@@ -298,7 +298,7 @@ for id_str, unlockable in soc.get("unlockable", {}).items():
 		item["name"] = temp_name
 		item["label"] = temp_name
 		item["unlockable"] = id_int
-		item["color"] = unlockable["var"].lower()
+		item["song_map"] = unlockable["var"].lower()
 		item["tags"] = ["Alt. Music"]
 
 		locations.append(location)

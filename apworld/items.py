@@ -22,7 +22,7 @@ class RingRacersItem(Item):
 
 
 def get_random_filler_item_name(world: RingRacersWorld) -> str:
-    return "Temporary Filler"
+    return "KKD Honor"
 
 
 def create_rr_item(world: RingRacersWorld, name: str) -> RingRacersItem:
@@ -35,6 +35,9 @@ def create_rr_item(world: RingRacersWorld, name: str) -> RingRacersItem:
         classification = ItemClassification.progression_deprioritized_skip_balancing
     elif name in world.item_name_groups["Spray Cans"]:
         # Progression by technicality, because of Gum's Challenge
+        classification = ItemClassification.progression_deprioritized_skip_balancing
+    elif name in world.item_name_groups["Alt. Music"]:
+        # Progression by technicality, because of Sound Test's Challenge
         classification = ItemClassification.progression_deprioritized_skip_balancing
     elif name in world.item_name_groups["Drivers"]:
         # There's probably 1 or 2 drivers that aren't required for challenges,
@@ -81,10 +84,10 @@ def create_all_items(world: RingRacersWorld) -> None:
     for color_name in world.item_name_groups["Spray Cans"]:
         color_pool.append(world.create_item(color_name)) 
 
-    num_spray_cans_left = len(world.location_name_groups["Spray Cans"]) - len(color_pool)
-    for _ in range(num_spray_cans_left):
-        color_pool.append(world.create_item("KKD Honor"))
-    logging.debug('RingRacers:: Created {} filler honors'.format(num_spray_cans_left))
+    #num_spray_cans_left = len(world.location_name_groups["Spray Cans"]) - len(color_pool)
+    #for _ in range(num_spray_cans_left):
+    #    color_pool.append(world.create_item("KKD Honor"))
+    #logging.debug('RingRacers:: Created {} filler honors'.format(num_spray_cans_left))
 
     item_pool: list[Item] = []
     item_pool += driver_pool
@@ -99,6 +102,9 @@ def create_all_items(world: RingRacersWorld) -> None:
 
     for extra_name in world.item_name_groups["Extras"]:
         item_pool.append(world.create_item(extra_name))
+
+    for music_name in world.item_name_groups["Alt. Music"]:
+        item_pool.append(world.create_item(music_name))
 
     number_of_items = len(item_pool)
     number_of_unfilled_locations = len(world.multiworld.get_unfilled_locations(world.player))

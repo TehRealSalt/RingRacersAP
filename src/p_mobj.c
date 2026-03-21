@@ -7801,11 +7801,8 @@ static boolean P_MobjRegularThink(mobj_t *mobj)
 		}
 		else if (!netgame)
 		{
-			if (gamedata->thisprisoneggpickup_cached->type == UC_PRISONEGGCD)
-			{
-				teststate = S_PRISONEGGDROP_CD;
-				mobj->renderflags |= RF_SEMIBRIGHT;
-			}
+			teststate = S_PRISONEGGDROP_CD;
+			mobj->renderflags |= RF_SEMIBRIGHT;
 
 			P_SetMobjStateNF(mobj, teststate);
 

@@ -1,0 +1,1247 @@
+{
+	"cups": {},
+	"maps": {},
+	"locations": [
+		{
+			"id": 800,
+			"name": "Challenge - Prison Egg CD #1",
+			"label": "Prison Egg CD #1",
+			"cd_count": 1,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 801,
+			"name": "Challenge - Prison Egg CD #2",
+			"label": "Prison Egg CD #2",
+			"cd_count": 2,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 802,
+			"name": "Challenge - Prison Egg CD #3",
+			"label": "Prison Egg CD #3",
+			"cd_count": 3,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 803,
+			"name": "Challenge - Prison Egg CD #4",
+			"label": "Prison Egg CD #4",
+			"cd_count": 4,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 804,
+			"name": "Challenge - Prison Egg CD #5",
+			"label": "Prison Egg CD #5",
+			"cd_count": 5,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 805,
+			"name": "Challenge - Prison Egg CD #6",
+			"label": "Prison Egg CD #6",
+			"cd_count": 6,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 806,
+			"name": "Challenge - Prison Egg CD #7",
+			"label": "Prison Egg CD #7",
+			"cd_count": 7,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 807,
+			"name": "Challenge - Prison Egg CD #8",
+			"label": "Prison Egg CD #8",
+			"cd_count": 8,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 808,
+			"name": "Challenge - Prison Egg CD #9",
+			"label": "Prison Egg CD #9",
+			"cd_count": 9,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 809,
+			"name": "Challenge - Prison Egg CD #10",
+			"label": "Prison Egg CD #10",
+			"cd_count": 10,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 810,
+			"name": "Challenge - Prison Egg CD #11",
+			"label": "Prison Egg CD #11",
+			"cd_count": 11,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 811,
+			"name": "Challenge - Prison Egg CD #12",
+			"label": "Prison Egg CD #12",
+			"cd_count": 12,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 812,
+			"name": "Challenge - Prison Egg CD #13",
+			"label": "Prison Egg CD #13",
+			"cd_count": 13,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 813,
+			"name": "Challenge - Prison Egg CD #14",
+			"label": "Prison Egg CD #14",
+			"cd_count": 14,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 814,
+			"name": "Challenge - Prison Egg CD #15",
+			"label": "Prison Egg CD #15",
+			"cd_count": 15,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 815,
+			"name": "Challenge - Prison Egg CD #16",
+			"label": "Prison Egg CD #16",
+			"cd_count": 16,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 816,
+			"name": "Challenge - Prison Egg CD #17",
+			"label": "Prison Egg CD #17",
+			"cd_count": 17,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 817,
+			"name": "Challenge - Prison Egg CD #18",
+			"label": "Prison Egg CD #18",
+			"cd_count": 18,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 818,
+			"name": "Challenge - Prison Egg CD #19",
+			"label": "Prison Egg CD #19",
+			"cd_count": 19,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 819,
+			"name": "Challenge - Prison Egg CD #20",
+			"label": "Prison Egg CD #20",
+			"cd_count": 20,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 820,
+			"name": "Challenge - Prison Egg CD #21",
+			"label": "Prison Egg CD #21",
+			"cd_count": 21,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 821,
+			"name": "Challenge - Prison Egg CD #22",
+			"label": "Prison Egg CD #22",
+			"cd_count": 22,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 822,
+			"name": "Challenge - Prison Egg CD #23",
+			"label": "Prison Egg CD #23",
+			"cd_count": 23,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 823,
+			"name": "Challenge - Prison Egg CD #24",
+			"label": "Prison Egg CD #24",
+			"cd_count": 24,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 824,
+			"name": "Challenge - Prison Egg CD #25",
+			"label": "Prison Egg CD #25",
+			"cd_count": 25,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 825,
+			"name": "Challenge - Prison Egg CD #26",
+			"label": "Prison Egg CD #26",
+			"cd_count": 26,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 826,
+			"name": "Challenge - Prison Egg CD #27",
+			"label": "Prison Egg CD #27",
+			"cd_count": 27,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 827,
+			"name": "Challenge - Prison Egg CD #28",
+			"label": "Prison Egg CD #28",
+			"cd_count": 28,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 828,
+			"name": "Challenge - Prison Egg CD #29",
+			"label": "Prison Egg CD #29",
+			"cd_count": 29,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 829,
+			"name": "Challenge - Prison Egg CD #30",
+			"label": "Prison Egg CD #30",
+			"cd_count": 30,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 830,
+			"name": "Challenge - Prison Egg CD #31",
+			"label": "Prison Egg CD #31",
+			"cd_count": 31,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 831,
+			"name": "Challenge - Prison Egg CD #32",
+			"label": "Prison Egg CD #32",
+			"cd_count": 32,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 832,
+			"name": "Challenge - Prison Egg CD #33",
+			"label": "Prison Egg CD #33",
+			"cd_count": 33,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 833,
+			"name": "Challenge - Prison Egg CD #34",
+			"label": "Prison Egg CD #34",
+			"cd_count": 34,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 834,
+			"name": "Challenge - Prison Egg CD #35",
+			"label": "Prison Egg CD #35",
+			"cd_count": 35,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 835,
+			"name": "Challenge - Prison Egg CD #36",
+			"label": "Prison Egg CD #36",
+			"cd_count": 36,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 836,
+			"name": "Challenge - Prison Egg CD #37",
+			"label": "Prison Egg CD #37",
+			"cd_count": 37,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 837,
+			"name": "Challenge - Prison Egg CD #38",
+			"label": "Prison Egg CD #38",
+			"cd_count": 38,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 838,
+			"name": "Challenge - Prison Egg CD #39",
+			"label": "Prison Egg CD #39",
+			"cd_count": 39,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 839,
+			"name": "Challenge - Prison Egg CD #40",
+			"label": "Prison Egg CD #40",
+			"cd_count": 40,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 840,
+			"name": "Challenge - Prison Egg CD #41",
+			"label": "Prison Egg CD #41",
+			"cd_count": 41,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 841,
+			"name": "Challenge - Prison Egg CD #42",
+			"label": "Prison Egg CD #42",
+			"cd_count": 42,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 842,
+			"name": "Challenge - Prison Egg CD #43",
+			"label": "Prison Egg CD #43",
+			"cd_count": 43,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 843,
+			"name": "Challenge - Prison Egg CD #44",
+			"label": "Prison Egg CD #44",
+			"cd_count": 44,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 844,
+			"name": "Challenge - Prison Egg CD #45",
+			"label": "Prison Egg CD #45",
+			"cd_count": 45,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 845,
+			"name": "Challenge - Prison Egg CD #46",
+			"label": "Prison Egg CD #46",
+			"cd_count": 46,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 846,
+			"name": "Challenge - Prison Egg CD #47",
+			"label": "Prison Egg CD #47",
+			"cd_count": 47,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 847,
+			"name": "Challenge - Prison Egg CD #48",
+			"label": "Prison Egg CD #48",
+			"cd_count": 48,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 848,
+			"name": "Challenge - Prison Egg CD #49",
+			"label": "Prison Egg CD #49",
+			"cd_count": 49,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 849,
+			"name": "Challenge - Prison Egg CD #50",
+			"label": "Prison Egg CD #50",
+			"cd_count": 50,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 850,
+			"name": "Challenge - Prison Egg CD #51",
+			"label": "Prison Egg CD #51",
+			"cd_count": 51,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 851,
+			"name": "Challenge - Prison Egg CD #52",
+			"label": "Prison Egg CD #52",
+			"cd_count": 52,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 852,
+			"name": "Challenge - Alt. Music: Popcorn Workshop",
+			"label": "Alt. Music: Popcorn Workshop",
+			"condition_set": 852,
+			"tags": [
+				"Challenges"
+			]
+		},
+		{
+			"id": 853,
+			"name": "Challenge - Prison Egg CD #53",
+			"label": "Prison Egg CD #53",
+			"cd_count": 53,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 900,
+			"name": "Challenge - Prison Egg CD #54",
+			"label": "Prison Egg CD #54",
+			"cd_count": 54,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 901,
+			"name": "Challenge - Prison Egg CD #55",
+			"label": "Prison Egg CD #55",
+			"cd_count": 55,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 902,
+			"name": "Challenge - Prison Egg CD #56",
+			"label": "Prison Egg CD #56",
+			"cd_count": 56,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 903,
+			"name": "Challenge - Prison Egg CD #57",
+			"label": "Prison Egg CD #57",
+			"cd_count": 57,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 904,
+			"name": "Challenge - Prison Egg CD #58",
+			"label": "Prison Egg CD #58",
+			"cd_count": 58,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 905,
+			"name": "Challenge - Prison Egg CD #59",
+			"label": "Prison Egg CD #59",
+			"cd_count": 59,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 906,
+			"name": "Challenge - Prison Egg CD #60",
+			"label": "Prison Egg CD #60",
+			"cd_count": 60,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		},
+		{
+			"id": 907,
+			"name": "Challenge - Prison Egg CD #61",
+			"label": "Prison Egg CD #61",
+			"cd_count": 61,
+			"tags": [
+				"Challenges",
+				"CD Milestones"
+			]
+		}
+	],
+	"items": [
+		{
+			"id": 800,
+			"name": "Alt. Music: Test Run",
+			"label": "Test Run",
+			"unlockable": 800,
+			"song_map": "rr_testrun",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 801,
+			"name": "Alt. Music: Emerald Coast A",
+			"label": "Emerald Coast A",
+			"unlockable": 801,
+			"song_map": "rr_emeraldcoast",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 802,
+			"name": "Alt. Music: Emerald Coast B",
+			"label": "Emerald Coast B",
+			"unlockable": 802,
+			"song_map": "rr_emeraldcoast",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 803,
+			"name": "Alt. Music: Angel Island A",
+			"label": "Angel Island A",
+			"unlockable": 803,
+			"song_map": "rr_angelisland",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 804,
+			"name": "Alt. Music: Angel Island B",
+			"label": "Angel Island B",
+			"unlockable": 804,
+			"song_map": "rr_angelisland",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 805,
+			"name": "Alt. Music: Regal Ruin A",
+			"label": "Regal Ruin A",
+			"unlockable": 805,
+			"song_map": "rr_regalruin",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 806,
+			"name": "Alt. Music: Regal Ruin B",
+			"label": "Regal Ruin B",
+			"unlockable": 806,
+			"song_map": "rr_regalruin",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 807,
+			"name": "Alt. Music: Collision Chaos",
+			"label": "Collision Chaos",
+			"unlockable": 807,
+			"song_map": "rr_collisionchaos",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 808,
+			"name": "Alt. Music: Emerald Hill",
+			"label": "Emerald Hill",
+			"unlockable": 808,
+			"song_map": "rr_emeraldhill",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 809,
+			"name": "Alt. Music: Gust Planet A",
+			"label": "Gust Planet A",
+			"unlockable": 809,
+			"song_map": "rr_gustplanet",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 810,
+			"name": "Alt. Music: Gust Planet B",
+			"label": "Gust Planet B",
+			"unlockable": 810,
+			"song_map": "rr_gustplanet",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 811,
+			"name": "Alt. Music: Mystic Cave A",
+			"label": "Mystic Cave A",
+			"unlockable": 811,
+			"song_map": "rr_mysticcave",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 812,
+			"name": "Alt. Music: Mystic Cave B",
+			"label": "Mystic Cave B",
+			"unlockable": 812,
+			"song_map": "rr_mysticcave",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 813,
+			"name": "Alt. Music: Marble Garden A",
+			"label": "Marble Garden A",
+			"unlockable": 813,
+			"song_map": "rr_marblegarden",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 814,
+			"name": "Alt. Music: Marble Garden B",
+			"label": "Marble Garden B",
+			"unlockable": 814,
+			"song_map": "rr_marblegarden",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 815,
+			"name": "Alt. Music: Launch Base A",
+			"label": "Launch Base A",
+			"unlockable": 815,
+			"song_map": "rr_launchbase",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 816,
+			"name": "Alt. Music: Launch Base B",
+			"label": "Launch Base B",
+			"unlockable": 816,
+			"song_map": "rr_launchbase",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 817,
+			"name": "Alt. Music: City Escape",
+			"label": "City Escape",
+			"unlockable": 817,
+			"song_map": "rr_cityescape",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 818,
+			"name": "Alt. Music: Palmtree Panic A",
+			"label": "Palmtree Panic A",
+			"unlockable": 818,
+			"song_map": "rr_palmtreepanic",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 819,
+			"name": "Alt. Music: Metropolis",
+			"label": "Metropolis",
+			"unlockable": 819,
+			"song_map": "rr_metropolis",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 820,
+			"name": "Alt. Music: Hydro City A",
+			"label": "Hydro City A",
+			"unlockable": 820,
+			"song_map": "rr_hydrocity",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 821,
+			"name": "Alt. Music: Hydro City B",
+			"label": "Hydro City B",
+			"unlockable": 821,
+			"song_map": "rr_hydrocity",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 822,
+			"name": "Alt. Music: Diamond Dust",
+			"label": "Diamond Dust",
+			"unlockable": 822,
+			"song_map": "rr_diamonddust",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 823,
+			"name": "Alt. Music: Carnival Night A",
+			"label": "Carnival Night A",
+			"unlockable": 823,
+			"song_map": "rr_carnivalnight",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 824,
+			"name": "Alt. Music: Carnival Night B",
+			"label": "Carnival Night B",
+			"unlockable": 824,
+			"song_map": "rr_carnivalnight",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 825,
+			"name": "Alt. Music: Dark Fortress",
+			"label": "Dark Fortress",
+			"unlockable": 825,
+			"song_map": "rr_darkfortress",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 826,
+			"name": "Alt. Music: Hot Shelter",
+			"label": "Hot Shelter",
+			"unlockable": 826,
+			"song_map": "rr_hotshelter",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 827,
+			"name": "Alt. Music: Mega Lava Reef",
+			"label": "Mega Lava Reef",
+			"unlockable": 827,
+			"song_map": "rr_megalavareef",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 828,
+			"name": "Alt. Music: Quartz Quadrant",
+			"label": "Quartz Quadrant",
+			"unlockable": 828,
+			"song_map": "rr_quartzquadrant",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 829,
+			"name": "Alt. Music: Aqua Tunnel",
+			"label": "Aqua Tunnel",
+			"unlockable": 829,
+			"song_map": "rr_aquatunnel",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 830,
+			"name": "Alt. Music: Abyss Garden",
+			"label": "Abyss Garden",
+			"unlockable": 830,
+			"song_map": "rr_abyssgarden",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 831,
+			"name": "Alt. Music: Monkey Mall",
+			"label": "Monkey Mall",
+			"unlockable": 831,
+			"song_map": "rr_monkeymall",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 832,
+			"name": "Alt. Music: Crimson Core",
+			"label": "Crimson Core",
+			"unlockable": 832,
+			"song_map": "rr_crimsoncore",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 833,
+			"name": "Alt. Music: Mega Collision Chaos",
+			"label": "Mega Collision Chaoss",
+			"unlockable": 833,
+			"song_map": "rr_megacollisionchaos",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 834,
+			"name": "Alt. Music: Diamond Dust Classic",
+			"label": "Diamond Dust Classic",
+			"unlockable": 834,
+			"song_map": "rr_diamonddustclassic",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 835,
+			"name": "Alt. Music: Nova Shore",
+			"label": "Nova Shore",
+			"unlockable": 835,
+			"song_map": "rr_novashore",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 836,
+			"name": "Alt. Music: Weiss Waterway",
+			"label": "Weiss Waterway",
+			"unlockable": 836,
+			"song_map": "rr_weisswaterway",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 837,
+			"name": "Alt. Music: Mirage Saloon A",
+			"label": "Mirage Saloon A",
+			"unlockable": 837,
+			"song_map": "rr_miragesaloon",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 838,
+			"name": "Alt. Music: Mirage Saloon B",
+			"label": "Mirage Saloon B",
+			"unlockable": 838,
+			"song_map": "rr_miragesaloon",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 839,
+			"name": "Alt. Music: Hill Top",
+			"label": "Hill Top",
+			"unlockable": 839,
+			"song_map": "rr_hilltop",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 840,
+			"name": "Alt. Music: Palmtree Panic B",
+			"label": "Palmtree Panic B",
+			"unlockable": 840,
+			"song_map": "rr_palmtreepanic",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 841,
+			"name": "Alt. Music: Test Track",
+			"label": "Test Track",
+			"unlockable": 841,
+			"song_map": "rr_testtrack",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 842,
+			"name": "Alt. Music: Thunder Piston A",
+			"label": "Thunder Piston A",
+			"unlockable": 842,
+			"song_map": "rr_thunderpiston",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 843,
+			"name": "Alt. Music: Azure City",
+			"label": "Azure City",
+			"unlockable": 843,
+			"song_map": "rr_azurecity",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 844,
+			"name": "Alt. Music: Fae Falls",
+			"label": "Fae Falls",
+			"unlockable": 844,
+			"song_map": "rr_faefalls",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 845,
+			"name": "Alt. Music: Speed Highway",
+			"label": "Speed Highway",
+			"unlockable": 845,
+			"song_map": "rr_speedhighway",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 846,
+			"name": "Alt. Music: Daytona Speedway",
+			"label": "Daytona Speedway",
+			"unlockable": 846,
+			"song_map": "rr_daytonaspeedway",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 847,
+			"name": "Alt. Music: Storm Rig",
+			"label": "Storm Rig",
+			"unlockable": 847,
+			"song_map": "rr_stormrig",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 848,
+			"name": "Alt. Music: Cadillac Cascade",
+			"label": "Cadillac Cascade",
+			"unlockable": 848,
+			"song_map": "rr_cadillaccascade",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 849,
+			"name": "Alt. Music: Frozen Production",
+			"label": "Frozen Production",
+			"unlockable": 849,
+			"song_map": "rr_frozenproduction",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 850,
+			"name": "Alt. Music: Cyan Belltower",
+			"label": "Cyan Belltower",
+			"unlockable": 850,
+			"song_map": "rr_cyanbelltower",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 851,
+			"name": "Alt. Music: Chaos Chute",
+			"label": "Chaos Chute",
+			"unlockable": 851,
+			"song_map": "rr_chaostube",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 852,
+			"name": "Alt. Music: Popcorn Workshop",
+			"label": "Popcorn Workshop",
+			"unlockable": 852,
+			"song_map": "rr_popcornworkshop",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 853,
+			"name": "Alt. Music: Thunder Piston B",
+			"label": "Thunder Piston B",
+			"unlockable": 853,
+			"song_map": "rr_thunderpiston",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 900,
+			"name": "Alt. Music: CD Special Stage 1",
+			"label": "CD Special Stage 1",
+			"unlockable": 900,
+			"song_map": "rr_cdspecialstage1",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 901,
+			"name": "Alt. Music: CD Special Stage 8",
+			"label": "CD Special Stage 8",
+			"unlockable": 901,
+			"song_map": "rr_cdspecialstage8",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 902,
+			"name": "Alt. Music: Wood",
+			"label": "Wood",
+			"unlockable": 902,
+			"song_map": "rr_wood",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 903,
+			"name": "Alt. Music: Rusty Rig",
+			"label": "Rusty Rig",
+			"unlockable": 903,
+			"song_map": "rr_rustyrig",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 904,
+			"name": "Alt. Music: Dead Simple",
+			"label": "Dead Simple",
+			"unlockable": 904,
+			"song_map": "rr_deadsimple",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 905,
+			"name": "Alt. Music: Marble Foyer",
+			"label": "Marble Foyer",
+			"unlockable": 905,
+			"song_map": "rr_marblefoyer",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 906,
+			"name": "Alt. Music: Cyber Arena",
+			"label": "Cyber Arena",
+			"unlockable": 906,
+			"song_map": "rr_cyberarena",
+			"tags": [
+				"Alt. Music"
+			]
+		},
+		{
+			"id": 907,
+			"name": "Alt. Music: Duel Busters",
+			"label": "Duel Busters",
+			"unlockable": 907,
+			"song_map": "rr_duelbuster",
+			"tags": [
+				"Alt. Music"
+			]
+		}
+	]
+}

@@ -356,11 +356,6 @@ struct gamedata_t
 
 	// PRISON EGG PICKUPS
 	UINT16 numprisoneggpickups;
-	UINT16 thisprisoneggpickup;
-	condition_t *thisprisoneggpickup_cached;
-	boolean thisprisoneggpickupgrabbed;
-	UINT16 prisoneggstothispickup;
-	UINT16* prisoneggpickups;
 
 	// CHALLENGE GRID
 	INT64 ap_challengegridwidth;
@@ -463,7 +458,9 @@ UINT16 M_CheckCupEmeralds(UINT8 difficulty);
 boolean M_CheckCondition(condition_t *cn, player_t *player);
 boolean M_UpdateUnlockablesAndExtraEmblems(boolean loud, boolean doall);
 
+#if 0 // [RRAP]
 void M_UpdateNextPrisonEggPickup(void);
+#endif
 
 UINT16 M_CheckLevelEmblems(void);
 UINT16 M_CompletionEmblems(void);

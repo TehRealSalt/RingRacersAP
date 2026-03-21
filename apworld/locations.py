@@ -51,6 +51,18 @@ def create_events(world: RingRacersWorld) -> None:
             location_type=RingRacersLocation, item_type=items.RingRacersItem
         )
 
+        for map_index in cup_def["map_list"]:
+            map_def = jsondata.rr_map_defs[map_index]
+            if map_def["type"] == "battle":
+                map_name = map_def["label"]
+                map_region = world.get_region(map_name)
+
+                event_name = "!" + map_name + " Bonus Round"
+                map_region.add_event(
+                    event_name, "!Bonus Round Reachable",
+                    location_type=RingRacersLocation, item_type=items.RingRacersItem
+                )
+
     for index, map_def in jsondata.rr_map_defs.items():
         map_name = map_def["label"]
         map_region = world.get_region(map_name)
