@@ -1360,9 +1360,14 @@ void RRAP_TickMessages(void)
 	if (AP_IsMessagePending())
 	{
 		AP_Message *msg = AP_GetLatestMessage();
-		HU_AddChatText(va("\x82[AP] \x80%s", msg->text.c_str()), false);
+		HU_AddChatText(va("\x89[AP] \x80%s", msg->text.c_str()), Playing());
 		AP_ClearLatestMessage();
 	}
+}
+
+void RRAP_Say(const char *msg)
+{
+	AP_Say(msg);
 }
 
 static void RRAP_InitGamedata(void)

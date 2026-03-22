@@ -1413,7 +1413,9 @@ boolean G_Responder(event_t *ev)
 		return false;
 	}
 
+#if 0 // [RRAP] Always allow access to AP log
 	if (Playing())
+#endif
 	{
 		// If you're playing, chat is real.
 		// Neatly sidesteps a class of bugs where whenever we add a
@@ -2045,19 +2047,16 @@ void G_Ticker(boolean run)
 			P_Ticker(run); // tic the game
 			F_TextPromptTicker();
 			AM_Ticker();
-			HU_Ticker();
 			break;
 
 		case GS_INTERMISSION:
 			if (run)
 				Y_Ticker();
-			HU_Ticker();
 			break;
 
 		case GS_VOTING:
 			if (run)
 				Y_VoteTicker();
-			HU_Ticker();
 			break;
 
 		case GS_MENU:
@@ -2073,13 +2072,11 @@ void G_Ticker(boolean run)
 		case GS_CUTSCENE:
 			if (run)
 				F_CutsceneTicker();
-			HU_Ticker();
 			break;
 
 		case GS_EVALUATION:
 			if (run)
 				F_GameEvaluationTicker();
-			HU_Ticker();
 			break;
 
 		case GS_CONTINUING:
@@ -2088,7 +2085,6 @@ void G_Ticker(boolean run)
 		case GS_CREDITS:
 			if (run)
 				F_CreditTicker();
-			HU_Ticker();
 			break;
 
 		case GS_TITLESCREEN:
@@ -2104,19 +2100,19 @@ void G_Ticker(boolean run)
 		case GS_CEREMONY:
 			P_Ticker(run);
 			K_CeremonyTicker(run);
-			HU_Ticker();
 			break;
 
 		case GS_WAITINGPLAYERS:
 			if (netgame)
 				F_WaitingPlayersTicker();
-			HU_Ticker();
 			break;
 
 		case GS_DEDICATEDSERVER:
 		case GS_NULL:
 			break; // do nothing
 	}
+
+	HU_Ticker();
 
 	if (run)
 	{

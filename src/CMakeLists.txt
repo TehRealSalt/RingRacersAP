@@ -29,7 +29,7 @@ add_executable(SRB2SDL2 MACOSX_BUNDLE WIN32
 	console.c
 	cvars.cpp
 	font.c
-	hu_stuff.c
+	hu_stuff.cpp
 	i_time.c
 	i_video_common.cpp
 	y_inter.cpp
