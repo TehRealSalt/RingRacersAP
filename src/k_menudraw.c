@@ -7956,10 +7956,13 @@ static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 
 			break;
 		}
-#if 0 // [RRAP] TODO - finish implementing item types
 		case SECRET_ALTMUSIC:
 		{
-			UINT16 map = M_UnlockableMapNum(ref);
+			UINT16 unlock_id = RRAP_ItemToUnlockableId(item);
+			if (unlock_id >= MAXUNLOCKABLES)
+				break;
+
+			UINT16 map = M_UnlockableMapNum(&unlockables[unlock_id]);
 			if (map >= nummapheaders
 				|| !mapheaderinfo[map])
 			{
@@ -7969,7 +7972,7 @@ static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 			UINT8 musicid;
 			for (musicid = 1; musicid < MAXMUSNAMES; musicid++)
 			{
-				if (mapheaderinfo[map]->cache_muslock[musicid - 1] == challengesmenu.currentunlock)
+				if (mapheaderinfo[map]->cache_muslock[musicid - 1] == unlock_id)
 					break;
 			}
 
@@ -8075,7 +8078,6 @@ static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 				}
 			}
 		}
-#endif
 		default:
 		{
 			break;
