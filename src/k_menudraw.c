@@ -3340,6 +3340,7 @@ void M_DrawCupSelect(void)
 
 	if (!isGP)
 		;
+#if 0 // [RRAP] Not for Archipelago
 	else if (M_GetFirstLevelInList(&temp, &templevelsearch) == NEXTMAP_INVALID)
 	{
 		if (templevelsearch.cup->hintcondition != MAXCONDITIONSETS
@@ -3349,6 +3350,7 @@ void M_DrawCupSelect(void)
 			V_DrawScaledPatch(x + (32-10), y + (32-9), 0, W_CachePatchName("UN_HNT1A", PU_CACHE));
 		}
 	}
+#endif
 	else if (templevelsearch.cup != NULL
 	&& templevelsearch.cup == cupsavedata.cup)
 	{

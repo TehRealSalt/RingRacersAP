@@ -65,6 +65,11 @@ static srb2::HashMap<INT64, rrap_item_t> g_ap_item_info;
 
 static UINT32 g_character_wins_count = 0;
 static boolean g_simple_map_access = false;
+static UINT8 g_goal_num_trophies = UINT8_MAX;
+static UINT8 g_goal_trophy_level = 0;
+
+static boolean g_goal_queued = false;
+static boolean g_goal_sent = false;
 
 rrap_location_t::rrap_location_t(srb2::JsonValue json)
 {
@@ -782,12 +787,12 @@ void RRAP_PopulateChallengeGrid(void)
 		if (location.is_big_tile())
 		{
 			selection_big.emplace_back(id);
-			CONS_Printf(" found %li (LARGE)\n", id);
+			//CONS_Printf(" found %li (LARGE)\n", id);
 		}
 		else
 		{
 			selection_small.emplace_back(id);
-			CONS_Printf(" found %li\n", id);
+			//CONS_Printf(" found %li\n", id);
 		}
 	}
 
@@ -813,12 +818,14 @@ void RRAP_PopulateChallengeGrid(void)
 		num_empty += gamedata->ap_challengegridwidth;
 #endif
 
+		/*
 		CONS_Printf(
 			"%lu major unlocks means width of %lu, numempty of %lu\n",
 			selection_big.size(),
 			gamedata->ap_challengegridwidth,
 			num_empty
 		);
+		*/
 	}
 
 	if (selection_small.size() > num_empty)
@@ -828,12 +835,14 @@ void RRAP_PopulateChallengeGrid(void)
 		gamedata->ap_challengegridwidth += temp;
 		big_compact = 1;
 
+		/*
 		CONS_Printf(
 			"%lu normal unlocks means %lu extra entries, additional width of %lu\n",
 			selection_small.size(),
 			(selection_small.size() - num_empty),
 			temp
 		);
+		*/
 	}
 	else if (challengegridloops)
 	{
@@ -851,10 +860,12 @@ void RRAP_PopulateChallengeGrid(void)
 	{
 		gamedata->ap_challengegridwidth = min_width;
 
+		/*
 		CONS_Printf(
 			" FORCING WIDTH HACK: %lu\n",
 			min_width
 		);
+		*/
 	}
 #endif
 
@@ -904,7 +915,7 @@ void RRAP_PopulateChallengeGrid(void)
 			INT64 placed = selection_big.back();
 			selection_big.pop_back();
 
-			CONS_Printf("--- %li (LARGE) placed at (%li, %li)\n", placed, row, col);
+			//CONS_Printf("--- %li (LARGE) placed at (%li, %li)\n", placed, row, col);
 
 			i = row + (col * CHALLENGEGRIDHEIGHT);
 			gamedata->ap_challengegrid[i] = gamedata->ap_challengegrid[i+1] = placed;
@@ -1038,11 +1049,11 @@ quickcheckagain:
 		);
 	}
 
-	CONS_Printf(" %lu unlocks vs %lu empty spaces\n", selection_small.size(), num_empty);
+	//CONS_Printf(" %lu unlocks vs %lu empty spaces\n", selection_small.size(), num_empty);
 
 	while (selection_small.size() < num_empty)
 	{
-		CONS_Printf(" adding empty)\n");
+		//CONS_Printf(" adding empty)\n");
 		selection_small.emplace_back(0);
 	}
 
@@ -1063,7 +1074,7 @@ quickcheckagain:
 
 		gamedata->ap_challengegrid[i] = placed; // Set that entry
 
-		CONS_Printf(" %li placed at (%li, %li)\n", placed, i / CHALLENGEGRIDHEIGHT, i % CHALLENGEGRIDHEIGHT);
+		//CONS_Printf(" %li placed at (%li, %li)\n", placed, i / CHALLENGEGRIDHEIGHT, i % CHALLENGEGRIDHEIGHT);
 
 		if (selection_small.empty())
 		{
@@ -1162,6 +1173,61 @@ badgrid:
 	gamedata->ap_challengegridwidth = 0;
 }
 
+boolean RRAP_TestGoal(void)
+{
+	if (g_goal_sent || g_goal_queued)
+	{
+		return false;
+	}
+
+	// Check goal condition
+	UINT8 num_trophies = 0;
+	cupheader_t *cup = kartcupheaders;
+	while (cup)
+	{
+		if (cup->id >= basenumkartcupheaders)
+		{
+			cup = NULL;
+			break;
+		}
+
+		boolean any_trophy = false;
+		for (size_t i = 0; i < 4; i++)
+		{
+			cupwindata_t *windata = &cup->windata[i];
+
+			if (windata->best_placement == 0)
+			{
+				// No trophy
+				continue;
+			}
+
+			if (g_goal_trophy_level != 0
+				&& g_goal_trophy_level < windata->best_placement)
+			{
+				// A trophy, but it's not good enough
+				continue;
+			}
+
+			any_trophy = true;
+			break;
+		}
+
+		if (any_trophy)
+		{
+			num_trophies++;
+			if (num_trophies >= g_goal_num_trophies)
+			{
+				break;
+			}
+		}
+
+		cup = cup->next;
+	}
+
+	return (num_trophies >= g_goal_num_trophies);
+}
+
 int RRAP_TestLocations(void)
 {
 	int response = 0;
@@ -1184,6 +1250,12 @@ int RRAP_TestLocations(void)
 		}
 
 		location.queue_check();
+		response++;
+	}
+
+	if (RRAP_TestGoal())
+	{
+		g_goal_queued = true;
 		response++;
 	}
 
@@ -1363,6 +1435,26 @@ void RRAP_CountItems(INT32 filter, INT64 *total, INT64 *count)
 	}
 }
 
+boolean RRAP_TryGoalSend(void)
+{
+	if (!g_goal_queued)
+	{
+		return false;
+	}
+
+	g_goal_queued = false;
+
+	if (g_goal_sent)
+	{
+		return false;
+	}
+
+	AP_StoryComplete();
+	g_goal_sent = true;
+
+	return true;
+}
+
 void RRAP_TickMessages(void)
 {
 	if (AP_IsMessagePending())
@@ -1471,12 +1563,11 @@ static void RRAP_GotItemReceived(int64_t item_id, bool should_notify)
 
 	g_ap_item_info[item_id].recieve();
 
-	if (true) //(should_notify)
+	if (should_notify)
 	{
-		// TEMP?
+		// TODO: Make prettier
 		CONS_Printf(
-			"Got AP item ID [%li]: %s\n",
-			item_id,
+			"Got '%s'!\n",
 			g_ap_item_info[item_id].name().c_str()
 		);
 	}
@@ -1554,6 +1645,34 @@ static void RRAP_SlotData_CharWinsCount(int wins_count)
 static void RRAP_SlotData_SimpleMapAccess(int toggle)
 {
 	g_simple_map_access = (bool)toggle;
+}
+
+static void RRAP_SlotData_GoalNumTrophies(int trophy_count)
+{
+	if (trophy_count < 1 || trophy_count > 30)
+	{
+		CONS_Alert(
+			CONS_WARNING,
+			"Recieved invalid goal_num_trophies setting (expected 1 to 30, got %d). Resetting to 14, issues may occur!\n",
+			trophy_count
+		);
+		trophy_count = 14;
+	}
+	g_goal_num_trophies = trophy_count;
+}
+
+static void RRAP_SlotData_GoalTrophyLevel(int trophy_level)
+{
+	if (trophy_level < 0 || trophy_level > 3)
+	{
+		CONS_Alert(
+			CONS_WARNING,
+			"Recieved invalid goal_trophy_level setting (expected 0 to 3, got %d). Resetting to 0, issues may occur!\n",
+			trophy_level
+		);
+		trophy_level = 0;
+	}
+	g_goal_trophy_level = trophy_level;
 }
 
 static void RRAP_DrawConnectionStatus(void)
@@ -1675,6 +1794,8 @@ static void RRAP_Connect(void)
 	AP_RegisterSlotDataRawCallback("apworld_version", RRAP_SlotData_APWorldVersion);
 	AP_RegisterSlotDataIntCallback("character_wins_count", RRAP_SlotData_CharWinsCount);
 	AP_RegisterSlotDataIntCallback("simple_map_access", RRAP_SlotData_SimpleMapAccess);
+	AP_RegisterSlotDataIntCallback("goal_num_trophies", RRAP_SlotData_GoalNumTrophies);
+	AP_RegisterSlotDataIntCallback("goal_trophy_level", RRAP_SlotData_GoalTrophyLevel);
 
 	AP_Start();
 
