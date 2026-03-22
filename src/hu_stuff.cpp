@@ -974,12 +974,20 @@ void HU_Ticker(void)
 	}
 
 	// handle chat timers
+	size_t remove_count = 0;
+
 	for (auto &mini : chat_mini)
 	{
 		if (mini.timer > 0)
 			mini.timer--;
 		else
-			HU_removeChatText_Mini();
+			remove_count++;
+	}
+
+	while (remove_count)
+	{
+		HU_removeChatText_Mini();
+		remove_count--;
 	}
 
 	if (cechotimer)
