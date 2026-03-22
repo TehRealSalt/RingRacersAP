@@ -51,20 +51,64 @@ def create_rr_item(world: RingRacersWorld, name: str) -> RingRacersItem:
 
     return RingRacersItem(name, classification, world.item_name_to_id[name], world.player)
 
+DEFAULT_DRIVER_LIST = [
+    "Driver: Tails",
+    "Driver: Amy",
+    "Driver: Sonic",
+    "Driver: Motobug",
+    "Driver: Knuckles",
+    "Driver: Fang",
+    "Driver: Dr. Eggman",
+    "Driver: Mighty",
+    "Driver: Metal Sonic"
+]
+
+ENGINE_CLASS_LIST = [
+    "A", "B", "C", "D", "E", "F", "G", "H", "I"
+]
 
 def create_all_items(world: RingRacersWorld) -> None:
     logging.debug('RingRacers:: Creating items...')
 
     driver_pool: list[Item] = []
+    starting_driver_pool: list[Item] = []
 
-    for driver_name in world.item_name_groups["Drivers"]:
-        driver_pool.append(world.create_item(driver_name))
+    match world.options.starting_driver_pool.value:
+        case 0:
+            for driver_name in world.item_name_groups["Drivers"]:
+                if driver_name in DEFAULT_DRIVER_LIST:
+                    starting_driver_pool.append(world.create_item(driver_name))
+                else:
+                    driver_pool.append(world.create_item(driver_name))
+        case 1:
+            engine_lists: dict[str, list[Item]] = {}
+            for engine in ENGINE_CLASS_LIST:
+                engine_lists[engine] = []
 
-    # TODO: Option for starting driver count
-    # TODO: Option for starting driver distribution (vanilla, random, or random-balanced)
-    for i in range(9):
-        precollect_driver = driver_pool.pop(world.random.randrange(len(driver_pool)))
+                for driver_name in world.item_name_groups["Engine Class {}".format(engine)]:
+                    engine_lists[engine].append(world.create_item(driver_name))
+
+                engine_driver_item = engine_lists[engine].pop(world.random.randrange(len(engine_lists[engine])))
+                starting_driver_pool.append(engine_driver_item)
+                driver_pool += engine_lists[engine]
+
+            # nab the weirdos
+            for driver_name in world.item_name_groups["Engine Class J"]:
+                driver_pool.append(world.create_item(driver_name))
+
+            for driver_name in world.item_name_groups["Engine Class R"]:
+                driver_pool.append(world.create_item(driver_name))
+
+        case _:
+            for driver_name in world.item_name_groups["Drivers"]:
+                starting_driver_pool.append(world.create_item(driver_name))
+
+    for i in range(world.options.starting_driver_count.value):
+        precollect_driver = starting_driver_pool.pop(world.random.randrange(len(starting_driver_pool)))
         world.push_precollected(precollect_driver)
+
+    # add whatever we didn't use
+    driver_pool += starting_driver_pool
 
     cup_pool: list[Item] = []
 
