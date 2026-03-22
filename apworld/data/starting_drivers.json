@@ -6,7 +6,8 @@
 			"label": "Tails",
 			"skin": "tails",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class A"
 			]
 		},
 		{
@@ -15,7 +16,8 @@
 			"label": "Amy",
 			"skin": "amy",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class B"
 			]
 		},
 		{
@@ -24,7 +26,8 @@
 			"label": "Sonic",
 			"skin": "sonic",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class C"
 			]
 		},
 		{
@@ -33,7 +36,8 @@
 			"label": "Motobug",
 			"skin": "motobug",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class D"
 			]
 		},
 		{
@@ -42,7 +46,8 @@
 			"label": "Knuckles",
 			"skin": "knuckles",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class E"
 			]
 		},
 		{
@@ -51,7 +56,8 @@
 			"label": "Fang",
 			"skin": "fang",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class F"
 			]
 		},
 		{
@@ -60,7 +66,8 @@
 			"label": "Dr. Eggman",
 			"skin": "eggman",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class G"
 			]
 		},
 		{
@@ -69,7 +76,8 @@
 			"label": "Mighty",
 			"skin": "mighty",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class H"
 			]
 		},
 		{
@@ -78,7 +86,8 @@
 			"label": "Metal Sonic",
 			"skin": "metalsonic",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class I"
 			]
 		}
 	]

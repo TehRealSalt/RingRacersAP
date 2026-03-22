@@ -582,7 +582,8 @@
 			"unlockable": 1,
 			"skin": "aiai",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class F"
 			]
 		},
 		{
@@ -592,7 +593,8 @@
 			"unlockable": 2,
 			"skin": "aigis",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class H"
 			]
 		},
 		{
@@ -602,7 +604,8 @@
 			"unlockable": 3,
 			"skin": "arle",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class D"
 			]
 		},
 		{
@@ -612,7 +615,8 @@
 			"unlockable": 4,
 			"skin": "azusa",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class F"
 			]
 		},
 		{
@@ -622,7 +626,8 @@
 			"unlockable": 5,
 			"skin": "bark",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class G"
 			]
 		},
 		{
@@ -632,7 +637,8 @@
 			"unlockable": 6,
 			"skin": "battlekukku",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class H"
 			]
 		},
 		{
@@ -642,7 +648,8 @@
 			"unlockable": 7,
 			"skin": "bean",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class A"
 			]
 		},
 		{
@@ -652,7 +659,8 @@
 			"unlockable": 8,
 			"skin": "big",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class H"
 			]
 		},
 		{
@@ -662,7 +670,8 @@
 			"unlockable": 9,
 			"skin": "billyh",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class D"
 			]
 		},
 		{
@@ -672,7 +681,8 @@
 			"unlockable": 10,
 			"skin": "blaze",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class C"
 			]
 		},
 		{
@@ -682,7 +692,8 @@
 			"unlockable": 11,
 			"skin": "bomb",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class C"
 			]
 		},
 		{
@@ -692,7 +703,8 @@
 			"unlockable": 12,
 			"skin": "carol",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class B"
 			]
 		},
 		{
@@ -702,7 +714,8 @@
 			"unlockable": 13,
 			"skin": "caterkiller",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class H"
 			]
 		},
 		{
@@ -712,7 +725,8 @@
 			"unlockable": 14,
 			"skin": "chao",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class A"
 			]
 		},
 		{
@@ -722,7 +736,8 @@
 			"unlockable": 15,
 			"skin": "chaos",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class G"
 			]
 		},
 		{
@@ -732,7 +747,8 @@
 			"unlockable": 16,
 			"skin": "charmy",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class B"
 			]
 		},
 		{
@@ -742,7 +758,8 @@
 			"unlockable": 17,
 			"skin": "chuchu",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class B"
 			]
 		},
 		{
@@ -752,7 +769,8 @@
 			"unlockable": 18,
 			"skin": "cluckoid",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class H"
 			]
 		},
 		{
@@ -762,7 +780,8 @@
 			"unlockable": 19,
 			"skin": "cream",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class B"
 			]
 		},
 		{
@@ -772,7 +791,8 @@
 			"unlockable": 20,
 			"skin": "ecco",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class G"
 			]
 		},
 		{
@@ -782,7 +802,8 @@
 			"unlockable": 21,
 			"skin": "eggrobo",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class G"
 			]
 		},
 		{
@@ -792,7 +813,8 @@
 			"unlockable": 22,
 			"skin": "emerl",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class E"
 			]
 		},
 		{
@@ -802,7 +824,8 @@
 			"unlockable": 23,
 			"skin": "espio",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class F"
 			]
 		},
 		{
@@ -812,7 +835,8 @@
 			"unlockable": 24,
 			"skin": "flicky",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class C"
 			]
 		},
 		{
@@ -822,7 +846,8 @@
 			"unlockable": 25,
 			"skin": "gum",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class E"
 			]
 		},
 		{
@@ -832,7 +857,8 @@
 			"unlockable": 26,
 			"skin": "gutbuster",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class D"
 			]
 		},
 		{
@@ -842,7 +868,8 @@
 			"unlockable": 27,
 			"skin": "headdy",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class A"
 			]
 		},
 		{
@@ -852,7 +879,8 @@
 			"unlockable": 28,
 			"skin": "heavy",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class G"
 			]
 		},
 		{
@@ -862,7 +890,8 @@
 			"unlockable": 29,
 			"skin": "heavymagician",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class J"
 			]
 		},
 		{
@@ -872,7 +901,8 @@
 			"unlockable": 30,
 			"skin": "honey",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class E"
 			]
 		},
 		{
@@ -882,7 +912,8 @@
 			"unlockable": 31,
 			"skin": "jackfrost",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class B"
 			]
 		},
 		{
@@ -892,7 +923,8 @@
 			"unlockable": 32,
 			"skin": "jet",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class A"
 			]
 		},
 		{
@@ -902,7 +934,8 @@
 			"unlockable": 34,
 			"skin": "mail",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class F"
 			]
 		},
 		{
@@ -912,7 +945,8 @@
 			"unlockable": 35,
 			"skin": "maria",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class D"
 			]
 		},
 		{
@@ -922,7 +956,8 @@
 			"unlockable": 36,
 			"skin": "mechasonic",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class I"
 			]
 		},
 		{
@@ -932,7 +967,8 @@
 			"unlockable": 37,
 			"skin": "metalknuckles",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class I"
 			]
 		},
 		{
@@ -942,7 +978,8 @@
 			"unlockable": 38,
 			"skin": "nights",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class A"
 			]
 		},
 		{
@@ -952,7 +989,8 @@
 			"unlockable": 39,
 			"skin": "orta",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class F"
 			]
 		},
 		{
@@ -962,7 +1000,8 @@
 			"unlockable": 40,
 			"skin": "pulseman",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class D"
 			]
 		},
 		{
@@ -972,7 +1011,8 @@
 			"unlockable": 41,
 			"skin": "rappy",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class C"
 			]
 		},
 		{
@@ -982,7 +1022,8 @@
 			"unlockable": 42,
 			"skin": "ray",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class B"
 			]
 		},
 		{
@@ -992,7 +1033,8 @@
 			"unlockable": 43,
 			"skin": "redz",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class G"
 			]
 		},
 		{
@@ -1002,7 +1044,8 @@
 			"unlockable": 44,
 			"skin": "rouge",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class E"
 			]
 		},
 		{
@@ -1012,7 +1055,8 @@
 			"unlockable": 45,
 			"skin": "sakura",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class E"
 			]
 		},
 		{
@@ -1022,7 +1066,8 @@
 			"unlockable": 46,
 			"skin": "shadow",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class C"
 			]
 		},
 		{
@@ -1032,7 +1077,8 @@
 			"unlockable": 47,
 			"skin": "silver",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class A"
 			]
 		},
 		{
@@ -1042,7 +1088,8 @@
 			"unlockable": 48,
 			"skin": "surge",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class C"
 			]
 		},
 		{
@@ -1052,7 +1099,8 @@
 			"unlockable": 49,
 			"skin": "tailsdoll",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class A"
 			]
 		},
 		{
@@ -1062,7 +1110,8 @@
 			"unlockable": 50,
 			"skin": "tikal",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class E"
 			]
 		},
 		{
@@ -1072,7 +1121,8 @@
 			"unlockable": 51,
 			"skin": "vectorman",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class I"
 			]
 		},
 		{
@@ -1082,7 +1132,8 @@
 			"unlockable": 52,
 			"skin": "whisper",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class B"
 			]
 		},
 		{
@@ -1092,7 +1143,8 @@
 			"unlockable": 53,
 			"skin": "wonderboy",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class H"
 			]
 		},
 		{
@@ -1102,7 +1154,8 @@
 			"unlockable": 54,
 			"skin": "zipp",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class E"
 			]
 		},
 		{
@@ -1112,7 +1165,8 @@
 			"unlockable": 55,
 			"skin": "ring",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class R"
 			]
 		},
 		{
@@ -1122,7 +1176,8 @@
 			"unlockable": 56,
 			"skin": "troublebruin",
 			"tags": [
-				"Drivers"
+				"Drivers",
+				"Engine Class E"
 			]
 		}
 	]

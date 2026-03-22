@@ -1217,7 +1217,11 @@ def set_follower_challenge_location_rules(world: RingRacersWorld) -> None:
         lambda state:
             state.has("Gear 3 + GP Vicious Mode", world.player)
             and state.can_reach_region("SRB2 Frozen Night", world.player)
-            # TODO: Requires Engine Class C, F, or I
+            and (
+                state.has_group("Engine Class C", world.player)
+                or state.has_group("Engine Class F", world.player)
+                or state.has_group("Engine Class I", world.player)
+            )
     )
 
     set_rule(
