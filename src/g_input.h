@@ -116,6 +116,9 @@ typedef enum
 	gc_startlossless,
 	gc_voicepushtotalk,
 
+	// [RRAP]
+	gc_aptalk,
+
 	num_gamecontrols,
 
 	// alias gameplay controls

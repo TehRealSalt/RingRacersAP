@@ -910,7 +910,8 @@ static const char *gamecontrolname[num_gamecontrols] =
 	"screenshot",
 	"startmovie",
 	"startlossless",
-	"voicepushtotalk"
+	"voicepushtotalk",
+	"aptalk"
 };
 
 #define NUMKEYNAMES (sizeof (keynames)/sizeof (keyname_t))
@@ -1086,7 +1087,7 @@ void G_DefineDefaultControls(void)
 	gamecontroldefault[gc_l            ][0] = KEY_SPACE;
 	gamecontroldefault[gc_r            ][0] = 's';
 	gamecontroldefault[gc_start        ][0] = KEY_ESCAPE;
-	gamecontroldefault[gc_talk         ][0] = 't';
+	gamecontroldefault[gc_aptalk       ][0] = 't';
 	gamecontroldefault[gc_rankings     ][0] = KEY_TAB;
 	gamecontroldefault[gc_screenshot   ][0] = KEY_F8;
 	gamecontroldefault[gc_startmovie   ][0] = KEY_F9;

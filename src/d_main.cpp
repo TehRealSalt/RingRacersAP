@@ -735,11 +735,6 @@ static bool D_Display(bool world)
 		}
 	}
 
-	if (Playing() || demo.playback)
-	{
-		HU_Drawer();
-	}
-
 	// change gamma if needed
 	// (GS_LEVEL handles this already due to level-specific palettes)
 	if (forcerefresh && G_GamestateUsesLevel() == false)
@@ -756,6 +751,9 @@ static bool D_Display(bool world)
 	I_unlock_mutex(k_menu_mutex);
 #endif
 	// focus lost moved to M_Drawer
+
+	// [RRAP] Enabled HU_Drawer everywhere for AP log
+	HU_Drawer();
 
 	CON_Drawer();
 

@@ -81,6 +81,9 @@ menuitem_t OPTIONS_ProfileControls[] = {
 	{IT_CONTROL, "SHOW RANKINGS", "Display the current rankings mid-game.",
 		NULL, {.routine = M_ProfileSetControl}, gc_rankings, 0},
 
+	{IT_CONTROL, "OPEN AP CHAT", "Opens keyboard chat for your Archipelago room.",
+		NULL, {.routine = M_ProfileSetControl}, gc_aptalk, 0},
+
 	{IT_CONTROL, "OPEN CHAT", "Opens full keyboard chatting for online games.",
 		NULL, {.routine = M_ProfileSetControl}, gc_talk, 0},
 
