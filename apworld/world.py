@@ -58,4 +58,6 @@ class RingRacersWorld(World):
             "apworld_version": self.apworld_version,
             "character_wins_count": self.options.character_wins_count.value,
             "simple_map_access": self.options.simple_map_access.value,
+            "goal_num_trophies": self.options.goal_num_trophies.value,
+            "goal_trophy_level": self.options.goal_trophy_level.value,
         }

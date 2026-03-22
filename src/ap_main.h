@@ -232,6 +232,7 @@ UINT32 RRAP_CapCharacterWins(UINT32 input);
 boolean RRAP_SimplifyMapAccess(void);
 
 int RRAP_TestLocations(void);
+boolean RRAP_TryGoalSend(void);
 INT64 RRAP_GetNextCheckedLocation(boolean canskipchaokeys);
 void RRAP_ChallengesMenuCountPercent(void);
 INT64 RRAP_ChallengesMenuRandomFocus(INT32 level);

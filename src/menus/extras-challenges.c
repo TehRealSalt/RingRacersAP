@@ -822,7 +822,15 @@ void M_ChallengesTick(void)
 			// Fade decrease.
 			if (--challengesmenu.fade == 0)
 			{
-				if (M_ConsiderSealedSwapAlert() == true)
+				if (RRAP_TryGoalSend())
+				{
+					M_StartMessage(
+						"Good job!",
+						"You win!\n",
+						NULL, MM_NOTHING, NULL, NULL
+					);
+				}
+				else if (M_ConsiderSealedSwapAlert() == true)
 				{
 					// No keygen tutorial in this case...
 					// not ideal but at least unlikely to

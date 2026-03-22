@@ -68,9 +68,41 @@ class SimpleMapAccess(DefaultOnToggle):
     display_name = "Simplify Map Access"
 
 
+class GoalNumTrophies(Range):
+    """
+    How many Cup trophies are needed in order to complete the game.
+    """
+
+    internal_name = "goal_num_trophies"
+    display_name = "# of Required Trophies"
+    range_start = 1
+    range_end = 30
+    default = 14
+
+
+class GoalTrophyLevel(NamedRange):
+    """
+    The final placement needed in order to for a Cup's trophy to be considered for goal.
+    """
+
+    internal_name = "goal_trophy_level"
+    display_name = "Required Trophy Placement"
+    range_start = 1
+    range_end = 3
+    default = 1
+    special_range_names = {
+        "any": 0,
+        "gold": 1,
+        "silver": 2,
+        "bronze": 3,
+    }
+
+
 @dataclass
 class RingRacersOptions(PerGameCommonOptions):
     starting_driver_count: StartingDriverCount
     starting_driver_pool: StartingDriverPool
+    goal_num_trophies: GoalNumTrophies
+    goal_trophy_level: GoalTrophyLevel
     character_wins_count: CharWinsCount
     simple_map_access: SimpleMapAccess
