@@ -177,7 +177,7 @@ rrap_item_t::rrap_item_t(srb2::JsonValue json)
 
 	_label = json.value("label", srb2::String(""));
 	_display_type = SECRET_NONE;
-	_display_icon = "";
+	_display_icon = json.value("icon", srb2::String(""));
 	_display_color = SKINCOLOR_NONE;
 
 	int work_unlock_id = json.value("unlockable", 0);
@@ -271,6 +271,14 @@ rrap_item_t::rrap_item_t(srb2::JsonValue json)
 		// The ID isn't used, so just update display type
 		SRB2_ASSERT(_display_type == SECRET_NONE);
 		_display_type = SECRET_MAP;
+	}
+
+	srb2::String work_song_map = json.value("song_map", srb2::String(""));
+	if (work_song_map.empty() == false)
+	{
+		// The ID isn't used, so just update display type
+		SRB2_ASSERT(_display_type == SECRET_NONE);
+		_display_type = SECRET_ALTMUSIC;
 	}
 
 	srb2::String work_type = json.value("item_type", srb2::String(""));
