@@ -1699,9 +1699,21 @@ static void Command_AP_Connect(void)
 	RRAP_Connect();
 }
 
+static void Command_AP_Say(void)
+{
+	if (COM_Argc() < 2 || *COM_Argv(1) == 0)
+	{
+		CONS_Printf("ap_say <message>: send a message to the Archipelago room\n");
+		return;
+	}
+
+	RRAP_Say(COM_Argv(1));
+}
+
 void D_RegisterArchipelagoCommands(void)
 {
 	COM_AddCommand("ap_connect", Command_AP_Connect);
+	COM_AddCommand("ap_say", Command_AP_Say);
 }
 
 void RRAP_ConnectFromMenu(int32_t choice)
