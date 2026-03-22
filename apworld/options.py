@@ -3,6 +3,39 @@ from dataclasses import dataclass
 from Options import PerGameCommonOptions, Toggle, DefaultOnToggle, Choice, Range, NamedRange, OptionGroup
 
 
+class StartingDriverCount(Range):
+    """
+    How many drivers to start with.
+    """
+
+    internal_name = "starting_driver_count"
+    display_name = "Starting Driver Count"
+    range_start = 1
+    range_end = 9
+    default = 9
+
+
+class StartingDriverPool(NamedRange):
+    """
+    Determine the pool that is chosen from when randomizing starting drivers.
+
+    - **Vanilla**: Randomize from only the starting drivers.
+    - **Balanced**: Randomize from any drivers, but require at least one from each engine class.
+    - **Full**: Randomize from any drivers, no restrictions.
+    """
+
+    internal_name = "starting_driver_pool"
+    display_name = "Starting Driver Pool"
+    range_start = 0
+    range_end = 2
+    default = 1
+    special_range_names = {
+        "vanilla": 0,
+        "balanced": 1,
+        "full": 2,
+    }
+
+
 class CharWinsCount(NamedRange):
     """
     Alter the number of wins required for any "100 wins playing as X" challenges.
@@ -37,5 +70,7 @@ class SimpleMapAccess(DefaultOnToggle):
 
 @dataclass
 class RingRacersOptions(PerGameCommonOptions):
+    starting_driver_count: StartingDriverCount
+    starting_driver_pool: StartingDriverPool
     character_wins_count: CharWinsCount
     simple_map_access: SimpleMapAccess
