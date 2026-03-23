@@ -231,8 +231,15 @@ UINT8 *R_GetSkinAvailabilities(boolean demolock, INT32 botforcecharacter)
 		shif = (skinid % 8);
 		byte = (skinid / 8);
 
+		// [RRAP] Complain loudly if we run into our hack
+		I_Assert(byte != MAXAVAILABILITY-1 && shif != 7);
+
 		responsebuffer[byte] |= (1 << shif);
 	}
+
+	// [RRAP] Small wink & nudge to tell other AP clients
+	// (or ourselves) that we're an AP client. See: R_SkinUsable
+	responsebuffer[MAXAVAILABILITY-1] |= (1 << 7);
 
 	return responsebuffer;
 }
@@ -296,20 +303,40 @@ boolean R_SkinUsable(INT32 playernum, INT32 skinnum, boolean demoskins)
 		return true;
 	}
 
+	rrap_item_t *item = RRAP_GetItem(item_id);
+	UINT16 unlock_id = RRAP_ItemToUnlockableId(item);
+
 	// Ok, you can use this character IF you have it unlocked.
 	if (useplayerstruct)
 	{
 		// Use the netgame synchronized unlocks.
+
+		// [RRAP] HACK: reuse the final bit as an AP client
+		// check. Vanilla clients will send the base 9 as
+		// 0 because their client will always skip em anyways.
+		// Annoying for us, because we want to lock them but
+		// also still interface with vanilla clients...
+		boolean from_ap_client = !!(players[playernum].availabilities[MAXAVAILABILITY-1] & (1 << 7));
+
+		if (!from_ap_client && unlock_id == MAXUNLOCKABLES)
+		{
+			// Base character on a vanilla client,
+			// they should be unlocked.
+			return true;
+		}
+
 		UINT8 shif = (skinnum % 8);
 		UINT8 byte = (skinnum / 8);
+
+		// [RRAP] Complain loudly if we run into our hack
+		I_Assert(byte != MAXAVAILABILITY-1 && shif != 7);
+
 		return !!(players[playernum].availabilities[byte] & (1 << shif));
 	}
 
-	rrap_item_t *item = RRAP_GetItem(item_id);
-
 	// Use the host's if it's checking general state
 	if (playernum == -1)
-		return M_CheckNetUnlockByID(RRAP_ItemToUnlockableId(item));
+		return M_CheckNetUnlockByID(unlock_id);
 
 	// Use the unlockables table directly
 	return RRAP_ItemRecieved(item);
