@@ -71,6 +71,11 @@ static UINT8 g_goal_trophy_level = 0;
 static boolean g_goal_queued = false;
 static boolean g_goal_sent = false;
 
+static srb2::Vector<srb2::String> g_group_blacklist;
+static srb2::Vector<srb2::String> g_group_whitelist;
+static srb2::Vector<srb2::String> g_name_blacklist;
+static srb2::Vector<srb2::String> g_name_whitelist;
+
 rrap_location_t::rrap_location_t(srb2::JsonValue json)
 {
 	_id = json.at("id").get<INT64>();
@@ -98,6 +103,45 @@ rrap_location_t::rrap_location_t(srb2::JsonValue json)
 			throw std::runtime_error(srb2::format("invalid spray can location map '{}'", spray_can_map_name));
 		}
 	}
+
+	srb2::JsonArray tags_array = json.at("tags").get<srb2::JsonArray>();
+	for (auto &tag_value : tags_array)
+	{
+		srb2::String tag = tag_value.get<srb2::String>();
+		_tags.emplace_back(tag);
+	}
+}
+
+void rrap_location_t::update_available()
+{
+	if (std::find(g_name_whitelist.begin(), g_name_whitelist.end(), _name) != g_name_whitelist.end())
+	{
+		_available = true;
+		return;
+	}
+
+	if (std::find(g_name_blacklist.begin(), g_name_blacklist.end(), _name) != g_name_blacklist.end())
+	{
+		_available = false;
+		return;
+	}
+
+	for (auto &tag : _tags)
+	{
+		if (std::find(g_group_whitelist.begin(), g_group_whitelist.end(), tag) != g_group_whitelist.end())
+		{
+			_available = true;
+			return;
+		}
+
+		if (std::find(g_group_blacklist.begin(), g_group_blacklist.end(), tag) != g_group_blacklist.end())
+		{
+			_available = false;
+			return;
+		}
+	}
+
+	_available = true;
 }
 
 void rrap_location_t::immediate_check()
@@ -442,7 +486,7 @@ UINT16 RRAP_ItemClassToSkinColor(UINT8 item_class)
 {
 	if (item_class & AP_CLASSIFICATION_PROGRESSION)
 	{
-		return SKINCOLOR_LAVENDER;
+		return SKINCOLOR_PURPLE;
 	}
 	else if (item_class & AP_CLASSIFICATION_USEFUL)
 	{
@@ -462,7 +506,7 @@ UINT8 RRAP_ItemClassToTextColor(UINT8 item_class)
 {
 	if (item_class & AP_CLASSIFICATION_PROGRESSION)
 	{
-		return 0x89; // lavendermap
+		return 0x81; // purplemap
 	}
 	else if (item_class & AP_CLASSIFICATION_USEFUL)
 	{
@@ -1675,6 +1719,41 @@ static void RRAP_SlotData_GoalTrophyLevel(int trophy_level)
 	g_goal_trophy_level = trophy_level;
 }
 
+static void RRAP_UpdateList(srb2::Vector<srb2::String> &input, srb2::JsonArray &array)
+{
+	input.clear();
+
+	for (auto &val : array)
+	{ 
+		srb2::String str = val.get<srb2::String>();
+		input.emplace_back(str);
+	}
+}
+
+static void RRAP_SlotData_GroupWhitelist(std::string raw_string)
+{
+	srb2::JsonArray array = srb2::JsonValue::from_json_string(raw_string).get<srb2::JsonArray>();
+	RRAP_UpdateList(g_group_whitelist, array);
+}
+
+static void RRAP_SlotData_GroupBlacklist(std::string raw_string)
+{
+	srb2::JsonArray array = srb2::JsonValue::from_json_string(raw_string).get<srb2::JsonArray>();
+	RRAP_UpdateList(g_group_blacklist, array);
+}
+
+static void RRAP_SlotData_NameWhitelist(std::string raw_string)
+{
+	srb2::JsonArray array = srb2::JsonValue::from_json_string(raw_string).get<srb2::JsonArray>();
+	RRAP_UpdateList(g_name_whitelist, array);
+}
+
+static void RRAP_SlotData_NameBlacklist(std::string raw_string)
+{
+	srb2::JsonArray array = srb2::JsonValue::from_json_string(raw_string).get<srb2::JsonArray>();
+	RRAP_UpdateList(g_name_blacklist, array);
+}
+
 static void RRAP_DrawConnectionStatus(void)
 {
 	tic_t tick = I_GetTime();
@@ -1771,6 +1850,14 @@ static int RRAP_StartupTick(void)
 	return 0;
 }
 
+static void RRAP_UpdateLocationsAvailable(void)
+{
+	for (auto& [_, location] : g_ap_location_info)
+	{
+		location.update_available();
+	}
+}
+
 static void RRAP_Connect(void)
 {
 	if (g_ap_started)
@@ -1792,6 +1879,12 @@ static void RRAP_Connect(void)
 	AP_SetLocationInfoCallback(RRAP_GotLocationInfo);
 
 	AP_RegisterSlotDataRawCallback("apworld_version", RRAP_SlotData_APWorldVersion);
+
+	AP_RegisterSlotDataRawCallback("location_group_whitelist", RRAP_SlotData_GroupWhitelist);
+	AP_RegisterSlotDataRawCallback("location_group_blacklist", RRAP_SlotData_GroupBlacklist);
+	AP_RegisterSlotDataRawCallback("location_name_whitelist", RRAP_SlotData_NameWhitelist);
+	AP_RegisterSlotDataRawCallback("location_name_blacklist", RRAP_SlotData_NameBlacklist);
+
 	AP_RegisterSlotDataIntCallback("character_wins_count", RRAP_SlotData_CharWinsCount);
 	AP_RegisterSlotDataIntCallback("simple_map_access", RRAP_SlotData_SimpleMapAccess);
 	AP_RegisterSlotDataIntCallback("goal_num_trophies", RRAP_SlotData_GoalNumTrophies);
@@ -1808,6 +1901,7 @@ static void RRAP_Connect(void)
 	if (result == 1)
 	{
 		g_ap_started = true;
+		RRAP_UpdateLocationsAvailable();
 		RRAP_InitGamedata();
 
 		if (gamestate == GS_MENU || gamestate == GS_TITLESCREEN)

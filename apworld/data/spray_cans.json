@@ -4,6 +4,7 @@
 			"id": 9000,
 			"name": "KKD Honor",
 			"label": "KKD Honor",
+			"class": "filler",
 			"tags": [
 				"Filler"
 			]
@@ -14,6 +15,7 @@
 			"label": "Red",
 			"unlockable": 500,
 			"color": "red",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -24,6 +26,7 @@
 			"label": "Crimson",
 			"unlockable": 501,
 			"color": "crimson",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -34,6 +37,7 @@
 			"label": "Maroon",
 			"unlockable": 502,
 			"color": "maroon",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -44,6 +48,7 @@
 			"label": "Lemonade",
 			"unlockable": 503,
 			"color": "lemonade",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -54,6 +59,7 @@
 			"label": "Scarlet",
 			"unlockable": 504,
 			"color": "scarlet",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -64,6 +70,7 @@
 			"label": "Ketchup",
 			"unlockable": 505,
 			"color": "ketchup",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -74,6 +81,7 @@
 			"label": "Dawn",
 			"unlockable": 506,
 			"color": "dawn",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -84,6 +92,7 @@
 			"label": "Sunslam",
 			"unlockable": 507,
 			"color": "sunslam",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -94,6 +103,7 @@
 			"label": "Creamsicle",
 			"unlockable": 508,
 			"color": "creamsicle",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -104,6 +114,7 @@
 			"label": "Orange",
 			"unlockable": 509,
 			"color": "orange",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -114,6 +125,7 @@
 			"label": "Rosewood",
 			"unlockable": 510,
 			"color": "rosewood",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -124,6 +136,7 @@
 			"label": "Tangerine",
 			"unlockable": 511,
 			"color": "tangerine",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -134,6 +147,7 @@
 			"label": "Tan",
 			"unlockable": 512,
 			"color": "tan",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -144,6 +158,7 @@
 			"label": "Cream",
 			"unlockable": 513,
 			"color": "cream",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -154,6 +169,7 @@
 			"label": "Gold",
 			"unlockable": 514,
 			"color": "gold",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -164,6 +180,7 @@
 			"label": "Royal",
 			"unlockable": 515,
 			"color": "royal",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -174,6 +191,7 @@
 			"label": "Bronze",
 			"unlockable": 516,
 			"color": "bronze",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -184,6 +202,7 @@
 			"label": "Copper",
 			"unlockable": 517,
 			"color": "copper",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -194,6 +213,7 @@
 			"label": "Mustard",
 			"unlockable": 518,
 			"color": "mustard",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -204,6 +224,7 @@
 			"label": "Banana",
 			"unlockable": 519,
 			"color": "banana",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -214,6 +235,7 @@
 			"label": "Olive",
 			"unlockable": 520,
 			"color": "olive",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -224,6 +246,7 @@
 			"label": "Crocodile",
 			"unlockable": 521,
 			"color": "crocodile",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -234,6 +257,7 @@
 			"label": "Peridot",
 			"unlockable": 522,
 			"color": "peridot",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -244,6 +268,7 @@
 			"label": "Vomit",
 			"unlockable": 523,
 			"color": "vomit",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -254,6 +279,7 @@
 			"label": "Garden",
 			"unlockable": 524,
 			"color": "garden",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -264,6 +290,7 @@
 			"label": "Lime",
 			"unlockable": 525,
 			"color": "lime",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -274,6 +301,7 @@
 			"label": "Handheld",
 			"unlockable": 526,
 			"color": "handheld",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -284,6 +312,7 @@
 			"label": "Tea",
 			"unlockable": 527,
 			"color": "tea",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -294,6 +323,7 @@
 			"label": "Pistachio",
 			"unlockable": 528,
 			"color": "pistachio",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -304,6 +334,7 @@
 			"label": "Moss",
 			"unlockable": 529,
 			"color": "moss",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -314,6 +345,7 @@
 			"label": "Camouflage",
 			"unlockable": 530,
 			"color": "camouflage",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -324,6 +356,7 @@
 			"label": "Mint",
 			"unlockable": 531,
 			"color": "mint",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -334,6 +367,7 @@
 			"label": "Green",
 			"unlockable": 532,
 			"color": "green",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -344,6 +378,7 @@
 			"label": "Pinetree",
 			"unlockable": 533,
 			"color": "pinetree",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -354,6 +389,7 @@
 			"label": "Turtle",
 			"unlockable": 534,
 			"color": "turtle",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -364,6 +400,7 @@
 			"label": "Swamp",
 			"unlockable": 535,
 			"color": "swamp",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -374,6 +411,7 @@
 			"label": "Dream",
 			"unlockable": 536,
 			"color": "dream",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -384,6 +422,7 @@
 			"label": "Plague",
 			"unlockable": 537,
 			"color": "plague",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -394,6 +433,7 @@
 			"label": "Emerald",
 			"unlockable": 538,
 			"color": "emerald",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -404,6 +444,7 @@
 			"label": "Algae",
 			"unlockable": 539,
 			"color": "algae",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -414,6 +455,7 @@
 			"label": "Aquamarine",
 			"unlockable": 540,
 			"color": "aquamarine",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -424,6 +466,7 @@
 			"label": "Turquoise",
 			"unlockable": 541,
 			"color": "turquoise",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -434,6 +477,7 @@
 			"label": "Teal",
 			"unlockable": 542,
 			"color": "teal",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -444,6 +488,7 @@
 			"label": "Robin",
 			"unlockable": 543,
 			"color": "robin",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -454,6 +499,7 @@
 			"label": "Cyan",
 			"unlockable": 544,
 			"color": "cyan",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -464,6 +510,7 @@
 			"label": "Cerulean",
 			"unlockable": 545,
 			"color": "cerulean",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -474,6 +521,7 @@
 			"label": "Navy",
 			"unlockable": 546,
 			"color": "navy",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -484,6 +532,7 @@
 			"label": "Platinum",
 			"unlockable": 547,
 			"color": "platinum",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -494,6 +543,7 @@
 			"label": "Slate",
 			"unlockable": 548,
 			"color": "slate",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -504,6 +554,7 @@
 			"label": "Steel",
 			"unlockable": 549,
 			"color": "steel",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -514,6 +565,7 @@
 			"label": "Thunder",
 			"unlockable": 550,
 			"color": "thunder",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -524,6 +576,7 @@
 			"label": "Nova",
 			"unlockable": 551,
 			"color": "nova",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -534,6 +587,7 @@
 			"label": "Rust",
 			"unlockable": 552,
 			"color": "rust",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -544,6 +598,7 @@
 			"label": "Wristwatch",
 			"unlockable": 553,
 			"color": "wristwatch",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -554,6 +609,7 @@
 			"label": "Jet",
 			"unlockable": 554,
 			"color": "jet",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -564,6 +620,7 @@
 			"label": "Sapphire",
 			"unlockable": 555,
 			"color": "sapphire",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -574,6 +631,7 @@
 			"label": "Ultramarine",
 			"unlockable": 556,
 			"color": "ultramarine",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -584,6 +642,7 @@
 			"label": "Periwinkle",
 			"unlockable": 557,
 			"color": "periwinkle",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -594,6 +653,7 @@
 			"label": "Blue",
 			"unlockable": 558,
 			"color": "blue",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -604,6 +664,7 @@
 			"label": "Midnight",
 			"unlockable": 559,
 			"color": "midnight",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -614,6 +675,7 @@
 			"label": "Blueberry",
 			"unlockable": 560,
 			"color": "blueberry",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -624,6 +686,7 @@
 			"label": "Thistle",
 			"unlockable": 561,
 			"color": "thistle",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -634,6 +697,7 @@
 			"label": "Purple",
 			"unlockable": 562,
 			"color": "purple",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -644,6 +708,7 @@
 			"label": "Pastel",
 			"unlockable": 563,
 			"color": "pastel",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -654,6 +719,7 @@
 			"label": "Moonset",
 			"unlockable": 564,
 			"color": "moonset",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -664,6 +730,7 @@
 			"label": "Dusk",
 			"unlockable": 565,
 			"color": "dusk",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -674,6 +741,7 @@
 			"label": "Violet",
 			"unlockable": 566,
 			"color": "violet",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -684,6 +752,7 @@
 			"label": "Fuchsia",
 			"unlockable": 567,
 			"color": "fuchsia",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -694,6 +763,7 @@
 			"label": "Toxic",
 			"unlockable": 568,
 			"color": "toxic",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -704,6 +774,7 @@
 			"label": "Mauve",
 			"unlockable": 569,
 			"color": "mauve",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -714,6 +785,7 @@
 			"label": "Lavender",
 			"unlockable": 570,
 			"color": "lavender",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -724,6 +796,7 @@
 			"label": "Byzantium",
 			"unlockable": 571,
 			"color": "byzantium",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -734,6 +807,7 @@
 			"label": "Pomegranate",
 			"unlockable": 572,
 			"color": "pomegranate",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -744,6 +818,7 @@
 			"label": "Lilac",
 			"unlockable": 573,
 			"color": "lilac",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -754,6 +829,7 @@
 			"label": "Blossom",
 			"unlockable": 574,
 			"color": "blossom",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -764,6 +840,7 @@
 			"label": "Taffy",
 			"unlockable": 575,
 			"color": "taffy",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -774,6 +851,7 @@
 			"label": "White",
 			"unlockable": 576,
 			"color": "white",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -784,6 +862,7 @@
 			"label": "Silver",
 			"unlockable": 577,
 			"color": "silver",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -794,6 +873,7 @@
 			"label": "Grey",
 			"unlockable": 578,
 			"color": "grey",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -804,6 +884,7 @@
 			"label": "Nickel",
 			"unlockable": 579,
 			"color": "nickel",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -814,6 +895,7 @@
 			"label": "Black",
 			"unlockable": 580,
 			"color": "black",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -824,6 +906,7 @@
 			"label": "Skunk",
 			"unlockable": 581,
 			"color": "skunk",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -834,6 +917,7 @@
 			"label": "Fairy",
 			"unlockable": 582,
 			"color": "fairy",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -844,6 +928,7 @@
 			"label": "Popcorn",
 			"unlockable": 583,
 			"color": "popcorn",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -854,6 +939,7 @@
 			"label": "Artichoke",
 			"unlockable": 584,
 			"color": "artichoke",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -864,6 +950,7 @@
 			"label": "Pigeon",
 			"unlockable": 585,
 			"color": "pigeon",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -874,6 +961,7 @@
 			"label": "Sepia",
 			"unlockable": 586,
 			"color": "sepia",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -884,6 +972,7 @@
 			"label": "Beige",
 			"unlockable": 587,
 			"color": "beige",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -894,6 +983,7 @@
 			"label": "Caramel",
 			"unlockable": 588,
 			"color": "caramel",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -904,6 +994,7 @@
 			"label": "Peach",
 			"unlockable": 589,
 			"color": "peach",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -914,6 +1005,7 @@
 			"label": "Brown",
 			"unlockable": 590,
 			"color": "brown",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -924,6 +1016,7 @@
 			"label": "Leather",
 			"unlockable": 591,
 			"color": "leather",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -934,6 +1027,7 @@
 			"label": "Pink",
 			"unlockable": 592,
 			"color": "pink",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -944,6 +1038,7 @@
 			"label": "Rose",
 			"unlockable": 593,
 			"color": "rose",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -954,6 +1049,7 @@
 			"label": "Cinnamon",
 			"unlockable": 594,
 			"color": "cinnamon",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -964,6 +1060,7 @@
 			"label": "Ruby",
 			"unlockable": 595,
 			"color": "ruby",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -974,6 +1071,7 @@
 			"label": "Raspberry",
 			"unlockable": 596,
 			"color": "raspberry",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -984,6 +1082,7 @@
 			"label": "Yellow",
 			"unlockable": 597,
 			"color": "yellow",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -994,6 +1093,7 @@
 			"label": "Magenta",
 			"unlockable": 598,
 			"color": "magenta",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]
@@ -1004,6 +1104,7 @@
 			"label": "Jawz",
 			"unlockable": 599,
 			"color": "jawz",
+			"class": "filler",
 			"tags": [
 				"Spray Cans"
 			]

@@ -98,6 +98,46 @@ class GoalTrophyLevel(NamedRange):
     }
 
 
+class Challenges(DefaultOnToggle):
+    """
+    Include most locations from the Challenges board.
+    """
+
+    internal_name = "challenges"
+    display_name = "Challenges Board"
+
+
+class SprayCans(DefaultOnToggle):
+    """
+    Include each map's Spray Can as a location.
+    """
+
+    internal_name = "spray_cans"
+    display_name = "Spray Cans"
+
+
+class GumChallenge(Toggle):
+    """
+    Forcefully include Gum's Challenge. Does nothing if Challenges are off.
+    
+    This will turn many Spray Cans from filler to progression items for a single check. Enable at your own risk!
+    """
+
+    internal_name = "gum_challenge"
+    display_name = "Gum's Challenge"
+
+
+class SoundTestChallenge(Toggle):
+    """
+    Include Sound Test's Challenge. Does nothing if Challenges are off.
+    
+    This will turn some Alt. Music from filler to progression items for a single check.
+    """
+
+    internal_name = "sound_test_challenge"
+    display_name = "Sound Test's Challenge"
+
+
 @dataclass
 class RingRacersOptions(PerGameCommonOptions):
     starting_driver_count: StartingDriverCount
@@ -106,3 +146,7 @@ class RingRacersOptions(PerGameCommonOptions):
     goal_trophy_level: GoalTrophyLevel
     character_wins_count: CharWinsCount
     simple_map_access: SimpleMapAccess
+    challenges: Challenges
+    spray_cans: SprayCans
+    gum_challenge: GumChallenge
+    sound_test_challenge: SoundTestChallenge

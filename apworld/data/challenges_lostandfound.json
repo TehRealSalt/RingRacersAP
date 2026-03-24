@@ -63,6 +63,7 @@
 			"label": "Test Run",
 			"unlockable": 760,
 			"map": "RR_TestRun",
+			"class": "progression_deprioritized_skip_balancing",
 			"tags": [
 				"Maps"
 			]
@@ -73,6 +74,7 @@
 			"label": "Leap of Faith",
 			"unlockable": 761,
 			"map": "RR_HiddenPalace",
+			"class": "progression",
 			"tags": [
 				"Maps"
 			]
@@ -83,6 +85,7 @@
 			"label": "Test Track",
 			"unlockable": 762,
 			"map": "RR_TestTrack",
+			"class": "progression",
 			"tags": [
 				"Maps"
 			]
@@ -93,6 +96,7 @@
 			"label": "Digital Detour",
 			"unlockable": 763,
 			"map": "RR_Route1980",
+			"class": "progression",
 			"tags": [
 				"Maps"
 			]
@@ -103,6 +107,7 @@
 			"label": "Duel Busters",
 			"unlockable": 764,
 			"map": "RR_DuelBuster",
+			"class": "progression",
 			"tags": [
 				"Maps"
 			]

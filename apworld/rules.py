@@ -6,7 +6,7 @@ from typing import TYPE_CHECKING
 from BaseClasses import CollectionState, LocationProgressType
 from worlds.generic.Rules import add_rule, set_rule
 
-from . import regions, items, jsondata
+from . import regions, locations, items, jsondata
 
 if TYPE_CHECKING:
     from .world import RingRacersWorld
@@ -313,14 +313,15 @@ def set_driver_challenge_location_rules(world: RingRacersWorld) -> None:
             state.has("Driver: Motobug", world.player)
     )
 
-    gum_location = world.get_location("Challenge - Driver: Gum")
-    set_rule(
-        gum_location,
-        lambda state:
-            have_group_percentage(state, "Spray Cans", world.player, 75)
-    )
-    # Requires over 50% of colors, exclude
-    gum_location.progress_type = LocationProgressType.EXCLUDED
+    if locations.location_name_allowed(world, "Challenge - Driver: Gum"):
+        gum_location = world.get_location("Challenge - Driver: Gum")
+        set_rule(
+            gum_location,
+            lambda state:
+                have_group_percentage(state, "Spray Cans", world.player, 75)
+        )
+        # Requires over 50% of colors, exclude
+        gum_location.progress_type = LocationProgressType.EXCLUDED
 
     set_rule(
         world.get_location("Challenge - Driver: Gutbuster"),
@@ -1724,12 +1725,13 @@ def set_extras_challenge_location_rules(world: RingRacersWorld) -> None:
     # "Challenge - Egg TV" is always possible, currently
     #
 
-    sound_test_location = world.get_location("Challenge - Sound Test")
-    set_rule(
-        sound_test_location,
-        lambda state:
-            have_group_percentage(state, "Alt. Music", world.player, 25)
-    )
+    if locations.location_name_allowed(world, "Challenge - Sound Test"):
+        sound_test_location = world.get_location("Challenge - Sound Test")
+        set_rule(
+            sound_test_location,
+            lambda state:
+                have_group_percentage(state, "Alt. Music", world.player, 25)
+        )
 
     #
     # "Challenge - Playing with Addons" is always possible, currently
@@ -1845,7 +1847,8 @@ def set_challenge_location_rules(world: RingRacersWorld) -> None:
 
 
 def set_all_location_rules(world: RingRacersWorld) -> None:
-    set_challenge_location_rules(world)
+    if world.options.challenges:
+        set_challenge_location_rules(world)
 
 
 def set_completion_condition(world: RingRacersWorld) -> None:

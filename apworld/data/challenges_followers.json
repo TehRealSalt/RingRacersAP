@@ -1356,6 +1356,7 @@
 			"label": "Motobuddy",
 			"unlockable": 200,
 			"follower": "motobuddy",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1366,6 +1367,7 @@
 			"label": "Buzz Bomber",
 			"unlockable": 201,
 			"follower": "buzz bomber",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1376,6 +1378,7 @@
 			"label": "Newtron",
 			"unlockable": 202,
 			"follower": "newtron",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1386,6 +1389,7 @@
 			"label": "Orbinaut",
 			"unlockable": 203,
 			"follower": "orbinaut",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1396,6 +1400,7 @@
 			"label": "Jaws",
 			"unlockable": 204,
 			"follower": "jaws",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1406,6 +1411,7 @@
 			"label": "Bomb",
 			"unlockable": 205,
 			"follower": "bomb",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1416,6 +1422,7 @@
 			"label": "Motobricks",
 			"unlockable": 206,
 			"follower": "motobricks",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1426,6 +1433,7 @@
 			"label": "Uni-Uni",
 			"unlockable": 207,
 			"follower": "uni-uni",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1436,6 +1444,7 @@
 			"label": "Chaos Emerald",
 			"unlockable": 208,
 			"follower": "chaos emerald",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1446,6 +1455,7 @@
 			"label": "Anton",
 			"unlockable": 215,
 			"follower": "anton",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1456,6 +1466,7 @@
 			"label": "Mosqui",
 			"unlockable": 216,
 			"follower": "mosqui",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1466,6 +1477,7 @@
 			"label": "Ga",
 			"unlockable": 217,
 			"follower": "ga",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1476,6 +1488,7 @@
 			"label": "Tonbo",
 			"unlockable": 218,
 			"follower": "tonbo",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1486,6 +1499,7 @@
 			"label": "Poh-Bee",
 			"unlockable": 219,
 			"follower": "poh-bee",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1496,6 +1510,7 @@
 			"label": "Bata-pyon",
 			"unlockable": 220,
 			"follower": "bata-pyon",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1506,6 +1521,7 @@
 			"label": "Kabasira",
 			"unlockable": 221,
 			"follower": "kabasira",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1516,6 +1532,7 @@
 			"label": "Hotaru",
 			"unlockable": 222,
 			"follower": "hotaru",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1526,6 +1543,7 @@
 			"label": "UFO",
 			"unlockable": 223,
 			"follower": "ufo",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1536,6 +1554,7 @@
 			"label": "Goddess",
 			"unlockable": 224,
 			"follower": "goddess",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1546,6 +1565,7 @@
 			"label": "Sol",
 			"unlockable": 230,
 			"follower": "sol",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1556,6 +1576,7 @@
 			"label": "Flasher",
 			"unlockable": 231,
 			"follower": "flasher",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1566,6 +1587,7 @@
 			"label": "Jellygnite",
 			"unlockable": 232,
 			"follower": "jellygnite",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1576,6 +1598,7 @@
 			"label": "Aquis",
 			"unlockable": 233,
 			"follower": "aquis",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1586,6 +1609,7 @@
 			"label": "Octus",
 			"unlockable": 234,
 			"follower": "octus",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1596,6 +1620,7 @@
 			"label": "Asteron",
 			"unlockable": 235,
 			"follower": "asteron",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1606,6 +1631,7 @@
 			"label": "Egg Pod",
 			"unlockable": 236,
 			"follower": "egg pod",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1616,6 +1642,7 @@
 			"label": "Nebula",
 			"unlockable": 237,
 			"follower": "nebula",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1626,6 +1653,7 @@
 			"label": "Tornado",
 			"unlockable": 238,
 			"follower": "tornado",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1636,6 +1664,7 @@
 			"label": "Meramora Jr.",
 			"unlockable": 245,
 			"follower": "meramora jr",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1646,6 +1675,7 @@
 			"label": "Buggernaut",
 			"unlockable": 246,
 			"follower": "buggernaut",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1656,6 +1686,7 @@
 			"label": "Bubbles",
 			"unlockable": 247,
 			"follower": "bubbles",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1666,6 +1697,7 @@
 			"label": "Balloon",
 			"unlockable": 248,
 			"follower": "balloon",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1676,6 +1708,7 @@
 			"label": "Barrel",
 			"unlockable": 249,
 			"follower": "barrel",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1686,6 +1719,7 @@
 			"label": "Mushmeanie",
 			"unlockable": 250,
 			"follower": "mushmeanie",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1696,6 +1730,7 @@
 			"label": "Technosqueek",
 			"unlockable": 251,
 			"follower": "technosqueek",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1706,6 +1741,7 @@
 			"label": "Chainspike",
 			"unlockable": 252,
 			"follower": "chainspike",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1716,6 +1752,7 @@
 			"label": "Spikebonker",
 			"unlockable": 253,
 			"follower": "spikebonker",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1726,6 +1763,7 @@
 			"label": "Hyudoro",
 			"unlockable": 254,
 			"follower": "hyudoro",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1736,6 +1774,7 @@
 			"label": "Super Emerald",
 			"unlockable": 255,
 			"follower": "super emerald",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1746,6 +1785,7 @@
 			"label": "S.P.B. Jr.",
 			"unlockable": 256,
 			"follower": "s.p.b. jr.",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1756,6 +1796,7 @@
 			"label": "Prison Egg",
 			"unlockable": 257,
 			"follower": "prison egg",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1766,6 +1807,7 @@
 			"label": "Burboom",
 			"unlockable": 261,
 			"follower": "burboom",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1776,6 +1818,7 @@
 			"label": "Bushbubble",
 			"unlockable": 262,
 			"follower": "bushbubble",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1786,6 +1829,7 @@
 			"label": "Gotcha",
 			"unlockable": 263,
 			"follower": "gotcha",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1796,6 +1840,7 @@
 			"label": "Motorspike",
 			"unlockable": 264,
 			"follower": "motorspike",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1806,6 +1851,7 @@
 			"label": "Piranhy",
 			"unlockable": 265,
 			"follower": "piranhy",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1816,6 +1862,7 @@
 			"label": "Ticktock",
 			"unlockable": 266,
 			"follower": "ticktock",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1826,6 +1873,7 @@
 			"label": "Scouter",
 			"unlockable": 276,
 			"follower": "scouter",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1836,6 +1884,7 @@
 			"label": "Snowman",
 			"unlockable": 277,
 			"follower": "snowman",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1846,6 +1895,7 @@
 			"label": "Firefly",
 			"unlockable": 278,
 			"follower": "firefly",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1856,6 +1906,7 @@
 			"label": "Whirl",
 			"unlockable": 279,
 			"follower": "whirl",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1866,6 +1917,7 @@
 			"label": "Mecha Hiyoko",
 			"unlockable": 291,
 			"follower": "mecha hiyoko",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1876,6 +1928,7 @@
 			"label": "Silver Sonic",
 			"unlockable": 292,
 			"follower": "silver sonic",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1886,6 +1939,7 @@
 			"label": "Frogger",
 			"unlockable": 293,
 			"follower": "frogger",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1896,6 +1950,7 @@
 			"label": "Bombaberry",
 			"unlockable": 294,
 			"follower": "bombaberry",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1906,6 +1961,7 @@
 			"label": "Spidal Tap",
 			"unlockable": 295,
 			"follower": "spidal tap",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1916,6 +1972,7 @@
 			"label": "Bomblur",
 			"unlockable": 296,
 			"follower": "bomblur",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1926,6 +1983,7 @@
 			"label": "Mukaka",
 			"unlockable": 297,
 			"follower": "mukaka",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1936,6 +1994,7 @@
 			"label": "Sandoom",
 			"unlockable": 298,
 			"follower": "sandoom",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1946,6 +2005,7 @@
 			"label": "Gaikoko",
 			"unlockable": 299,
 			"follower": "gaikoko",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1956,6 +2016,7 @@
 			"label": "Chao",
 			"unlockable": 306,
 			"follower": "chao",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1966,6 +2027,7 @@
 			"label": "Chao Egg",
 			"unlockable": 307,
 			"follower": "chao egg",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1976,6 +2038,7 @@
 			"label": "Froggy",
 			"unlockable": 308,
 			"follower": "froggy",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1986,6 +2049,7 @@
 			"label": "Spinner",
 			"unlockable": 309,
 			"follower": "spinner",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -1996,6 +2060,7 @@
 			"label": "Kart Kiki",
 			"unlockable": 310,
 			"follower": "kart kiki",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2006,6 +2071,7 @@
 			"label": "Bowling Pin",
 			"unlockable": 311,
 			"follower": "bowling pin",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2016,6 +2082,7 @@
 			"label": "Hint Orb",
 			"unlockable": 312,
 			"follower": "hint orb",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2026,6 +2093,7 @@
 			"label": "Jet Booster",
 			"unlockable": 313,
 			"follower": "jet booster",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2036,6 +2104,7 @@
 			"label": "Chaclon",
 			"unlockable": 314,
 			"follower": "chaclon",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2046,6 +2115,7 @@
 			"label": "Hero Chao",
 			"unlockable": 321,
 			"follower": "hero chao",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2056,6 +2126,7 @@
 			"label": "Dark Chao",
 			"unlockable": 322,
 			"follower": "dark chao",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2066,6 +2137,7 @@
 			"label": "Mono Beetle",
 			"unlockable": 323,
 			"follower": "mono beetle",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2076,6 +2148,7 @@
 			"label": "Gold Beetle",
 			"unlockable": 324,
 			"follower": "gold beetle",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2086,6 +2159,7 @@
 			"label": "Attack Boo",
 			"unlockable": 325,
 			"follower": "attack boo",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2096,6 +2170,7 @@
 			"label": "Boo",
 			"unlockable": 326,
 			"follower": "boo",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2106,6 +2181,7 @@
 			"label": "Chaos Drive",
 			"unlockable": 327,
 			"follower": "chaos drive",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2116,6 +2192,7 @@
 			"label": "Emerald Radar",
 			"unlockable": 328,
 			"follower": "emerald radar",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2126,6 +2203,7 @@
 			"label": "Mystic Melody",
 			"unlockable": 329,
 			"follower": "mystic melody",
+			"class": "progression",
 			"tags": [
 				"Followers"
 			]
@@ -2136,6 +2214,7 @@
 			"label": "Cheese",
 			"unlockable": 336,
 			"follower": "cheese",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2146,6 +2225,7 @@
 			"label": "Egg Flapper",
 			"unlockable": 337,
 			"follower": "egg flapper",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2156,6 +2236,7 @@
 			"label": "Klagen",
 			"unlockable": 338,
 			"follower": "klagen",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2166,6 +2247,7 @@
 			"label": "Gold Klagen",
 			"unlockable": 339,
 			"follower": "gold klagen",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2176,6 +2258,7 @@
 			"label": "Hermit Crab",
 			"unlockable": 340,
 			"follower": "hermit crab",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2186,6 +2269,7 @@
 			"label": "Splats",
 			"unlockable": 351,
 			"follower": "splats",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2196,6 +2280,7 @@
 			"label": "Marble UAP",
 			"unlockable": 352,
 			"follower": "marble uap",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2206,6 +2291,7 @@
 			"label": "Claw Guy",
 			"unlockable": 353,
 			"follower": "claw guy",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2216,6 +2302,7 @@
 			"label": "Bubbler's Mother",
 			"unlockable": 354,
 			"follower": "bubbler's mother",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2226,6 +2313,7 @@
 			"label": "Spinpole",
 			"unlockable": 355,
 			"follower": "spinpole",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2236,6 +2324,7 @@
 			"label": "Flysquid",
 			"unlockable": 356,
 			"follower": "flysquid",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2246,6 +2335,7 @@
 			"label": "Final Duck",
 			"unlockable": 357,
 			"follower": "final duck",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2256,6 +2346,7 @@
 			"label": "Tridrill",
 			"unlockable": 366,
 			"follower": "tridrill",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2266,6 +2357,7 @@
 			"label": "Cappy",
 			"unlockable": 367,
 			"follower": "cappy",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2276,6 +2368,7 @@
 			"label": "Jetarang",
 			"unlockable": 368,
 			"follower": "jetarang",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2286,6 +2379,7 @@
 			"label": "Balldron",
 			"unlockable": 369,
 			"follower": "balldron",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2296,6 +2390,7 @@
 			"label": "Bomber",
 			"unlockable": 370,
 			"follower": "bomber",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2306,6 +2401,7 @@
 			"label": "Gyro",
 			"unlockable": 371,
 			"follower": "gyro",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2316,6 +2412,7 @@
 			"label": "SRB1 Crawla",
 			"unlockable": 381,
 			"follower": "srb1 crawla",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2326,6 +2423,7 @@
 			"label": "GuardRobo",
 			"unlockable": 382,
 			"follower": "guardrobo",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2336,6 +2434,7 @@
 			"label": "HotRobo",
 			"unlockable": 383,
 			"follower": "hotrobo",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2346,6 +2445,7 @@
 			"label": "Pyrex",
 			"unlockable": 384,
 			"follower": "pyrex",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2356,6 +2456,7 @@
 			"label": "Spybot 2000",
 			"unlockable": 385,
 			"follower": "spybot 2000",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2366,6 +2467,7 @@
 			"label": "SRB2 Crawla",
 			"unlockable": 396,
 			"follower": "srb2 crawla",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2376,6 +2478,7 @@
 			"label": "Mean Bean",
 			"unlockable": 397,
 			"follower": "mean bean",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2386,6 +2489,7 @@
 			"label": "C.H.R.O.M.E.",
 			"unlockable": 398,
 			"follower": "c.h.r.o.m.e.",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2396,6 +2500,7 @@
 			"label": "Tridentz",
 			"unlockable": 399,
 			"follower": "tridentz",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2406,6 +2511,7 @@
 			"label": "Stegospike",
 			"unlockable": 400,
 			"follower": "stegospike",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2416,6 +2522,7 @@
 			"label": "Flicky Turncoat",
 			"unlockable": 401,
 			"follower": "flicky turncoat",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2426,6 +2533,7 @@
 			"label": "Manegg",
 			"unlockable": 402,
 			"follower": "manegg",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2436,6 +2544,7 @@
 			"label": "Blend Eye",
 			"unlockable": 403,
 			"follower": "blend eye",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2446,6 +2555,7 @@
 			"label": "Flicky",
 			"unlockable": 411,
 			"follower": "flicky",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2456,6 +2566,7 @@
 			"label": "Red Flicky",
 			"unlockable": 412,
 			"follower": "red flicky",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2466,6 +2577,7 @@
 			"label": "Pink Flicky",
 			"unlockable": 413,
 			"follower": "pink flicky",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2476,6 +2588,7 @@
 			"label": "Green Flicky",
 			"unlockable": 414,
 			"follower": "green flicky",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2486,6 +2599,7 @@
 			"label": "Clucky",
 			"unlockable": 415,
 			"follower": "clucky",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2496,6 +2610,7 @@
 			"label": "Fish",
 			"unlockable": 416,
 			"follower": "fish",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2506,6 +2621,7 @@
 			"label": "Puffin",
 			"unlockable": 417,
 			"follower": "puffin",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2516,6 +2632,7 @@
 			"label": "Dove",
 			"unlockable": 418,
 			"follower": "dove",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2526,6 +2643,7 @@
 			"label": "Canary",
 			"unlockable": 419,
 			"follower": "canary",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2536,6 +2654,7 @@
 			"label": "Bat",
 			"unlockable": 420,
 			"follower": "bat",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2546,6 +2665,7 @@
 			"label": "Has Bean",
 			"unlockable": 426,
 			"follower": "has bean",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2556,6 +2676,7 @@
 			"label": "Nomi",
 			"unlockable": 427,
 			"follower": "nomi",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2566,6 +2687,7 @@
 			"label": "Glyph",
 			"unlockable": 428,
 			"follower": "glyph",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2576,6 +2698,7 @@
 			"label": "Asterite",
 			"unlockable": 429,
 			"follower": "asterite",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2586,6 +2709,7 @@
 			"label": "Controller",
 			"unlockable": 430,
 			"follower": "controller",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2596,6 +2720,7 @@
 			"label": "Orblet",
 			"unlockable": 431,
 			"follower": "orblet",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2606,6 +2731,7 @@
 			"label": "Kobu",
 			"unlockable": 432,
 			"follower": "kobu",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2616,6 +2742,7 @@
 			"label": "The Cake From Hell",
 			"unlockable": 433,
 			"follower": "cake from hell",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2626,6 +2753,7 @@
 			"label": "Billiards Cactus",
 			"unlockable": 434,
 			"follower": "billiards cactus",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2636,6 +2764,7 @@
 			"label": "Mag",
 			"unlockable": 435,
 			"follower": "mag",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2646,6 +2775,7 @@
 			"label": "Bacura",
 			"unlockable": 436,
 			"follower": "bacura",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2656,6 +2786,7 @@
 			"label": "Cacodemon",
 			"unlockable": 437,
 			"follower": "cacodemon",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2666,6 +2797,7 @@
 			"label": "Shade Core",
 			"unlockable": 438,
 			"follower": "shade core",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]
@@ -2676,6 +2808,7 @@
 			"label": "Ancient Gear",
 			"unlockable": 439,
 			"follower": "ancient gear",
+			"class": "filler",
 			"tags": [
 				"Followers"
 			]

@@ -31,6 +31,27 @@ class RingRacersWorld(World):
     origin_region_name = "Menu"
     topology_present = True
 
+    location_group_whitelist: list[str] = []
+    location_group_blacklist: list[str] = []
+
+    location_name_whitelist: list[str] = []
+    location_name_blacklist: list[str] = []
+
+
+    def generate_early(self) -> None:
+        # Set blacklist/whitelists from options
+        if not self.options.challenges:
+            self.location_group_blacklist.append("Challenges")
+
+        if not self.options.spray_cans:
+            self.location_group_blacklist.append("Spray Cans")
+
+        if not self.options.gum_challenge:
+            self.location_name_blacklist.append("Challenge - Driver: Gum")
+
+        if not self.options.sound_test_challenge:
+            self.location_name_blacklist.append("Challenge - Sound Test")
+
 
     def create_regions(self) -> None:
         regions.create_and_connect_regions(self)
@@ -56,6 +77,10 @@ class RingRacersWorld(World):
     def fill_slot_data(self) -> dict:
         return {
             "apworld_version": self.apworld_version,
+            "location_group_whitelist": self.location_group_whitelist,
+            "location_group_blacklist": self.location_group_blacklist,
+            "location_name_whitelist": self.location_name_whitelist,
+            "location_name_blacklist": self.location_name_blacklist,
             "character_wins_count": self.options.character_wins_count.value,
             "simple_map_access": self.options.simple_map_access.value,
             "goal_num_trophies": self.options.goal_num_trophies.value,

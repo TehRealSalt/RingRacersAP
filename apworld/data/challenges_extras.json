@@ -137,6 +137,7 @@
 			"label": "Prison Break Mode",
 			"unlockable": 700,
 			"item_type": "prisonbreak",
+			"class": "progression",
 			"tags": [
 				"Extras"
 			]
@@ -147,6 +148,7 @@
 			"label": "Special Mode",
 			"unlockable": 701,
 			"item_type": "specialattack",
+			"class": "filler",
 			"tags": [
 				"Extras"
 			]
@@ -157,6 +159,7 @@
 			"label": "Gear 3 + GP Vicious Mode",
 			"unlockable": 702,
 			"item_type": "hardspeed",
+			"class": "progression",
 			"tags": [
 				"Extras"
 			]
@@ -167,6 +170,7 @@
 			"label": "Time Attack Mode",
 			"unlockable": 703,
 			"item_type": "timeattack",
+			"class": "progression",
 			"tags": [
 				"Extras"
 			]
@@ -177,6 +181,7 @@
 			"label": "GP Master Mode",
 			"unlockable": 704,
 			"item_type": "mastermode",
+			"class": "progression",
 			"tags": [
 				"Extras"
 			]
@@ -187,6 +192,7 @@
 			"label": "Encore Mode",
 			"unlockable": 705,
 			"item_type": "encore",
+			"class": "progression_deprioritized_skip_balancing",
 			"tags": [
 				"Extras"
 			]
@@ -197,6 +203,7 @@
 			"label": "SPB Attack Mode",
 			"unlockable": 706,
 			"item_type": "spbattack",
+			"class": "progression",
 			"tags": [
 				"Extras"
 			]
@@ -207,6 +214,7 @@
 			"label": "Alternate Titlescreen",
 			"unlockable": 730,
 			"item_type": "alttitle",
+			"class": "filler",
 			"tags": [
 				"Extras"
 			]
@@ -217,6 +225,7 @@
 			"label": "Sound Test",
 			"unlockable": 732,
 			"item_type": "soundtest",
+			"class": "filler",
 			"tags": [
 				"Extras"
 			]

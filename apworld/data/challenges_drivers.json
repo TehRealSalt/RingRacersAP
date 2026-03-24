@@ -581,6 +581,7 @@
 			"label": "AiAi",
 			"unlockable": 1,
 			"skin": "aiai",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class F"
@@ -592,6 +593,7 @@
 			"label": "Aigis",
 			"unlockable": 2,
 			"skin": "aigis",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class H"
@@ -603,6 +605,7 @@
 			"label": "Arle",
 			"unlockable": 3,
 			"skin": "arle",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class D"
@@ -614,6 +617,7 @@
 			"label": "Azusa Miura",
 			"unlockable": 4,
 			"skin": "azusa",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class F"
@@ -625,6 +629,7 @@
 			"label": "Bark",
 			"unlockable": 5,
 			"skin": "bark",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class G"
@@ -636,6 +641,7 @@
 			"label": "Battle Kukku XV",
 			"unlockable": 6,
 			"skin": "battlekukku",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class H"
@@ -647,6 +653,7 @@
 			"label": "Bean",
 			"unlockable": 7,
 			"skin": "bean",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class A"
@@ -658,6 +665,7 @@
 			"label": "Big",
 			"unlockable": 8,
 			"skin": "big",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class H"
@@ -669,6 +677,7 @@
 			"label": "Billy Hatcher",
 			"unlockable": 9,
 			"skin": "billyh",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class D"
@@ -680,6 +689,7 @@
 			"label": "Blaze",
 			"unlockable": 10,
 			"skin": "blaze",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class C"
@@ -691,6 +701,7 @@
 			"label": "Bomb",
 			"unlockable": 11,
 			"skin": "bomb",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class C"
@@ -702,6 +713,7 @@
 			"label": "Carol",
 			"unlockable": 12,
 			"skin": "carol",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class B"
@@ -713,6 +725,7 @@
 			"label": "Caterkiller",
 			"unlockable": 13,
 			"skin": "caterkiller",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class H"
@@ -724,6 +737,7 @@
 			"label": "Chao",
 			"unlockable": 14,
 			"skin": "chao",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class A"
@@ -735,6 +749,7 @@
 			"label": "Chaos",
 			"unlockable": 15,
 			"skin": "chaos",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class G"
@@ -746,6 +761,7 @@
 			"label": "Charmy",
 			"unlockable": 16,
 			"skin": "charmy",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class B"
@@ -757,6 +773,7 @@
 			"label": "Chuchu",
 			"unlockable": 17,
 			"skin": "chuchu",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class B"
@@ -768,6 +785,7 @@
 			"label": "Cluckoid",
 			"unlockable": 18,
 			"skin": "cluckoid",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class H"
@@ -779,6 +797,7 @@
 			"label": "Cream",
 			"unlockable": 19,
 			"skin": "cream",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class B"
@@ -790,6 +809,7 @@
 			"label": "Ecco",
 			"unlockable": 20,
 			"skin": "ecco",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class G"
@@ -801,6 +821,7 @@
 			"label": "Eggrobo",
 			"unlockable": 21,
 			"skin": "eggrobo",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class G"
@@ -812,6 +833,7 @@
 			"label": "Emerl",
 			"unlockable": 22,
 			"skin": "emerl",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class E"
@@ -823,6 +845,7 @@
 			"label": "Espio",
 			"unlockable": 23,
 			"skin": "espio",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class F"
@@ -834,6 +857,7 @@
 			"label": "Flicky",
 			"unlockable": 24,
 			"skin": "flicky",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class C"
@@ -845,6 +869,7 @@
 			"label": "Gum",
 			"unlockable": 25,
 			"skin": "gum",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class E"
@@ -856,6 +881,7 @@
 			"label": "Gutbuster",
 			"unlockable": 26,
 			"skin": "gutbuster",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class D"
@@ -867,6 +893,7 @@
 			"label": "Headdy",
 			"unlockable": 27,
 			"skin": "headdy",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class A"
@@ -878,6 +905,7 @@
 			"label": "Heavy",
 			"unlockable": 28,
 			"skin": "heavy",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class G"
@@ -889,6 +917,7 @@
 			"label": "Heavy Magician",
 			"unlockable": 29,
 			"skin": "heavymagician",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class J"
@@ -900,6 +929,7 @@
 			"label": "Honey",
 			"unlockable": 30,
 			"skin": "honey",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class E"
@@ -911,6 +941,7 @@
 			"label": "Jack Frost",
 			"unlockable": 31,
 			"skin": "jackfrost",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class B"
@@ -922,6 +953,7 @@
 			"label": "Jet",
 			"unlockable": 32,
 			"skin": "jet",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class A"
@@ -933,6 +965,7 @@
 			"label": "Mail",
 			"unlockable": 34,
 			"skin": "mail",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class F"
@@ -944,6 +977,7 @@
 			"label": "Maria",
 			"unlockable": 35,
 			"skin": "maria",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class D"
@@ -955,6 +989,7 @@
 			"label": "Mecha Sonic",
 			"unlockable": 36,
 			"skin": "mechasonic",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class I"
@@ -966,6 +1001,7 @@
 			"label": "Metal Knuckles",
 			"unlockable": 37,
 			"skin": "metalknuckles",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class I"
@@ -977,6 +1013,7 @@
 			"label": "NiGHTS",
 			"unlockable": 38,
 			"skin": "nights",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class A"
@@ -988,6 +1025,7 @@
 			"label": "Orta",
 			"unlockable": 39,
 			"skin": "orta",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class F"
@@ -999,6 +1037,7 @@
 			"label": "Pulseman",
 			"unlockable": 40,
 			"skin": "pulseman",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class D"
@@ -1010,6 +1049,7 @@
 			"label": "Rappy",
 			"unlockable": 41,
 			"skin": "rappy",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class C"
@@ -1021,6 +1061,7 @@
 			"label": "Ray",
 			"unlockable": 42,
 			"skin": "ray",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class B"
@@ -1032,6 +1073,7 @@
 			"label": "Redz",
 			"unlockable": 43,
 			"skin": "redz",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class G"
@@ -1043,6 +1085,7 @@
 			"label": "Rouge",
 			"unlockable": 44,
 			"skin": "rouge",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class E"
@@ -1054,6 +1097,7 @@
 			"label": "Sakura Shinguji",
 			"unlockable": 45,
 			"skin": "sakura",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class E"
@@ -1065,6 +1109,7 @@
 			"label": "Shadow",
 			"unlockable": 46,
 			"skin": "shadow",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class C"
@@ -1076,6 +1121,7 @@
 			"label": "Silver",
 			"unlockable": 47,
 			"skin": "silver",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class A"
@@ -1087,6 +1133,7 @@
 			"label": "Surge",
 			"unlockable": 48,
 			"skin": "surge",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class C"
@@ -1098,6 +1145,7 @@
 			"label": "Tails Doll",
 			"unlockable": 49,
 			"skin": "tailsdoll",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class A"
@@ -1109,6 +1157,7 @@
 			"label": "Tikal",
 			"unlockable": 50,
 			"skin": "tikal",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class E"
@@ -1120,6 +1169,7 @@
 			"label": "Vectorman",
 			"unlockable": 51,
 			"skin": "vectorman",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class I"
@@ -1131,6 +1181,7 @@
 			"label": "Whisper",
 			"unlockable": 52,
 			"skin": "whisper",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class B"
@@ -1142,6 +1193,7 @@
 			"label": "Wonder Boy",
 			"unlockable": 53,
 			"skin": "wonderboy",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class H"
@@ -1153,6 +1205,7 @@
 			"label": "Zipp",
 			"unlockable": 54,
 			"skin": "zipp",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class E"
@@ -1164,6 +1217,7 @@
 			"label": "Ring the Racer",
 			"unlockable": 55,
 			"skin": "ring",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class R"
@@ -1175,6 +1229,7 @@
 			"label": "Trouble Bruin",
 			"unlockable": 56,
 			"skin": "troublebruin",
+			"class": "useful",
 			"tags": [
 				"Drivers",
 				"Engine Class E"

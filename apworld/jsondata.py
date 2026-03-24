@@ -15,6 +15,8 @@ location_name_groups: dict[str, list[str]] = {}
 item_name_to_id: dict[str, int] = {}
 item_name_groups: dict[str, list[str]] = {}
 
+rr_item_defs = {}
+rr_location_defs = {}
 rr_cup_defs = {}
 rr_map_defs = {}
 
@@ -39,6 +41,8 @@ def load_all() -> None:
 				assert(index not in location_name_to_id)
 
 				name = location_json["name"]
+
+				rr_location_defs[name] = location_json
 				location_name_to_id[name] = index
 
 				group_keys = location_json.get("tags", None)
@@ -54,6 +58,8 @@ def load_all() -> None:
 				assert(index not in item_name_to_id)
 
 				name = item_json["name"]
+
+				rr_item_defs[name] = item_json
 				item_name_to_id[name] = index
 
 				group_keys = item_json.get("tags", None)

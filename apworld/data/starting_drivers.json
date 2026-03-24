@@ -5,9 +5,11 @@
 			"name": "Driver: Tails",
 			"label": "Tails",
 			"skin": "tails",
+			"class": "useful",
 			"tags": [
 				"Drivers",
-				"Engine Class A"
+				"Engine Class A",
+				"Starting Drivers"
 			]
 		},
 		{
@@ -15,9 +17,11 @@
 			"name": "Driver: Amy",
 			"label": "Amy",
 			"skin": "amy",
+			"class": "useful",
 			"tags": [
 				"Drivers",
-				"Engine Class B"
+				"Engine Class B",
+				"Starting Drivers"
 			]
 		},
 		{
@@ -25,9 +29,11 @@
 			"name": "Driver: Sonic",
 			"label": "Sonic",
 			"skin": "sonic",
+			"class": "useful",
 			"tags": [
 				"Drivers",
-				"Engine Class C"
+				"Engine Class C",
+				"Starting Drivers"
 			]
 		},
 		{
@@ -35,9 +41,11 @@
 			"name": "Driver: Motobug",
 			"label": "Motobug",
 			"skin": "motobug",
+			"class": "useful",
 			"tags": [
 				"Drivers",
-				"Engine Class D"
+				"Engine Class D",
+				"Starting Drivers"
 			]
 		},
 		{
@@ -45,9 +53,11 @@
 			"name": "Driver: Knuckles",
 			"label": "Knuckles",
 			"skin": "knuckles",
+			"class": "useful",
 			"tags": [
 				"Drivers",
-				"Engine Class E"
+				"Engine Class E",
+				"Starting Drivers"
 			]
 		},
 		{
@@ -55,9 +65,11 @@
 			"name": "Driver: Fang",
 			"label": "Fang",
 			"skin": "fang",
+			"class": "useful",
 			"tags": [
 				"Drivers",
-				"Engine Class F"
+				"Engine Class F",
+				"Starting Drivers"
 			]
 		},
 		{
@@ -65,9 +77,11 @@
 			"name": "Driver: Dr. Eggman",
 			"label": "Dr. Eggman",
 			"skin": "eggman",
+			"class": "useful",
 			"tags": [
 				"Drivers",
-				"Engine Class G"
+				"Engine Class G",
+				"Starting Drivers"
 			]
 		},
 		{
@@ -75,9 +89,11 @@
 			"name": "Driver: Mighty",
 			"label": "Mighty",
 			"skin": "mighty",
+			"class": "useful",
 			"tags": [
 				"Drivers",
-				"Engine Class H"
+				"Engine Class H",
+				"Starting Drivers"
 			]
 		},
 		{
@@ -85,9 +101,11 @@
 			"name": "Driver: Metal Sonic",
 			"label": "Metal Sonic",
 			"skin": "metalsonic",
+			"class": "useful",
 			"tags": [
 				"Drivers",
-				"Engine Class I"
+				"Engine Class I",
+				"Starting Drivers"
 			]
 		}
 	]
