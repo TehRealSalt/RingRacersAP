@@ -7035,7 +7035,7 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 		(is_big_tile ? "UN_BORDB" : "UN_BORDA"),
 		PU_CACHE);
 
-	UINT8 iconid = 0;
+	UINT8 iconid = RRAP_LocationDisplayItemIsOffWorld(location) ? NUM_CHALLENGE_CATEGORIES_VANILLA : 0;
 	UINT16 bcol = SKINCOLOR_SILVER;
 
 	int display_type = RRAP_ItemDisplayType(item);
@@ -7096,7 +7096,7 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 		// [RRAP]
 		case SECRET_AP_KKD:
 			bcol = SKINCOLOR_MOONSET;
-			//iconid = 3;
+			iconid = NUM_CHALLENGE_CATEGORIES_VANILLA; //+ 1;
 			break;
 	}
 
@@ -7147,7 +7147,9 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 	}
 	else
 	{
-		iconid = 0; // reuse
+		// [RRAP]
+		iconid = RRAP_LocationDisplayItemIsOffWorld(location) ? NUM_CHALLENGE_ICONS_VANILLA : 0; // reuse
+
 		switch (display_type)
 		{
 			case SECRET_SKIN:
@@ -7276,6 +7278,11 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 				iconid = 15;
 				break;
 
+			// [RRAP]
+			case SECRET_AP_KKD:
+				iconid = NUM_CHALLENGE_ICONS_VANILLA; //+ 1;
+				break;
+
 			default:
 			{
 				if (!colormap && display_color != SKINCOLOR_NONE && display_color < numskincolors)
@@ -7288,16 +7295,42 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 
 		if (pat == missingpat)
 		{
-			pat = W_CachePatchName(va("UN_IC%02u%c",
-				iconid,
-				is_big_tile ? 'B' : 'A'),
-				PU_CACHE);
-			if (pat == missingpat)
+			if (iconid >= NUM_CHALLENGE_ICONS_VANILLA)
+			{
+				// [RRAP]
+				UINT8 ap_icon = iconid - NUM_CHALLENGE_ICONS_VANILLA;
+
+				pat = W_CachePatchName(va("UAPIC%02u%c",
+					ap_icon,
+					is_big_tile ? 'B' : 'A'),
+					PU_CACHE
+				);
+
+				if (pat == missingpat)
+				{
+					pat = W_CachePatchName(va("UAPIC%02u%c",
+						ap_icon,
+						is_big_tile ? 'A' : 'B'),
+						PU_CACHE
+					);
+				}
+			}
+			else
 			{
 				pat = W_CachePatchName(va("UN_IC%02u%c",
 					iconid,
-					is_big_tile ? 'A' : 'B'),
-					PU_CACHE);
+					is_big_tile ? 'B' : 'A'),
+					PU_CACHE
+				);
+
+				if (pat == missingpat)
+				{
+					pat = W_CachePatchName(va("UN_IC%02u%c",
+						iconid,
+						is_big_tile ? 'A' : 'B'),
+						PU_CACHE
+					);
+				}
 			}
 		}
 	}

@@ -1453,6 +1453,15 @@ extern struct timeattackmenu_s {
 
 } timeattackmenu;
 
+// [RRAP]
+#define NUM_CHALLENGE_CATEGORIES_VANILLA (10)
+#define NUM_CHALLENGE_CATEGORIES_AP (1)
+#define NUM_CHALLENGE_CATEGORIES (NUM_CHALLENGE_CATEGORIES_VANILLA + NUM_CHALLENGE_CATEGORIES_AP)
+
+#define NUM_CHALLENGE_ICONS_VANILLA (17)
+#define NUM_CHALLENGE_ICONS_AP (1)
+#define NUM_CHALLENGE_ICONS (NUM_CHALLENGE_ICONS_VANILLA + NUM_CHALLENGE_ICONS_AP)
+
 // Keep track of some pause menu data for visual goodness.
 extern struct challengesmenu_s {
 
@@ -1489,7 +1498,7 @@ extern struct challengesmenu_s {
 
 	boolean cache_secondrowlocked;
 
-	patch_t *tile_category[10][2];
+	patch_t *tile_category[NUM_CHALLENGE_CATEGORIES][2];
 } challengesmenu;
 
 menu_t *M_InterruptMenuWithChallenges(menu_t *desiredmenu);

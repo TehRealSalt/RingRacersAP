@@ -282,7 +282,7 @@ static void M_CacheChallengeTiles(void)
 
 	int i;
 
-	for (i = 0; i < 10; ++i)
+	for (i = 0; i < NUM_CHALLENGE_CATEGORIES_VANILLA; ++i)
 	{
 		name[6] = '0' + i;
 
@@ -291,6 +291,20 @@ static void M_CacheChallengeTiles(void)
 
 		name[7] = 'B';
 		challengesmenu.tile_category[i][1] = W_CachePatchName(name, PU_CACHE);
+	}
+
+	// [RRAP]
+	char name_ap[9] = "UAPRR0xy";
+
+	for (i = 0; i < NUM_CHALLENGE_CATEGORIES_AP; ++i)
+	{
+		name_ap[6] = '0' + i;
+
+		name_ap[7] = 'A';
+		challengesmenu.tile_category[NUM_CHALLENGE_CATEGORIES_VANILLA + i][0] = W_CachePatchName(name_ap, PU_CACHE);
+
+		name_ap[7] = 'B';
+		challengesmenu.tile_category[NUM_CHALLENGE_CATEGORIES_VANILLA + i][1] = W_CachePatchName(name_ap, PU_CACHE);
 	}
 }
 
