@@ -4,6 +4,7 @@
 			"id": 9000,
 			"name": "KKD Honor",
 			"label": "KKD Honor",
+			"item_type": "kkd",
 			"class": "filler",
 			"tags": [
 				"Filler"

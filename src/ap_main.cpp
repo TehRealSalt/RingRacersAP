@@ -335,7 +335,7 @@ rrap_item_t::rrap_item_t(srb2::JsonValue json)
 	{
 		SRB2_ASSERT(_display_type == SECRET_NONE);
 
-		static const srb2::HashMap<srb2::String, INT32> name_to_type = {
+		static srb2::HashMap<srb2::String, INT32> name_to_type = {
 			{"hardspeed", SECRET_HARDSPEED},
 			{"mastermode", SECRET_MASTERMODE},
 			{"encore", SECRET_ENCORE},
@@ -347,12 +347,13 @@ rrap_item_t::rrap_item_t(srb2::JsonValue json)
 			{"addons", SECRET_ADDONS},
 			{"eggtv", SECRET_EGGTV},
 			{"soundtest", SECRET_SOUNDTEST},
-			{"alttitle", SECRET_ALTTITLE}
+			{"alttitle", SECRET_ALTTITLE},
+			{"kkd", SECRET_AP_KKD}
 		};
 
-		if (auto final_type = name_to_type.find(work_type) != name_to_type.end())
+		if (name_to_type.find(work_type) != name_to_type.end())
 		{
-			_display_type = final_type;
+			_display_type = name_to_type[work_type];
 		}
 		else
 		{

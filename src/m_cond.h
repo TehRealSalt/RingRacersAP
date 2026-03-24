@@ -271,6 +271,9 @@ typedef enum
 
 	// Assist restrictions
 	SECRET_ITEMFINDER,			// Permit locating in-level secrets
+
+	// [RRAP] Extra display types
+	SECRET_AP_KKD
 } secrettype_t;
 
 // If you have more secrets than these variables allow in your game,
