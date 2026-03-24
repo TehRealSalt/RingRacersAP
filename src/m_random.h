@@ -96,14 +96,16 @@ typedef enum
 
 	PRNUMSYNCED,
 
+	PR_INTERPHUDRANDOM = PRNUMSYNCED, // Interpolation-accomodating HUD randomisation
 	PR_NUISANCE, // Margin Boost HUD
 
-	PR_INTERPHUDRANDOM = PRNUMSYNCED, // Interpolation-accomodating HUD randomisation
+	// [RRAP]
+	PR_AP_CHALLENGES, // Archipelago challenge board
 
 	PRNUMCLASS
 } pr_class_t;
 
-extern char rng_class_names[34][30];
+extern char rng_class_names[35][30];
 // M_Random functions pull random numbers of various types that aren't network synced.
 // P_Random functions pulls random bytes from a PRNG that is network synced.
 

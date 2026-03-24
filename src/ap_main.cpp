@@ -36,7 +36,7 @@
 #include "w_wad.h"
 #include "z_zone.h"
 #include "k_menu.h"
-#include "m_random.h" // TODO remove this
+#include "m_random.h"
 #include "v_video.h"
 #include "i_time.h"
 #include "r_main.h"
@@ -59,6 +59,7 @@ extern consvar_t cv_dummy_ap_slot;
 extern consvar_t cv_dummy_ap_password;
 
 static srb2::String g_ap_seed = "";
+static UINT32 g_ap_seed_hash = 0;
 
 static srb2::HashMap<INT64, rrap_location_t> g_ap_location_info;
 static srb2::HashMap<INT64, rrap_item_t> g_ap_item_info;
@@ -827,6 +828,8 @@ void RRAP_PopulateChallengeGrid(void)
 	UINT64 num_empty = 0;
 	int big_compact = 2;
 
+	P_SetRandSeed(PR_AP_CHALLENGES, g_ap_seed_hash);
+
 	if (gamedata->ap_challengegrid != nullptr)
 	{
 		// todo tweak your grid if unlocks are changed
@@ -961,9 +964,7 @@ void RRAP_PopulateChallengeGrid(void)
 		{
 			INT64 row, col;
 
-			// RRAP TODO - this needs to be seeded with the room,
-			// so that races between 2 worlds are fair
-			j = M_RandomKey(num_spots);
+			j = P_RandomKey(PR_AP_CHALLENGES, num_spots);
 
 			row = quick_check[j * 2 + 0];
 			col = quick_check[j * 2 + 1];
@@ -1007,7 +1008,7 @@ quickcheckagain:
 					if (i == num_spots)
 						break;
 
-					// Shuffle remaining so we can keep on using M_RandomKey
+					// Shuffle remaining so we can keep on using P_RandomKey
 					quick_check[i * 2 + 0] = quick_check[num_spots * 2 + 0];
 					quick_check[i * 2 + 1] = quick_check[num_spots * 2 + 1];
 
@@ -1122,9 +1123,7 @@ quickcheckagain:
 			continue;
 		}
 
-		// RRAP TODO - this needs to be seeded with the room,
-		// so that races between 2 worlds are fair
-		j = M_RandomKey(selection_small.size()); // Get an entry
+		j = P_RandomKey(PR_AP_CHALLENGES, selection_small.size()); // Get an entry
 
 		INT64 placed = selection_small[j];
 		selection_small.erase(selection_small.begin() + j);
@@ -1797,6 +1796,7 @@ static int RRAP_StartupTick(void)
 	if (!room_error)
 	{
 		g_ap_seed = room.seed_name;
+		g_ap_seed_hash = quickncasehash(g_ap_seed.c_str(), g_ap_seed.size());
 		return 1;
 	}
 
