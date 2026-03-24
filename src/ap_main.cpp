@@ -145,12 +145,16 @@ void rrap_location_t::update_available()
 	_available = true;
 }
 
-void rrap_location_t::immediate_check()
+void rrap_location_t::immediate_check(bool skip_pending)
 {
 	SRB2_ASSERT(_id > 0);
 
-	if (!_checked)
+	if (!skip_pending && !_checked)
 	{
+		// TODO: instead of skip pending,
+		// save which locations were checked / pending
+		// into gamedata so that we can keep the pending
+		// highlight on everything that wasn't inspected
 		_check_pending = true;
 	}
 
@@ -1641,7 +1645,7 @@ static void RRAP_GotLocationChecked(int64_t location_id)
 		return;
 	}
 
-	g_ap_location_info[location_id].immediate_check();
+	g_ap_location_info[location_id].immediate_check(true);
 }
 
 static void RRAP_GotLocationInfo(std::vector<AP_NetworkItem> network_items)

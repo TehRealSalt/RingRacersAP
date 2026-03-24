@@ -81,7 +81,7 @@ public:
 
 	void update_available();
 
-	void immediate_check();
+	void immediate_check(bool skip_pending = false);
 	void queue_check();
 
 	void update_displayed_item(srb2::String label, INT64 item_id, srb2::String player, UINT8 flags);
