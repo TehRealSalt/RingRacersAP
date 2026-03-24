@@ -54,6 +54,7 @@ private:
 	srb2::String _display_item_label;
 	srb2::String _display_item_player;
 	UINT8 _display_item_class;
+	boolean _display_item_offworld;
 	INT64 _display_item_id;
 
 public:
@@ -75,6 +76,7 @@ public:
 	srb2::String display_item_label() const { return _display_item_label; }
 	srb2::String display_item_player() const { return _display_item_player; }
 	UINT8 display_item_class() const { return _display_item_class; }
+	boolean display_item_offworld() const { return _display_item_offworld; }
 	INT64 display_item_id() const { return _display_item_id; }
 
 	void update_available();
@@ -204,6 +206,7 @@ boolean RRAP_LocationCheckPending(rrap_location_t *location);
 char *RRAP_LocationDisplayItemLabel(rrap_location_t *location);
 char *RRAP_LocationDisplayItemPlayer(rrap_location_t *location);
 UINT8 RRAP_LocationDisplayItemClass(rrap_location_t *location);
+boolean RRAP_LocationDisplayItemIsOffWorld(rrap_location_t *location);
 rrap_item_t *RRAP_LocationDisplayItem(rrap_location_t *location);
 
 void RRAP_LocationImmediateCheck(rrap_location_t *location);
