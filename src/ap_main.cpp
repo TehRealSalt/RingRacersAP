@@ -203,10 +203,12 @@ void rrap_location_t::update_displayed_item(srb2::String label, INT64 item_id, s
 	if (player == g_ap_slot)
 	{
 		_display_item_player = "";
+		_display_item_offworld = !is_ours; // super double-check
 	}
 	else
 	{
 		_display_item_player = player;
+		_display_item_offworld = true;
 	}
 
 	_display_item_class = item_class;
@@ -664,6 +666,16 @@ UINT8 RRAP_LocationDisplayItemClass(rrap_location_t *location)
 	}
 
 	return location->display_item_class();
+}
+
+boolean RRAP_LocationDisplayItemIsOffWorld(rrap_location_t *location)
+{
+	if (!location)
+	{
+		return true;
+	}
+
+	return location->display_item_offworld();
 }
 
 rrap_item_t *RRAP_LocationDisplayItem(rrap_location_t *location)

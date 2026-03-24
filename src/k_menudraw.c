@@ -2805,7 +2805,7 @@ void M_DrawRaceDifficulty(void)
 
 // LEVEL SELECT
 
-static void M_DrawCupPreview(INT16 y, levelsearch_t *baselevelsearch)
+static void M_DrawCupPreview(INT16 y, levelsearch_t *baselevelsearch, UINT32 addflags)
 {
 	levelsearch_t locklesslevelsearch = *baselevelsearch; // full copy
 	locklesslevelsearch.checklocked = false;
@@ -2856,7 +2856,7 @@ static void M_DrawCupPreview(INT16 y, levelsearch_t *baselevelsearch)
 				K_DrawMapThumbnail(
 					x + FRACUNIT, (y+2)<<FRACBITS,
 					80<<FRACBITS,
-					0,
+					addflags,
 					map,
 					NULL);
 			}
@@ -2865,7 +2865,7 @@ static void M_DrawCupPreview(INT16 y, levelsearch_t *baselevelsearch)
 				V_DrawFixedPatch(
 					x + FRACUNIT, (y+2) * FRACUNIT,
 					FRACUNIT,
-					0,
+					addflags,
 					staticpat,
 					NULL);
 			}
@@ -2883,7 +2883,7 @@ static void M_DrawCupPreview(INT16 y, levelsearch_t *baselevelsearch)
 		x = -(x % fracstep);
 		while (x < BASEVIDWIDTH * FRACUNIT)
 		{
-			V_DrawFixedPatch(x + FRACUNIT, (y+2) * FRACUNIT, FRACUNIT, 0, staticpat, NULL);
+			V_DrawFixedPatch(x + FRACUNIT, (y+2) * FRACUNIT, FRACUNIT, addflags, staticpat, NULL);
 			x += fracstep;
 		}
 	}
@@ -3361,7 +3361,7 @@ void M_DrawCupSelect(void)
 	INT16 ty = M_EaseWithTransition(Easing_Linear, 5 * 24);
 	y = 146 + ty;
 	V_DrawFill(0, y, BASEVIDWIDTH, 54, 31);
-	M_DrawCupPreview(y, &templevelsearch);
+	M_DrawCupPreview(y, &templevelsearch, 0);
 
 	M_DrawCupTitle(120 - ty, &templevelsearch);
 	
@@ -7508,6 +7508,9 @@ static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 	// Okay, this is what we want to draw.
 	item = RRAP_LocationDisplayItem(location);
 
+	// [RRAP] only show control text if you can use it
+	boolean is_usable = RRAP_ItemRecieved(item) && !RRAP_LocationDisplayItemIsOffWorld(location);
+	UINT32 offworld_flag = is_usable ? 0 : V_TRANSLUCENT;
 	const char *actiontext = NULL;
 
 	INT32 display_type = RRAP_ItemDisplayType(item);
@@ -7520,7 +7523,7 @@ static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 			if (skin != -1)
 			{
 				colormap = R_GetTranslationColormap(skin, skins[skin]->prefcolor, GTC_MENUCACHE);
-				M_DrawCharacterSprite(x, y, skin, SPR2_STIN, 7, 0, 0, colormap);
+				M_DrawCharacterSprite(x, y, skin, SPR2_STIN, 7, 0, offworld_flag, colormap);
 
 				y = (BASEVIDHEIGHT-14);
 
@@ -7561,7 +7564,7 @@ static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 			if (skin == -1)
 				skin = 0;
 			colormap = R_GetTranslationColormap(TC_BLINK, SKINCOLOR_BLACK, GTC_MENUCACHE);
-			M_DrawCharacterSprite(x, y, skin, SPR2_STIN, 7, 0, 0, colormap);
+			M_DrawCharacterSprite(x, y, skin, SPR2_STIN, 7, 0, offworld_flag, colormap);
 
 			if (horngoner)
 			{
@@ -7573,7 +7576,7 @@ static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 			{
 				UINT16 col = K_GetEffectiveFollowerColor(followers[fskin].defaultcolor, &followers[fskin], cv_playercolor[0].value, skins[skin]);
 				colormap = R_GetTranslationColormap(TC_DEFAULT, col, GTC_MENUCACHE);
-				M_DrawFollowerSprite(x - 16, y, fskin, false, 0, colormap, NULL);
+				M_DrawFollowerSprite(x - 16, y, fskin, false, offworld_flag, colormap, NULL);
 
 				y = (BASEVIDHEIGHT-14);
 
@@ -7656,7 +7659,7 @@ static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 			colormap = R_GetTranslationColormap(skin, colorid, GTC_MENUCACHE);
 
 			// Draw reference for character bathed in coloured slime
-			M_DrawCharacterSprite(x, y, skin, SPR2_STIN, 7, 0, 0, colormap);
+			M_DrawCharacterSprite(x, y, skin, SPR2_STIN, 7, 0, offworld_flag, colormap);
 
 			if (setup_numplayers <= 1 && cv_lastprofile[0].value != PROFILE_GUEST)
 			{
@@ -7690,7 +7693,7 @@ static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 			templevelsearch.tutorial = false;
 			templevelsearch.checklocked = true;
 
-			M_DrawCupPreview(146, &templevelsearch);
+			M_DrawCupPreview(146, &templevelsearch, offworld_flag);
 
 			maxid = id = (temp->id % (CUPMENU_COLUMNS * CUPMENU_ROWS));
 			offset = (temp->id - id) * 2;
@@ -7793,7 +7796,7 @@ static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 				K_DrawMapThumbnail(
 					(x-50)<<FRACBITS, (146+2)<<FRACBITS,
 					80<<FRACBITS,
-					0,
+					offworld_flag,
 					mapnum,
 					NULL);
 
@@ -7833,7 +7836,7 @@ static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 				V_DrawFixedPatch(
 					(x-50)<<FRACBITS, (146+2)<<FRACBITS,
 					FRACUNIT,
-					0,
+					offworld_flag,
 					unvisitedlvl[challengesmenu.ticker % 4],
 					NULL);
 			}
@@ -7919,7 +7922,7 @@ static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 		{
 			V_DrawFixedPatch(-3*FRACUNIT, (y-40)*FRACUNIT,
 				FRACUNIT,
-				0, W_CachePatchName("EGGASTLA", PU_CACHE),
+				offworld_flag, W_CachePatchName("EGGASTLA", PU_CACHE),
 				NULL);
 			break;
 		}
@@ -7927,7 +7930,7 @@ static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 		{
 			V_DrawFixedPatch(28*FRACUNIT, (BASEVIDHEIGHT-28)*FRACUNIT,
 				FRACUNIT,
-				0, W_CachePatchName("M_ICOADD", PU_CACHE),
+				offworld_flag, W_CachePatchName("M_ICOADD", PU_CACHE),
 				NULL);
 			break;
 		}
@@ -7935,7 +7938,7 @@ static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 		{
 			V_DrawFixedPatch(28*FRACUNIT, (BASEVIDHEIGHT-28)*FRACUNIT,
 				FRACUNIT,
-				0, W_CachePatchName("M_ICOSTM", PU_CACHE),
+				offworld_flag, W_CachePatchName("M_ICOSTM", PU_CACHE),
 				NULL);
 			break;
 		}
@@ -7943,7 +7946,7 @@ static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 		{
 			V_DrawFixedPatch(3*FRACUNIT, (BASEVIDHEIGHT-40)*FRACUNIT,
 				FRACUNIT,
-				0, W_CachePatchName(
+				offworld_flag, W_CachePatchName(
 					va("RHTVSQN%c", (challengesmenu.ticker & 2) ? '5' : '6'),
 				PU_CACHE),
 				NULL);
@@ -7953,14 +7956,16 @@ static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 		{
 			x = 4;
 			y = BASEVIDHEIGHT-14;
-			V_DrawGamemodeString(x, y - 33, 0, R_GetTranslationColormap(TC_RAINBOW, SKINCOLOR_PLAGUE, GTC_MENUCACHE), M_UseAlternateTitleScreen() ? "On" : "Off");
 
-			K_DrawGameControl(x, y, 0, "<a_animated> Toggle", 0, TINY_FONT, 0);
+			if (is_usable)
+			{
+				V_DrawGamemodeString(x, y - 33, 0, R_GetTranslationColormap(TC_RAINBOW, SKINCOLOR_PLAGUE, GTC_MENUCACHE), M_UseAlternateTitleScreen() ? "On" : "Off");
+				K_DrawGameControl(x, y, 0, "<a_animated> Toggle", 0, TINY_FONT, 0);
+			}
+
 			// K_drawButtonAnim(x, y, 0, kp_button_a[1], challengesmenu.ticker);
 			// x += SHORT(kp_button_a[1][0]->width);
 			// V_DrawThinString(x, y + 1, highlightflags, "Toggle");
-
-
 			break;
 		}
 		case SECRET_ALTMUSIC:
@@ -8011,7 +8016,7 @@ static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 				spritedef_t *sprdef = &sprites[SPR_ALTM];
 				spriteframe_t *sprframe;
 				patch_t *patch = NULL;
-				UINT32 addflags = 0;
+				UINT32 addflags = offworld_flag;
 
 				x -= 10;
 				y += 15;
@@ -8093,7 +8098,7 @@ static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 			spriteframe_t *sprframe;
 			patch_t *patch;
 			UINT32 useframe;
-			UINT32 addflags = 0;
+			UINT32 addflags = offworld_flag;
 
 			if (sprdef->numframes)
 			{
@@ -8117,11 +8122,8 @@ static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 		}
 	}
 
-	// [RRAP] only show control text if you can use it
-	boolean own_locally = RRAP_ItemRecieved(item);
-
 	if (specialmap == NEXTMAP_INVALID)
-		return own_locally ? actiontext : NULL;
+		return is_usable ? actiontext : NULL;
 
 	x -= 50;
 	y = 146+2;
@@ -8129,7 +8131,7 @@ static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 	K_DrawMapThumbnail(
 		(x)<<FRACBITS, (y)<<FRACBITS,
 		80<<FRACBITS,
-		(display_type == SECRET_ENCORE) ? V_FLIP : 0,
+		offworld_flag | ((display_type == SECRET_ENCORE) ? V_FLIP : 0),
 		specialmap,
 		NULL);
 
@@ -8137,27 +8139,27 @@ static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 	{
 		static angle_t rubyfloattime = 0;
 		const fixed_t rubyheight = FINESINE(rubyfloattime>>ANGLETOFINESHIFT);
-		V_DrawFixedPatch((x+40)<<FRACBITS, ((y+25)<<FRACBITS) - (rubyheight<<1), FRACUNIT, 0, W_CachePatchName("RUBYICON", PU_CACHE), NULL);
+		V_DrawFixedPatch((x+40)<<FRACBITS, ((y+25)<<FRACBITS) - (rubyheight<<1), FRACUNIT, offworld_flag, W_CachePatchName("RUBYICON", PU_CACHE), NULL);
 		rubyfloattime += FixedMul(ANGLE_MAX/NEWTICRATE, renderdeltatics);
 	}
 	else if (display_type == SECRET_SPBATTACK)
 	{
 		V_DrawFixedPatch((x+40-25)<<FRACBITS, ((y+25-25)<<FRACBITS),
-			FRACUNIT, 0,
+			FRACUNIT, offworld_flag,
 			W_CachePatchName(K_GetItemPatch(KITEM_SPB, false), PU_CACHE),
 			NULL);
 	}
 	else if (display_type == SECRET_HARDSPEED)
 	{
 		V_DrawFixedPatch((x+40-25)<<FRACBITS, ((y+25-25)<<FRACBITS),
-			FRACUNIT, 0,
+			FRACUNIT, offworld_flag,
 			W_CachePatchName(K_GetItemPatch(KITEM_ROCKETSNEAKER, false), PU_CACHE),
 			NULL);
 	}
 	else if (display_type == SECRET_MASTERMODE)
 	{
 		V_DrawFixedPatch((x+40-25)<<FRACBITS, ((y+25-25)<<FRACBITS),
-			FRACUNIT, 0,
+			FRACUNIT, offworld_flag,
 			W_CachePatchName(K_GetItemPatch(KITEM_JAWZ, false), PU_CACHE),
 			NULL);
 	}
@@ -8165,12 +8167,12 @@ static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 	{
 		colormap = R_GetTranslationColormap(TC_DEFAULT, M_GetCvPlayerColor(0), GTC_MENUCACHE);
 		V_DrawFixedPatch((x+40)<<FRACBITS, ((y+25)<<FRACBITS),
-			FRACUNIT/2, 0,
+			FRACUNIT/2, offworld_flag,
 			W_CachePatchName("K_LAPE02", PU_CACHE),
 			colormap);
 	}
 
-	return own_locally ? actiontext : NULL;
+	return is_usable ? actiontext : NULL;
 }
 
 #define challengesgridstep 22
