@@ -7096,7 +7096,7 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 		// [RRAP]
 		case SECRET_AP_KKD:
 			bcol = SKINCOLOR_MOONSET;
-			iconid = NUM_CHALLENGE_CATEGORIES_VANILLA; //+ 1;
+			iconid = NUM_CHALLENGE_CATEGORIES_VANILLA + 1;
 			break;
 	}
 
@@ -7280,7 +7280,7 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 
 			// [RRAP]
 			case SECRET_AP_KKD:
-				iconid = NUM_CHALLENGE_ICONS_VANILLA; //+ 1;
+				iconid = NUM_CHALLENGE_ICONS_VANILLA + 1;
 				break;
 
 			default:
