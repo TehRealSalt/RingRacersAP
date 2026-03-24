@@ -1,6 +1,4 @@
 {
-	"cups": {},
-	"maps": {},
 	"locations": [
 		{
 			"id": 800,
@@ -629,6 +627,7 @@
 			"label": "Test Run",
 			"unlockable": 800,
 			"song_map": "rr_testrun",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -639,6 +638,7 @@
 			"label": "Emerald Coast A",
 			"unlockable": 801,
 			"song_map": "rr_emeraldcoast",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -649,6 +649,7 @@
 			"label": "Emerald Coast B",
 			"unlockable": 802,
 			"song_map": "rr_emeraldcoast",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -659,6 +660,7 @@
 			"label": "Angel Island A",
 			"unlockable": 803,
 			"song_map": "rr_angelisland",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -669,6 +671,7 @@
 			"label": "Angel Island B",
 			"unlockable": 804,
 			"song_map": "rr_angelisland",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -679,6 +682,7 @@
 			"label": "Regal Ruin A",
 			"unlockable": 805,
 			"song_map": "rr_regalruin",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -689,6 +693,7 @@
 			"label": "Regal Ruin B",
 			"unlockable": 806,
 			"song_map": "rr_regalruin",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -699,6 +704,7 @@
 			"label": "Collision Chaos",
 			"unlockable": 807,
 			"song_map": "rr_collisionchaos",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -709,6 +715,7 @@
 			"label": "Emerald Hill",
 			"unlockable": 808,
 			"song_map": "rr_emeraldhill",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -719,6 +726,7 @@
 			"label": "Gust Planet A",
 			"unlockable": 809,
 			"song_map": "rr_gustplanet",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -729,6 +737,7 @@
 			"label": "Gust Planet B",
 			"unlockable": 810,
 			"song_map": "rr_gustplanet",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -739,6 +748,7 @@
 			"label": "Mystic Cave A",
 			"unlockable": 811,
 			"song_map": "rr_mysticcave",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -749,6 +759,7 @@
 			"label": "Mystic Cave B",
 			"unlockable": 812,
 			"song_map": "rr_mysticcave",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -759,6 +770,7 @@
 			"label": "Marble Garden A",
 			"unlockable": 813,
 			"song_map": "rr_marblegarden",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -769,6 +781,7 @@
 			"label": "Marble Garden B",
 			"unlockable": 814,
 			"song_map": "rr_marblegarden",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -779,6 +792,7 @@
 			"label": "Launch Base A",
 			"unlockable": 815,
 			"song_map": "rr_launchbase",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -789,6 +803,7 @@
 			"label": "Launch Base B",
 			"unlockable": 816,
 			"song_map": "rr_launchbase",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -799,6 +814,7 @@
 			"label": "City Escape",
 			"unlockable": 817,
 			"song_map": "rr_cityescape",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -809,6 +825,7 @@
 			"label": "Palmtree Panic A",
 			"unlockable": 818,
 			"song_map": "rr_palmtreepanic",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -819,6 +836,7 @@
 			"label": "Metropolis",
 			"unlockable": 819,
 			"song_map": "rr_metropolis",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -829,6 +847,7 @@
 			"label": "Hydro City A",
 			"unlockable": 820,
 			"song_map": "rr_hydrocity",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -839,6 +858,7 @@
 			"label": "Hydro City B",
 			"unlockable": 821,
 			"song_map": "rr_hydrocity",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -849,6 +869,7 @@
 			"label": "Diamond Dust",
 			"unlockable": 822,
 			"song_map": "rr_diamonddust",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -859,6 +880,7 @@
 			"label": "Carnival Night A",
 			"unlockable": 823,
 			"song_map": "rr_carnivalnight",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -869,6 +891,7 @@
 			"label": "Carnival Night B",
 			"unlockable": 824,
 			"song_map": "rr_carnivalnight",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -879,6 +902,7 @@
 			"label": "Dark Fortress",
 			"unlockable": 825,
 			"song_map": "rr_darkfortress",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -889,6 +913,7 @@
 			"label": "Hot Shelter",
 			"unlockable": 826,
 			"song_map": "rr_hotshelter",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -899,6 +924,7 @@
 			"label": "Mega Lava Reef",
 			"unlockable": 827,
 			"song_map": "rr_megalavareef",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -909,6 +935,7 @@
 			"label": "Quartz Quadrant",
 			"unlockable": 828,
 			"song_map": "rr_quartzquadrant",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -919,6 +946,7 @@
 			"label": "Aqua Tunnel",
 			"unlockable": 829,
 			"song_map": "rr_aquatunnel",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -929,6 +957,7 @@
 			"label": "Abyss Garden",
 			"unlockable": 830,
 			"song_map": "rr_abyssgarden",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -939,6 +968,7 @@
 			"label": "Monkey Mall",
 			"unlockable": 831,
 			"song_map": "rr_monkeymall",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -949,6 +979,7 @@
 			"label": "Crimson Core",
 			"unlockable": 832,
 			"song_map": "rr_crimsoncore",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -959,6 +990,7 @@
 			"label": "Mega Collision Chaoss",
 			"unlockable": 833,
 			"song_map": "rr_megacollisionchaos",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -969,6 +1001,7 @@
 			"label": "Diamond Dust Classic",
 			"unlockable": 834,
 			"song_map": "rr_diamonddustclassic",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -979,6 +1012,7 @@
 			"label": "Nova Shore",
 			"unlockable": 835,
 			"song_map": "rr_novashore",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -989,6 +1023,7 @@
 			"label": "Weiss Waterway",
 			"unlockable": 836,
 			"song_map": "rr_weisswaterway",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -999,6 +1034,7 @@
 			"label": "Mirage Saloon A",
 			"unlockable": 837,
 			"song_map": "rr_miragesaloon",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -1009,6 +1045,7 @@
 			"label": "Mirage Saloon B",
 			"unlockable": 838,
 			"song_map": "rr_miragesaloon",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -1019,6 +1056,7 @@
 			"label": "Hill Top",
 			"unlockable": 839,
 			"song_map": "rr_hilltop",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -1029,6 +1067,7 @@
 			"label": "Palmtree Panic B",
 			"unlockable": 840,
 			"song_map": "rr_palmtreepanic",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -1039,6 +1078,7 @@
 			"label": "Test Track",
 			"unlockable": 841,
 			"song_map": "rr_testtrack",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -1049,6 +1089,7 @@
 			"label": "Thunder Piston A",
 			"unlockable": 842,
 			"song_map": "rr_thunderpiston",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -1059,6 +1100,7 @@
 			"label": "Azure City",
 			"unlockable": 843,
 			"song_map": "rr_azurecity",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -1069,6 +1111,7 @@
 			"label": "Fae Falls",
 			"unlockable": 844,
 			"song_map": "rr_faefalls",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -1079,6 +1122,7 @@
 			"label": "Speed Highway",
 			"unlockable": 845,
 			"song_map": "rr_speedhighway",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -1089,6 +1133,7 @@
 			"label": "Daytona Speedway",
 			"unlockable": 846,
 			"song_map": "rr_daytonaspeedway",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -1099,6 +1144,7 @@
 			"label": "Storm Rig",
 			"unlockable": 847,
 			"song_map": "rr_stormrig",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -1109,6 +1155,7 @@
 			"label": "Cadillac Cascade",
 			"unlockable": 848,
 			"song_map": "rr_cadillaccascade",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -1119,6 +1166,7 @@
 			"label": "Frozen Production",
 			"unlockable": 849,
 			"song_map": "rr_frozenproduction",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -1129,6 +1177,7 @@
 			"label": "Cyan Belltower",
 			"unlockable": 850,
 			"song_map": "rr_cyanbelltower",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -1139,6 +1188,7 @@
 			"label": "Chaos Chute",
 			"unlockable": 851,
 			"song_map": "rr_chaostube",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -1149,6 +1199,7 @@
 			"label": "Popcorn Workshop",
 			"unlockable": 852,
 			"song_map": "rr_popcornworkshop",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -1159,6 +1210,7 @@
 			"label": "Thunder Piston B",
 			"unlockable": 853,
 			"song_map": "rr_thunderpiston",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -1169,6 +1221,7 @@
 			"label": "CD Special Stage 1",
 			"unlockable": 900,
 			"song_map": "rr_cdspecialstage1",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -1179,6 +1232,7 @@
 			"label": "CD Special Stage 8",
 			"unlockable": 901,
 			"song_map": "rr_cdspecialstage8",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -1189,6 +1243,7 @@
 			"label": "Wood",
 			"unlockable": 902,
 			"song_map": "rr_wood",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -1199,6 +1254,7 @@
 			"label": "Rusty Rig",
 			"unlockable": 903,
 			"song_map": "rr_rustyrig",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -1209,6 +1265,7 @@
 			"label": "Dead Simple",
 			"unlockable": 904,
 			"song_map": "rr_deadsimple",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -1219,6 +1276,7 @@
 			"label": "Marble Foyer",
 			"unlockable": 905,
 			"song_map": "rr_marblefoyer",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -1229,6 +1287,7 @@
 			"label": "Cyber Arena",
 			"unlockable": 906,
 			"song_map": "rr_cyberarena",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]
@@ -1239,6 +1298,7 @@
 			"label": "Duel Busters",
 			"unlockable": 907,
 			"song_map": "rr_duelbuster",
+			"class": "filler",
 			"tags": [
 				"Alt. Music"
 			]

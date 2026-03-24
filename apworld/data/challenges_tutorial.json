@@ -63,6 +63,7 @@
 			"label": "Ancient Gear Playground",
 			"unlockable": 750,
 			"map": "RR_SunbeamParadisePlayground",
+			"class": "progression",
 			"tags": [
 				"Maps",
 				"Tutorials"
@@ -74,6 +75,7 @@
 			"label": "Check Your Brakes",
 			"unlockable": 751,
 			"map": "RR_SunbeamParadiseBrakes",
+			"class": "progression",
 			"tags": [
 				"Maps",
 				"Tutorials"
@@ -85,6 +87,7 @@
 			"label": "The Art of Drifting",
 			"unlockable": 752,
 			"map": "RR_SunbeamParadiseDrifting",
+			"class": "progression",
 			"tags": [
 				"Maps",
 				"Tutorials"
@@ -96,6 +99,7 @@
 			"label": "The Item Gallery",
 			"unlockable": 753,
 			"map": "RR_SunbeamParadiseItems",
+			"class": "progression_deprioritized_skip_balancing",
 			"tags": [
 				"Maps",
 				"Tutorials"
@@ -107,6 +111,7 @@
 			"label": "Springs & Trick Panels",
 			"unlockable": 754,
 			"map": "RR_SunbeamParadiseSprings",
+			"class": "progression_deprioritized_skip_balancing",
 			"tags": [
 				"Maps",
 				"Tutorials"

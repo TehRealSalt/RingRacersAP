@@ -324,6 +324,7 @@
 			"label": "Ring Cup",
 			"unlockable": 601,
 			"cup": "RR_Ring",
+			"class": "progression",
 			"tags": [
 				"Cups"
 			],
@@ -335,6 +336,7 @@
 			"label": "Sneaker Cup",
 			"unlockable": 602,
 			"cup": "RR_Sneaker",
+			"class": "progression",
 			"tags": [
 				"Cups"
 			],
@@ -346,6 +348,7 @@
 			"label": "Spring Cup",
 			"unlockable": 603,
 			"cup": "RR_Spring",
+			"class": "progression",
 			"tags": [
 				"Cups"
 			],
@@ -357,6 +360,7 @@
 			"label": "Barrier Cup",
 			"unlockable": 604,
 			"cup": "RR_Barrier",
+			"class": "progression",
 			"tags": [
 				"Cups"
 			],
@@ -368,6 +372,7 @@
 			"label": "Invincible Cup",
 			"unlockable": 605,
 			"cup": "RR_Invincible",
+			"class": "progression",
 			"tags": [
 				"Cups"
 			],
@@ -379,6 +384,7 @@
 			"label": "Emerald Cup",
 			"unlockable": 606,
 			"cup": "RR_Emerald",
+			"class": "progression",
 			"tags": [
 				"Cups"
 			],
@@ -390,6 +396,7 @@
 			"label": "Extra Cup",
 			"unlockable": 607,
 			"cup": "RR_Extra",
+			"class": "progression",
 			"tags": [
 				"Cups"
 			],
@@ -401,6 +408,7 @@
 			"label": "S.P.B. Cup",
 			"unlockable": 608,
 			"cup": "RR_S.P.B.",
+			"class": "progression",
 			"tags": [
 				"Cups"
 			],
@@ -412,6 +420,7 @@
 			"label": "Rocket Cup",
 			"unlockable": 609,
 			"cup": "RR_Rocket",
+			"class": "progression",
 			"tags": [
 				"Cups"
 			],
@@ -423,6 +432,7 @@
 			"label": "Aqua Cup",
 			"unlockable": 610,
 			"cup": "RR_Aqua",
+			"class": "progression",
 			"tags": [
 				"Cups"
 			],
@@ -434,6 +444,7 @@
 			"label": "Lightning Cup",
 			"unlockable": 611,
 			"cup": "RR_Lightning",
+			"class": "progression",
 			"tags": [
 				"Cups"
 			],
@@ -445,6 +456,7 @@
 			"label": "Flame Cup",
 			"unlockable": 612,
 			"cup": "RR_Flame",
+			"class": "progression",
 			"tags": [
 				"Cups"
 			],
@@ -456,6 +468,7 @@
 			"label": "Super Cup",
 			"unlockable": 613,
 			"cup": "RR_Super",
+			"class": "progression",
 			"tags": [
 				"Cups"
 			],
@@ -467,6 +480,7 @@
 			"label": "Egg Cup",
 			"unlockable": 614,
 			"cup": "RR_Egg",
+			"class": "progression",
 			"tags": [
 				"Cups"
 			],
@@ -478,6 +492,7 @@
 			"label": "Goggles Cup",
 			"unlockable": 615,
 			"cup": "RR_Goggles",
+			"class": "progression",
 			"tags": [
 				"Cups"
 			],
@@ -489,6 +504,7 @@
 			"label": "Timer Cup",
 			"unlockable": 616,
 			"cup": "RR_Timer",
+			"class": "progression",
 			"tags": [
 				"Cups"
 			],
@@ -500,6 +516,7 @@
 			"label": "Grow Cup",
 			"unlockable": 617,
 			"cup": "RR_Grow",
+			"class": "progression",
 			"tags": [
 				"Cups"
 			],
@@ -511,6 +528,7 @@
 			"label": "Chao Cup",
 			"unlockable": 618,
 			"cup": "RR_Chao",
+			"class": "progression",
 			"tags": [
 				"Cups"
 			],
@@ -522,6 +540,7 @@
 			"label": "Wing Cup",
 			"unlockable": 619,
 			"cup": "RR_Wing",
+			"class": "progression",
 			"tags": [
 				"Cups"
 			],
@@ -533,6 +552,7 @@
 			"label": "Mega Cup",
 			"unlockable": 620,
 			"cup": "RR_Mega",
+			"class": "progression",
 			"tags": [
 				"Cups"
 			],
@@ -544,6 +564,7 @@
 			"label": "Phantom Cup",
 			"unlockable": 621,
 			"cup": "RR_Phantom",
+			"class": "progression",
 			"tags": [
 				"Cups"
 			],
@@ -555,6 +576,7 @@
 			"label": "Flash Cup",
 			"unlockable": 622,
 			"cup": "RR_Flash",
+			"class": "progression",
 			"tags": [
 				"Cups"
 			],
@@ -566,6 +588,7 @@
 			"label": "Swap Cup",
 			"unlockable": 623,
 			"cup": "RR_Swap",
+			"class": "progression",
 			"tags": [
 				"Cups"
 			],
@@ -577,6 +600,7 @@
 			"label": "Shrink Cup",
 			"unlockable": 624,
 			"cup": "RR_Shrink",
+			"class": "progression",
 			"tags": [
 				"Cups"
 			],
@@ -588,6 +612,7 @@
 			"label": "Bomb Cup",
 			"unlockable": 625,
 			"cup": "RR_Bomb",
+			"class": "progression",
 			"tags": [
 				"Cups"
 			],
@@ -599,6 +624,7 @@
 			"label": "Power Cup",
 			"unlockable": 626,
 			"cup": "RR_Power",
+			"class": "progression",
 			"tags": [
 				"Cups"
 			],
@@ -610,6 +636,7 @@
 			"label": "Genesis Cup",
 			"unlockable": 627,
 			"cup": "RR_Genesis",
+			"class": "progression",
 			"tags": [
 				"Cups"
 			],
@@ -621,6 +648,7 @@
 			"label": "Skate Cup",
 			"unlockable": 628,
 			"cup": "RR_Skate",
+			"class": "progression",
 			"tags": [
 				"Cups"
 			],
@@ -632,6 +660,7 @@
 			"label": "Recycle A Cup",
 			"unlockable": 698,
 			"cup": "RR_Recycle_A",
+			"class": "progression",
 			"tags": [
 				"Cups"
 			],
@@ -643,6 +672,7 @@
 			"label": "Recycle B Cup",
 			"unlockable": 699,
 			"cup": "RR_Recycle_B",
+			"class": "progression",
 			"tags": [
 				"Cups"
 			],

@@ -14,8 +14,40 @@ class RingRacersLocation(Location):
     game = "Dr. Robotnik's Ring Racers"
 
 
+def location_group_allowed(world: RingRacersWorld, group_name: str) -> bool:
+    if group_name in world.location_group_whitelist:
+        return True
+
+    if group_name in world.location_group_blacklist:
+        return False
+
+    return True
+
+
+def location_name_allowed(world: RingRacersWorld, location_name: str) -> bool:
+    if location_name in world.location_name_whitelist:
+        return True
+
+    if location_name in world.location_name_blacklist:
+        return False
+
+    for group_name, group_locations in world.location_name_groups.items():
+        if location_name in group_locations:
+            if group_name in world.location_group_whitelist:
+                return True
+
+            if group_name in world.location_group_blacklist:
+                return False
+
+    # allow by default
+    return True
+
+
 def get_location_names_with_ids(world: RingRacersWorld, location_names: list[str]) -> dict[str, int | None]:
-    return { location_name: world.location_name_to_id[location_name] for location_name in location_names }
+    return {
+        location_name: world.location_name_to_id[location_name]
+        for location_name in location_names if location_name_allowed(world, location_name)
+    }
 
 
 def create_all_locations(world: RingRacersWorld) -> None:
@@ -27,7 +59,8 @@ def create_regular_locations(world: RingRacersWorld) -> None:
     challenges = world.get_region("Challenge Grid")
 
     all_challenge_locations = get_location_names_with_ids(world, world.location_name_groups["Challenges"])
-    challenges.add_locations(all_challenge_locations, RingRacersLocation)
+    if len(all_challenge_locations):
+        challenges.add_locations(all_challenge_locations, RingRacersLocation)
 
     for index, map_def in jsondata.rr_map_defs.items():
         location_suffix_list = map_def.get("locations", None)
@@ -35,8 +68,9 @@ def create_regular_locations(world: RingRacersWorld) -> None:
             map_name = map_def["label"]
             map_region = world.get_region(map_name)
             map_location_names = map_def["locations"]
-            if len(map_location_names):
-                all_map_locations = get_location_names_with_ids(world, map_location_names)
+
+            all_map_locations = get_location_names_with_ids(world, map_location_names)
+            if len(all_map_locations):
                 map_region.add_locations(all_map_locations)
 
 

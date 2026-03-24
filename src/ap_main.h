@@ -40,6 +40,8 @@ class rrap_location_t
 private:
 	INT64 _id;
 	srb2::String _name;
+	srb2::Vector<srb2::String> _tags;
+	boolean _available;
 	boolean _checked;
 	boolean _check_pending;
 
@@ -60,6 +62,7 @@ public:
 
 	INT64 id() const { return _id; }
 	srb2::String name() const { return _name; }
+	boolean available() const { return _available; }
 	boolean checked() const { return _checked; }
 	boolean check_pending() const { return _check_pending; }
 
@@ -73,6 +76,8 @@ public:
 	srb2::String display_item_player() const { return _display_item_player; }
 	UINT8 display_item_class() const { return _display_item_class; }
 	INT64 display_item_id() const { return _display_item_id; }
+
+	void update_available();
 
 	void immediate_check();
 	void queue_check();
@@ -88,15 +93,6 @@ public:
 	{
 		_checked = false;
 		_check_pending = false;
-	}
-
-	boolean available() const
-	{
-		// Returns if this location
-		// is allowed. Return false
-		// when we add location-type
-		// filtering
-		return true;
 	}
 
 	boolean achieved() const
