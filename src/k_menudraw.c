@@ -7093,6 +7093,11 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 			bcol = SKINCOLOR_MAGENTA;
 			iconid = 9;
 			break;
+		// [RRAP]
+		case SECRET_AP_KKD:
+			bcol = SKINCOLOR_MOONSET;
+			//iconid = 3;
+			break;
 	}
 
 	bgmap = R_GetTranslationColormap(TC_DEFAULT, bcol, GTC_MENUCACHE);
@@ -8079,6 +8084,32 @@ static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 					actiontext = secondtext;
 				}
 			}
+
+			break;
+		}
+		case SECRET_AP_KKD: // [RRAP]
+		{
+			spritedef_t *sprdef = &sprites[SPR_SBON];
+			spriteframe_t *sprframe;
+			patch_t *patch;
+			UINT32 useframe;
+			UINT32 addflags = 0;
+
+			if (sprdef->numframes)
+			{
+				useframe = (challengesmenu.ticker / 2) % sprdef->numframes;
+
+				sprframe = &sprdef->spriteframes[useframe];
+				patch = W_CachePatchNum(sprframe->lumppat[0], PU_CACHE);
+
+				if (sprframe->flip & 1) // Only for first sprite
+				{
+					addflags ^= V_FLIP; // This sprite is left/right flipped!
+				}
+
+				V_DrawFixedPatch(x*FRACUNIT, (y+10)*FRACUNIT, FRACUNIT/2, addflags, patch, NULL);
+			}
+			break;
 		}
 		default:
 		{
