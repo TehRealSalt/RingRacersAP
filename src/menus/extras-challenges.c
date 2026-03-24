@@ -1133,14 +1133,18 @@ boolean M_ChallengesInputs(INT32 ch)
 		}
 
 		rrap_location_t *location = RRAP_GetLocation(challengesmenu.current_ap_location);
-		boolean checked = RRAP_LocationChecked(location);
-
-		if (location && checked)
+		if (location && RRAP_LocationChecked(location))
 		{
 			boolean forceflip = false;
 
 			rrap_item_t *item = RRAP_LocationDisplayItem(location);
-			INT32 display_type = RRAP_ItemDisplayType(item);
+			INT32 display_type = SECRET_NONE;
+
+			if (item && RRAP_ItemRecieved(item))
+			{
+				// [RRAP] Only allow using if you own it
+				display_type = RRAP_ItemDisplayType(item);
+			}
 
 			switch (display_type)
 			{

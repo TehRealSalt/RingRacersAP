@@ -8086,8 +8086,11 @@ static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 		}
 	}
 
+	// [RRAP] only show control text if you can use it
+	boolean own_locally = RRAP_ItemRecieved(item);
+
 	if (specialmap == NEXTMAP_INVALID)
-		return actiontext;
+		return own_locally ? actiontext : NULL;
 
 	x -= 50;
 	y = 146+2;
@@ -8136,7 +8139,7 @@ static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 			colormap);
 	}
 
-	return actiontext;
+	return own_locally ? actiontext : NULL;
 }
 
 #define challengesgridstep 22
