@@ -21,7 +21,7 @@
 #include "m_random.h"
 #include "m_fixed.h"
 
-char rng_class_names[34][30] = {
+char rng_class_names[35][30] = {
 	"UNDEFINED",
 	"EXECUTOR",
 	"ACS",
@@ -55,7 +55,8 @@ char rng_class_names[34][30] = {
 	"TEAMS",
 	"DUMMY",
 	"INTERPHUDRANDOM",
-	"NUISANCE"
+	"NUISANCE",
+	"AP_CHALLENGES"
 };
 
 // ---------------------------
