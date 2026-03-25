@@ -146,7 +146,7 @@ class RingRacersOptions(PerGameCommonOptions):
     goal_trophy_level: GoalTrophyLevel
     character_wins_count: CharWinsCount
     simple_map_access: SimpleMapAccess
-    challenges: Challenges
-    spray_cans: SprayCans
+    #challenges: Challenges
+    #spray_cans: SprayCans
     gum_challenge: GumChallenge
     sound_test_challenge: SoundTestChallenge

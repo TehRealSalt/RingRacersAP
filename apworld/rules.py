@@ -1847,8 +1847,7 @@ def set_challenge_location_rules(world: RingRacersWorld) -> None:
 
 
 def set_all_location_rules(world: RingRacersWorld) -> None:
-    if world.options.challenges:
-        set_challenge_location_rules(world)
+    set_challenge_location_rules(world)
 
 
 def set_completion_condition(world: RingRacersWorld) -> None:
