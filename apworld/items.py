@@ -45,7 +45,7 @@ def create_all_items(world: RingRacersWorld) -> None:
     filler_pool: list[Item] = []
 
     def group_percent_to_count(requirement: int, group_name: str) -> int:
-        total = world.item_name_groups[group_name]
+        total = len(world.item_name_groups[group_name])
         return (requirement * total + 99) // 100
 
     #
@@ -144,7 +144,7 @@ def create_all_items(world: RingRacersWorld) -> None:
         for i in range(required_percent):
             prog_color = color_pool.pop(world.random.randrange(len(color_pool)))
             prog_color.classification = ItemClassification.progression_deprioritized_skip_balancing
-            item_pool += prog_color
+            item_pool.append(prog_color)
 
     # remainder stays filler
     filler_pool += color_pool
@@ -161,7 +161,7 @@ def create_all_items(world: RingRacersWorld) -> None:
         for i in range(required_percent):
             prog_music = music_pool.pop(world.random.randrange(len(music_pool)))
             prog_music.classification = ItemClassification.progression_deprioritized_skip_balancing
-            item_pool += prog_music
+            item_pool.append(prog_music)
 
     # remainder stays filler
     filler_pool += music_pool
