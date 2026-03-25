@@ -57,8 +57,7 @@ def create_all_items(world: RingRacersWorld) -> None:
         driver_item = world.create_item(driver_name)
 
         # TODO: Only mark drivers as progression if the specific locations are enabled
-        if world.options.challenges:
-            driver_item.classification = ItemClassification.progression_skip_balancing
+        driver_item.classification = ItemClassification.progression_skip_balancing
 
         return driver_item
 
@@ -127,7 +126,7 @@ def create_all_items(world: RingRacersWorld) -> None:
         follower_item = world.create_item(follower_name)
 
         # TODO: Only mark followers as progression if the specific locations are enabled
-        if world.options.challenges and follower_name in CHALLENGE_FOLLOWERS:
+        if follower_name in CHALLENGE_FOLLOWERS:
             follower_item.classification = ItemClassification.progression_deprioritized_skip_balancing
             item_pool.append(follower_item)
         else:
