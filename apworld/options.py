@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from Options import PerGameCommonOptions, Toggle, DefaultOnToggle, Choice, Range, NamedRange, OptionGroup
+from Options import PerGameCommonOptions, ItemsAccessibility, Toggle, DefaultOnToggle, Choice, Range, NamedRange, OptionGroup
 
 
 class StartingDriverCount(Range):
@@ -140,6 +140,7 @@ class SoundTestChallenge(Toggle):
 
 @dataclass
 class RingRacersOptions(PerGameCommonOptions):
+    accessibility: ItemsAccessibility
     starting_driver_count: StartingDriverCount
     starting_driver_pool: StartingDriverPool
     goal_num_trophies: GoalNumTrophies
