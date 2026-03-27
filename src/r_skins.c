@@ -45,6 +45,7 @@
 #include "ap_main.h"
 
 INT32 numskins = 0;
+INT32 g_numbaseskins = 0; // [RRAP]
 skin_t **skins;
 
 unloaded_skin_t *unloadedskins = NULL;
@@ -180,13 +181,18 @@ void R_InitSkins(void)
 		R_PatchSkins((UINT16)i, true);
 		R_LoadSpriteInfoLumps(i, wadfiles[i]->numlumps);
 
-#ifdef HAVE_DISCORDRPC
 		if (i == mainwads)
 		{
-			g_discord_skins = numskins;
+			g_numbaseskins = numskins;
+
+			if (g_numbaseskins >= MAXSKINUNAVAILABLE-1)
+			{
+				// [RRAP] don't run into our hack, see R_SkinUsable
+				I_Error("Out of skin slots! Something terrible has happened...");
+			}
 		}
-#endif
 	}
+
 	ST_ReloadSkinFaceGraphics();
 	M_UpdateConditionSetsPending();
 }
@@ -200,7 +206,8 @@ UINT8 *R_GetSkinAvailabilities(boolean demolock, INT32 botforcecharacter)
 
 	memset(&responsebuffer, 0, sizeof(responsebuffer));
 
-	for (skinid = 0; skinid < numskins; skinid++)
+	INT32 skin_count = min(MAXSKINUNAVAILABLE-1, g_numbaseskins); // [RRAP] -1 for our hack
+	for (skinid = 0; skinid < skin_count; skinid++)
 	{
 		if (!demolock)
 		{
@@ -228,11 +235,11 @@ UINT8 *R_GetSkinAvailabilities(boolean demolock, INT32 botforcecharacter)
 			}
 		}
 
+		// [RRAP] Complain loudly if we run into our hack
+		I_Assert(skinid < MAXSKINUNAVAILABLE-1);
+
 		shif = (skinid % 8);
 		byte = (skinid / 8);
-
-		// [RRAP] Complain loudly if we run into our hack
-		I_Assert(byte != MAXAVAILABILITY-1 && shif != 7);
 
 		responsebuffer[byte] |= (1 << shif);
 	}
@@ -325,11 +332,11 @@ boolean R_SkinUsable(INT32 playernum, INT32 skinnum, boolean demoskins)
 			return true;
 		}
 
+		// [RRAP] Complain loudly if we run into our hack
+		I_Assert(skinnum < MAXSKINUNAVAILABLE-1);
+
 		UINT8 shif = (skinnum % 8);
 		UINT8 byte = (skinnum / 8);
-
-		// [RRAP] Complain loudly if we run into our hack
-		I_Assert(byte != MAXAVAILABILITY-1 && shif != 7);
 
 		return !!(players[playernum].availabilities[byte] & (1 << shif));
 	}

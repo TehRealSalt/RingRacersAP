@@ -54,8 +54,6 @@ struct discordInfo_s discordInfo;
 
 discordRequest_t *discordRequestList = NULL;
 
-size_t g_discord_skins = 0;
-
 static char self_ip[IP_SIZE];
 
 /*--------------------------------------------------
@@ -970,7 +968,7 @@ void DRPC_UpdatePresence(void)
 		if (Playing() && playeringame[consoleplayer] && !players[consoleplayer].spectator)
 		{
 			// Character image
-			if ((unsigned)players[consoleplayer].skin < g_discord_skins) // Supported skins
+			if (players[consoleplayer].skin < g_numbaseskins) // Supported skins
 			{
 				snprintf(charimg, 128, "%schar_%s%s", IMAGE_REPO, skins[ players[consoleplayer].skin ]->name, IMAGE_EXT);
 				discordPresence.smallImageKey = charimg;
