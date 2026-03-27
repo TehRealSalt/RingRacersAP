@@ -50,8 +50,6 @@ struct discordRequest_t {
 
 extern discordRequest_t *discordRequestList;
 
-extern size_t g_discord_skins;
-
 /*--------------------------------------------------
 	const char *DRPC_HideUsername(const char *input);
 

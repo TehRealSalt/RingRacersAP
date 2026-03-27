@@ -104,6 +104,7 @@ engineclass_t R_GetEngineClass(SINT8 speed, SINT8 weight, skinflags_t flags);
 
 /// Externs
 extern INT32 numskins;
+extern INT32 g_numbaseskins; // [RRAP]
 extern skin_t **skins;
 
 extern CV_PossibleValue_t Forceskin_cons_t[];
