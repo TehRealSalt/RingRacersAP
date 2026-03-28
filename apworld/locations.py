@@ -73,6 +73,10 @@ def create_regular_locations(world: RingRacersWorld) -> None:
             if len(all_map_locations):
                 map_region.add_locations(all_map_locations)
 
+    all_cd_locations = get_location_names_with_ids(world, world.location_name_groups["CD Milestones"])
+    if len(all_cd_locations):
+        challenges.add_locations(all_cd_locations, RingRacersLocation)
+
 
 def create_events(world: RingRacersWorld) -> None:
     for index, cup_def in jsondata.rr_cup_defs.items():
@@ -97,45 +101,54 @@ def create_events(world: RingRacersWorld) -> None:
                     location_type=RingRacersLocation, item_type=items.RingRacersItem
                 )
 
+    # Prevent medal placement if the seed doesn't logically require it.
+    # Just avoids spamming logs when not necessary
+    seed_requires_medals = (
+        location_name_allowed(world, "Challenge - SPB Attack Mode")
+        or location_name_allowed(world, "Challenge - Follower: Chaclon")
+        or location_name_allowed(world, "Challenge - Follower: S.P.B. Jr.")
+    )
+
     for index, map_def in jsondata.rr_map_defs.items():
         map_name = map_def["label"]
         map_region = world.get_region(map_name)
 
-        time_medal_count = map_def.get("medals_time", 0)
-        for i in range(time_medal_count):
-            event_name = "!" + map_name + " - Time Medal"
-            if time_medal_count > 1:
-                event_name += " " + str(i + 1)
+        if seed_requires_medals:
+            time_medal_count = map_def.get("medals_time", 0)
+            for i in range(time_medal_count):
+                event_name = "!" + map_name + " - Time Medal"
+                if time_medal_count > 1:
+                    event_name += " " + str(i + 1)
 
-            map_region.add_event(
-                event_name, "!Medal",
-                rule=lambda state: state.has("Time Attack Mode", world.player),
-                location_type=RingRacersLocation, item_type=items.RingRacersItem
-            )
+                map_region.add_event(
+                    event_name, "!Medal",
+                    rule=lambda state: state.has("Time Attack Mode", world.player),
+                    location_type=RingRacersLocation, item_type=items.RingRacersItem
+                )
 
-        spb_medal_count = map_def.get("medals_spb", 0)
-        for i in range(spb_medal_count):
-            event_name = "!" + map_name + " - SPB Medal"
-            if spb_medal_count > 1:
-                event_name += " " + str(i + 1)
+            spb_medal_count = map_def.get("medals_spb", 0)
+            for i in range(spb_medal_count):
+                event_name = "!" + map_name + " - SPB Medal"
+                if spb_medal_count > 1:
+                    event_name += " " + str(i + 1)
 
-            map_region.add_event(
-                event_name, "!Medal",
-                rule=lambda state: state.has("SPB Attack Mode", world.player),
-                location_type=RingRacersLocation, item_type=items.RingRacersItem
-            )
+                map_region.add_event(
+                    event_name, "!Medal",
+                    rule=lambda state: state.has("SPB Attack Mode", world.player),
+                    location_type=RingRacersLocation, item_type=items.RingRacersItem
+                )
 
-        prison_medal_count = map_def.get("medals_prisons", 0)
-        for i in range(prison_medal_count):
-            event_name = "!" + map_name + " - Prisons Medal"
-            if prison_medal_count > 1:
-                event_name += " " + str(i + 1)
+            prison_medal_count = map_def.get("medals_prisons", 0)
+            for i in range(prison_medal_count):
+                event_name = "!" + map_name + " - Prisons Medal"
+                if prison_medal_count > 1:
+                    event_name += " " + str(i + 1)
 
-            map_region.add_event(
-                event_name, "!Medal",
-                rule=lambda state: state.has("Prison Break Mode", world.player),
-                location_type=RingRacersLocation, item_type=items.RingRacersItem
-            )
+                map_region.add_event(
+                    event_name, "!Medal",
+                    rule=lambda state: state.has("Prison Break Mode", world.player),
+                    location_type=RingRacersLocation, item_type=items.RingRacersItem
+                )
 
         if map_def["type"] == "special":
             event_name = "!" + map_name + " Reachable"

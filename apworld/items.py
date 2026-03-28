@@ -52,12 +52,14 @@ def create_all_items(world: RingRacersWorld) -> None:
     # Get starting driver(s)
     #
     starting_driver_pool: list[Item] = []
+    unlocked_driver_pool: list[Item] = []
 
     def create_driver_item(driver_name: str) -> Item:
         driver_item = world.create_item(driver_name)
 
         # TODO: Only mark drivers as progression if the specific locations are enabled
-        driver_item.classification = ItemClassification.progression_skip_balancing
+        if locations.location_group_allowed(world, "Challenges"):
+            driver_item.classification = ItemClassification.progression_skip_balancing
 
         return driver_item
 
@@ -67,7 +69,7 @@ def create_all_items(world: RingRacersWorld) -> None:
                 if driver_name in world.item_name_groups["Starting Drivers"]:
                     starting_driver_pool.append(create_driver_item(driver_name))
                 else:
-                    item_pool.append(create_driver_item(driver_name))
+                    unlocked_driver_pool.append(create_driver_item(driver_name))
         case 1:
             engine_lists: dict[str, list[Item]] = {}
             for engine in ENGINE_CLASS_LIST:
@@ -78,14 +80,14 @@ def create_all_items(world: RingRacersWorld) -> None:
 
                 engine_driver_item = engine_lists[engine].pop(world.random.randrange(len(engine_lists[engine])))
                 starting_driver_pool.append(engine_driver_item)
-                item_pool += engine_lists[engine]
+                unlocked_driver_pool += engine_lists[engine]
 
             # nab the weirdos
             for driver_name in world.item_name_groups["Engine Class J"]:
-                item_pool.append(create_driver_item(driver_name))
+                unlocked_driver_pool.append(create_driver_item(driver_name))
 
             for driver_name in world.item_name_groups["Engine Class R"]:
-                item_pool.append(create_driver_item(driver_name))
+                unlocked_driver_pool.append(create_driver_item(driver_name))
 
         case _:
             for driver_name in world.item_name_groups["Drivers"]:
@@ -96,7 +98,13 @@ def create_all_items(world: RingRacersWorld) -> None:
         world.push_precollected(precollect_driver)
 
     # add whatever we didn't use
-    item_pool += starting_driver_pool
+    unlocked_driver_pool += starting_driver_pool
+
+    for driver_item in unlocked_driver_pool:
+        if driver_item.classification & ItemClassification.progression:
+            item_pool.append(driver_item)
+        else:
+            filler_pool.append(driver_item)
 
     #
     # Get starting cup
@@ -126,7 +134,7 @@ def create_all_items(world: RingRacersWorld) -> None:
         follower_item = world.create_item(follower_name)
 
         # TODO: Only mark followers as progression if the specific locations are enabled
-        if follower_name in CHALLENGE_FOLLOWERS:
+        if locations.location_group_allowed(world, "Challenges") and follower_name in CHALLENGE_FOLLOWERS:
             follower_item.classification = ItemClassification.progression_deprioritized_skip_balancing
             item_pool.append(follower_item)
         else:
