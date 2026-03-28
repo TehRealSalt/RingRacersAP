@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build-game:
+    name: Ring Racers
+
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - label: Windows
+            os: windows-latest
+            shell: "msys2 {0}"
+            cmake_preset: ninja-x86_mingw_static_vcpkg-release
+
+          - label: Linux
+            os: ubuntu-latest
+            shell: bash
+            cmake_preset: ninja-vcpkg-release
+
+    uses: ./.github/workflows/game.yml
+    with:
+      label: ${{ matrix.config.label }}
+      os: ${{ matrix.config.os }}
+      shell: ${{ matrix.config.shell }}
+      cmake_preset: ${{ matrix.config.cmake_preset }}
+
+  build-apworld:
+    name: APWorld
+    strategy:
+      fail-fast: false
+    uses: ./.github/workflows/apworld.yml
+
+  release:
+    name: Release
+    needs:
+      - build-game
+      - build-apworld
+    if: github.ref_type == 'tag'
+    uses: ./.github/workflows/release.yml
+    with:
+      tag: ${{ github.ref_name }}

@@ -1,0 +1,54 @@
+on:
+  workflow_call:
+    inputs:
+      tag:
+        required: true
+        type: string
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Get Windows
+        uses: actions/download-artifact@v8
+        with:
+          name: Windows
+          path: build/windows/
+
+      - name: Get APWorld
+        uses: actions/download-artifact@v8
+        with:
+          name: APWorld
+          path: build/apworld/
+
+      - name: Get assets
+        uses: robinraju/release-downloader@v1
+        with:
+          repository: KartKrewDev/RingRacers
+          tag: v2.4
+          fileName: "Dr.Robotnik.s-Ring-Racers-v2.4-Assets.zip"
+          out-file-path: assets/
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract assets
+        run: |
+          unzip assets/Dr.Robotnik.s-Ring-Racers-v2.4-Assets.zip -d build/windows/
+
+      - name: Package Windows
+        run: |
+          cd build/windows
+          zip -r ringracers-ap_Windows.zip .
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: "Ring Racers AP ${{ inputs.tag }}"
+          tag_name: ${{ inputs.tag }}
+          files: |
+            build/windows/ringracers-ap_Windows.zip
+            build/apworld/ringracers.apworld
+          draft: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
