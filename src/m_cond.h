@@ -358,7 +358,7 @@ struct gamedata_t
 #endif
 
 	// PRISON EGG PICKUPS
-	UINT16 numprisoneggpickups;
+	UINT32 numprisoneggpickups;
 
 	// CHALLENGE GRID
 	INT64 ap_challengegridwidth;
