@@ -834,8 +834,10 @@ void P_TouchSpecialThing(mobj_t *special, mobj_t *toucher, boolean heightcheck)
 					return;
 				}
 
+#if 0 // [RRAP] I dunno what this is
 				if (special->threshold != 0)
 					return;
+#endif
 
 				mapheaderinfo[gamemap-1]->records.spraycan = true;
 
