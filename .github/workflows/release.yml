@@ -1,0 +1,44 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  release-windows:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Get artifacts
+        uses: actions/download-artifact@v8
+        with:
+          name: Windows
+          path: build/
+
+      - name: Get assets
+        uses: robinraju/release-downloader@v1
+        with:
+          repository: KartKrewDev/RingRacers
+          tag: v2.4
+          fileName: "Dr.Robotnik.s-Ring-Racers-v2.4-Assets.zip"
+          out-file-path: assets/
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract assets
+        run: |
+          unzip assets/Dr.Robotnik.s-Ring-Racers-v2.4-Assets.zip -d build/
+
+      - name: Package
+        run: |
+          cd build
+          zip -r ../ringracers-ap_win.zip .
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          draft: true
+          files: ringracers-ap_win.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
