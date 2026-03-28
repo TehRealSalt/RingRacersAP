@@ -915,6 +915,11 @@ void P_TouchSpecialThing(mobj_t *special, mobj_t *toucher, boolean heightcheck)
 				{
 					gamedata->numprisoneggpickups++;
 
+					if (gamedata->missed_prison_egg_pickups)
+					{
+						gamedata->missed_prison_egg_pickups--;
+					}
+
 					if (!M_UpdateUnlockablesAndExtraEmblems(true, true))
 						S_StartSound(NULL, sfx_ncitem);
 

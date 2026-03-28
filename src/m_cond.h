@@ -359,6 +359,7 @@ struct gamedata_t
 
 	// PRISON EGG PICKUPS
 	UINT32 numprisoneggpickups;
+	UINT32 missed_prison_egg_pickups; // [RRAP]
 
 	// CHALLENGE GRID
 	INT64 ap_challengegridwidth;

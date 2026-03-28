@@ -42,6 +42,8 @@
 #include "r_main.h"
 #include "i_video.h"
 #include "k_hud.h"
+#include "k_battle.h"
+#include "k_grandprix.h"
 
 boolean g_ap_started;
 
@@ -71,6 +73,8 @@ static UINT8 g_goal_trophy_level = 0;
 
 static boolean g_goal_queued = false;
 static boolean g_goal_sent = false;
+
+static boolean g_cd_missed_this_map = false;
 
 static srb2::Vector<srb2::String> g_group_blacklist;
 static srb2::Vector<srb2::String> g_group_whitelist;
@@ -1513,6 +1517,50 @@ boolean RRAP_TryGoalSend(void)
 	g_goal_sent = true;
 
 	return true;
+}
+
+void RRAP_LevelChanged(void)
+{
+	if (battleprisons && grandprixinfo.gp)
+	{
+		RRAP_PrisonEggCDMissed();
+	}
+
+	g_cd_missed_this_map = false;
+}
+
+void RRAP_PrisonEggCDMissed(void)
+{
+	if (g_cd_missed_this_map)
+	{
+		return;
+	}
+
+	gamedata->missed_prison_egg_pickups++;
+	g_cd_missed_this_map = true;
+
+	UINT64 hint_cd = gamedata->numprisoneggpickups + gamedata->missed_prison_egg_pickups;
+	if (hint_cd == 0)
+	{
+		return;
+	}
+
+	for (auto& [index, location] : g_ap_location_info)
+	{
+		if (!location.available())
+		{
+			continue;
+		}
+
+		UINT8 requirement = location.prison_cd_count();
+		if (requirement != hint_cd)
+		{
+			continue;
+		}
+
+		std::set<INT64> scout_ids = {index};
+		AP_SendLocationScouts(scout_ids, 2);
+	}
 }
 
 void RRAP_TickMessages(void)
