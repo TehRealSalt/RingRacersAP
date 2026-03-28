@@ -15,7 +15,7 @@ class StartingDriverCount(Range):
     default = 9
 
 
-class StartingDriverPool(NamedRange):
+class StartingDriverPool(Choice):
     """
     Determine the pool that is chosen from when randomizing starting drivers.
 
@@ -26,14 +26,10 @@ class StartingDriverPool(NamedRange):
 
     internal_name = "starting_driver_pool"
     display_name = "Starting Driver Pool"
-    range_start = 0
-    range_end = 2
+    option_vanilla = 0
+    option_balanced = 1
+    option_full = 2
     default = 1
-    special_range_names = {
-        "vanilla": 0,
-        "balanced": 1,
-        "full": 2,
-    }
 
 
 class CharWinsCount(NamedRange):
