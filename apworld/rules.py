@@ -966,7 +966,7 @@ def set_follower_challenge_location_rules(world: RingRacersWorld) -> None:
         world.get_location("Challenge - Follower: Bomblur"),
         lambda state:
             state.has("Gear 3 + GP Vicious Mode", world.player)
-            and state.can_reach_region("Robotnik Winter", world.player)
+            and state.can_reach_region("Turquoise Hill", world.player)
     )
 
     set_rule(
@@ -978,13 +978,13 @@ def set_follower_challenge_location_rules(world: RingRacersWorld) -> None:
     set_rule(
         world.get_location("Challenge - Follower: Sandoom"),
         lambda state:
-            state.can_reach_region("Robotnik Winter", world.player)
+            state.can_reach_region("Roasted Ruins", world.player)
     )
 
     set_rule(
         world.get_location("Challenge - Follower: Gaikoko"),
         lambda state:
-            state.can_reach_region("Haunted Ship", world.player)
+            map_mystic_melody(state, "Haunted Ship", world.player)
     )
 
     set_rule(
