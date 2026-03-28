@@ -1,0 +1,105 @@
+on:
+  workflow_call:
+    inputs:
+      label:
+        required: true
+        type: string
+      os:
+        required: true
+        type: string
+      shell:
+        required: true
+        type: string
+      cmake_preset:
+        required: true
+        type: string
+
+jobs:
+  build-game:
+    name: ${{ inputs.label }}
+    runs-on: ${{ inputs.os }}
+    defaults:
+      run:
+        shell: ${{ inputs.shell }}
+
+    steps:
+      - name: Windows MSYS2 setup
+        if: inputs.os == 'windows-latest'
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: mingw32
+          update: true
+          install: >-
+            mingw-w64-i686-cmake
+            mingw-w64-i686-ninja
+            mingw-w64-i686-gcc
+            git
+            zip
+
+      - name: Linux dependencies
+        if: inputs.os == 'ubuntu-latest'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake ninja-build build-essential \
+            curl zip nasm autoconf automake libtool pkg-config \
+            libtool-bin libltdl-dev m4
+
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: vcpkg bootstrap cache
+        uses: actions/cache@v5
+        id: vcpkg-bootstrap-cache
+        with:
+          path: ${{ github.workspace }}/vcpkg
+          key: vcpkg-bootstrap-${{ runner.os }}-${{ hashFiles('vcpkg.json') }}
+          restore-keys: vcpkg-bootstrap-${{ runner.os }}-
+
+      - name: vcpkg bootstrap
+        if: steps.vcpkg-bootstrap-cache.outputs.cache-hit != 'true'
+        run: |
+          git clone https://github.com/microsoft/vcpkg.git vcpkg
+          ./vcpkg/bootstrap-vcpkg.sh -disableMetrics
+
+      - name: vcpkg environment
+        run: |
+          echo "VCPKG_ROOT=${{ github.workspace }}/vcpkg" >> $GITHUB_ENV
+          if [ "${{ runner.os }}" = "Windows" ]; then
+            echo "VCPKG_BINARY_CACHE_PATH=$LOCALAPPDATA/vcpkg/bincache" >> $GITHUB_ENV
+          else
+            echo "VCPKG_BINARY_CACHE_PATH=$HOME/.cache/vcpkg" >> $GITHUB_ENV
+          fi
+
+      - name: vcpkg binary sources
+        run: |
+          echo "VCPKG_BINARY_SOURCES=clear;files,$VCPKG_BINARY_CACHE_PATH,readwrite" >> $GITHUB_ENV
+
+      - name: vcpkg binary cache
+        uses: actions/cache@v5
+        id: vcpkg-binary-cache
+        with:
+          path: ${{ env.VCPKG_BINARY_CACHE_PATH }}
+          key: vcpkg-binary-${{ runner.os }}-${{ inputs.cmake_preset }}-${{ hashFiles('vcpkg.json') }}
+          restore-keys: |
+            vcpkg-binary-${{ runner.os }}-${{ inputs.cmake_preset }}-
+            vcpkg-binary-${{ runner.os }}-
+
+      - name: Configure
+        run: cmake --preset ${{ inputs.cmake_preset }} -DRRAP_BUILD_APWORLD=OFF
+
+      - name: Build
+        run: cmake --build --preset ${{ inputs.cmake_preset }}
+
+      - name: Upload
+        uses: actions/upload-artifact@v6
+        with:
+          name: ${{ inputs.label }}
+          path: build/${{ inputs.cmake_preset }}/bin/
+
+      - name: List
+        if: always()
+        run: |
+          git status
+          cd build
+          pwd
+          ls -R .
