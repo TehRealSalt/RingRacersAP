@@ -110,6 +110,7 @@ void srb2::save_ng_gamedata()
 		}
 	}
 	ng.timesBeaten = gamedata->timesBeaten;
+	ng.prisonEggPickups = gamedata->numprisoneggpickups; // [RRAP]
 
 	auto skintojson = [](skinrecord_t *records)
 	{
@@ -502,6 +503,7 @@ void srb2::load_ng_gamedata()
 	}
 
 	gamedata->timesBeaten = js.timesBeaten;
+	gamedata->numprisoneggpickups = js.prisonEggPickups; // [RRAP]
 
 	// Main records
 
