@@ -237,6 +237,9 @@ void RRAP_ChallengesMenuCountPercent(void);
 INT64 RRAP_ChallengesMenuRandomFocus(INT32 level);
 void RRAP_CountItems(INT32 filter, INT64 *total, INT64 *count);
 
+void RRAP_LevelChanged(void);
+void RRAP_PrisonEggCDMissed(void);
+
 void RRAP_TickMessages(void);
 void RRAP_Say(const char *msg);
 void RRAP_ConnectFromMenu(int32_t choice);

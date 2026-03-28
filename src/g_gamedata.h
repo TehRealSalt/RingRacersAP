@@ -297,6 +297,7 @@ struct GamedataJson final
 	GamedataChallengeGridJson ap_challengegrid; // [RRAP]
 	uint32_t timesBeaten;
 	uint32_t prisonEggPickups;
+	uint32_t prisonEggPickupsMissed;
 	HashMap<String, GamedataSkinJson> skins;
 	Vector<String> spraycans_v2;
 	HashMap<String, GamedataMapJson> maps;
@@ -324,6 +325,7 @@ struct GamedataJson final
 		ap_challengegrid,
 		timesBeaten,
 		prisonEggPickups,
+		prisonEggPickupsMissed,
 		skins,
 		spraycans_v2,
 		maps,

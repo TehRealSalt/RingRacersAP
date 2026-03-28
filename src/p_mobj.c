@@ -55,6 +55,9 @@
 #include "k_podium.h"
 #include "g_party.h"
 
+// [RRAP]
+#include "ap_main.h"
+
 actioncache_t actioncachehead;
 
 static mobj_t *overlaycap = NULL;
@@ -12221,6 +12224,15 @@ void P_RemoveMobj(mobj_t *mobj)
 		case MT_ANCIENTGEAR:
 		{
 			Obj_AncientGearRemoved(mobj);
+			break;
+		}
+		case MT_PRISONEGGDROP:
+		{
+			// [RRAP]
+			if (mobj->extravalue1 == 0)
+			{
+				RRAP_PrisonEggCDMissed();
+			}
 			break;
 		}
 		default:

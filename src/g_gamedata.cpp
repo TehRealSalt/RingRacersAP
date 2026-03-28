@@ -110,7 +110,10 @@ void srb2::save_ng_gamedata()
 		}
 	}
 	ng.timesBeaten = gamedata->timesBeaten;
-	ng.prisonEggPickups = gamedata->numprisoneggpickups; // [RRAP]
+
+	// [RRAP]
+	ng.prisonEggPickups = gamedata->numprisoneggpickups;
+	ng.prisonEggPickupsMissed = gamedata->missed_prison_egg_pickups;
 
 	auto skintojson = [](skinrecord_t *records)
 	{
@@ -503,7 +506,10 @@ void srb2::load_ng_gamedata()
 	}
 
 	gamedata->timesBeaten = js.timesBeaten;
-	gamedata->numprisoneggpickups = js.prisonEggPickups; // [RRAP]
+
+	// [RRAP]
+	gamedata->numprisoneggpickups = js.prisonEggPickups;
+	gamedata->missed_prison_egg_pickups = js.prisonEggPickupsMissed;
 
 	// Main records
 

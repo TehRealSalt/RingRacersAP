@@ -396,6 +396,7 @@ void M_ClearSecrets(void)
 	memset(gamedata->achieved, 0, sizeof(gamedata->achieved));
 
 	gamedata->numprisoneggpickups = 0;
+	gamedata->missed_prison_egg_pickups = 0;
 
 	UINT16 i, j;
 	for (i = 0; i < nummapheaders; i++)

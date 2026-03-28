@@ -5997,7 +5997,13 @@ INT32 G_FindMapByNameOrCode(const char *mapname, char **realmapnamep)
 //
 void G_SetGamestate(gamestate_t newstate)
 {
+	if (gamestate == GS_LEVEL)
+	{
+		RRAP_LevelChanged();
+	}
+
 	gamestate = newstate;
+
 #ifdef HAVE_DISCORDRPC
 	DRPC_UpdatePresence();
 #endif
