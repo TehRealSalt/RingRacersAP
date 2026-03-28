@@ -65,13 +65,15 @@ jobs:
         run: |
           echo "VCPKG_ROOT=${{ github.workspace }}/vcpkg" >> $GITHUB_ENV
           if [ "${{ runner.os }}" = "Windows" ]; then
-            echo "VCPKG_BINARY_CACHE_PATH=$LOCALAPPDATA/vcpkg/bincache" >> $GITHUB_ENV
+            echo "VCPKG_BINARY_CACHE_PATH=$LOCALAPPDATA\\vcpkg\\bincache" >> $GITHUB_ENV
           else
             echo "VCPKG_BINARY_CACHE_PATH=$HOME/.cache/vcpkg" >> $GITHUB_ENV
           fi
 
       - name: vcpkg binary sources
         run: |
+          echo "VCPKG_BINARY_CACHE_PATH=$VCPKG_BINARY_CACHE_PATH"
+          mkdir -p "$VCPKG_BINARY_CACHE_PATH"
           echo "VCPKG_BINARY_SOURCES=clear;files,$VCPKG_BINARY_CACHE_PATH,readwrite" >> $GITHUB_ENV
 
       - name: vcpkg binary cache
