@@ -40,11 +40,14 @@ class RingRacersWorld(World):
 
     def generate_early(self) -> None:
         # Set blacklist/whitelists from options
-        #if not self.options.challenges:
-        #    self.location_group_blacklist.append("Challenges")
+        if not self.options.challenges:
+            self.location_group_blacklist.append("Challenges")
 
-        #if not self.options.spray_cans:
-        #    self.location_group_blacklist.append("Spray Cans")
+        if not self.options.spray_cans:
+            self.location_group_blacklist.append("Spray Cans")
+
+        if not self.options.prison_egg_cds:
+            self.location_group_blacklist.append("CD Milestones")
 
         if not self.options.gum_challenge:
             self.location_name_blacklist.append("Challenge - Driver: Gum")

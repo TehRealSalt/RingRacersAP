@@ -1797,52 +1797,53 @@ def set_extras_challenge_location_rules(world: RingRacersWorld) -> None:
 
 
 def set_alt_music_challenge_location_rules(world: RingRacersWorld) -> None:
-    milestone_locations = list(world.location_name_groups["CD Milestones"])
+    if locations.location_group_allowed(world, "CD Milestones"):
+        milestone_locations = list(world.location_name_groups["CD Milestones"])
 
-    total_bonus_rounds = 0
-    for index, cup_def in jsondata.rr_cup_defs.items():
-        for map_index in cup_def["map_list"]:
-            map_def = jsondata.rr_map_defs[map_index]
-            if map_def["type"] == "battle":
-                total_bonus_rounds += 1
+        total_bonus_rounds = 0
+        for index, cup_def in jsondata.rr_cup_defs.items():
+            for map_index in cup_def["map_list"]:
+                map_def = jsondata.rr_map_defs[map_index]
+                if map_def["type"] == "battle":
+                    total_bonus_rounds += 1
 
-    # exclude more than 50%
-    included_bonus_rounds = total_bonus_rounds // 2
+        cd_counter = 1
+        for _ in milestone_locations:
+            location_name = "Challenge - Prison Egg CD #{}".format(cd_counter)
+            location = world.get_location(location_name)
 
-    cd_counter = 1
-    for _ in milestone_locations:
-        location_name = "Challenge - Prison Egg CD #{}".format(cd_counter)
-        location = world.get_location(location_name)
+            required_bonus_rounds = min(cd_counter, total_bonus_rounds)
+            set_rule(
+                location,
+                lambda state, rounds=required_bonus_rounds:
+                    state.has("!Bonus Round Reachable", world.player, rounds)
+            )
 
-        required_bonus_rounds = min(cd_counter, total_bonus_rounds)
-        set_rule(
-            location,
-            lambda state, rounds=required_bonus_rounds:
-                state.has("!Bonus Round Reachable", world.player, rounds)
-        )
+            if required_bonus_rounds > total_bonus_rounds:
+                # exclude this location, since it explicitly requires grinding
+                location.progress_type = LocationProgressType.EXCLUDED
 
-        if required_bonus_rounds > included_bonus_rounds:
-            # exclude this location, since it explicitly requires grinding
-            location.progress_type = LocationProgressType.EXCLUDED
-
-        cd_counter += 1
+            cd_counter += 1
 
     # Don't forget this one weirdo
-    popcorn_workshop_location = world.get_location("Challenge - Alt. Music: Popcorn Workshop")
-    set_rule(
-        popcorn_workshop_location,
-        lambda state:
-            map_time_attack(state, "Popcorn Workshop", world.player)
-    )
-    # Requires platinum medal
-    popcorn_workshop_location.progress_type = LocationProgressType.EXCLUDED
+    if locations.location_name_allowed(world, "Challenge - Alt. Music: Popcorn Workshop"):
+        popcorn_workshop_location = world.get_location("Challenge - Alt. Music: Popcorn Workshop")
+        set_rule(
+            popcorn_workshop_location,
+            lambda state:
+                map_time_attack(state, "Popcorn Workshop", world.player)
+        )
+        # Requires platinum medal
+        popcorn_workshop_location.progress_type = LocationProgressType.EXCLUDED
 
 
 def set_challenge_location_rules(world: RingRacersWorld) -> None:
-    set_driver_challenge_location_rules(world)
-    set_follower_challenge_location_rules(world)
-    set_cup_challenge_location_rules(world)
-    set_extras_challenge_location_rules(world)
+    if locations.location_group_allowed(world, "Challenges"):
+        set_driver_challenge_location_rules(world)
+        set_follower_challenge_location_rules(world)
+        set_cup_challenge_location_rules(world)
+        set_extras_challenge_location_rules(world)
+
     set_alt_music_challenge_location_rules(world)
 
 
