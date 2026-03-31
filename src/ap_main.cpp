@@ -1673,7 +1673,7 @@ static void RRAP_GotItemReceived(int64_t item_id, bool should_notify)
 
 	if (should_notify && Playing())
 	{
-		srb2::String msg = srb2::format("Got '%s'!", g_ap_item_info[item_id].name());
+		srb2::String msg = srb2::format("Got '{}'!", g_ap_item_info[item_id].name());
 		K_AddMessage(msg.c_str(), false, false);
 	}
 }
