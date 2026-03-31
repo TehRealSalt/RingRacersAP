@@ -105,8 +105,8 @@ def create_events(world: RingRacersWorld) -> None:
     # Just avoids spamming logs when not necessary
     seed_requires_medals = (
         location_name_allowed(world, "Challenge - SPB Attack Mode")
-        or location_name_allowed(world, "Challenge - Follower: Chaclon")
         or location_name_allowed(world, "Challenge - Follower: S.P.B. Jr.")
+        #or location_name_allowed(world, "Challenge - Follower: Chaclon")
     )
 
     for index, map_def in jsondata.rr_map_defs.items():
