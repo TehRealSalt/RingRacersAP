@@ -89,6 +89,11 @@ def can_reach_all_emeralds(state: CollectionState, player: int) -> bool:
     ), player)
 
 
+def have_master_mode(state: CollectionState, player: int) -> bool:
+    # Menu flow requires Vicious accessible too
+    return state.has_all(("Gear 3 + GP Vicious Mode", "GP Master Mode"), player)
+
+
 def enough_medals(state: CollectionState, count: int, player: int) -> bool:
     return state.has("!Medal", player, count)
 
@@ -1037,12 +1042,21 @@ def set_follower_challenge_location_rules(world: RingRacersWorld) -> None:
             state.can_reach_region("Hot Shelter", world.player)
     )
 
+    chaclon_location = world.get_location("Challenge - Follower: Chaclon")
     set_rule(
-        world.get_location("Challenge - Follower: Chaclon"),
+        chaclon_location,
         lambda state:
-            (state.has("GP Master Mode", world.player) and state.can_reach_region("Pico Park", world.player))
-            or enough_medals(state, 200, world.player)
+            have_master_mode(state, world.player)
+            and state.can_reach_region("Pico Park", world.player)
     )
+
+    #if (medalsanity):
+    #    add_rule(
+    #        chaclon_location,
+    #        lambda state:
+    #            enough_medals(state, 200, world.player),
+    #        "or"
+    #    )
 
     set_rule(
         world.get_location("Challenge - Follower: Hero Chao"),
@@ -1389,7 +1403,7 @@ def set_follower_challenge_location_rules(world: RingRacersWorld) -> None:
     set_rule(
         world.get_location("Challenge - Follower: Controller"),
         lambda state:
-            state.has("GP Master Mode", world.player)
+            have_master_mode(state, world.player)
             and can_reach_all_emeralds(state, world.player)
     )
 
