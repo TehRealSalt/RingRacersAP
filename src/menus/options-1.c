@@ -237,6 +237,7 @@ static void M_OptionsMenuGoto(menu_t *assignment)
 		optionsmenu.ticker = 0;
 		M_OptionsTick();
 	}
+	optionsmenu.aproom = false;
 }
 
 void M_VideoOptions(INT32 choice)
