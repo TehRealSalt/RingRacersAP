@@ -298,9 +298,11 @@ def set_driver_challenge_location_rules(world: RingRacersWorld) -> None:
             state.can_reach_region("Azure Axiom", world.player)
     )
 
-    #
-    # "Challenge - Driver: Eggrobo" is always possible, currently
-    #
+    set_rule(
+        world.get_location("Challenge - Driver: Eggrobo"),
+        lambda state:
+            state.has("Driver: Knuckles", world.player)
+    )
 
     set_rule(
         world.get_location("Challenge - Driver: Emerl"),
