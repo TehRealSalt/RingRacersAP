@@ -667,7 +667,8 @@ extern const char
 	*comprevision,
 	*compbranch,
 	*compnote,
-	*comptype;
+	*comptype,
+	*comptag; // [RRAP]
 extern int
 	compuncommitted,
 	compoptimized;

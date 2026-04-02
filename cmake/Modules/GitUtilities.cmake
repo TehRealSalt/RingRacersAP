@@ -57,3 +57,8 @@ endfunction()
 function(get_git_dir variable)
 	_git_easy_command(rev-parse --git-dir)
 endfunction()
+
+# [RRAP]
+function(git_latest_tag variable)
+	_git_easy_command(describe --tags --abbrev=0)
+endfunction()

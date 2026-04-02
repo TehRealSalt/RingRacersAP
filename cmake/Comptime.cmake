@@ -29,4 +29,7 @@ else()
 	set(SRB2_COMP_OPTIMIZED FALSE)
 endif()
 
+# [RRAP]
+git_latest_tag(SRB2_COMP_TAG)
+
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/src/config.h.in" "${CMAKE_CURRENT_BINARY_DIR}/src/config.h")

@@ -25,6 +25,9 @@ const char *compnote = SRB2_COMP_NOTE;
 const char *comptype = CMAKE_BUILD_TYPE;
 const int compoptimized = SRB2_COMP_OPTIMIZED;
 
+// [RRAP]
+const char *comptag = SRB2_COMP_TAG;
+
 #elif (defined(COMPVERSION))
 #include "comptime.h"
 

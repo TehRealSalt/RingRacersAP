@@ -185,8 +185,6 @@ extern "C" {
 
 extern boolean g_ap_started;
 
-char *RRAP_GetVersionString(void);
-
 rrap_location_t *RRAP_GetLocation(INT64 location_id);
 rrap_item_t *RRAP_GetItem(INT64 item_id);
 void RRAP_LoadArchipelagoJSON(void);

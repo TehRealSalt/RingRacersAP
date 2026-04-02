@@ -1494,13 +1494,11 @@ static SDL_bool Impl_CreateWindow(SDL_bool fullscreen)
 
 	// Create a window
 	// [RRAP]
-	char *rrap_version = RRAP_GetVersionString();
 	window = SDL_CreateWindow(
-		va("Dr. Robotnik's Ring Racers - Archipelago %s", rrap_version),
+		va("Dr. Robotnik's Ring Racers - Archipelago %s", comptag),
 		SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 		realwidth, realheight, flags
 	);
-	Z_Free(rrap_version);
 
 	if (window == NULL)
 	{
