@@ -2586,10 +2586,11 @@ static UINT8 V_GetGenericButtonCodeWidth(UINT8 c, boolean largebutton)
 	return x;
 }
 
-void V_DrawStringScaled(
+void V_DrawStretchyString(
 		fixed_t    x,
 		fixed_t    y,
-		fixed_t      scale,
+		fixed_t    scale_x,
+		fixed_t    scale_y,
 		fixed_t spacescale,
 		fixed_t    lfscale,
 		INT32      flags,
@@ -2667,9 +2668,9 @@ void V_DrawStringScaled(
 	fontspec.lfh    <<= FRACBITS;
 
 #define Mul( id, scale ) ( id = FixedMul (scale, id) )
-	Mul    (fontspec.chw,      scale);
-	Mul (fontspec.spacew,      scale);
-	Mul    (fontspec.lfh,      scale);
+	Mul    (fontspec.chw,    scale_x);
+	Mul (fontspec.spacew,    scale_x);
+	Mul    (fontspec.lfh,    scale_y);
 
 	Mul (fontspec.spacew, spacescale);
 	Mul    (fontspec.lfh,    lfscale);
@@ -2918,7 +2919,7 @@ void V_DrawStringScaled(
 
 								cw = V_GetButtonCodeWidth(c, largebutton) * dupx;
 
-								cxoff = (*fontspec.dim_fn)(scale, fontspec.chw, hchw, dupx, &cw);
+								cxoff = (*fontspec.dim_fn)(scale_x, fontspec.chw, hchw, dupx, &cw);
 
 								if (cv_debugfonts.value)
 								{
@@ -3012,7 +3013,7 @@ void V_DrawStringScaled(
 
 								cw = V_GetGenericButtonCodeWidth(c, largebutton) * dupx;
 
-								cxoff = (*fontspec.dim_fn)(scale, fontspec.chw, hchw, dupx, &cw);
+								cxoff = (*fontspec.dim_fn)(scale_x, fontspec.chw, hchw, dupx, &cw);
 
 								if (cv_debugfonts.value)
 								{
@@ -3043,9 +3044,9 @@ void V_DrawStringScaled(
 					if (V_CharacterValid(font, c) == true)
 					{
 						// Remove offsets from patch
-						fixed_t patchxofs = SHORT (font->font[c]->leftoffset) * dupx * scale;
+						fixed_t patchxofs = SHORT (font->font[c]->leftoffset) * dupx * scale_x;
 						cw = SHORT (font->font[c]->width) * dupx;
-						cxoff = (*fontspec.dim_fn)(scale, fontspec.chw, hchw, dupx, &cw);
+						cxoff = (*fontspec.dim_fn)(scale_x, fontspec.chw, hchw, dupx, &cw);
 
 						if (cv_debugfonts.value)
 						{
@@ -3055,8 +3056,11 @@ void V_DrawStringScaled(
 
 						if (boxed != 1)
 						{
-							V_DrawFixedPatch(cx + cxoff + patchxofs, cy + cyoff + (boxed == 3 ? 2*FRACUNIT : 0), scale,
-								boxed ? boxedflags : flags, font->font[c], boxed ? 0 : colormap);
+							V_DrawStretchyFixedPatch(
+								cx + cxoff + patchxofs, cy + cyoff + (boxed == 3 ? 2*FRACUNIT : 0),
+								scale_x, scale_y,
+								boxed ? boxedflags : flags, font->font[c], boxed ? 0 : colormap
+							);
 						}
 
 						cx += cw;
@@ -3068,8 +3072,9 @@ void V_DrawStringScaled(
 	}
 }
 
-fixed_t V_StringScaledWidth(
-		fixed_t      scale,
+fixed_t V_StretchyStringWidth(
+		fixed_t    scale_x,
+		fixed_t    scale_y,
 		fixed_t spacescale,
 		fixed_t    lfscale,
 		INT32      flags,
@@ -3111,9 +3116,9 @@ fixed_t V_StringScaledWidth(
 	fontspec.spacew <<= FRACBITS;
 
 #define Mul( id, scale ) ( id = FixedMul (scale, id) )
-	Mul    (fontspec.chw,      scale);
-	Mul (fontspec.spacew,      scale);
-	Mul    (fontspec.lfh,      scale);
+	Mul    (fontspec.chw,    scale_x);
+	Mul (fontspec.spacew,    scale_x);
+	Mul    (fontspec.lfh,    scale_y);
 
 	Mul (fontspec.spacew, spacescale);
 	Mul    (fontspec.lfh,    lfscale);
@@ -3169,13 +3174,13 @@ fixed_t V_StringScaledWidth(
 					if (descriptive)
 					{
 						cw = V_GetGenericButtonCodeWidth(c, largebutton) * dupx;
-						cx += cw * scale;
+						cx += cw * scale_x;
 						right = cx;
 					}
 					else
 					{
 						cw = V_GetButtonCodeWidth(c, largebutton) * dupx;
-						cx += cw * scale;
+						cx += cw * scale_x;
 						right = cx;
 					}
 
@@ -3209,9 +3214,9 @@ fixed_t V_StringScaledWidth(
 					// How bunched dims work is by incrementing cx slightly less than a full character width.
 					// This causes the next character to be drawn overlapping the previous.
 					// We need to count the full width to get the rightmost edge of the string though.
-					right = cx + (cw * scale);
+					right = cx + (cw * scale_x);
 
-					(*fontspec.dim_fn)(scale, fontspec.chw, hchw, dupx, &cw);
+					(*fontspec.dim_fn)(scale_x, fontspec.chw, hchw, dupx, &cw);
 					cx += cw;
 				}
 				else
@@ -3226,9 +3231,10 @@ fixed_t V_StringScaledWidth(
 }
 
 // Modify a string to wordwrap at any given width.
-char * V_ScaledWordWrap(
+char * V_StretchyWordWrap(
 		fixed_t          w,
-		fixed_t      scale,
+		fixed_t    scale_x,
+		fixed_t    scale_y,
 		fixed_t spacescale,
 		fixed_t    lfscale,
 		INT32      flags,
@@ -3268,9 +3274,9 @@ char * V_ScaledWordWrap(
 	fontspec.spacew <<= FRACBITS;
 
 #define Mul( id, scale ) ( id = FixedMul (scale, id) )
-	Mul    (fontspec.chw,      scale);
-	Mul (fontspec.spacew,      scale);
-	Mul    (fontspec.lfh,      scale);
+	Mul    (fontspec.chw,    scale_x);
+	Mul (fontspec.spacew,    scale_x);
+	Mul    (fontspec.lfh,    scale_y);
 
 	Mul (fontspec.spacew, spacescale);
 	Mul    (fontspec.lfh,    lfscale);
@@ -3341,7 +3347,7 @@ char * V_ScaledWordWrap(
 					else
 						cw = V_GetButtonCodeWidth(c, largebutton) * dupx;
 
-					cx += cw * scale;
+					cx += cw * scale_x;
 					right = cx;
 
 					descriptive = false;
@@ -3374,9 +3380,9 @@ char * V_ScaledWordWrap(
 						// How bunched dims work is by incrementing cx slightly less than a full character width.
 						// This causes the next character to be drawn overlapping the previous.
 						// We need to count the full width to get the rightmost edge of the string though.
-						right = cx + (cw * scale);
+						right = cx + (cw * scale_x);
 
-						(*fontspec.dim_fn)(scale, fontspec.chw, hchw, dupx, &cw);
+						(*fontspec.dim_fn)(scale_x, fontspec.chw, hchw, dupx, &cw);
 						cx += cw;
 					}
 					else
