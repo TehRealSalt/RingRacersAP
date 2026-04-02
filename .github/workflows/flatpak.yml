@@ -1,0 +1,29 @@
+name: Client (Flatpak)
+
+on:
+  workflow_call:
+
+jobs:
+  build-flatpak:
+    name: Flatpak
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/flathub-infra/flatpak-github-actions:gnome-48
+      options: --privileged
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Build
+        uses: flatpak/flatpak-github-actions/flatpak-builder@v6
+        with:
+          bundle: ringracers-ap.flatpak
+          manifest-path: flatpak/io.github.TehRealSalt.RingRacersAP.yaml
+          upload-artifact: false # We want to manage the exact file name
+
+      - name: Upload
+        uses: actions/upload-artifact@v6
+        with:
+          name: Flatpak
+          path: ringracers-ap.flatpak

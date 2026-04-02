@@ -6,7 +6,7 @@ on:
 
 jobs:
   build-game:
-    name: Ring Racers
+    name: Client (executables)
 
     strategy:
       fail-fast: false
@@ -16,11 +16,13 @@ jobs:
             os: windows-latest
             shell: "msys2 {0}"
             cmake_preset: ninja-x86_mingw_static_vcpkg-release
+            upload: true
 
-          - label: Linux
+          - label: Ubuntu
             os: ubuntu-latest
             shell: bash
             cmake_preset: ninja-vcpkg-release
+            upload: false
 
     uses: ./.github/workflows/game.yml
     with:
@@ -28,6 +30,13 @@ jobs:
       os: ${{ matrix.config.os }}
       shell: ${{ matrix.config.shell }}
       cmake_preset: ${{ matrix.config.cmake_preset }}
+      upload: ${{ matrix.config.upload }}
+
+  build-flatpak:
+    name: Client (Flatpak)
+    strategy:
+      fail-fast: false
+    uses: ./.github/workflows/flatpak.yml
 
   build-apworld:
     name: APWorld
@@ -39,6 +48,7 @@ jobs:
     name: Release
     needs:
       - build-game
+      - build-flatpak
       - build-apworld
     if: github.ref_type == 'tag'
     uses: ./.github/workflows/release.yml

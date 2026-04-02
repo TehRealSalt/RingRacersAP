@@ -1,3 +1,5 @@
+name: APWorld
+
 on:
   workflow_call:
 
