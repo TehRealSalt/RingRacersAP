@@ -20,7 +20,7 @@ class RingRacersWorld(World):
     options_dataclass = rr_options.RingRacersOptions
     options: rr_options.RingRacersOptions
 
-    apworld_version = "0.1.0"
+    apworld_version = "v0.1.2"
 
     location_name_to_id = jsondata.location_name_to_id
     item_name_to_id = jsondata.item_name_to_id

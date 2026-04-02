@@ -83,6 +83,9 @@
 #include "discord.h"
 #endif
 
+// [RRAP]
+#include "ap_main.h"
+
 // ------
 // protos
 // ------
@@ -5188,6 +5191,11 @@ static void Command_Version_f(void)
 		CONS_Printf("\x85" "! UNCOMMITTED CHANGES ! " "\x80");
 
 	CONS_Printf("\n");
+
+	// [RRAP]
+	char *rrap_version = RRAP_GetVersionString();
+	CONS_Printf("Ring Racers AP %s\n", rrap_version);
+	Z_Free(rrap_version);
 }
 
 #ifdef UPDATE_ALERT

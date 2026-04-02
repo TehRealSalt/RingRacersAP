@@ -47,7 +47,7 @@
 
 boolean g_ap_started;
 
-static const std::string g_ap_world_version = "0.1.0";
+static const srb2::String g_ap_world_version = "v0.1.2";
 
 static const std::string g_ap_file_legal_chars = "abcdefghijklmnopqrstuvwxyz0123456789-_";
 static const std::string g_ap_file_ext = ".apdat";
@@ -80,6 +80,11 @@ static srb2::Vector<srb2::String> g_group_blacklist;
 static srb2::Vector<srb2::String> g_group_whitelist;
 static srb2::Vector<srb2::String> g_name_blacklist;
 static srb2::Vector<srb2::String> g_name_whitelist;
+
+char *RRAP_GetVersionString(void)
+{
+	return Z_StrDup( g_ap_world_version.c_str() );
+}
 
 rrap_location_t::rrap_location_t(srb2::JsonValue json)
 {

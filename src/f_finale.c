@@ -52,6 +52,9 @@
 #include "k_credits.h"
 #include "i_sound.h"
 
+// [RRAP]
+#include "ap_main.h"
+
 // Stage of animation:
 // 0 = text, 1 = art screen
 INT32 finalecount;
@@ -1897,7 +1900,10 @@ void F_VersionDrawer(void)
 		}
 
 #else // Regular build
-		addtext(trans, va("%s", VERSIONSTRING));
+		// [RRAP]
+		char *rrap_version = RRAP_GetVersionString();
+		addtext(trans, va("AP %s", rrap_version));
+		Z_Free(rrap_version);
 #endif
 
 		if (compuncommitted)
