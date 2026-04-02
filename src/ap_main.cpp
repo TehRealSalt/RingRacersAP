@@ -47,8 +47,6 @@
 
 boolean g_ap_started;
 
-static const srb2::String g_ap_world_version = "v0.1.2";
-
 static const std::string g_ap_file_legal_chars = "abcdefghijklmnopqrstuvwxyz0123456789-_";
 static const std::string g_ap_file_ext = ".apdat";
 
@@ -80,11 +78,6 @@ static srb2::Vector<srb2::String> g_group_blacklist;
 static srb2::Vector<srb2::String> g_group_whitelist;
 static srb2::Vector<srb2::String> g_name_blacklist;
 static srb2::Vector<srb2::String> g_name_whitelist;
-
-char *RRAP_GetVersionString(void)
-{
-	return Z_StrDup( g_ap_world_version.c_str() );
-}
 
 rrap_location_t::rrap_location_t(srb2::JsonValue json)
 {
@@ -1723,16 +1716,17 @@ static void RRAP_GotLocationInfo(std::vector<AP_NetworkItem> network_items)
 
 static void RRAP_SlotData_APWorldVersion(std::string raw_string)
 {
-	srb2::String ap_room_version = srb2::JsonValue::from_json_string(raw_string).get<srb2::String>();
+	srb2::String room_version = srb2::JsonValue::from_json_string(raw_string).get<srb2::String>();
+	srb2::String our_version = comptag;
 
 	// TODO: actually comply with semver instead of doing direct comparison
-	if (g_ap_world_version != ap_room_version)
+	if (our_version != room_version)
 	{
 		CONS_Alert(
 			CONS_WARNING,
 			"Our game's version is '%s', while the AP room's version is '%s'. Issues may occur!\n",
-			g_ap_world_version.c_str(),
-			ap_room_version.c_str()
+			our_version.c_str(),
+			room_version.c_str()
 		);
 	}
 }

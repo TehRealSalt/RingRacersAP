@@ -4,7 +4,9 @@ from typing import Any
 from worlds.AutoWorld import World
 from Utils import visualize_regions
 
-from . import items, locations, regions, rules, jsondata
+import logging
+
+from . import items, locations, regions, rules, jsondata, version
 from . import options as rr_options
 
 jsondata.load_all()
@@ -20,7 +22,7 @@ class RingRacersWorld(World):
     options_dataclass = rr_options.RingRacersOptions
     options: rr_options.RingRacersOptions
 
-    apworld_version = "v0.1.2"
+    apworld_version: str = version.APWORLD_VERSION
 
     location_name_to_id = jsondata.location_name_to_id
     item_name_to_id = jsondata.item_name_to_id
@@ -39,6 +41,7 @@ class RingRacersWorld(World):
 
 
     def generate_early(self) -> None:
+        logging.debug(" == Ring Racers AP version: '{}' == ".format(self.apworld_version))
         # Set blacklist/whitelists from options
         if not self.options.challenges:
             self.location_group_blacklist.append("Challenges")

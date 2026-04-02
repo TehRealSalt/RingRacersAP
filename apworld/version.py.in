@@ -1,0 +1,1 @@
+APWORLD_VERSION: str = "@RRAP_TAG@"

@@ -5193,9 +5193,7 @@ static void Command_Version_f(void)
 	CONS_Printf("\n");
 
 	// [RRAP]
-	char *rrap_version = RRAP_GetVersionString();
-	CONS_Printf("Ring Racers AP %s\n", rrap_version);
-	Z_Free(rrap_version);
+	CONS_Printf("Ring Racers AP %s\n", comptag);
 }
 
 #ifdef UPDATE_ALERT

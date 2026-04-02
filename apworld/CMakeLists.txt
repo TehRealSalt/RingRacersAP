@@ -1,4 +1,5 @@
 include(APIgnore)
+include(GitUtilities)
 
 option(RRAP_BUILD_ARCHIPELAGO_PK3 "Create archipelago.pk3" ON)
 option(RRAP_BUILD_APWORLD "Create ringracers.apworld" ON)
@@ -83,6 +84,13 @@ if(RRAP_BUILD_APWORLD)
 			COMMENT "zip was not found; ringracers.apworld cannot be created"
 		)
 	else()
+		git_latest_tag(RRAP_TAG)
+		configure_file(
+			"${RRAP_APWORLD_SOURCE_PATH}/version.py.in"
+			"${CMAKE_BINARY_DIR}/apworld/version.py"
+			@ONLY
+		)
+
 		parse_apignore(
 			ROOT "${RRAP_APWORLD_SOURCE_PATH}"
 			OUT_LIST APWORLD_FILE_LIST
@@ -114,6 +122,11 @@ if(RRAP_BUILD_APWORLD)
 				COMMAND ${CMAKE_COMMAND} -E copy "${SOURCE_FILE}" "${DEST_FILE}"
 			)
 		endforeach()
+
+		list(
+			APPEND FILE_COMMANDS
+			COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_BINARY_DIR}/apworld/version.py" "${RRAP_APWORLD_STAGING_PATH}/ringracers/version.py"
+		)
 
 		add_custom_command(
 			COMMENT "Packaging ringracers.apworld"

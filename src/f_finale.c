@@ -1901,9 +1901,7 @@ void F_VersionDrawer(void)
 
 #else // Regular build
 		// [RRAP]
-		char *rrap_version = RRAP_GetVersionString();
-		addtext(trans, va("AP %s", rrap_version));
-		Z_Free(rrap_version);
+		addtext(trans, va("AP %s", comptag));
 #endif
 
 		if (compuncommitted)
