@@ -94,6 +94,12 @@ jobs:
             vcpkg-binary-${{ runner.os }}-${{ inputs.cmake_preset }}-
             vcpkg-binary-${{ runner.os }}-
 
+      - name: Fix CRLF # Thank you Windows
+        if: inputs.os == 'windows-latest'
+        run: |
+          git config core.autocrlf false
+          git reset --hard
+
       - name: Configure
         run: cmake --preset ${{ inputs.cmake_preset }} -DRRAP_BUILD_APWORLD=OFF
 
