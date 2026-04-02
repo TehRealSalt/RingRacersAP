@@ -93,6 +93,10 @@
 #include "../discord.h"
 #endif
 
+// [RRAP]
+#include "../ap_main.h"
+#include "../z_zone.h"
+
 // maximum number of windowed modes (see windowedModes[][])
 #define MAXWINMODES (19)
 
@@ -1489,8 +1493,14 @@ static SDL_bool Impl_CreateWindow(SDL_bool fullscreen)
 	flags |= SDL_WINDOW_OPENGL;
 
 	// Create a window
-	window = SDL_CreateWindow("Dr. Robotnik's Ring Racers " VERSIONSTRING, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-			realwidth, realheight, flags);
+	// [RRAP]
+	char *rrap_version = RRAP_GetVersionString();
+	window = SDL_CreateWindow(
+		va("Dr. Robotnik's Ring Racers - Archipelago %s", rrap_version),
+		SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+		realwidth, realheight, flags
+	);
+	Z_Free(rrap_version);
 
 	if (window == NULL)
 	{
