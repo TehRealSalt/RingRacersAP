@@ -28,6 +28,12 @@ jobs:
         shell: ${{ inputs.shell }}
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+
       - name: Windows MSYS2 setup
         if: inputs.os == 'windows-latest'
         uses: msys2/setup-msys2@v2
@@ -48,9 +54,6 @@ jobs:
           sudo apt-get install -y cmake ninja-build build-essential \
             curl zip nasm autoconf automake libtool pkg-config \
             libtool-bin libltdl-dev m4
-
-      - name: Checkout
-        uses: actions/checkout@v5
 
       - name: vcpkg bootstrap cache
         uses: actions/cache@v5
