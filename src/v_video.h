@@ -277,10 +277,11 @@ UINT8 *V_GetStringColormap(INT32 colorflags);
 INT32 V_LevelNameHeight(const char *string);
 
 // draw a string using a font
-void V_DrawStringScaled(
+void V_DrawStretchyString(
 		fixed_t     x,
 		fixed_t     y,
-		fixed_t           scale,
+		fixed_t           scale_x,
+		fixed_t           scale_y,
 		fixed_t     space_scale,
 		fixed_t  linefeed_scale,
 		INT32       flags,
@@ -288,22 +289,33 @@ void V_DrawStringScaled(
 		int         font,
 		const char *text);
 
-fixed_t V_StringScaledWidth(
-		fixed_t      scale,
+fixed_t V_StretchyStringWidth(
+		fixed_t    scale_x,
+		fixed_t    scale_y,
 		fixed_t spacescale,
 		fixed_t    lfscale,
 		INT32      flags,
 		int        fontno,
 		const char *s);
 
-char * V_ScaledWordWrap(
+char * V_StretchyWordWrap(
 		fixed_t          w,
-		fixed_t      scale,
+		fixed_t    scale_x,
+		fixed_t    scale_y,
 		fixed_t spacescale,
 		fixed_t    lfscale,
 		INT32      flags,
 		int        fontno,
 		const char *s);
+
+#define V_DrawStringScaled( x,y,scale,spc_scale,lf_scale,flags,clm,font,text ) \
+	V_DrawStretchyString (x,y,scale,scale,spc_scale,lf_scale,flags,clm,font,text)
+
+#define V_StringScaledWidth( scale,spc_scale,lf_scale,flags,font,text ) \
+	V_StretchyStringWidth (scale,scale,spc_scale,lf_scale,flags,font,text)
+
+#define V_ScaledWordWrap( width,scale,spc_scale,lf_scale,flags,font,text ) \
+	V_StretchyWordWrap (width,scale,scale,spc_scale,lf_scale,flags,font,text)
 
 // draw a string using the hu_font
 #define V_DrawString( x,y,option,string ) \
