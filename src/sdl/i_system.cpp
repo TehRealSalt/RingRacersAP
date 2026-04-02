@@ -152,11 +152,14 @@ typedef LPVOID (WINAPI *p_MapViewOfFile) (HANDLE, DWORD, DWORD, DWORD, SIZE_T);
 #endif
 
 // Locations for searching for bios.pk3
-#if defined (__unix__) || defined(__APPLE__) || defined (UNIXCOMMON)
-#define DEFAULTWADLOCATION1 "/usr/local/share/games/RingRacers"
-#define DEFAULTWADLOCATION2 "/usr/local/games/RingRacers"
-#define DEFAULTWADLOCATION3 "/usr/share/games/RingRacers"
-#define DEFAULTWADLOCATION4 "/usr/games/RingRacers"
+#ifdef WITH_FLATPAK
+#define DEFAULTWADLOCATION1 "/app/share/RingRacersAP"
+#define DEFAULTSEARCHPATH1 "/app/share"
+#elif defined (__unix__) || defined(__APPLE__) || defined (UNIXCOMMON)
+#define DEFAULTWADLOCATION1 "/usr/local/share/games/RingRacersAP"
+#define DEFAULTWADLOCATION2 "/usr/local/games/RingRacersAP"
+#define DEFAULTWADLOCATION3 "/usr/share/games/RingRacersAP"
+#define DEFAULTWADLOCATION4 "/usr/games/RingRacersAP"
 #define DEFAULTSEARCHPATH1 "/usr/local/games"
 #define DEFAULTSEARCHPATH2 "/usr/games"
 #define DEFAULTSEARCHPATH3 "/usr/local"

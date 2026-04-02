@@ -189,6 +189,17 @@ set(SRB2_SDL2_EXE_SUFFIX "" CACHE STRING "Optional executable suffix, separated 
 
 set(GIT_EXECUTABLE "git" CACHE FILEPATH "Path to git binary")
 
+# [RRAP] Flatpak crap
+set(RRAP_BUILD_FLATPAK OFF CACHE INTERNAL "Set changes for Flatpak builds (you probably don't want to manually enable this)")
+if(RRAP_BUILD_FLATPAK)
+	add_compile_definitions(WITH_FLATPAK)
+	set(RRAP_GAME_INSTALL_DIR bin)
+	set(RRAP_PK3_INSTALL_DIR share/RingRacersAP)
+else()
+	set(RRAP_GAME_INSTALL_DIR .)
+	set(RRAP_PK3_INSTALL_DIR .)
+endif()
+
 # [RRAP] Add apworld files
 add_subdirectory(apworld)
 
