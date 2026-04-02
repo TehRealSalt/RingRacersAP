@@ -1,3 +1,5 @@
+name: Client (executable)
+
 on:
   workflow_call:
     inputs:
@@ -13,6 +15,9 @@ on:
       cmake_preset:
         required: true
         type: string
+      upload:
+        required: true
+        type: boolean
 
 jobs:
   build-game:
@@ -90,9 +95,10 @@ jobs:
         run: cmake --preset ${{ inputs.cmake_preset }} -DRRAP_BUILD_APWORLD=OFF
 
       - name: Build
-        run: cmake --build --preset ${{ inputs.cmake_preset }}
+        run: cmake --build --preset ${{ inputs.cmake_preset }} -j
 
       - name: Upload
+        if: ${{ inputs.upload }}
         uses: actions/upload-artifact@v6
         with:
           name: ${{ inputs.label }}

@@ -17,6 +17,12 @@ jobs:
           name: Windows
           path: build/windows/
 
+      - name: Get Flatpak
+        uses: actions/download-artifact@v8
+        with:
+          name: Flatpak
+          path: build/flatpak/
+
       - name: Get APWorld
         uses: actions/download-artifact@v8
         with:
@@ -39,7 +45,7 @@ jobs:
       - name: Package Windows
         run: |
           cd build/windows
-          zip -r ringracers-ap_Windows.zip .
+          zip -r ringracers-ap.zip .
 
       - name: Release
         uses: softprops/action-gh-release@v2
@@ -47,7 +53,8 @@ jobs:
           name: "Ring Racers AP ${{ inputs.tag }}"
           tag_name: ${{ inputs.tag }}
           files: |
-            build/windows/ringracers-ap_Windows.zip
+            build/windows/ringracers-ap.zip
+            build/flatpak/ringracers-ap.flatpak
             build/apworld/ringracers.apworld
           draft: true
         env:
