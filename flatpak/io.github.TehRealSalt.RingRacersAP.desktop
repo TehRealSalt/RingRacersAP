@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=Ring Racers AP
+Comment=Dr. Robotnik's Ring Racers w/ Archipelago integration
+TryExec=ringracers-ap
+Exec=ringracers-ap
+Icon=io.github.TehRealSalt.RingRacersAP
+Terminal=false
+Type=Application
+Categories=Game;

@@ -439,10 +439,11 @@ enum {
 };
 
 // Name of local directory for config files and savegames
+// [RR-AP]
 #if (((defined (__unix__) && !defined (MSDOS)) || defined (UNIXCOMMON)) && !defined (__CYGWIN__)) && !defined (__APPLE__)
-#define DEFAULTDIR ".ringracers"
+#define DEFAULTDIR ".ringracers-ap"
 #else
-#define DEFAULTDIR "ringracers"
+#define DEFAULTDIR "ringracers-ap"
 #endif
 
 #include "g_state.h"
