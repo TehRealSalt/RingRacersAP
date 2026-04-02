@@ -11,7 +11,13 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y p7zip-full
 
       - name: Get Windows
         uses: actions/download-artifact@v8
@@ -40,9 +46,20 @@ jobs:
           out-file-path: assets/
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Get Dr. Mingw
+        uses: robinraju/release-downloader@v1
+        with:
+          repository: jrfonseca/drmingw
+          tag: 0.9.13
+          fileName: "drmingw-0.9.13-win32.7z"
+          out-file-path: drmingw/
+          token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Extract assets
         run: |
           unzip assets/Dr.Robotnik.s-Ring-Racers-v2.4-Assets.zip -d build/windows/
+          7z x drmingw/drmingw-0.9.13-win32.7z -obuild/drmingw/
+          mv build/drmingw/*/bin/{exchndl.dll,mgwhelp.dll} build/windows/
 
       - name: Package Windows
         run: |
