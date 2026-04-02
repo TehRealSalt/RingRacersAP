@@ -8700,10 +8700,21 @@ challengedesc:
 					star_count = RRAP_ItemClassToStars(item_class);
 				}
 
-				offset = V_LSTitleLowStringWidth(z_str, 0) / 2;
-				V_DrawStringScaled(
+				INT32 label_width = V_LSTitleLowStringWidth(z_str, 0);
+				const INT32 max_width = 248;
+
+				fixed_t label_scale = FRACUNIT;
+				if (label_width > max_width)
+				{
+					label_scale = FixedDiv(max_width, label_width);
+					label_width = max_width;
+				}
+
+				offset = label_width / 2;
+				V_DrawStretchyString(
 					(BASEVIDWIDTH * FRACUNIT / 2) - (offset * FRACUNIT), (y + 6) * FRACUNIT,
-					FRACUNIT, FRACUNIT, FRACUNIT,
+					label_scale, FRACUNIT,
+					FRACUNIT, FRACUNIT,
 					0,
 					R_GetTranslationColormap(TC_MULT, label_color, GTC_MENUCACHE),
 					LSLOW_FONT,
