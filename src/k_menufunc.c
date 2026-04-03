@@ -252,8 +252,10 @@ boolean M_NextOpt(void)
 {
 	INT16 oldItemOn = itemOn; // prevent infinite loop
 
+#if 0
 	if ((currentMenu->menuitems[itemOn].status & IT_CVARTYPE) == IT_CV_PASSWORD)
 		(currentMenu->menuitems[itemOn].itemaction.cvar)->value = 0;
+#endif
 
 	do
 	{
@@ -281,8 +283,10 @@ boolean M_PrevOpt(void)
 {
 	INT16 oldItemOn = itemOn; // prevent infinite loop
 
+#if 0
 	if ((currentMenu->menuitems[itemOn].status & IT_CVARTYPE) == IT_CV_PASSWORD)
 		(currentMenu->menuitems[itemOn].itemaction.cvar)->value = 0;
+#endif
 
 	do
 	{
@@ -1256,7 +1260,8 @@ static void M_HandleMenuInput(void)
 	// BP: one of the more big hack i have never made
 	if (routine && (currentMenu->menuitems[itemOn].status & IT_TYPE) == IT_CVAR)
 	{
-		if ((currentMenu->menuitems[itemOn].status & IT_CVARTYPE) == IT_CV_STRING)
+		if ((currentMenu->menuitems[itemOn].status & IT_CVARTYPE) == IT_CV_STRING
+			|| (currentMenu->menuitems[itemOn].status & IT_CVARTYPE) == IT_CV_PASSWORD_AP)
 		{
 			// Routine is null either way
 			routine = NULL;
@@ -1271,6 +1276,8 @@ static void M_HandleMenuInput(void)
 					M_QueryCvarAction,
 					NULL
 				);
+				// [RRAP]
+				menutyping.masked = ((currentMenu->menuitems[itemOn].status & IT_CVARTYPE) == IT_CV_PASSWORD_AP);
 				return;
 			}
 			else if (M_MenuExtraPressed(pid))

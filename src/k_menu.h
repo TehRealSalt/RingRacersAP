@@ -65,7 +65,11 @@ extern "C" {
 #define IT_CV_NOPRINT     1536
 #define IT_CV_NOMOD       2048
 #define IT_CV_INVISSLIDER 2560
+#if 0
 #define IT_CV_PASSWORD    3072
+#else
+#define IT_CV_PASSWORD_AP 3072 // [RRAP] need an extra flag, this looks unused
+#endif
 
 //call/submenu specific
 // There used to be a lot more here but ...
@@ -651,6 +655,7 @@ extern struct menutyping_s
 	size_t cachelen;
 	char *cache; // cached string
 
+	boolean masked; // [RRAP] hides AP room password
 } menutyping;
 // While typing, we'll have a fade strongly darken the screen to overlay the typing menu instead
 
@@ -1345,6 +1350,9 @@ void M_DrawUnderline(INT32 left, INT32 right, INT32 y);
 
 // For some menu highlights
 UINT16 M_GetCvPlayerColor(UINT8 pnum);
+
+// [RRAP]
+char *M_CreatePasswordMask(const char *str);
 
 void M_PickMenuBGMap(void);
 void M_UpdateMenuBGImage(boolean forceReset);

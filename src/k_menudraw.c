@@ -521,7 +521,19 @@ static const char *M_MenuTypingCroppedString(void)
 		p += n - sizeof buf;
 		n = sizeof buf;
 	}
-	memcpy(buf, p, n);
+
+	if (menutyping.masked)
+	{
+		for (size_t i = 0; i < n; i++)
+		{
+			buf[i] = '*';
+		}
+	}
+	else
+	{
+		memcpy(buf, p, n);
+	}
+
 	buf[n] = '\0';
 	return buf;
 }
@@ -1071,6 +1083,18 @@ static const char *M_CreateSecretMenuOption(const char *str)
 #endif
 }
 
+char *M_CreatePasswordMask(const char *str)
+{
+	size_t len = strlen(str);
+	char *masked = ZZ_Alloc(len + 1);
+	for (size_t i = 0; i < len; i++)
+	{
+		masked[i] = '*';
+	}
+	masked[len] = '\0';
+	return masked;
+}
+
 //
 // M_DrawGenericMenu
 //
@@ -1131,6 +1155,17 @@ void M_DrawGenericMenu(void)
 					case IT_CVAR:
 					{
 						consvar_t *cv = currentMenu->menuitems[i].itemaction.cvar;
+
+						char *text;
+						if (currentMenu->menuitems[i].status & IT_CV_PASSWORD_AP)
+						{
+							text = M_CreatePasswordMask(cv->string);
+						}
+						else
+						{
+							text = Z_StrDup(cv->string);
+						}
+
 						switch (currentMenu->menuitems[i].status & IT_CVARTYPE)
 						{
 #if 0
@@ -1141,6 +1176,7 @@ void M_DrawGenericMenu(void)
 								break;
 #endif
 							case IT_CV_STRING:
+							case IT_CV_PASSWORD_AP:
 								{
 									M_DrawTextBox(x, y + 4, MAXSTRINGLENGTH, 1);
 
@@ -1151,15 +1187,15 @@ void M_DrawGenericMenu(void)
 										V_DrawMenuString(x + (skullAnimCounter/5) + 6, y + 12, highlightflags, "\x1D");
 									}
 
-									V_DrawString(x + xoffs + 8, y + 12, 0, cv->string);
+									V_DrawString(x + xoffs + 8, y + 12, 0, text);
 
 									y += 16;
 								}
 								break;
 							default:
-								w = V_MenuStringWidth(cv->string, 0);
+								w = V_MenuStringWidth(text, 0);
 								V_DrawMenuString(BASEVIDWIDTH - x - w, y,
-									((cv->flags & CV_CHEAT) && !CV_IsSetToDefault(cv) ? warningflags : highlightflags), cv->string);
+									((cv->flags & CV_CHEAT) && !CV_IsSetToDefault(cv) ? warningflags : highlightflags), text);
 								if (i == itemOn)
 								{
 									V_DrawMenuString(BASEVIDWIDTH - x - 10 - w - (skullAnimCounter/5), y,
@@ -1169,6 +1205,8 @@ void M_DrawGenericMenu(void)
 								}
 								break;
 						}
+
+						Z_Free(text);
 						break;
 					}
 					y += STRINGHEIGHT;
@@ -4230,9 +4268,21 @@ void M_DrawMPHost(void)
 						case IT_CVAR:
 						{
 							consvar_t *cv = currentMenu->menuitems[i].itemaction.cvar;
+
+							char *text;
+							if (currentMenu->menuitems[i].status & IT_CV_PASSWORD_AP)
+							{
+								text = M_CreatePasswordMask(cv->string);
+							}
+							else
+							{
+								text = Z_StrDup(cv->string);
+							}
+
 							switch (currentMenu->menuitems[i].status & IT_CVARTYPE)
 							{
 								case IT_CV_STRING:
+								case IT_CV_PASSWORD_AP:
 									{
 										INT32 xoffs = 0;
 										if (itemOn == i)
@@ -4241,14 +4291,14 @@ void M_DrawMPHost(void)
 											V_DrawString(xp + (skullAnimCounter/5) + 94, yp+1, highlightflags, "\x1D");
 										}
 
-										V_DrawThinString(xp + xoffs + 96, yp, 0, cv->string);
+										V_DrawThinString(xp + xoffs + 96, yp, 0, text);
 									}
 
 									break;
 
 								default:
-									w = V_ThinStringWidth(cv->string, 0);
-									V_DrawThinString(xp + 138 - w, yp, ((cv->flags & CV_CHEAT) && !CV_IsSetToDefault(cv) ? warningflags : highlightflags), cv->string);
+									w = V_ThinStringWidth(text, 0);
+									V_DrawThinString(xp + 138 - w, yp, ((cv->flags & CV_CHEAT) && !CV_IsSetToDefault(cv) ? warningflags : highlightflags), text);
 									if (i == itemOn)
 									{
 										V_DrawCharacter(xp + 138 - 10 - w - (skullAnimCounter/5), yp, '\x1C' | highlightflags, false); // left arrow
@@ -4256,6 +4306,8 @@ void M_DrawMPHost(void)
 									}
 									break;
 							}
+
+							Z_Free(text);
 							break;
 						}
 						case IT_ARROWS:
@@ -4341,9 +4393,21 @@ void M_DrawMPJoinIP(void)
 					case IT_CVAR:
 					{
 						consvar_t *cv = currentMenu->menuitems[i].itemaction.cvar;
+
+						char *text;
+						if (currentMenu->menuitems[i].status & IT_CV_PASSWORD_AP)
+						{
+							text = M_CreatePasswordMask(cv->string);
+						}
+						else
+						{
+							text = Z_StrDup(cv->string);
+						}
+
 						switch (currentMenu->menuitems[i].status & IT_CVARTYPE)
 						{
 							case IT_CV_STRING:
+							case IT_CV_PASSWORD_AP:
 
 								//colormap = R_GetTranslationColormap(TC_DEFAULT, SKINCOLOR_MOSS, GTC_CACHE);
 								colormapc = R_GetTranslationColormap(TC_RAINBOW, SKINCOLOR_PLAGUE, GTC_CACHE);
@@ -4358,7 +4422,7 @@ void M_DrawMPJoinIP(void)
 										V_DrawString(xp + (skullAnimCounter/5) + 17, yp+1, highlightflags, "\x1D");
 									}
 
-									V_DrawThinString(xp + xoffs + 18, yp, 0, cv->string);
+									V_DrawThinString(xp + xoffs + 18, yp, 0, text);
 								}
 
 								/*// On this specific menu the only time we'll ever see this is for the connect by IP typefield.
@@ -4371,6 +4435,8 @@ void M_DrawMPJoinIP(void)
 							default:
 								break;
 						}
+
+						Z_Free(text);
 						break;
 					}
 				}
@@ -5020,7 +5086,10 @@ box_found:
 			case IT_STRING:
 			case IT_LINKTEXT: {
 				boolean textBox = (currentMenu->menuitems[i].status & IT_TYPE) == IT_CVAR &&
-					(currentMenu->menuitems[i].status & IT_CVARTYPE) == IT_CV_STRING;
+					(
+						(currentMenu->menuitems[i].status & IT_CVARTYPE) == IT_CV_STRING
+						|| (currentMenu->menuitems[i].status & IT_CVARTYPE) == IT_CV_PASSWORD_AP
+					);
 
 				if (textBox)
 				{
@@ -5061,6 +5130,17 @@ box_found:
 
 					case IT_CVAR: {
 						consvar_t *cv = currentMenu->menuitems[i].itemaction.cvar;
+
+						char *text;
+						if (currentMenu->menuitems[i].status & IT_CV_PASSWORD_AP)
+						{
+							text = M_CreatePasswordMask(cv->string);
+						}
+						else
+						{
+							text = Z_StrDup(cv->string);
+						}
+
 						switch (currentMenu->menuitems[i].status & IT_CVARTYPE)
 						{
 							case IT_CV_SLIDER:
@@ -5069,6 +5149,7 @@ box_found:
 							case IT_CV_INVISSLIDER: // monitor toggles use this
 								break;
 							case IT_CV_STRING:
+							case IT_CV_PASSWORD_AP:
 								{
 									INT32 xoffs = 6;
 									if (itemOn == i)
@@ -5077,16 +5158,16 @@ box_found:
 										V_DrawMenuString(x + (skullAnimCounter/5) + 7, y + 9, highlightflags, "\x1D");
 									}
 
-									M_DrawCaretString(x + xoffs + 8, y + 9, cv->string, false);
+									M_DrawCaretString(x + xoffs + 8, y + 9, text, false);
 
 									y += LINEHEIGHT;
 								}
 								break;
 							default: {
 								boolean isDefault = CV_IsSetToDefault(cv);
-								w = V_MenuStringWidth(cv->string, 0);
+								w = V_MenuStringWidth(text, 0);
 								V_DrawMenuString(BASEVIDWIDTH - x - w, y,
-									(!isDefault ? warningflags : highlightflags), cv->string);
+									(!isDefault ? warningflags : highlightflags), text);
 								if (i == itemOn)
 								{
 									V_DrawMenuString(BASEVIDWIDTH - x - 10 - w - (skullAnimCounter/5), y - 1,
@@ -5101,6 +5182,8 @@ box_found:
 								break;
 							}
 						}
+
+						Z_Free(text);
 						break;
 					}
 				}

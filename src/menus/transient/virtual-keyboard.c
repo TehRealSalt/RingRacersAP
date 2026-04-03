@@ -400,6 +400,9 @@ void M_OpenVirtualKeyboard(size_t cachelen, vkb_query_fn_t queryfn, menu_t *dumm
 	Z_Malloc(cachelen + 1, PU_STATIC, &menutyping.cache);
 	strlcpy(menutyping.cache, queryfn(NULL), cachelen + 1);
 
+	// [RRAP]
+	menutyping.masked = false;
+
 	if (dummymenu)
 	{
 		if (!menuactive)
