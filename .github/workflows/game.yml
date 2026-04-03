@@ -18,6 +18,9 @@ on:
       upload:
         required: true
         type: boolean
+      with_tag:
+        required: true
+        type: boolean
 
 jobs:
   build-game:
@@ -101,7 +104,12 @@ jobs:
           git reset --hard
 
       - name: Configure
-        run: cmake --preset ${{ inputs.cmake_preset }} -DRRAP_BUILD_APWORLD=OFF
+        run: |
+          CONFIGURE_EXTRA="-DRRAP_BUILD_APWORLD=OFF"
+          if [[ ${{ inputs.with_tag }} == true ]]; then
+            CONFIGURE_EXTRA="$CONFIGURE_EXTRA -DSRB2_SDL2_EXE_NAME=ringracers-ap"
+          fi
+          cmake --preset ${{ inputs.cmake_preset }} $CONFIGURE_EXTRA
 
       - name: Build
         run: cmake --build --preset ${{ inputs.cmake_preset }} -j

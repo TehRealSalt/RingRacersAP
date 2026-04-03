@@ -31,6 +31,7 @@ jobs:
       shell: ${{ matrix.config.shell }}
       cmake_preset: ${{ matrix.config.cmake_preset }}
       upload: ${{ matrix.config.upload }}
+      with_tag: ${{ github.ref_type == 'tag' }}
 
   build-flatpak:
     name: Client (Flatpak)
