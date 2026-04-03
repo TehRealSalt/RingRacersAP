@@ -273,7 +273,8 @@ typedef enum
 	SECRET_ITEMFINDER,			// Permit locating in-level secrets
 
 	// [RRAP] Extra display types
-	SECRET_AP_KKD
+	SECRET_AP_KKD,
+	SECRET_AP_CHAOKEY
 } secrettype_t;
 
 // If you have more secrets than these variables allow in your game,
@@ -385,6 +386,7 @@ struct gamedata_t
 	UINT8 pendingkeyroundoffset;
 	UINT16 keyspending;
 	UINT16 chaokeys;
+	UINT16 keysused;
 
 	// EMERALD REMAPPING
 	cupheader_t *sealedswaps[GDMAX_SEALEDSWAPS];

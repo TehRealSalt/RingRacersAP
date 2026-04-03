@@ -360,7 +360,8 @@ rrap_item_t::rrap_item_t(srb2::JsonValue json)
 			{"eggtv", SECRET_EGGTV},
 			{"soundtest", SECRET_SOUNDTEST},
 			{"alttitle", SECRET_ALTTITLE},
-			{"kkd", SECRET_AP_KKD}
+			{"kkd", SECRET_AP_KKD},
+			{"chaokey", SECRET_AP_CHAOKEY}
 		};
 
 		if (name_to_type.find(work_type) != name_to_type.end())
@@ -915,6 +916,14 @@ UINT32 RRAP_CapCharacterWins(UINT32 input)
 boolean RRAP_SimplifyMapAccess(void)
 {
 	return g_simple_map_access;
+}
+
+UINT16 RRAP_ChaoKeyCount(void)
+{
+	constexpr INT64 key_id = 10000; // TODO: don't hardcode
+	rrap_item_t key_item = g_ap_item_info[key_id];
+	INT32 num_keys = (key_item.received() + gamedata->chaokeys) - gamedata->keysused;
+	return std::clamp<UINT16>(num_keys, 0, GDMAX_CHAOKEYS);
 }
 
 void RRAP_PopulateChallengeGrid(void)
@@ -1581,7 +1590,7 @@ void RRAP_CountItems(INT32 filter, INT64 *total, INT64 *count)
 
 		*total += 1;
 
-		if (item.received(true))
+		if (item.received(true) > 0)
 		{
 			*count += 1;
 		}

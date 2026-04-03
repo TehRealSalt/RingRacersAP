@@ -77,6 +77,7 @@ void srb2::save_ng_gamedata()
 	ng.challengekeys.pendingkeyroundoffset = gamedata->pendingkeyroundoffset;
 	ng.challengekeys.keyspending = gamedata->keyspending;
 	ng.challengekeys.chaokeys = gamedata->chaokeys;
+	ng.challengekeys.keysused = gamedata->keysused;
 	ng.milestones.everloadedaddon = gamedata->everloadedaddon;
 	ng.milestones.everfinishcredits = gamedata->everfinishedcredits;
 	ng.milestones.eversavedreplay = gamedata->eversavedreplay;
@@ -460,6 +461,7 @@ void srb2::load_ng_gamedata()
 	gamedata->pendingkeyroundoffset = js.challengekeys.pendingkeyroundoffset;
 	gamedata->keyspending = js.challengekeys.keyspending;
 	gamedata->chaokeys = js.challengekeys.chaokeys;
+	gamedata->keysused = js.challengekeys.keysused;
 	gamedata->everloadedaddon = js.milestones.everloadedaddon;
 	gamedata->everfinishedcredits = js.milestones.everfinishcredits;
 	gamedata->eversavedreplay = js.milestones.eversavedreplay;

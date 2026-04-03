@@ -1,9 +1,34 @@
 {
 	"items": [
 		{
+			"id": 9000,
+			"name": "KKD Honor",
+			"label": "KKD Honor",
+			"item_type": "kkd",
+			"class": "filler",
+			"tags": [
+				"Filler"
+			]
+		},
+		{
 			"id": 10000,
-			"name": "Temporary Filler",
-			"label": "Temporary Filler"
+			"name": "Chao Key",
+			"label": "Chao Key",
+			"item_type": "chaokey",
+			"class": "useful",
+			"tags": [
+				"Filler"
+			]
+		},
+		{
+			"id": 10001,
+			"name": "20 Chao Keys",
+			"label": "20 Chao Keys",
+			"item_type": "chaokey",
+			"class": "useful",
+			"tags": [
+				"Filler"
+			]
 		}
 	]
 }

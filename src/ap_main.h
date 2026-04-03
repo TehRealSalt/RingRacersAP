@@ -237,6 +237,8 @@ void RRAP_SanitiseChallengeGrid(void);
 UINT32 RRAP_CapCharacterWins(UINT32 input);
 boolean RRAP_SimplifyMapAccess(void);
 
+UINT16 RRAP_ChaoKeyCount(void);
+
 int RRAP_TestLocations(void);
 boolean RRAP_TryGoalSend(void);
 INT64 RRAP_GetNextCheckedLocation(boolean canskipchaokeys);

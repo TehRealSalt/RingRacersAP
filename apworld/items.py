@@ -16,6 +16,9 @@ class RingRacersItem(Item):
 
 
 def get_random_filler_item_name(world: RingRacersWorld) -> str:
+    if world.random.randint(0, 99) < world.options.chao_key_chance:
+        return "Chao Key"
+
     return "KKD Honor"
 
 

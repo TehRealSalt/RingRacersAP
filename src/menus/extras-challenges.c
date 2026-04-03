@@ -131,7 +131,7 @@ static void M_ChallengesAutoFocus(INT64 ap_location_id, boolean fresh)
 	boolean posisvalid = false;
 
 	if (ap_location_id <= 0 && gamedata->pendingkeyrounds > 0
-		&& (gamedata->chaokeys < GDMAX_CHAOKEYS))
+		&& (RRAP_ChaoKeyCount() < GDMAX_CHAOKEYS))
 	{
 		challengesmenu.chaokeyadd = true;
 	}
@@ -370,7 +370,7 @@ menu_t *M_InterruptMenuWithChallenges(menu_t *desiredmenu)
 		{
 			if (new_location <= 0
 				&& gamedata->pendingkeyrounds > 0
-				&& (gamedata->chaokeys < GDMAX_CHAOKEYS))
+				&& (RRAP_ChaoKeyCount() < GDMAX_CHAOKEYS))
 			{
 				challengesmenu.chaokeyadd = true;
 			}
@@ -429,8 +429,10 @@ boolean M_CanKeyHiliTile(void)
 		return true;
 #endif
 
+	UINT16 key_count = RRAP_ChaoKeyCount();
+
 	// No keys to do it with?
-	if (gamedata->chaokeys == 0)
+	if (key_count == 0)
 		return false;
 
 	UINT16 i = (challengesmenu.hilix * CHALLENGEGRIDHEIGHT) + challengesmenu.hiliy;
@@ -445,7 +447,7 @@ boolean M_CanKeyHiliTile(void)
 		if (!(challengesmenu.extradata[i].flags & CHE_ALLCLEAR))
 			return false;
 
-		if (gamedata->chaokeys < 10)
+		if (key_count < 10)
 			return false;
 	}
 
@@ -603,7 +605,7 @@ void M_ChallengesTick(void)
 #ifdef DEVELOP
 					if (!cv_debugchallenges.value)
 #endif
-						gamedata->chaokeys -= (is_big_tile == true)
+						gamedata->keysused += (is_big_tile == true)
 							? 10 : 1;
 
 					challengesmenu.chaokeyhold = 0;
@@ -643,7 +645,7 @@ void M_ChallengesTick(void)
 			challengesmenu.chaokeyadd = false;
 			challengesmenu.requestnew = true;
 		}
-		else if (gamedata->chaokeys >= GDMAX_CHAOKEYS)
+		else if (RRAP_ChaoKeyCount() >= GDMAX_CHAOKEYS)
 		{
 			// The above condition will run on the next tic because of this set
 			gamedata->pendingkeyrounds = 0;
@@ -701,7 +703,7 @@ void M_ChallengesTick(void)
 			M_ChallengesAutoFocus(new_location, false);
 		}
 		else if (gamedata->pendingkeyrounds > 0
-			&& (gamedata->chaokeys < GDMAX_CHAOKEYS))
+			&& (RRAP_ChaoKeyCount() < GDMAX_CHAOKEYS))
 		{
 			// Get ready to finish with pending chao key round tallying.
 			challengesmenu.chaokeyadd = true;
