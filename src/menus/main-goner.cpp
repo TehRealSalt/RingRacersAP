@@ -242,7 +242,7 @@ static menuitem_t MAIN_GonerAPRoom[] =
 		"The name of the slot that you are connecting to.", NULL,
 		srb2::itemaction(& cv_dummy_ap_slot), 0, 0},
 
-	{IT_STRING | IT_CVAR | IT_CV_STRING, "Room Password",
+	{IT_STRING | IT_CVAR | IT_CV_PASSWORD_AP, "Room Password",
 		"The password needed to access the room, if any.", NULL,
 		srb2::itemaction(& cv_dummy_ap_password), 0, 0},
 };
@@ -1431,10 +1431,21 @@ static void M_GonerDrawer(void)
 	for (INT32 i = 0; i < 3; i++)
 	{
 		consvar_t *cv = MAIN_GonerAPRoom[i].itemaction.cvar;
+		char *text;
+		if (MAIN_GonerAPRoom[i].status & IT_CV_PASSWORD_AP)
+		{
+			text = M_CreatePasswordMask(cv->string);
+		}
+		else
+		{
+			text = Z_StrDup(cv->string);
+		}
 
 		V_DrawFill(x+5, y+5, MAXSTRINGLENGTH*7+6, 9+6, 159);
 		V_DrawMenuString(x, y, V_GRAYMAP, MAIN_GonerAPRoom[i].text);
-		M_DrawCaretString(x + 14, y + 9, cv->string, false);
+		M_DrawCaretString(x + 14, y + 9, text, false);
+
+		Z_Free(text);
 
 		y += 22;
 	}
