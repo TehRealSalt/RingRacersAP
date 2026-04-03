@@ -3094,12 +3094,13 @@ boolean M_UpdateUnlockablesAndExtraEmblems(boolean loud, boolean doall)
 		M_UpdateNextPrisonEggPickup();
 #endif
 
+		UINT16 key_count = RRAP_ChaoKeyCount();
 		if (gamedata->pendingkeyrounds == 0
-			|| (gamedata->chaokeys >= GDMAX_CHAOKEYS))
+			|| (key_count >= GDMAX_CHAOKEYS))
 		{
 			gamedata->keyspending = 0;
 		}
-		else while ((gamedata->keyspending + gamedata->chaokeys) < GDMAX_CHAOKEYS
+		else while ((gamedata->keyspending + key_count) < GDMAX_CHAOKEYS
 			&& ((gamedata->pendingkeyrounds + gamedata->pendingkeyroundoffset)/GDCONVERT_ROUNDSTOKEY) > gamedata->keyspending)
 		{
 			gamedata->keyspending++;

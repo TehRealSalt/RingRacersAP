@@ -79,8 +79,16 @@ struct GamedataChallengeKeysJson final
 	uint8_t pendingkeyroundoffset;
 	uint16_t keyspending;
 	uint16_t chaokeys;
+	uint16_t keysused; // [RRAP]
 
-	SRB2_JSON_DEFINE_TYPE_INTRUSIVE_WITH_DEFAULT(GamedataChallengeKeysJson, pendingkeyrounds, pendingkeyroundoffset, keyspending, chaokeys)
+	SRB2_JSON_DEFINE_TYPE_INTRUSIVE_WITH_DEFAULT(
+		GamedataChallengeKeysJson,
+		pendingkeyrounds,
+		pendingkeyroundoffset,
+		keyspending,
+		chaokeys,
+		keysused
+	)
 };
 
 struct GamedataMilestonesJson final

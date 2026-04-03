@@ -8319,7 +8319,7 @@ static void M_DrawChallengeKeys(INT32 tilex, INT32 tiley)
 		const INT32 keybarlen = 32, keybary = 28;
 
 		offs = keybarlen;
-		if (gamedata->chaokeys < GDMAX_CHAOKEYS)
+		if (RRAP_ChaoKeyCount() < GDMAX_CHAOKEYS)
 		{
 		#if (GDCONVERT_ROUNDSTOKEY != 32)
 			offs = ((gamedata->pendingkeyroundoffset * keybarlen)/GDCONVERT_ROUNDSTOKEY);
@@ -8338,11 +8338,12 @@ static void M_DrawChallengeKeys(INT32 tilex, INT32 tiley)
 	{
 		INT32 textx = 4, texty = 20-challengesmenu.unlockcount[CMC_CHAOANIM];
 		UINT8 numbers[4];
-		numbers[0] = ((gamedata->chaokeys / 100) % 10);
-		numbers[1] = ((gamedata->chaokeys / 10) % 10);
-		numbers[2] = (gamedata->chaokeys % 10);
+		UINT16 key_count = RRAP_ChaoKeyCount();
+		numbers[0] = ((key_count / 100) % 10);
+		numbers[1] = ((key_count / 10) % 10);
+		numbers[2] = (key_count % 10);
 
-		numbers[3] = ((gamedata->chaokeys / 1000) % 10);
+		numbers[3] = ((key_count / 1000) % 10);
 		if (numbers[3] != 0)
 		{
 			V_DrawScaledPatch(textx - 4, texty, 0, kp_facenum[numbers[3]]);

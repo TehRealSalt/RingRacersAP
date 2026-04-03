@@ -164,6 +164,18 @@ class ProgressiveCups(NamedRange):
     }
 
 
+class ChaoKeyChance(Range):
+    """
+    The odds of replacing a KKD Honor filler item with a Chao Key.
+    """
+
+    internal_name = "chao_key_chance"
+    display_name = "Chao Key %"
+    range_start = 0
+    range_end = 100
+    default = 100
+
+
 @dataclass
 class RingRacersOptions(PerGameCommonOptions):
     accessibility: ItemsAccessibility
@@ -179,6 +191,8 @@ class RingRacersOptions(PerGameCommonOptions):
 
     starting_driver_pool: StartingDriverPool
     starting_driver_count: StartingDriverCount
+
+    chao_key_chance: ChaoKeyChance
 
     character_wins_count: CharWinsCount
     simple_map_access: SimpleMapAccess
@@ -198,6 +212,10 @@ option_groups = [
     OptionGroup(
         "Starting Drivers",
         [StartingDriverPool, StartingDriverCount],
+    ),
+    OptionGroup(
+        "Chao Keys",
+        [ChaoKeyChance],
     ),
     OptionGroup(
         "Logic",

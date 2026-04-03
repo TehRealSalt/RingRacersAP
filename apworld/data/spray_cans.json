@@ -1,16 +1,6 @@
 {
 	"items": [
 		{
-			"id": 9000,
-			"name": "KKD Honor",
-			"label": "KKD Honor",
-			"item_type": "kkd",
-			"class": "filler",
-			"tags": [
-				"Filler"
-			]
-		},
-		{
 			"id": 500,
 			"name": "Spray Can: Red",
 			"label": "Red",
