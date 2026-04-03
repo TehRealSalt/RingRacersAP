@@ -1157,7 +1157,7 @@ void M_DrawGenericMenu(void)
 						consvar_t *cv = currentMenu->menuitems[i].itemaction.cvar;
 
 						char *text;
-						if (currentMenu->menuitems[i].status & IT_CV_PASSWORD_AP)
+						if ((currentMenu->menuitems[i].status & IT_CVARTYPE) == IT_CV_PASSWORD_AP)
 						{
 							text = M_CreatePasswordMask(cv->string);
 						}
@@ -4270,7 +4270,7 @@ void M_DrawMPHost(void)
 							consvar_t *cv = currentMenu->menuitems[i].itemaction.cvar;
 
 							char *text;
-							if (currentMenu->menuitems[i].status & IT_CV_PASSWORD_AP)
+							if ((currentMenu->menuitems[i].status & IT_CVARTYPE) == IT_CV_PASSWORD_AP)
 							{
 								text = M_CreatePasswordMask(cv->string);
 							}
@@ -4395,7 +4395,7 @@ void M_DrawMPJoinIP(void)
 						consvar_t *cv = currentMenu->menuitems[i].itemaction.cvar;
 
 						char *text;
-						if (currentMenu->menuitems[i].status & IT_CV_PASSWORD_AP)
+						if ((currentMenu->menuitems[i].status & IT_CVARTYPE) == IT_CV_PASSWORD_AP)
 						{
 							text = M_CreatePasswordMask(cv->string);
 						}
@@ -5132,7 +5132,7 @@ box_found:
 						consvar_t *cv = currentMenu->menuitems[i].itemaction.cvar;
 
 						char *text;
-						if (currentMenu->menuitems[i].status & IT_CV_PASSWORD_AP)
+						if ((currentMenu->menuitems[i].status & IT_CVARTYPE) == IT_CV_PASSWORD_AP)
 						{
 							text = M_CreatePasswordMask(cv->string);
 						}

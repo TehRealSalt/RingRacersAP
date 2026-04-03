@@ -1432,7 +1432,7 @@ static void M_GonerDrawer(void)
 	{
 		consvar_t *cv = MAIN_GonerAPRoom[i].itemaction.cvar;
 		char *text;
-		if (MAIN_GonerAPRoom[i].status & IT_CV_PASSWORD_AP)
+		if ((MAIN_GonerAPRoom[i].status & IT_CVARTYPE) == IT_CV_PASSWORD_AP)
 		{
 			text = M_CreatePasswordMask(cv->string);
 		}
