@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from Options import PerGameCommonOptions, ItemsAccessibility, Toggle, DefaultOnToggle, Choice, Range, NamedRange, OptionGroup
+from Options import PerGameCommonOptions, ItemsAccessibility, Toggle, DefaultOnToggle, Choice, Range, NamedRange, Visibility, OptionGroup
 
 
 class StartingDriverCount(Range):
@@ -146,6 +146,24 @@ class SoundTestChallenge(Toggle):
     display_name = "Sound Test's Challenge"
 
 
+class ProgressiveCups(NamedRange):
+    """
+    The number of cup unlocks that are progressive.
+    The remaining cups are unlocked individually.
+    """
+
+    visibility = Visibility.spoiler # WIP
+
+    internal_name = "progressive_cups"
+    display_name = "# of Progressive Cups"
+    range_start = 1
+    range_end = 30
+    default = 0
+    special_range_names = {
+        "off": 0,
+    }
+
+
 @dataclass
 class RingRacersOptions(PerGameCommonOptions):
     accessibility: ItemsAccessibility
@@ -160,3 +178,4 @@ class RingRacersOptions(PerGameCommonOptions):
     starting_driver_count: StartingDriverCount
     starting_driver_pool: StartingDriverPool
     simple_map_access: SimpleMapAccess
+    progressive_cups: ProgressiveCups

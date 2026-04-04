@@ -38,6 +38,41 @@ CHALLENGE_FOLLOWERS = [
     "Follower: Has Bean",
 ]
 
+ORDERED_CUP_LIST = [
+    "Ring Cup Access",
+    "Sneaker Cup Access",
+    "Spring Cup Access",
+    "Barrier Cup Access",
+    "Invincible Cup Access",
+    "Emerald Cup Access",
+    "Extra Cup Access",
+    "S.P.B. Cup Access",
+    "Rocket Cup Access",
+    "Aqua Cup Access",
+    "Lightning Cup Access",
+    "Flame Cup Access",
+    "Super Cup Access",
+    "Egg Cup Access",
+
+    "Goggles Cup Access",
+    "Timer Cup Access",
+    "Grow Cup Access",
+    "Chao Cup Access",
+    "Wing Cup Access",
+    "Mega Cup Access",
+    "Phantom Cup Access",
+    "Flash Cup Access",
+    "Swap Cup Access",
+    "Shrink Cup Access",
+    "Bomb Cup Access",
+    "Power Cup Access",
+    "Genesis Cup Access",
+    "Skate Cup Access",
+
+    "Recycle A Cup Access",
+    "Recycle B Cup Access",
+]
+
 def create_all_items(world: RingRacersWorld) -> None:
     logging.debug('RingRacers:: Creating items...')
 
@@ -111,8 +146,13 @@ def create_all_items(world: RingRacersWorld) -> None:
     #
     starting_cup_pool: list[Item] = []
 
-    for cup_name in world.item_name_groups["Cups"]:
-        starting_cup_pool.append(world.create_item(cup_name))
+    progressive_cups_left: int = world.options.progressive_cups.value
+    for cup_name in ORDERED_CUP_LIST:
+        if progressive_cups_left > 0:
+            starting_cup_pool.append(world.create_item("Progressive Cup Access"))
+            progressive_cups_left -= 1
+        else:
+            starting_cup_pool.append(world.create_item(cup_name))
 
     precollect_cup = starting_cup_pool.pop(world.random.randrange(len(starting_cup_pool)))
 
