@@ -184,12 +184,17 @@ def create_all_items(world: RingRacersWorld) -> None:
         else:
             filler_pool.append(map_item)
 
-    for extra_name in world.item_name_groups["Extras"]:
-        extra_item = world.create_item(extra_name)
-        if extra_item.classification & ItemClassification.progression:
-            item_pool.append(extra_item)
-        else:
-            filler_pool.append(extra_item)
+    item_pool.append(world.create_item("Prison Break Mode"))
+    item_pool.append(world.create_item("Special Mode"))
+    item_pool.append(world.create_item("Time Attack Mode"))
+    item_pool.append(world.create_item("Encore Mode"))
+    item_pool.append(world.create_item("SPB Attack Mode"))
+
+    for _ in range(2):
+        item_pool.append(world.create_item("Progressive Difficulty"))
+
+    filler_pool.append(world.create_item("Sound Test"))
+    filler_pool.append(world.create_item("Alternate Titlescreen"))
 
     #
     # Determine how much filler is needed

@@ -128,6 +128,10 @@ private:
 	srb2::String _name;
 	UINT32 _received;
 
+	srb2::Vector<INT64> _progressive_children;
+	INT64 _progressive_parent;
+	UINT32 _progressive_count;
+
 	UINT16 _unlockable_id;
 	INT32 _skin_id;
 	INT32 _follower_id;
@@ -144,7 +148,6 @@ public:
 
 	INT64 id() const { return _id; }
 	srb2::String name() const { return _name; }
-	UINT32 received() const { return _received; }
 
 	UINT16 unlockable_id() const { return _unlockable_id; }
 	INT32 skin_id() const { return _skin_id; }
@@ -152,9 +155,14 @@ public:
 	INT32 color_id() const { return _color_id; }
 
 	srb2::String label() const { return _label; }
-	INT32 display_type() const { return _display_type; }
 	srb2::String display_icon() const { return _display_icon; }
 	UINT16 display_color() const { return _display_color; }
+
+	void update_children();
+	void update_from_parent(INT64 parent_id, UINT32 count);
+
+	UINT32 received(bool recurse = false) const;
+	INT32 display_type(bool recurse = false) const;
 
 	void receive()
 	{
