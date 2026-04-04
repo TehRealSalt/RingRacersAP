@@ -126,7 +126,7 @@ class rrap_item_t
 private:
 	INT64 _id;
 	srb2::String _name;
-	INT32 _received;
+	UINT32 _received;
 
 	UINT16 _unlockable_id;
 	INT32 _skin_id;
@@ -144,8 +144,7 @@ public:
 
 	INT64 id() const { return _id; }
 	srb2::String name() const { return _name; }
-	boolean recieved() const { return (_received > 0); }
-	INT32 recieved_count() const { return _received; }
+	UINT32 received() const { return _received; }
 
 	UINT16 unlockable_id() const { return _unlockable_id; }
 	INT32 skin_id() const { return _skin_id; }
@@ -157,7 +156,7 @@ public:
 	srb2::String display_icon() const { return _display_icon; }
 	UINT16 display_color() const { return _display_color; }
 
-	void recieve()
+	void receive()
 	{
 		_received += 1;
 	}
@@ -214,7 +213,7 @@ void RRAP_LocationQueueCheck(rrap_location_t *location);
 void RRAP_LocationUnqueueCheck(rrap_location_t *location);
 
 char *RRAP_ItemLabel(rrap_item_t *item);
-boolean RRAP_ItemRecieved(rrap_item_t *item);
+UINT32 RRAP_ItemReceived(rrap_item_t *item);
 UINT16 RRAP_ItemToUnlockableId(rrap_item_t *item);
 INT32 RRAP_ItemToSkinId(rrap_item_t *item);
 INT32 RRAP_ItemToFollowerId(rrap_item_t *item);

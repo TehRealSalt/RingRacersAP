@@ -735,14 +735,16 @@ void RRAP_LocationUnqueueCheck(rrap_location_t *location)
 	location->unqueue_check();
 }
 
-boolean RRAP_ItemRecieved(rrap_item_t *item)
+UINT32 RRAP_ItemReceived(rrap_item_t *item)
 {
 	if (!item)
 	{
-		return true;
+		// If the item is not valid, then
+		// just assume that we have it.
+		return 1;
 	}
 
-	return item->recieved();
+	return item->received();
 }
 
 UINT16 RRAP_ItemToUnlockableId(rrap_item_t *item)
@@ -1494,7 +1496,7 @@ void RRAP_CountItems(INT32 filter, INT64 *total, INT64 *count)
 
 		*total += 1;
 
-		if (item.recieved())
+		if (item.received())
 		{
 			*count += 1;
 		}
@@ -1671,7 +1673,7 @@ static void RRAP_GotItemReceived(int64_t item_id, bool should_notify)
 		return;
 	}
 
-	g_ap_item_info[item_id].recieve();
+	g_ap_item_info[item_id].receive();
 
 	if (should_notify && Playing())
 	{

@@ -2222,7 +2222,7 @@ void G_BeginRecording(void)
 	for (size_t unlockindex = 0; unlockindex < MAXUNLOCKABLES; unlockindex++)
 	{
 		rrap_item_t *item = RRAP_GetItem(unlockables[unlockindex].ap_item_id);
-		UINT8 unlock = RRAP_ItemRecieved(item);
+		UINT8 unlock = (RRAP_ItemReceived(item) > 0);
 		WRITEUINT8(demobuf.p, unlock);
 	}
 

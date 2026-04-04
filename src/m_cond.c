@@ -986,7 +986,7 @@ void M_SetNetUnlocked(void)
 	for (i = 0; i < MAXUNLOCKABLES; i++)
 	{
 		rrap_item_t *item = RRAP_GetItem(unlockables[i].ap_item_id);
-		netUnlocked[i] = RRAP_ItemRecieved(item);
+		netUnlocked[i] = (RRAP_ItemReceived(item) > 0);
 	}
 
 #if 0 // [RRAP] Bad for Archipelago
@@ -1373,7 +1373,7 @@ boolean M_CheckCondition(condition_t *cn, player_t *player)
 		{
 			// [RRAP]
 			rrap_item_t *item = RRAP_GetItem(unlockables[cn->requirement-1].ap_item_id);
-			return RRAP_ItemRecieved(item);
+			return (RRAP_ItemReceived(item) > 0);
 		}
 		case UC_CONDITIONSET: // requires condition set x to already be achieved
 			return M_Achieved(cn->requirement-1);
@@ -3306,7 +3306,7 @@ boolean M_CheckNetUnlockByID(UINT16 unlockid)
 	}
 
 	rrap_item_t *item = RRAP_GetItem(unlockables[unlockid].ap_item_id);
-	return RRAP_ItemRecieved(item);
+	return (RRAP_ItemReceived(item) > 0);
 }
 
 boolean M_SecretUnlocked(INT32 type, boolean local)
@@ -3327,7 +3327,7 @@ boolean M_SecretUnlocked(INT32 type, boolean local)
 		if (local)
 		{
 			rrap_item_t *item = RRAP_GetItem(unlockables[i].ap_item_id);
-			if (RRAP_ItemRecieved(item))
+			if (RRAP_ItemReceived(item) > 0)
 			{
 				continue;
 			}

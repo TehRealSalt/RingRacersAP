@@ -1152,7 +1152,7 @@ boolean M_ChallengesInputs(INT32 ch)
 			boolean forceflip = false;
 
 			rrap_item_t *item = RRAP_LocationDisplayItem(location);
-			boolean is_usable = RRAP_ItemRecieved(item) && !RRAP_LocationDisplayItemIsOffWorld(location);
+			boolean is_usable = (RRAP_ItemReceived(item) > 0) && !RRAP_LocationDisplayItemIsOffWorld(location);
 
 			// [RRAP] Only allow using if you own it
 			INT32 display_type = is_usable ? RRAP_ItemDisplayType(item) : SECRET_NONE;
