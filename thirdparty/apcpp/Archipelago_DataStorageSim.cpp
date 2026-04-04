@@ -5,15 +5,16 @@
 #include <json/writer.h>
 #include <map>
 #include <string>
+#include <filesystem> // [RRAP]
 
 extern Json::Value sp_save_root;
-extern std::string sp_save_path;
+extern std::filesystem::path sp_save_path; // [RRAP]
 
 extern Json::FastWriter writer;
 
 extern const int AP_OFFLINE_SLOT;
 
-void WriteFileJSON(Json::Value root, std::string path);
+void WriteFileJSON(Json::Value root, std::filesystem::path path); // [RRAP]
 bool parse_response(std::string msg, std::string &request);
 
 void operation_replace(std::string key, Json::Value new_val) {

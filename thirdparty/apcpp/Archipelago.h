@@ -7,6 +7,8 @@
 #include <set>
 #include <functional>
 
+void AP_SetDataPath(const char* path); // [RRAP]
+
 void AP_Init(const char*, const char*, const char*, const char*);
 void AP_Init(const char*);
 bool AP_IsInit();
@@ -88,7 +90,7 @@ void AP_StoryComplete();
 
 bool AP_DeathLinkPending();
 void AP_DeathLinkClear();
-void AP_DeathLinkSend();
+void AP_DeathLinkSend(const std::string &cause = "");
 
 /* Message Management Types */
 

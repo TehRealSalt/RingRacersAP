@@ -416,6 +416,10 @@ static void RRAP_LoadArchipelagoJSONLump(uint16_t wad_id, lumpnum_t lump_id)
 
 void RRAP_LoadArchipelagoJSON(void)
 {
+	// This function already just runs once during startup,
+	// so this should be a good nuff place to set data path.
+	AP_SetDataPath(srb2home);
+
 	bool found_any_manifest = false;
 
 	for (UINT16 wad_id = 0; wad_id < mainwads; wad_id++)
