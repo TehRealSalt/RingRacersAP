@@ -6,6 +6,7 @@
 
 #include <cstddef>
 #include <cstdint>
+#include <cstdio>
 #include <queue>
 #include <random>
 #include <fstream>
@@ -20,6 +21,8 @@
 #include <functional>
 #include <utility>
 #include <vector>
+#include <algorithm>
+#include <filesystem>
 
 extern const int AP_OFFLINE_SLOT = 1404;
 constexpr int AP_OFFLINE_TEAM = 0;
@@ -85,7 +88,7 @@ bool gifting_autoReject = true;
 void handleGiftAPISetReply(const AP_SetReply& reply);
 
 // Singleplayer Seed Info
-std::string sp_save_path;
+std::filesystem::path sp_save_path; // [RRAP] std::filesystem::path-ify
 Json::Value sp_save_root;
 
 //Misc Data for Clients
@@ -99,11 +102,10 @@ std::queue<std::pair<Json::Value,AP_RequestStatus*>> queue_server_data;
 std::map<std::string, std::function<void(int)>> map_slotdata_callback_int;
 std::map<std::string, std::function<void(std::string)>> map_slotdata_callback_raw;
 std::map<std::string, std::function<void(std::map<int,int>)>> map_slotdata_callback_mapintint;
-std::vector<std::string> slotdata_strings;
 
 // Datapackage Stuff
-std::string const datapkg_cache_path = "APCpp_datapkg.cache";
-Json::Value datapkg_cache;
+std::filesystem::path datapkg_cache_path = std::filesystem::current_path(); // [RRAP] adjustable base path
+std::filesystem::path datapkg_cache_dir = ".datapkg-cache";
 std::set<std::string> datapkg_outdated_games;
 
 ix::WebSocket webSocket;
@@ -116,13 +118,20 @@ Json::Value sp_ap_root;
 void AP_Init_Generic();
 bool parse_response(std::string msg, std::string &request);
 void APSend(std::string req);
-void WriteFileJSON(Json::Value val, std::string path);
+void WriteFileJSON(Json::Value val, std::filesystem::path path);
 std::string getItemName(std::string game, int64_t id);
 std::string getLocationName(std::string game, int64_t id);
-void parseDataPkg(Json::Value new_datapkg);
-void parseDataPkg();
 AP_NetworkPlayer getPlayer(int team, int slot);
+bool loadDataPkg(const std::string& game, const std::string& hash);
+void cacheDataPkgs(Json::Value& serverPkgs);
+Json::Value getDataPkgRequest(void);
 // PRIV Func Declarations End
+
+// [RRAP]
+void AP_SetDataPath(const char* path) {
+    datapkg_cache_path = path ? path : std::filesystem::current_path();
+}
+// [RRAP]
 
 void AP_Init(const char* ip, const char* game, const char* player_name, const char* passwd) {
     multiworld = true;
@@ -195,7 +204,7 @@ void AP_Init(const char* filename) {
     std::ifstream mwfile(filename);
     reader.parse(mwfile,sp_ap_root);
     mwfile.close();
-    sp_save_path = std::string(filename) + ".save";
+    sp_save_path = datapkg_cache_path / std::filesystem::path(std::string(filename) + ".save");
     std::ifstream savefile(sp_save_path);
     reader.parse(savefile, sp_save_root);
     savefile.close();
@@ -293,8 +302,6 @@ void AP_Shutdown() {
     map_slotdata_callback_int.clear();
     map_slotdata_callback_raw.clear();
     map_slotdata_callback_mapintint.clear();
-    slotdata_strings.clear();
-    datapkg_cache = Json::objectValue;
     sp_ap_root = Json::objectValue;
 }
 
@@ -397,7 +404,7 @@ void AP_StoryComplete() {
     APSend(writer.write(req_t));
 }
 
-void AP_DeathLinkSend() {
+void AP_DeathLinkSend(const std::string &cause) {
     if (!enable_deathlink || !multiworld) return;
     if (cur_deathlink_amnesty > 0) {
         cur_deathlink_amnesty--;
@@ -409,6 +416,16 @@ void AP_DeathLinkSend() {
     Json::Value v;
     v["time"] = (int64_t)std::chrono::duration_cast<std::chrono::seconds>(timestamp.time_since_epoch()).count();
     v["source"] = ap_player_name; // Name and Shame >:D
+    if (!cause.empty())
+    {
+        std::string cause_pname = cause;
+        constexpr std::string_view pname_you{"%YOU%"};
+        size_t pname_marker = cause_pname.find(pname_you);
+
+        if (pname_marker != std::string::npos)
+            cause_pname.replace(pname_marker, pname_you.size(), ap_player_name);
+        v["cause"] = cause_pname;
+    }
     b.data = writer.write(v);
     b.games = nullptr;
     b.slots = nullptr;
@@ -446,17 +463,14 @@ void AP_SetDeathLinkRecvCallback(std::function<void(std::string, std::string)> f
 
 void AP_RegisterSlotDataIntCallback(std::string key, std::function<void(int)> f_slotdata) {
     map_slotdata_callback_int[key] = f_slotdata;
-    slotdata_strings.push_back(key);
 }
 
 void AP_RegisterSlotDataRawCallback(std::string key, std::function<void(std::string)> f_slotdata) {
     map_slotdata_callback_raw[key] = f_slotdata;
-    slotdata_strings.push_back(key);
 }
 
 void AP_RegisterSlotDataMapIntIntCallback(std::string key, std::function<void(std::map<int,int>)> f_slotdata) {
     map_slotdata_callback_mapintint[key] = f_slotdata;
-    slotdata_strings.push_back(key);
 }
 
 void AP_SetDeathLinkSupported(bool supdeathlink) {
@@ -696,9 +710,7 @@ void AP_RegisterBouncedCallback(std::function<void(AP_Bounce)> f_bounced) {
 
 void AP_Init_Generic() {
     ap_player_name_hash = std::hash<std::string>{}(ap_player_name);
-    std::ifstream datapkg_cache_file(datapkg_cache_path);
-    reader.parse(datapkg_cache_file,datapkg_cache);;
-    datapkg_cache_file.close();
+    std::filesystem::create_directory(datapkg_cache_path / datapkg_cache_dir);
 }
 
 bool parse_response(std::string msg, std::string &request) {
@@ -788,17 +800,21 @@ bool parse_response(std::string msg, std::string &request) {
             else if (root[i]["slot_data"]["DeathLink_Amnesty"] != Json::nullValue)
                 deathlink_amnesty = root[i]["slot_data"].get("DeathLink_Amnesty", 0).asInt();
             cur_deathlink_amnesty = deathlink_amnesty;
-            for (std::string key : slotdata_strings) {
+            for (auto slot_itr = root[i]["slot_data"].begin(); slot_itr != root[i]["slot_data"].end(); ++slot_itr) {
+                std::string key = slot_itr.key().asString();
                 if (map_slotdata_callback_int.count(key)) {
-                    map_slotdata_callback_int.at(key)(root[i]["slot_data"][key].asInt());
+                    map_slotdata_callback_int[key](slot_itr->asInt());
                 } else if (map_slotdata_callback_raw.count(key)) {
-                    map_slotdata_callback_raw.at(key)(writer.write(root[i]["slot_data"][key]));
+                    map_slotdata_callback_raw[key](writer.write(*slot_itr));
                 } else if (map_slotdata_callback_mapintint.count(key)) {
                     std::map<int,int> out;
-                    for (auto itr : root[i]["slot_data"][key].getMemberNames()) {
-                        out[std::stoi(itr)] = root[i]["slot_data"][key][itr.c_str()].asInt();
+                    for (auto map_idx_itr : slot_itr->getMemberNames()) {
+                        out[std::stoi(map_idx_itr)] = (*slot_itr)[map_idx_itr].asInt();
                     }
-                    map_slotdata_callback_mapintint.at(key)(out);
+                    map_slotdata_callback_mapintint[key](out);
+                } else {
+                    if (key != "death_link" && key != "death_link_amnesty" && key != "DeathLink" && key != "DeathLink_Amnesty")
+                        printf("AP: Warning: Unmapped slot data with key \"%s\"!\n", key.c_str());
                 }
             }
 
@@ -814,42 +830,21 @@ bool parse_response(std::string msg, std::string &request) {
                 setdeathlink["tags"][0] = "DeathLink";
                 req_t.append(setdeathlink);
             }
-            // Get datapackage for outdated games
-            const Json::Value dpkg_cache_games = datapkg_cache.get("games", Json::objectValue);
-            for (std::pair<std::string,std::string> game_pkg : lib_room_info.datapackage_checksums) {
-                if (dpkg_cache_games.get(game_pkg.first, Json::objectValue).get("checksum", "_None") != game_pkg.second) {
-                    printf("AP: Cache outdated for game: %s\n", game_pkg.first.c_str());
+
+            for (auto &game_pkg : lib_room_info.datapackage_checksums) {
+                if (!loadDataPkg(game_pkg.first, game_pkg.second)) {
                     datapkg_outdated_games.insert(game_pkg.first);
                 }
             }
-            if (!datapkg_outdated_games.empty()) {
-                Json::Value resync_datapkg;
-                resync_datapkg["cmd"] = "GetDataPackage";
-                resync_datapkg["games"] = Json::arrayValue;
-                resync_datapkg["games"].append(*datapkg_outdated_games.begin());
-                req_t.append(resync_datapkg);
-            } else {
-                parseDataPkg();
-                Json::Value sync;
-                sync["cmd"] = "Sync";
-                req_t.append(sync);
 
-                auth = true;
-                ssl_success = auth && isSSL;
-                refused = false;
-            }
+            // getDataPkgRequest returns either a Sync or GetDataPackage packet
+            req_t.append(getDataPkgRequest());
             request = writer.write(req_t);
             return true;
         } else if (cmd == "DataPackage") {
-            parseDataPkg(root[i]["data"]);
-            Json::Value req_t;
-            if (!datapkg_outdated_games.empty()) {
-                req_t[0]["cmd"] = "GetDataPackage";
-                req_t[0]["games"] = Json::arrayValue;
-                req_t[0]["games"].append(*datapkg_outdated_games.begin());
-            } else {
-                req_t[0]["cmd"] = "Sync";
-            }
+            cacheDataPkgs(root[i]["data"]);
+            Json::Value req_t = Json::arrayValue;
+            req_t.append(getDataPkgRequest());
             request = writer.write(req_t);
             return true;
         } else if (cmd == "Retrieved") {
@@ -1072,7 +1067,7 @@ void APSend(std::string req) {
     webSocket.send(req);
 }
 
-void WriteFileJSON(Json::Value val, std::string path) {
+void WriteFileJSON(Json::Value val, std::filesystem::path path) {
     std::ofstream out;
     out.open(path);
     out.seekp(0);
@@ -1081,33 +1076,79 @@ void WriteFileJSON(Json::Value val, std::string path) {
     out.close();
 }
 
-void parseDataPkg(Json::Value new_datapkg) {
-    for (std::string game : new_datapkg["games"].getMemberNames()) {
-        Json::Value game_data = new_datapkg["games"][game];
-        datapkg_cache["games"][game] = game_data;
+std::filesystem::path getDataPkgCachePath(const std::string& game, const std::string& hash)
+{
+    std::string alphanum_game, alphanum_hash;
+
+    auto alphanum_func = [](char c) { return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9'); };
+    std::copy_if(game.begin(), game.end(), std::back_inserter(alphanum_game), alphanum_func);
+    std::copy_if(hash.begin(), hash.end(), std::back_inserter(alphanum_hash), alphanum_func);
+
+    return datapkg_cache_path / datapkg_cache_dir / (alphanum_game + "-" + alphanum_hash + ".json");
+}
+
+void parseDataPkg(const std::string& game, Json::Value& package)
+{
+    for (std::string item_name : package["item_name_to_id"].getMemberNames()) {
+        map_item_id_name[{game, package["item_name_to_id"][item_name].asInt64()}] = item_name;
+    }
+    for (std::string location : package["location_name_to_id"].getMemberNames()) {
+        map_location_id_name[{game, package["location_name_to_id"][location].asInt64()}] = location;
+    }
+}
+
+bool loadDataPkg(const std::string& game, const std::string& hash) {
+    std::filesystem::path cache_path = getDataPkgCachePath(game, hash);
+    std::ifstream cache_file(cache_path);
+    if (!cache_file.is_open()) return false;
+    try {
+        Json::Value datapkg;
+        reader.parse(cache_file, datapkg);
+        parseDataPkg(game, datapkg);
+    }
+    catch (...) {
+        return false; // Redownload corrupt/malformed Json files
+    }
+    return true;
+}
+
+void cacheDataPkgs(Json::Value& serverPkgs) {
+    for (std::string& game : serverPkgs["games"].getMemberNames()) {
+        std::string hash = serverPkgs["games"][game]["checksum"].asString();
+        std::filesystem::path cache_path = getDataPkgCachePath(game, hash);
+
+        parseDataPkg(game, serverPkgs["games"][game]);
+        WriteFileJSON(serverPkgs["games"][game], cache_path);
+
         datapkg_outdated_games.erase(game);
         printf("AP: Game Cache updated for %s\n", game.c_str());
     }
-    WriteFileJSON(datapkg_cache, datapkg_cache_path);
+}
 
-    if (datapkg_outdated_games.empty()){
-        parseDataPkg(); // Only after all datapackages are up to date
+Json::Value getDataPkgRequest(void) {
+    Json::Value server_req;
+
+    if (datapkg_outdated_games.empty()) {
+        server_req["cmd"] = "Sync";
+
         auth = true;
         ssl_success = auth && isSSL;
         refused = false;
     }
-}
+    else {
+        // Fetch multiple games from the server at once to take advantage of compression.
+        // Fetch up to 3 games at a time. Except if exactly 4 are left; then do 2 and 2 instead.
+        int num_to_fetch = (datapkg_outdated_games.size() == 4 ? 2 : (std::min)(3, (int)datapkg_outdated_games.size()));
 
-void parseDataPkg() {
-    for (std::string game : datapkg_cache["games"].getMemberNames()) {
-        Json::Value game_data = datapkg_cache["games"][game];
-        for (std::string item_name : game_data["item_name_to_id"].getMemberNames()) {
-            map_item_id_name[{game,game_data["item_name_to_id"][item_name].asInt64()}] = item_name;
-        }
-        for (std::string location : game_data["location_name_to_id"].getMemberNames()) {
-            map_location_id_name[{game,game_data["location_name_to_id"][location].asInt64()}] = location;
+        server_req["cmd"] = "GetDataPackage";
+        server_req["games"] = Json::arrayValue;
+        for (const std::string& game : datapkg_outdated_games) {
+            server_req["games"].append(game);
+            if (!(--num_to_fetch > 0))
+                break;
         }
     }
+    return server_req;
 }
 
 std::string getItemName(std::string game, int64_t id) {
