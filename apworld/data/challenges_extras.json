@@ -172,7 +172,8 @@
 			"item_type": "timeattack",
 			"class": "progression",
 			"tags": [
-				"Extras"
+				"Extras",
+				"Difficulty"
 			]
 		},
 		{
@@ -183,7 +184,8 @@
 			"item_type": "mastermode",
 			"class": "progression",
 			"tags": [
-				"Extras"
+				"Extras",
+				"Difficulty"
 			]
 		},
 		{
@@ -228,6 +230,20 @@
 			"class": "filler",
 			"tags": [
 				"Extras"
+			]
+		},
+		{
+			"id": 7000,
+			"name": "Progressive Difficulty",
+			"label": "Progressive Difficulty",
+			"progressive_mapping": [
+				702,
+				704
+			],
+			"class": "progression",
+			"tags": [
+				"Extras",
+				"Difficulty"
 			]
 		}
 	]

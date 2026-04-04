@@ -89,9 +89,18 @@ def can_reach_all_emeralds(state: CollectionState, player: int) -> bool:
     ), player)
 
 
+def have_vicious_mode(state: CollectionState, player: int) -> bool:
+    return (
+        state.has("Gear 3 + GP Vicious Mode", player)
+        or state.has("Progressive Difficulty", player, 1)
+    )
+
+
 def have_master_mode(state: CollectionState, player: int) -> bool:
-    # Menu flow requires Vicious accessible too
-    return state.has_all(("Gear 3 + GP Vicious Mode", "GP Master Mode"), player)
+    return (
+        state.has_all(("Gear 3 + GP Vicious Mode", "GP Master Mode"), player) # Menu flow requires Vicious accessible too
+        or state.has("Progressive Difficulty", player, 2)
+    )
 
 
 def enough_medals(state: CollectionState, count: int, player: int) -> bool:
@@ -179,7 +188,7 @@ def set_driver_challenge_location_rules(world: RingRacersWorld) -> None:
     set_rule(
         world.get_location("Challenge - Driver: AiAi"),
         lambda state:
-            state.has("Gear 3 + GP Vicious Mode", world.player)
+            have_vicious_mode(state, world.player)
             and state.can_reach_region("Monkey Mall", world.player)
     )
 
@@ -405,7 +414,8 @@ def set_driver_challenge_location_rules(world: RingRacersWorld) -> None:
     set_rule(
         world.get_location("Challenge - Driver: Mecha Sonic"),
         lambda state:
-            state.has_all(("Driver: Knuckles", "Gear 3 + GP Vicious Mode"), world.player)
+            state.has("Driver: Knuckles", world.player)
+            and have_vicious_mode(state, world.player)
             and state.can_reach_region("Sky Sanctuary", world.player)
     )
 
@@ -527,7 +537,8 @@ def set_driver_challenge_location_rules(world: RingRacersWorld) -> None:
     set_rule(
         world.get_location("Challenge - Driver: Trouble Bruin"),
         lambda state:
-            state.has_all(("Driver: Headdy", "Gear 3 + GP Vicious Mode"), world.player)
+            state.has("Driver: Headdy", world.player)
+            and have_vicious_mode(state, world.player)
             and state.can_reach_region("Trap Tower", world.player)
     )
 
@@ -972,7 +983,7 @@ def set_follower_challenge_location_rules(world: RingRacersWorld) -> None:
     set_rule(
         world.get_location("Challenge - Follower: Bomblur"),
         lambda state:
-            state.has("Gear 3 + GP Vicious Mode", world.player)
+            have_vicious_mode(state, world.player)
             and state.can_reach_region("Turquoise Hill", world.player)
     )
 
@@ -1192,14 +1203,14 @@ def set_follower_challenge_location_rules(world: RingRacersWorld) -> None:
     set_rule(
         world.get_location("Challenge - Follower: Tridrill"),
         lambda state:
-            state.has("Gear 3 + GP Vicious Mode", world.player)
+            have_vicious_mode(state, world.player)
             and state.can_reach_region("Rumble Ridge", world.player)
     )
 
     set_rule(
         world.get_location("Challenge - Follower: Cappy"),
         lambda state:
-            state.has("Gear 3 + GP Vicious Mode", world.player)
+            have_vicious_mode(state, world.player)
             and state.can_reach_region("Recycle B Cup", world.player)
     )
 
@@ -1219,7 +1230,7 @@ def set_follower_challenge_location_rules(world: RingRacersWorld) -> None:
     set_rule(
         world.get_location("Challenge - Follower: Bomber"),
         lambda state:
-            state.has("Gear 3 + GP Vicious Mode", world.player)
+            have_vicious_mode(state, world.player)
             and state.can_reach_region("Ice Paradise", world.player)
     )
 
@@ -1232,7 +1243,7 @@ def set_follower_challenge_location_rules(world: RingRacersWorld) -> None:
     set_rule(
         world.get_location("Challenge - Follower: SRB1 Crawla"),
         lambda state:
-            state.has("Gear 3 + GP Vicious Mode", world.player)
+            have_vicious_mode(state, world.player)
             and state.can_reach_region("SRB2 Frozen Night", world.player)
             and (
                 state.has_group("Engine Class C", world.player)
@@ -1698,6 +1709,7 @@ def set_extras_challenge_location_rules(world: RingRacersWorld) -> None:
         world.get_location("Challenge - Gear 3 + GP Vicious Mode"),
         lambda state:
             state.has("Egg Cup Access", world.player)
+            or state.can_reach_region("The Egg Carrier: Playground", world.player)
     )
 
     #

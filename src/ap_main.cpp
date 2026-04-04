@@ -233,6 +233,9 @@ rrap_item_t::rrap_item_t(srb2::JsonValue json)
 	_follower_id = -1;
 	_color_id = SKINCOLOR_NONE;
 
+	_progressive_parent = 0;
+	_progressive_count = 0;
+
 	_label = json.value("label", srb2::String(""));
 	_display_type = SECRET_NONE;
 	_display_icon = json.value("icon", srb2::String(""));
@@ -369,6 +372,54 @@ rrap_item_t::rrap_item_t(srb2::JsonValue json)
 			throw std::runtime_error(srb2::format("invalid special item type '{}'", work_type));
 		}
 	}
+
+	if (json.contains("progressive_mapping"))
+	{
+		srb2::JsonArray progressive_array = json.at("progressive_mapping").as_array();
+		for (auto &progressive_value : progressive_array)
+		{
+			INT64 progressive_id = progressive_value.get<INT64>();
+			SRB2_ASSERT(progressive_id > 0);
+			// we will confirm more things about the ID when we update children
+			_progressive_children.emplace_back(progressive_id);
+		}
+	}
+}
+
+UINT32 rrap_item_t::received(bool recurse) const
+{
+	UINT32 count = _received;
+
+	if (recurse && _progressive_parent != 0)
+	{
+		SRB2_ASSERT(_progressive_parent > 0);
+		SRB2_ASSERT(g_ap_item_info.find(_progressive_parent) != g_ap_item_info.end());
+
+		rrap_item_t &parent = g_ap_item_info[_progressive_parent];
+		if (parent.received(false) >= _progressive_count)
+		{
+			count += 1;
+		}
+	}
+
+	return count;
+}
+
+INT32 rrap_item_t::display_type(bool recurse) const
+{
+	if (recurse && !_progressive_children.empty())
+	{
+		UINT32 index = std::clamp<UINT32>(_received - 1, 0, _progressive_children.size() - 1);
+
+		INT64 child_id = _progressive_children[index];
+		SRB2_ASSERT(child_id > 0);
+		SRB2_ASSERT(g_ap_item_info.find(child_id) != g_ap_item_info.end());
+
+		rrap_item_t child = g_ap_item_info[child_id];
+		return child.display_type(false);
+	}
+
+	return _display_type;
 }
 
 static void RRAP_LoadArchipelagoJSONLump(uint16_t wad_id, lumpnum_t lump_id)
@@ -412,6 +463,34 @@ static void RRAP_LoadArchipelagoJSONLump(uint16_t wad_id, lumpnum_t lump_id)
 	{
 		I_Error("Archipelago JSON parse error: %s", ex.what());
 	}
+}
+
+void rrap_item_t::update_children()
+{
+	if (_progressive_children.empty())
+	{
+		return;
+	}
+
+	for (UINT32 i = 0; i < _progressive_children.size(); i++)
+	{
+		INT64 child_id = _progressive_children[i];
+
+		SRB2_ASSERT(child_id > 0);
+		SRB2_ASSERT(g_ap_item_info.find(child_id) != g_ap_item_info.end());
+		rrap_item_t &child = g_ap_item_info[child_id];
+
+		child.update_from_parent(_id, i + 1);
+	}
+}
+
+void rrap_item_t::update_from_parent(INT64 parent_id, UINT32 count)
+{
+	SRB2_ASSERT(parent_id > 0);
+	SRB2_ASSERT(g_ap_item_info.find(parent_id) != g_ap_item_info.end());
+
+	_progressive_parent = parent_id;
+	_progressive_count = count;
 }
 
 void RRAP_LoadArchipelagoJSON(void)
@@ -473,6 +552,12 @@ void RRAP_LoadArchipelagoJSON(void)
 	if (!found_any_manifest)
 	{
 		I_Error("Could not find Archipelago manifest file");
+	}
+
+	// Afterwards pass
+	for (auto& [_, item] : g_ap_item_info)
+	{
+		item.update_children();
 	}
 }
 
@@ -744,7 +829,7 @@ UINT32 RRAP_ItemReceived(rrap_item_t *item)
 		return 1;
 	}
 
-	return item->received();
+	return item->received(true);
 }
 
 UINT16 RRAP_ItemToUnlockableId(rrap_item_t *item)
@@ -794,7 +879,7 @@ INT32 RRAP_ItemDisplayType(rrap_item_t *item)
 		return SECRET_NONE;
 	}
 
-	return item->display_type();
+	return item->display_type(true);
 }
 
 char *RRAP_ItemDisplayIcon(rrap_item_t *item)
@@ -1496,7 +1581,7 @@ void RRAP_CountItems(INT32 filter, INT64 *total, INT64 *count)
 
 		*total += 1;
 
-		if (item.received())
+		if (item.received(true))
 		{
 			*count += 1;
 		}
