@@ -7625,7 +7625,7 @@ static const char* M_DrawChallengePreview(INT32 x, INT32 y)
 	item = RRAP_LocationDisplayItem(location);
 
 	// [RRAP] only show control text if you can use it
-	boolean is_usable = RRAP_ItemRecieved(item) && !RRAP_LocationDisplayItemIsOffWorld(location);
+	boolean is_usable = (RRAP_ItemReceived(item) > 0) && !RRAP_LocationDisplayItemIsOffWorld(location);
 	UINT32 offworld_flag = is_usable ? 0 : V_TRANSLUCENT;
 	const char *actiontext = NULL;
 

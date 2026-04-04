@@ -357,7 +357,7 @@ boolean K_ColorUsable(skincolornum_t color, boolean follower, boolean locked)
 
 	// Use the unlockables table directly
 	// DEFINITELY not M_CheckNetUnlockByID
-	return RRAP_ItemRecieved(item);
+	return (RRAP_ItemReceived(item) > 0);
 }
 
 //}

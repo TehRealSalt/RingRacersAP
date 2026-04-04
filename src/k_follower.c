@@ -84,7 +84,7 @@ boolean K_FollowerUsable(INT32 skinnum)
 
 	// Use the unlockables table directly
 	// DEFINITELY not M_CheckNetUnlockByID
-	return RRAP_ItemRecieved(item);
+	return (RRAP_ItemReceived(item) > 0);
 }
 
 /*--------------------------------------------------
