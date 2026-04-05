@@ -3094,18 +3094,22 @@ boolean M_UpdateUnlockablesAndExtraEmblems(boolean loud, boolean doall)
 		M_UpdateNextPrisonEggPickup();
 #endif
 
-		UINT16 key_count = RRAP_ChaoKeyCount();
+		UINT16 keygen_rate = RRAP_ChaoKeygenRate();
 		if (gamedata->pendingkeyrounds == 0
-			|| (key_count >= GDMAX_CHAOKEYS))
+			|| RRAP_ChaoKeyCount() >= GDMAX_CHAOKEYS
+			|| keygen_rate == 0)
 		{
 			gamedata->keyspending = 0;
 		}
-		else while ((gamedata->keyspending + key_count) < GDMAX_CHAOKEYS
-			&& ((gamedata->pendingkeyrounds + gamedata->pendingkeyroundoffset)/GDCONVERT_ROUNDSTOKEY) > gamedata->keyspending)
+		else
 		{
-			gamedata->keyspending++;
-			newkeys++;
-			response |= true;
+			while ((gamedata->keyspending + RRAP_ChaoKeyCount()) < GDMAX_CHAOKEYS
+				&& ((gamedata->pendingkeyrounds + gamedata->pendingkeyroundoffset) / keygen_rate) > gamedata->keyspending)
+			{
+				gamedata->keyspending++;
+				newkeys++;
+				response |= true;
+			}
 		}
 	}
 

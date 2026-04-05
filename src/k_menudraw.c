@@ -8315,17 +8315,22 @@ static void M_DrawChallengeKeys(INT32 tilex, INT32 tiley)
 	);
 
 	// Metyr of rounds played that contribute to Chao Key generation
+	UINT16 keygen_rate = RRAP_ChaoKeygenRate();
+	if (keygen_rate > 0)
 	{
 		const INT32 keybarlen = 32, keybary = 28;
 
 		offs = keybarlen;
 		if (RRAP_ChaoKeyCount() < GDMAX_CHAOKEYS)
 		{
-		#if (GDCONVERT_ROUNDSTOKEY != 32)
-			offs = ((gamedata->pendingkeyroundoffset * keybarlen)/GDCONVERT_ROUNDSTOKEY);
-		#else
-			offs = gamedata->pendingkeyroundoffset;
-		#endif
+			if (keygen_rate != 32)
+			{
+				offs = ((gamedata->pendingkeyroundoffset * keybarlen) / keygen_rate);
+			}
+			else
+			{
+				offs = gamedata->pendingkeyroundoffset;
+			}
 		}
 
 		if (offs > 0)
@@ -8464,7 +8469,7 @@ static void M_DrawChallengeKeys(INT32 tilex, INT32 tiley)
 	{
 		UINT8 *lastkeycolormap = NULL;
 
-		if (gamedata->chaokeys <= keysbeingused)
+		if (RRAP_ChaoKeyCount() <= keysbeingused)
 		{
 			// Greyed out if there's going to be none left
 			lastkeycolormap = R_GetTranslationColormap(TC_BLINK, SKINCOLOR_BLACK, GTC_MENUCACHE);

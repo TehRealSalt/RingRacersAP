@@ -880,6 +880,7 @@ void srb2::load_ng_gamedata()
 		}
 	}
 
+#if 0 // [RRAP]
 	UINT32 chao_key_rounds = GDCONVERT_ROUNDSTOKEY;
 	UINT32 start_keys = GDINIT_CHAOKEYS;
 
@@ -908,7 +909,6 @@ void srb2::load_ng_gamedata()
 		converted = true;
 	}
 
-#if 0 // [RRAP]
 	if (minorversion < GD_MINIMUM_TUTORIALLOCK && gamedata->gonerlevel >= GDGONER_DONE)
 	{
 		converted = true;

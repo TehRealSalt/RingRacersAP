@@ -66,6 +66,7 @@ static srb2::HashMap<INT64, rrap_item_t> g_ap_item_info;
 
 static UINT32 g_character_wins_count = 0;
 static boolean g_simple_map_access = false;
+static UINT16 g_keygen_rate = GDCONVERT_ROUNDSTOKEY;
 static UINT8 g_goal_num_trophies = UINT8_MAX;
 static UINT8 g_goal_trophy_level = 0;
 
@@ -926,6 +927,11 @@ UINT16 RRAP_ChaoKeyCount(void)
 	return std::clamp<UINT16>(num_keys, 0, GDMAX_CHAOKEYS);
 }
 
+UINT16 RRAP_ChaoKeygenRate(void)
+{
+	return g_keygen_rate;
+}
+
 void RRAP_PopulateChallengeGrid(void)
 {
 	INT64 i, j;
@@ -1454,19 +1460,22 @@ INT64 RRAP_GetNextCheckedLocation(boolean canskipchaokeys)
 	if (canskipchaokeys == true)
 	{
 		// Okay, we're skipping chao keys - let's just insta-digest them.
+		UINT16 keygen_rate = RRAP_ChaoKeygenRate();
 
-		if (gamedata->chaokeys + gamedata->keyspending < GDMAX_CHAOKEYS)
+		if (keygen_rate > 0)
 		{
-			gamedata->chaokeys += gamedata->keyspending;
-			gamedata->pendingkeyroundoffset =
-				(gamedata->pendingkeyroundoffset + gamedata->pendingkeyrounds)
-				% GDCONVERT_ROUNDSTOKEY;
-
-		}
-		else
-		{
-			gamedata->chaokeys = GDMAX_CHAOKEYS;
-			gamedata->pendingkeyroundoffset = 0;
+			if (gamedata->chaokeys + gamedata->keyspending < GDMAX_CHAOKEYS)
+			{
+				gamedata->chaokeys += gamedata->keyspending;
+				gamedata->pendingkeyroundoffset =
+					(gamedata->pendingkeyroundoffset + gamedata->pendingkeyrounds)
+					% keygen_rate;
+			}
+			else
+			{
+				gamedata->chaokeys = GDMAX_CHAOKEYS;
+				gamedata->pendingkeyroundoffset = 0;
+			}
 		}
 
 		gamedata->keyspending = 0;
@@ -1851,6 +1860,21 @@ static void RRAP_SlotData_SimpleMapAccess(int toggle)
 	g_simple_map_access = (bool)toggle;
 }
 
+static void RRAP_SlotData_KeygenRate(int rate)
+{
+	if (rate < 0)
+	{
+		CONS_Alert(
+			CONS_WARNING,
+			"Recieved invalid keygen_rate setting (expected >= 0, got %d). Resetting to %d, issues may occur!\n",
+			rate, GDCONVERT_ROUNDSTOKEY
+		);
+		rate = GDCONVERT_ROUNDSTOKEY;
+	}
+
+	g_keygen_rate = rate;
+}
+
 static void RRAP_SlotData_GoalNumTrophies(int trophy_count)
 {
 	if (trophy_count < 1 || trophy_count > 30)
@@ -2048,6 +2072,7 @@ static void RRAP_Connect(void)
 
 	AP_RegisterSlotDataIntCallback("character_wins_count", RRAP_SlotData_CharWinsCount);
 	AP_RegisterSlotDataIntCallback("simple_map_access", RRAP_SlotData_SimpleMapAccess);
+	AP_RegisterSlotDataIntCallback("keygen_rate", RRAP_SlotData_KeygenRate);
 	AP_RegisterSlotDataIntCallback("goal_num_trophies", RRAP_SlotData_GoalNumTrophies);
 	AP_RegisterSlotDataIntCallback("goal_trophy_level", RRAP_SlotData_GoalTrophyLevel);
 

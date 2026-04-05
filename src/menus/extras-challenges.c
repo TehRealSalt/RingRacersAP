@@ -478,7 +478,7 @@ static void M_ChallengesTutorial(UINT8 option)
 				"\n"
 				"Use them wisely - it'll take\n"
 				"%u rounds to pick up another!\n"
-				), GDCONVERT_ROUNDSTOKEY
+				), RRAP_ChaoKeygenRate()
 				), NULL, MM_NOTHING, NULL, NULL);
 			gamedata->chaokeytutorial = true;
 			break;
@@ -628,6 +628,8 @@ void M_ChallengesTick(void)
 		}
 	}
 
+	UINT16 keygen_rate = RRAP_ChaoKeygenRate();
+
 	if ((challengesmenu.pending || challengesmenu.chaokeyhold) && challengesmenu.fade < 5)
 	{
 		// Fade increase.
@@ -640,7 +642,14 @@ void M_ChallengesTick(void)
 		else if (gamedata->pendingkeyrounds == 0)
 		{
 			gamedata->keyspending = 0;
-			gamedata->pendingkeyroundoffset %= GDCONVERT_ROUNDSTOKEY;
+			if (keygen_rate > 0)
+			{
+				gamedata->pendingkeyroundoffset %= keygen_rate;
+			}
+			else
+			{
+				gamedata->pendingkeyroundoffset = 0;
+			}
 
 			challengesmenu.chaokeyadd = false;
 			challengesmenu.requestnew = true;
@@ -655,13 +664,14 @@ void M_ChallengesTick(void)
 		{
 			UINT32 keyexchange = gamedata->keyspending;
 
+			UINT16 exchange_max = max(1, keygen_rate / 2);
 			if (keyexchange > gamedata->pendingkeyrounds)
 			{
 				keyexchange = 1;
 			}
-			else if (keyexchange >= GDCONVERT_ROUNDSTOKEY/2)
+			else if (keyexchange >= exchange_max)
 			{
-				keyexchange = GDCONVERT_ROUNDSTOKEY/2;
+				keyexchange = exchange_max;
 			}
 
 			keyexchange |= 1; // guarantee an odd delta for the sake of the sound
@@ -674,9 +684,16 @@ void M_ChallengesTick(void)
 				S_StartSound(NULL, sfx_ptally);
 			}
 
-			if (gamedata->pendingkeyroundoffset >= GDCONVERT_ROUNDSTOKEY)
+			if (gamedata->pendingkeyroundoffset >= keygen_rate)
 			{
-				gamedata->pendingkeyroundoffset %= GDCONVERT_ROUNDSTOKEY;
+				if (keygen_rate > 0)
+				{
+					gamedata->pendingkeyroundoffset %= keygen_rate;
+				}
+				else
+				{
+					gamedata->pendingkeyroundoffset = 0;
+				}
 
 				if (gamedata->keyspending > 0)
 				{

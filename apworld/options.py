@@ -179,6 +179,23 @@ class ChaoKeyRatio(Range):
     default = 10
 
 
+class KeygenRate(NamedRange):
+    """
+    How many rounds need to be completed for a Chao Key to be generated.
+
+    Disabling will cause Chao Keys to only be found from checks, or not at all if "Chao Key %" is zero.
+    """
+
+    internal_name = "keygen_rate"
+    display_name = "KEYGEN Rate"
+    range_start = 1
+    range_end = 32
+    default = 5
+    special_range_names = {
+        "disabled": 0,
+    }
+
+
 @dataclass
 class RingRacersOptions(PerGameCommonOptions):
     accessibility: ItemsAccessibility
@@ -196,6 +213,7 @@ class RingRacersOptions(PerGameCommonOptions):
     starting_driver_count: StartingDriverCount
 
     chao_key_ratio: ChaoKeyRatio
+    keygen_rate: KeygenRate
 
     character_wins_count: CharWinsCount
     simple_map_access: SimpleMapAccess
@@ -218,7 +236,7 @@ option_groups = [
     ),
     OptionGroup(
         "Chao Keys",
-        [ChaoKeyRatio],
+        [ChaoKeyRatio, KeygenRate],
     ),
     OptionGroup(
         "Logic",

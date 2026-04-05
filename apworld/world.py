@@ -92,4 +92,5 @@ class RingRacersWorld(World):
             "simple_map_access": self.options.simple_map_access.value,
             "goal_num_trophies": self.options.goal_num_trophies.value,
             "goal_trophy_level": self.options.goal_trophy_level.value,
+            "keygen_rate": self.options.keygen_rate.value,
         }
