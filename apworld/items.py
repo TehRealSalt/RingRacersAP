@@ -246,20 +246,27 @@ def create_all_items(world: RingRacersWorld) -> None:
     existing_number_of_filler_items = len(filler_pool)
     chao_keys_left = (number_of_unfilled_locations * world.options.chao_key_ratio) // 100
 
+    def make_chao_key() -> Item:
+        if not getattr(make_chao_key, "made_twenty", False):
+            make_chao_key.made_twenty = True
+            return world.create_item("20 Chao Keys")
+
+        return world.create_item("Chao Key")
+
     chao_key_pool: list[Item] = []
     if needed_number_of_filler_items > existing_number_of_filler_items:
         needed_new_filler = needed_number_of_filler_items - existing_number_of_filler_items
         for _ in range(needed_new_filler):
             if chao_keys_left > 0:
                 chao_keys_left -= 1
-                chao_key_pool.append(world.create_item("Chao Key"))
+                chao_key_pool.append(make_chao_key())
             else:
                 filler_pool.append(world.create_filler())
 
     for _ in range(chao_keys_left):
         # pop filler, replace with keys
         filler_pool.pop(world.random.randrange(len(filler_pool)))
-        chao_key_pool.append(world.create_item("Chao Key"))
+        chao_key_pool.append(make_chao_key())
 
     # re-combine keys into filler, they're only separate so we can pop em
     filler_pool += chao_key_pool
