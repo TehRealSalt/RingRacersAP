@@ -244,31 +244,40 @@ def create_all_items(world: RingRacersWorld) -> None:
     needed_number_of_filler_items = number_of_unfilled_locations - number_of_items
 
     existing_number_of_filler_items = len(filler_pool)
+    kkd_medals_to_make = 0
+    if needed_number_of_filler_items > existing_number_of_filler_items:
+        kkd_medals_to_make = needed_number_of_filler_items - existing_number_of_filler_items
+
     chao_keys_left = (number_of_unfilled_locations * world.options.chao_key_ratio) // 100
+    made_twenty = False
 
     def make_chao_key() -> Item:
-        if not getattr(make_chao_key, "made_twenty", False):
-            make_chao_key.made_twenty = True
+        nonlocal chao_keys_left
+        nonlocal made_twenty
+
+        if not made_twenty and chao_keys_left >= 50: # Only make the x20 key if there's enough keys in pool
+            chao_keys_left -= 20
+            made_twenty = True
             return world.create_item("20 Chao Keys")
 
+        chao_keys_left -= 1
         return world.create_item("Chao Key")
 
     chao_key_pool: list[Item] = []
-    if needed_number_of_filler_items > existing_number_of_filler_items:
-        needed_new_filler = needed_number_of_filler_items - existing_number_of_filler_items
-        for _ in range(needed_new_filler):
-            if chao_keys_left > 0:
-                chao_keys_left -= 1
-                chao_key_pool.append(make_chao_key())
-            else:
-                filler_pool.append(world.create_filler())
+    for _ in range(kkd_medals_to_make):
+        if chao_keys_left > 0:
+            # prefer making keys (an item that does something)
+            # instead of kkd medals (literal nothing) if we can
+            chao_key_pool.append(make_chao_key())
+        else:
+            filler_pool.append(world.create_filler())
 
-    for _ in range(chao_keys_left):
-        # pop filler, replace with keys
+    while chao_keys_left > 0:
+        # pop random filler, replace with keys
         filler_pool.pop(world.random.randrange(len(filler_pool)))
         chao_key_pool.append(make_chao_key())
 
-    # re-combine keys into filler, they're only separate so we can pop em
+    # re-combine keys into filler for final step
     filler_pool += chao_key_pool
 
     if needed_number_of_filler_items == len(filler_pool):
