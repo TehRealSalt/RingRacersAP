@@ -164,16 +164,19 @@ class ProgressiveCups(NamedRange):
     }
 
 
-class ChaoKeyChance(Range):
+class ChaoKeyRatio(Range):
     """
-    The odds of replacing a KKD Honor filler item with a Chao Key.
+    Replace some filler items with Chao Keys, as a percentage of the total number of enabled locations.
+
+    If there are enough locations for KKD Honors to spawn, then those will be replaced first.
+    Otherwise, this replaces unique filler items, until either the quota is met or all filler is replaced.
     """
 
-    internal_name = "chao_key_chance"
+    internal_name = "chao_key_ratio"
     display_name = "Chao Key %"
     range_start = 0
     range_end = 100
-    default = 100
+    default = 10
 
 
 @dataclass
@@ -192,7 +195,7 @@ class RingRacersOptions(PerGameCommonOptions):
     starting_driver_pool: StartingDriverPool
     starting_driver_count: StartingDriverCount
 
-    chao_key_chance: ChaoKeyChance
+    chao_key_ratio: ChaoKeyRatio
 
     character_wins_count: CharWinsCount
     simple_map_access: SimpleMapAccess
@@ -215,7 +218,7 @@ option_groups = [
     ),
     OptionGroup(
         "Chao Keys",
-        [ChaoKeyChance],
+        [ChaoKeyRatio],
     ),
     OptionGroup(
         "Logic",
