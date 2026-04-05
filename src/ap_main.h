@@ -136,6 +136,7 @@ private:
 	INT32 _skin_id;
 	INT32 _follower_id;
 	INT32 _color_id;
+	UINT16 _chao_key_count;
 
 	srb2::String _label;
 	INT32 _display_type;
@@ -153,6 +154,7 @@ public:
 	INT32 skin_id() const { return _skin_id; }
 	INT32 follower_id() const { return _follower_id; }
 	INT32 color_id() const { return _color_id; }
+	UINT16 chao_key_count() const { return _chao_key_count; }
 
 	srb2::String label() const { return _label; }
 	srb2::String display_icon() const { return _display_icon; }

@@ -343,6 +343,18 @@ rrap_item_t::rrap_item_t(srb2::JsonValue json)
 		_display_type = SECRET_ALTMUSIC;
 	}
 
+	int chao_key_count = json.value("chao_keys", 0);
+	if (chao_key_count > 0 && chao_key_count <= GDMAX_CHAOKEYS)
+	{
+		SRB2_ASSERT(_display_type == SECRET_NONE);
+		_display_type = SECRET_AP_CHAOKEY;
+		_chao_key_count = chao_key_count;
+	}
+	else if (chao_key_count != 0)
+	{
+		throw std::runtime_error(srb2::format("bad item chao key amount '{}'", chao_key_count));
+	}
+
 	srb2::String work_type = json.value("item_type", srb2::String(""));
 	if (work_type.empty() == false)
 	{
@@ -361,8 +373,7 @@ rrap_item_t::rrap_item_t(srb2::JsonValue json)
 			{"eggtv", SECRET_EGGTV},
 			{"soundtest", SECRET_SOUNDTEST},
 			{"alttitle", SECRET_ALTTITLE},
-			{"kkd", SECRET_AP_KKD},
-			{"chaokey", SECRET_AP_CHAOKEY}
+			{"kkd", SECRET_AP_KKD}
 		};
 
 		if (name_to_type.find(work_type) != name_to_type.end())
@@ -921,9 +932,19 @@ boolean RRAP_SimplifyMapAccess(void)
 
 UINT16 RRAP_ChaoKeyCount(void)
 {
-	constexpr INT64 key_id = 10000; // TODO: don't hardcode
-	rrap_item_t key_item = g_ap_item_info[key_id];
-	INT32 num_keys = (key_item.received() + gamedata->chaokeys) - gamedata->keysused;
+	INT32 num_keys = gamedata->chaokeys - gamedata->keysused;
+
+	for (auto& [id, item] : g_ap_item_info)
+	{
+		INT32 type = item.display_type();
+		if (type != SECRET_AP_CHAOKEY)
+		{
+			continue;
+		}
+
+		num_keys += item.received() * item.chao_key_count();
+	}
+
 	return std::clamp<UINT16>(num_keys, 0, GDMAX_CHAOKEYS);
 }
 

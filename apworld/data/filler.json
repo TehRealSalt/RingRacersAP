@@ -14,7 +14,7 @@
 			"id": 10000,
 			"name": "Chao Key",
 			"label": "Chao Key",
-			"item_type": "chaokey",
+			"chao_keys": 1,
 			"class": "useful",
 			"tags": [
 				"Filler"
@@ -24,7 +24,7 @@
 			"id": 10001,
 			"name": "20 Chao Keys",
 			"label": "20 Chao Keys",
-			"item_type": "chaokey",
+			"chao_keys": 20,
 			"class": "useful",
 			"tags": [
 				"Filler"
