@@ -16,9 +16,6 @@ class RingRacersItem(Item):
 
 
 def get_random_filler_item_name(world: RingRacersWorld) -> str:
-    if world.random.randint(0, 99) < world.options.chao_key_chance:
-        return "Chao Key"
-
     return "KKD Honor"
 
 
@@ -245,11 +242,27 @@ def create_all_items(world: RingRacersWorld) -> None:
     number_of_items = len(item_pool)
     number_of_unfilled_locations = len(world.multiworld.get_unfilled_locations(world.player))
     needed_number_of_filler_items = number_of_unfilled_locations - number_of_items
-    
+
     existing_number_of_filler_items = len(filler_pool)
+    chao_keys_left = (number_of_unfilled_locations * world.options.chao_key_ratio) // 100
+
+    chao_key_pool: list[Item] = []
     if needed_number_of_filler_items > existing_number_of_filler_items:
         needed_new_filler = needed_number_of_filler_items - existing_number_of_filler_items
-        filler_pool += [world.create_filler() for _ in range(needed_new_filler)]
+        for _ in range(needed_new_filler):
+            if chao_keys_left > 0:
+                chao_keys_left -= 1
+                chao_key_pool.append(world.create_item("Chao Key"))
+            else:
+                filler_pool.append(world.create_filler())
+
+    for _ in range(chao_keys_left):
+        # pop filler, replace with keys
+        filler_pool.pop(world.random.randrange(len(filler_pool)))
+        chao_key_pool.append(world.create_item("Chao Key"))
+
+    # re-combine keys into filler, they're only separate so we can pop em
+    filler_pool += chao_key_pool
 
     if needed_number_of_filler_items == len(filler_pool):
         # just slam it in if it's the right size!
