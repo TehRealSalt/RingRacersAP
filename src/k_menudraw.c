@@ -7181,6 +7181,10 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 			bcol = SKINCOLOR_MOONSET;
 			iconid = NUM_CHALLENGE_CATEGORIES_VANILLA + 1;
 			break;
+		case SECRET_AP_CHAOKEY:
+			bcol = SKINCOLOR_ROBIN;
+			iconid = NUM_CHALLENGE_CATEGORIES_VANILLA + 2;
+			break;
 	}
 
 	bgmap = R_GetTranslationColormap(TC_DEFAULT, bcol, GTC_MENUCACHE);
@@ -7364,6 +7368,10 @@ static void M_DrawChallengeTile(INT16 i, INT16 j, INT32 x, INT32 y, UINT8 *flash
 			// [RRAP]
 			case SECRET_AP_KKD:
 				iconid = NUM_CHALLENGE_ICONS_VANILLA + 1;
+				break;
+
+			case SECRET_AP_CHAOKEY:
+				iconid = NUM_CHALLENGE_ICONS_VANILLA + 2;
 				break;
 
 			default:
