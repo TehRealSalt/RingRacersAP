@@ -238,6 +238,7 @@ UINT32 RRAP_CapCharacterWins(UINT32 input);
 boolean RRAP_SimplifyMapAccess(void);
 
 UINT16 RRAP_ChaoKeyCount(void);
+UINT16 RRAP_ChaoKeygenRate(void);
 
 int RRAP_TestLocations(void);
 boolean RRAP_TryGoalSend(void);
