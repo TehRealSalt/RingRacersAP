@@ -1456,7 +1456,7 @@ def set_follower_challenge_location_rules(world: RingRacersWorld) -> None:
     set_rule(
         world.get_location("Challenge - Follower: Mag"),
         lambda state:
-            state.can_reach_region("Las Vegas", world.player)
+            map_mystic_melody(state, "Las Vegas", world.player)
     )
 
     set_rule(
