@@ -43,7 +43,7 @@ class CharWinsCount(NamedRange):
 
     internal_name = "character_wins_count"
     display_name = "Character Wins Count"
-    range_start = 1
+    range_start = 0
     range_end = 100
     default = 0
     special_range_names = {
@@ -83,7 +83,7 @@ class GoalTrophyLevel(NamedRange):
 
     internal_name = "goal_trophy_level"
     display_name = "Required Trophy Placement"
-    range_start = 1
+    range_start = 0
     range_end = 3
     default = 0
     special_range_names = {
@@ -156,7 +156,7 @@ class ProgressiveCups(NamedRange):
 
     internal_name = "progressive_cups"
     display_name = "# of Progressive Cups"
-    range_start = 1
+    range_start = 0
     range_end = 30
     default = 0
     special_range_names = {
