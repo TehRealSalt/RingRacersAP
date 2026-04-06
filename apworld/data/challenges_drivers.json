@@ -4,6 +4,7 @@
 			"id": 1,
 			"name": "Challenge - Driver: AiAi",
 			"label": "AiAi",
+			"description": "GRAND PRIX: On MONKEY MALL on Vicious, don't fall off the course & get grade A",
 			"condition_set": 1,
 			"big_tile": true,
 			"tags": [
@@ -15,6 +16,7 @@
 			"id": 2,
 			"name": "Challenge - Driver: Aigis",
 			"label": "Aigis",
+			"description": "GRAND PRIX: On OPERATOR'S OVERSPACE, finish in 1st",
 			"condition_set": 2,
 			"big_tile": true,
 			"tags": [
@@ -26,6 +28,7 @@
 			"id": 3,
 			"name": "Challenge - Driver: Arle",
 			"label": "Arle",
+			"description": "Play a melody for the ancient shrine in MELTY MANOR ZONE",
 			"condition_set": 3,
 			"big_tile": true,
 			"tags": [
@@ -37,6 +40,7 @@
 			"id": 4,
 			"name": "Challenge - Driver: Azusa Miura",
 			"label": "Azusa Miura",
+			"description": "GRAND PRIX: On 765 STADIUM ZONE as Honey, finish a perfect round (excluding Gear 1) - OR play a melody for the ancient shrine in 765 STADIUM ZONE",
 			"condition_set": 4,
 			"big_tile": true,
 			"tags": [
@@ -48,6 +52,7 @@
 			"id": 5,
 			"name": "Challenge - Driver: Bark",
 			"label": "Bark",
+			"description": "TIME ATTACK: Get the Silver Medal for SUB-ZERO PEAK ZONE - OR win 100 Rounds as Bean",
 			"condition_set": 5,
 			"tags": [
 				"Challenges",
@@ -58,6 +63,7 @@
 			"id": 6,
 			"name": "Challenge - Driver: Battle Kukku XV",
 			"label": "Battle Kukku XV",
+			"description": "TIME ATTACK: Get the Silver Medal for VERMILION VESSEL ZONE - OR win 100 Rounds as Tails",
 			"condition_set": 6,
 			"tags": [
 				"Challenges",
@@ -68,6 +74,7 @@
 			"id": 7,
 			"name": "Challenge - Driver: Bean",
 			"label": "Bean",
+			"description": "GRAND PRIX: On TINKERER'S ARENA ZONE, break every Prison Egg using exactly one Gachabom repeatedly - OR win 100 Rounds as Bark",
 			"condition_set": 7,
 			"tags": [
 				"Challenges",
@@ -78,6 +85,7 @@
 			"id": 8,
 			"name": "Challenge - Driver: Big",
 			"label": "Big",
+			"description": "GRAND PRIX: On EMERALD COAST, finish in good standing without going into water",
 			"condition_set": 8,
 			"tags": [
 				"Challenges",
@@ -88,6 +96,7 @@
 			"id": 9,
 			"name": "Challenge - Driver: Billy Hatcher",
 			"label": "Billy Hatcher",
+			"description": "JOYPOLIS ZONE: Destroy all the tables & chairs",
 			"condition_set": 9,
 			"big_tile": true,
 			"tags": [
@@ -99,6 +108,7 @@
 			"id": 10,
 			"name": "Challenge - Driver: Blaze",
 			"label": "Blaze",
+			"description": "TIME ATTACK: Get the Silver Medal for BLIZZARD PEAKS ZONE - OR win 100 Rounds as Silver",
 			"condition_set": 10,
 			"tags": [
 				"Challenges",
@@ -109,6 +119,7 @@
 			"id": 11,
 			"name": "Challenge - Driver: Bomb",
 			"label": "Bomb",
+			"description": "Win 100 Rounds as Heavy - OR in a single round, use Eggmark to blow up its curser & dunk a Land Mine on another racer's head",
 			"condition_set": 11,
 			"tags": [
 				"Challenges",
@@ -119,6 +130,7 @@
 			"id": 12,
 			"name": "Challenge - Driver: Carol",
 			"label": "Carol",
+			"description": "Visit AQUA TUNNEL - OR load a custom addon",
 			"condition_set": 12,
 			"big_tile": true,
 			"tags": [
@@ -130,6 +142,7 @@
 			"id": 13,
 			"name": "Challenge - Driver: Caterkiller",
 			"label": "Caterkiller",
+			"description": "GRAND PRIX: On DESERT PALACE ZONE as Dr. Eggman, get grade A - OR win 100 Rounds as Motobug",
 			"condition_set": 13,
 			"tags": [
 				"Challenges",
@@ -140,6 +153,7 @@
 			"id": 14,
 			"name": "Challenge - Driver: Chao",
 			"label": "Chao",
+			"description": "GRAND PRIX: Complete any Cup with Chao Egg in tow - OR play a melody for the ancient shrine in CITY ESCAPE",
 			"condition_set": 14,
 			"tags": [
 				"Challenges",
@@ -150,6 +164,7 @@
 			"id": 15,
 			"name": "Challenge - Driver: Chaos Zero",
 			"label": "Chaos Zero",
+			"description": "SEALED STARS: As Sonic, smash the UFO Catcher using only boost power - OR win 100 Rounds as Tikal",
 			"condition_set": 15,
 			"tags": [
 				"Challenges",
@@ -160,6 +175,7 @@
 			"id": 16,
 			"name": "Challenge - Driver: Charmy",
 			"label": "Charmy",
+			"description": "TIME ATTACK: Get the Silver Medal for ISOLATED ISLAND ZONE - OR win 100 Rounds as Espio",
 			"condition_set": 16,
 			"tags": [
 				"Challenges",
@@ -170,6 +186,7 @@
 			"id": 17,
 			"name": "Challenge - Driver: Chuchu",
 			"label": "Chuchu",
+			"description": "GRAND PRIX: On NEON RESORT ZONE, break every Prison Egg",
 			"condition_set": 17,
 			"big_tile": true,
 			"tags": [
@@ -181,6 +198,7 @@
 			"id": 18,
 			"name": "Challenge - Driver: Cluckoid",
 			"label": "Cluckoid",
+			"description": "GRAND PRIX: On TREE RING ZONE, break every Prison Egg",
 			"condition_set": 18,
 			"tags": [
 				"Challenges",
@@ -191,6 +209,7 @@
 			"id": 19,
 			"name": "Challenge - Driver: Cream",
 			"label": "Cream",
+			"description": "GRAND PRIX: On LEAF STORM ZONE as Blaze, finish in 1st",
 			"condition_set": 19,
 			"tags": [
 				"Challenges",
@@ -201,6 +220,7 @@
 			"id": 20,
 			"name": "Challenge - Driver: Ecco",
 			"label": "Ecco",
+			"description": "GRAND PRIX: On AZURE AXIOM ZONE, finish in 1st",
 			"condition_set": 20,
 			"big_tile": true,
 			"tags": [
@@ -212,6 +232,7 @@
 			"id": 21,
 			"name": "Challenge - Driver: Eggrobo",
 			"label": "Eggrobo",
+			"description": "As Knuckles, make Eggrobo retire",
 			"condition_set": 21,
 			"tags": [
 				"Challenges",
@@ -222,6 +243,7 @@
 			"id": 22,
 			"name": "Challenge - Driver: Emerl",
 			"label": "Emerl",
+			"description": "GRAND PRIX: On TAILS' LAB, break every Prison Egg",
 			"condition_set": 22,
 			"tags": [
 				"Challenges",
@@ -232,6 +254,7 @@
 			"id": 23,
 			"name": "Challenge - Driver: Espio",
 			"label": "Espio",
+			"description": "Insta-Whip a racer while afflicted by Hyudoro - OR win 100 Rounds as Charmy",
 			"condition_set": 23,
 			"tags": [
 				"Challenges",
@@ -242,6 +265,7 @@
 			"id": 24,
 			"name": "Challenge - Driver: Flicky",
 			"label": "Flicky",
+			"description": "NO CONTEST as Motobug",
 			"condition_set": 24,
 			"tags": [
 				"Challenges",
@@ -252,6 +276,7 @@
 			"id": 25,
 			"name": "Challenge - Driver: Gum",
 			"label": "Gum",
+			"description": "CHALLENGES: Get 75% of Spray Cans",
 			"condition_set": 25,
 			"big_tile": true,
 			"tags": [
@@ -263,6 +288,7 @@
 			"id": 26,
 			"name": "Challenge - Driver: Gutbuster",
 			"label": "Gutbuster",
+			"description": "TIME ATTACK: Get the Gold Medal for SUNDAE DRIVE ZONE & unlock both of Robotnik's Mechanix",
 			"condition_set": 26,
 			"big_tile": true,
 			"tags": [
@@ -274,6 +300,7 @@
 			"id": 27,
 			"name": "Challenge - Driver: Headdy",
 			"label": "Headdy",
+			"description": "Play a melody for the ancient shrine in NORTHERN DISTRICT ZONE",
 			"condition_set": 27,
 			"big_tile": true,
 			"tags": [
@@ -285,6 +312,7 @@
 			"id": 28,
 			"name": "Challenge - Driver: Heavy",
 			"label": "Heavy",
+			"description": "TIME ATTACK: Get the Silver Medal for ELECTRA CLACKER ZONE - OR win 100 Rounds as Bomb",
 			"condition_set": 28,
 			"tags": [
 				"Challenges",
@@ -295,6 +323,7 @@
 			"id": 29,
 			"name": "Challenge - Driver: Heavy Magician",
 			"label": "Heavy Magician",
+			"description": "CHALLENGES: Get 50% of Characters",
 			"condition_set": 29,
 			"big_tile": true,
 			"tags": [
@@ -306,6 +335,7 @@
 			"id": 30,
 			"name": "Challenge - Driver: Honey",
 			"label": "Honey",
+			"description": "GRAND PRIX: On DEATH EGG'S EYE, finish in 1:04.00 - OR TIME ATTACK: get the Gold Medal for DEATH EGG'S EYE",
 			"condition_set": 30,
 			"tags": [
 				"Challenges",
@@ -316,6 +346,7 @@
 			"id": 31,
 			"name": "Challenge - Driver: Jack Frost",
 			"label": "Jack Frost",
+			"description": "Re-launch the game after a crash - OR on SRB2 FROZEN NIGHT, recruit a new party member",
 			"condition_set": 31,
 			"big_tile": true,
 			"tags": [
@@ -327,6 +358,7 @@
 			"id": 32,
 			"name": "Challenge - Driver: Jet",
 			"label": "Jet",
+			"description": "GRAND PRIX: On SKY BABYLON ZONE, don't fall off the course",
 			"condition_set": 32,
 			"tags": [
 				"Challenges",
@@ -337,6 +369,7 @@
 			"id": 34,
 			"name": "Challenge - Driver: Mail",
 			"label": "Mail",
+			"description": "Collect 9,999 Rings",
 			"condition_set": 34,
 			"big_tile": true,
 			"tags": [
@@ -348,6 +381,7 @@
 			"id": 35,
 			"name": "Challenge - Driver: Maria",
 			"label": "Maria",
+			"description": "Play a melody for the ancient shrine in LOST COLONY",
 			"condition_set": 35,
 			"tags": [
 				"Challenges",
@@ -358,6 +392,7 @@
 			"id": 36,
 			"name": "Challenge - Driver: Mecha Sonic",
 			"label": "Mecha Sonic",
+			"description": "GRAND PRIX: On SKY SANCTUARY ZONE as Knuckles, finish in 1st on Vicious",
 			"condition_set": 36,
 			"tags": [
 				"Challenges",
@@ -368,6 +403,7 @@
 			"id": 37,
 			"name": "Challenge - Driver: Metal Knuckles",
 			"label": "Metal Knuckles",
+			"description": "GRAND PRIX: As Tails Doll, finish a perfect round (excluding Gear 1) - OR win 100 Rounds as Metal Sonic",
 			"condition_set": 37,
 			"tags": [
 				"Challenges",
@@ -378,6 +414,7 @@
 			"id": 38,
 			"name": "Challenge - Driver: NiGHTS",
 			"label": "NiGHTS",
+			"description": "Play a melody for the ancient shrine in AVANT GARDEN ZONE",
 			"condition_set": 38,
 			"big_tile": true,
 			"tags": [
@@ -389,6 +426,7 @@
 			"id": 39,
 			"name": "Challenge - Driver: Orta",
 			"label": "Orta",
+			"description": "GRAND PRIX: Smash the UFO Catcher using only Jawz",
 			"condition_set": 39,
 			"big_tile": true,
 			"tags": [
@@ -400,6 +438,7 @@
 			"id": 40,
 			"name": "Challenge - Driver: Pulseman",
 			"label": "Pulseman",
+			"description": "KODACHROME VOID ZONE: Shock a Self-Propelled Bomb into submission & get grade A",
 			"condition_set": 40,
 			"big_tile": true,
 			"tags": [
@@ -411,6 +450,7 @@
 			"id": 41,
 			"name": "Challenge - Driver: Rappy",
 			"label": "Rappy",
+			"description": "GRAND PRIX: On LAS VEGAS, finish in 4th or better",
 			"condition_set": 41,
 			"big_tile": true,
 			"tags": [
@@ -422,6 +462,7 @@
 			"id": 42,
 			"name": "Challenge - Driver: Ray",
 			"label": "Ray",
+			"description": "GRAND PRIX: As Mighty, get grade A or better in any Cup - OR win 100 Rounds as Mighty",
 			"condition_set": 42,
 			"tags": [
 				"Challenges",
@@ -432,6 +473,7 @@
 			"id": 43,
 			"name": "Challenge - Driver: Redz",
 			"label": "Redz",
+			"description": "Visit HIDDEN PALACE ZONE",
 			"condition_set": 43,
 			"tags": [
 				"Challenges",
@@ -442,6 +484,7 @@
 			"id": 44,
 			"name": "Challenge - Driver: Rouge",
 			"label": "Rouge",
+			"description": "PRISON BREAK: On SECURITY HALL, finish in exactly 5:00.XX - OR win 100 Rounds as Knuckles",
 			"condition_set": 44,
 			"tags": [
 				"Challenges",
@@ -452,6 +495,7 @@
 			"id": 45,
 			"name": "Challenge - Driver: Sakura Shinguji",
 			"label": "Sakura Shinguji",
+			"description": "GRAND PRIX: On HANAGUMI HALL ZONE, finish in 3rd or better",
 			"condition_set": 45,
 			"big_tile": true,
 			"tags": [
@@ -463,6 +507,7 @@
 			"id": 46,
 			"name": "Challenge - Driver: Shadow",
 			"label": "Shadow",
+			"description": "GRAND PRIX: On LOST COLONY, fall off the course & finish in 1st - OR win 100 Rounds as Sonic",
 			"condition_set": 46,
 			"tags": [
 				"Challenges",
@@ -473,6 +518,7 @@
 			"id": 47,
 			"name": "Challenge - Driver: Silver",
 			"label": "Silver",
+			"description": "MEGA COLLISION CHAOS ZONE: Finish in 3:33.00 - OR win 100 Rounds as Blaze",
 			"condition_set": 47,
 			"tags": [
 				"Challenges",
@@ -483,6 +529,7 @@
 			"id": 48,
 			"name": "Challenge - Driver: Surge",
 			"label": "Surge",
+			"description": "Play a melody for the ancient shrine in EMERALD HILL ZONE",
 			"condition_set": 48,
 			"tags": [
 				"Challenges",
@@ -493,6 +540,7 @@
 			"id": 49,
 			"name": "Challenge - Driver: Tails Doll",
 			"label": "Tails Doll",
+			"description": "Play a melody for the ancient shrine in REGAL RUIN",
 			"condition_set": 49,
 			"tags": [
 				"Challenges",
@@ -503,6 +551,7 @@
 			"id": 50,
 			"name": "Challenge - Driver: Tikal",
 			"label": "Tikal",
+			"description": "Play a melody for the ancient shrine in COASTAL TEMPLE ZONE - OR win 100 Rounds as Chaos Zero",
 			"condition_set": 50,
 			"tags": [
 				"Challenges",
@@ -513,6 +562,7 @@
 			"id": 51,
 			"name": "Challenge - Driver: Vectorman",
 			"label": "Vectorman",
+			"description": "GRAND PRIX: On DARK FORTRESS ZONE, don't fall off the course & finish in good standing",
 			"condition_set": 51,
 			"big_tile": true,
 			"tags": [
@@ -524,6 +574,7 @@
 			"id": 52,
 			"name": "Challenge - Driver: Whisper",
 			"label": "Whisper",
+			"description": "GRAND PRIX: On WITHERING CHATEAU ZONE, don't touch any offroad & finish in 1st",
 			"condition_set": 52,
 			"tags": [
 				"Challenges",
@@ -534,6 +585,7 @@
 			"id": 53,
 			"name": "Challenge - Driver: Wonder Boy",
 			"label": "Wonder Boy",
+			"description": "Play a melody for the ancient shrine in DARKVILE CASTLE ZONE 2",
 			"condition_set": 53,
 			"big_tile": true,
 			"tags": [
@@ -545,6 +597,7 @@
 			"id": 54,
 			"name": "Challenge - Driver: Zipp",
 			"label": "Zipp",
+			"description": "Play a melody for the ancient shrine in HIDDEN PALACE ZONE",
 			"condition_set": 54,
 			"tags": [
 				"Challenges",
@@ -555,6 +608,7 @@
 			"id": 55,
 			"name": "Challenge - Driver: Ring the Racer",
 			"label": "Ring the Racer",
+			"description": "Hire a bounty hunter, recite a fabled incantation, and wait until morning",
 			"condition_set": 55,
 			"big_tile": true,
 			"tags": [
@@ -566,6 +620,7 @@
 			"id": 56,
 			"name": "Challenge - Driver: Trouble Bruin",
 			"label": "Trouble Bruin",
+			"description": "GRAND PRIX: On TRAP TOWER as Headdy, finish in 1st & get grade A on Vicious",
 			"condition_set": 56,
 			"big_tile": true,
 			"tags": [

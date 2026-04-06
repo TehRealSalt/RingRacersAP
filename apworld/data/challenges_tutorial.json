@@ -4,6 +4,7 @@
 			"id": 750,
 			"name": "Challenge - The Egg Carrier: Playground",
 			"label": "Ancient Gear Playground",
+			"description": "Complete the First Boot",
 			"condition_set": 601,
 			"tags": [
 				"Challenges",
@@ -15,6 +16,7 @@
 			"id": 751,
 			"name": "Challenge - Sunbeam Paradise: Brakes",
 			"label": "Check Your Brakes",
+			"description": "GRAND PRIX: Get Bronze or better in RING CUP",
 			"condition_set": 602,
 			"tags": [
 				"Challenges",
@@ -26,6 +28,7 @@
 			"id": 752,
 			"name": "Challenge - Sunbeam Paradise: Drifting",
 			"label": "The Art of Drifting",
+			"description": "GRAND PRIX: Get Bronze or better in SPRING CUP",
 			"condition_set": 604,
 			"tags": [
 				"Challenges",
@@ -37,6 +40,7 @@
 			"id": 753,
 			"name": "Challenge - Sunbeam Paradise: Items",
 			"label": "The Item Gallery",
+			"description": "GRAND PRIX: Get Bronze or better in INVINCIBLE CUP",
 			"condition_set": 606,
 			"tags": [
 				"Challenges",
@@ -48,6 +52,7 @@
 			"id": 754,
 			"name": "Challenge - Sunbeam Paradise: Springs",
 			"label": "Springs & Trick Panels",
+			"description": "Get Rocket Cup - OR get Goggles Cup",
 			"condition_set": 754,
 			"tags": [
 				"Challenges",

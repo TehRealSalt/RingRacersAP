@@ -4,6 +4,7 @@
 			"id": 200,
 			"name": "Challenge - Follower: Motobuddy",
 			"label": "Motobuddy",
+			"description": "GRAND PRIX: On MOTOBUG MOTORWAY ZONE, don't touch any course hazards",
 			"condition_set": 200,
 			"tags": [
 				"Challenges",
@@ -14,6 +15,7 @@
 			"id": 201,
 			"name": "Challenge - Follower: Buzz Bomber",
 			"label": "Buzz Bomber",
+			"description": "HONEYCOMB HOLLOW ZONE: Break every Prison Egg without touching any honey",
 			"condition_set": 201,
 			"tags": [
 				"Challenges",
@@ -24,6 +26,7 @@
 			"id": 202,
 			"name": "Challenge - Follower: Newtron",
 			"label": "Newtron",
+			"description": "SPB ATTACK: Conquer MEGA GREEN HILL ZONE",
 			"condition_set": 202,
 			"tags": [
 				"Challenges",
@@ -34,6 +37,7 @@
 			"id": 203,
 			"name": "Challenge - Follower: Orbinaut",
 			"label": "Orbinaut",
+			"description": "SEALED STARS: Smash the UFO Catcher using only Orbinauts",
 			"condition_set": 203,
 			"tags": [
 				"Challenges",
@@ -44,6 +48,7 @@
 			"id": 204,
 			"name": "Challenge - Follower: Jaws",
 			"label": "Jaws",
+			"description": "LABYRINTH ZONE: As Sonic, don't touch any offroad & get grade A",
 			"condition_set": 204,
 			"tags": [
 				"Challenges",
@@ -54,6 +59,7 @@
 			"id": 205,
 			"name": "Challenge - Follower: Bomb",
 			"label": "Bomb",
+			"description": "When cursed with Eggmark, blow up the racer responsible",
 			"condition_set": 205,
 			"tags": [
 				"Challenges",
@@ -64,6 +70,7 @@
 			"id": 206,
 			"name": "Challenge - Follower: Motobricks",
 			"label": "Motobricks",
+			"description": "Play the game for 2:13:31",
 			"condition_set": 206,
 			"tags": [
 				"Challenges",
@@ -74,6 +81,7 @@
 			"id": 207,
 			"name": "Challenge - Follower: Uni-Uni",
 			"label": "Uni-Uni",
+			"description": "Play a melody for the ancient shrine in STAR LIGHT ZONE",
 			"condition_set": 207,
 			"tags": [
 				"Challenges",
@@ -84,6 +92,7 @@
 			"id": 208,
 			"name": "Challenge - Follower: Chaos Emerald",
 			"label": "Chaos Emerald",
+			"description": "GRAND PRIX: Collect all 7 Chaos Emeralds",
 			"condition_set": 208,
 			"tags": [
 				"Challenges",
@@ -94,6 +103,7 @@
 			"id": 215,
 			"name": "Challenge - Follower: Anton",
 			"label": "Anton",
+			"description": "GRAND PRIX: On PALMTREE PANIC ZONE, get grade A without going into water",
 			"condition_set": 215,
 			"tags": [
 				"Challenges",
@@ -104,6 +114,7 @@
 			"id": 216,
 			"name": "Challenge - Follower: Mosqui",
 			"label": "Mosqui",
+			"description": "As Amy, finish in 1st while chased by a Self-Propelled Bomb",
 			"condition_set": 216,
 			"tags": [
 				"Challenges",
@@ -114,6 +125,7 @@
 			"id": 217,
 			"name": "Challenge - Follower: Ga",
 			"label": "Ga",
+			"description": "Play a melody for the ancient shrine in COLLISION CHAOS ZONE",
 			"condition_set": 217,
 			"tags": [
 				"Challenges",
@@ -124,6 +136,7 @@
 			"id": 218,
 			"name": "Challenge - Follower: Tonbo",
 			"label": "Tonbo",
+			"description": "SPB ATTACK: Conquer LAVENDER SHRINE ZONE",
 			"condition_set": 218,
 			"tags": [
 				"Challenges",
@@ -134,6 +147,7 @@
 			"id": 219,
 			"name": "Challenge - Follower: Poh-Bee",
 			"label": "Poh-Bee",
+			"description": "Touch the blue beams from your own Shrink at least 4 times before returning to normal size",
 			"condition_set": 219,
 			"tags": [
 				"Challenges",
@@ -144,6 +158,7 @@
 			"id": 220,
 			"name": "Challenge - Follower: Bata-pyon",
 			"label": "Bata-pyon",
+			"description": "GRAND PRIX: On SPRING YARD ZONE, reach at least 500% on the speedometer",
 			"condition_set": 220,
 			"tags": [
 				"Challenges",
@@ -154,6 +169,7 @@
 			"id": 221,
 			"name": "Challenge - Follower: Kabasira",
 			"label": "Kabasira",
+			"description": "As Metal Sonic, hit a giant racer with a shrunken Orbinaut",
 			"condition_set": 221,
 			"tags": [
 				"Challenges",
@@ -164,6 +180,7 @@
 			"id": 222,
 			"name": "Challenge - Follower: Hotaru",
 			"label": "Hotaru",
+			"description": "TRAP TOWER: Don't touch any course hazards, don't fall off the course & finish a perfect round (excluding Gear 1)",
 			"condition_set": 222,
 			"tags": [
 				"Challenges",
@@ -174,6 +191,7 @@
 			"id": 223,
 			"name": "Challenge - Follower: UFO",
 			"label": "UFO",
+			"description": "GRAND PRIX: As Silver on CD SPECIAL STAGE 8, finish in 1:00.00 - OR TIME ATTACK: get the Gold Medal for CD SPECIAL STAGE 8",
 			"condition_set": 223,
 			"tags": [
 				"Challenges",
@@ -184,6 +202,7 @@
 			"id": 224,
 			"name": "Challenge - Follower: Goddess",
 			"label": "Goddess",
+			"description": "TIME ATTACK: Get the Gold Medal for ANGEL ARROW CLASSIC",
 			"condition_set": 224,
 			"tags": [
 				"Challenges",
@@ -194,6 +213,7 @@
 			"id": 230,
 			"name": "Challenge - Follower: Sol",
 			"label": "Sol",
+			"description": "TIME ATTACK: Get the Gold Medal for HILL TOP ZONE",
 			"condition_set": 230,
 			"tags": [
 				"Challenges",
@@ -204,6 +224,7 @@
 			"id": 231,
 			"name": "Challenge - Follower: Flasher",
 			"label": "Flasher",
+			"description": "GRAND PRIX: On MYSTIC CAVE ZONE, get grade A & don't fall off the course",
 			"condition_set": 231,
 			"tags": [
 				"Challenges",
@@ -214,6 +235,7 @@
 			"id": 232,
 			"name": "Challenge - Follower: Jellygnite",
 			"label": "Jellygnite",
+			"description": "ENCORE MODE: Finish a round on HYDRO CITY ZONE - OR play a melody for the ancient shrine in the Controls Tutorial",
 			"condition_set": 232,
 			"tags": [
 				"Challenges",
@@ -224,6 +246,7 @@
 			"id": 233,
 			"name": "Challenge - Follower: Aquis",
 			"label": "Aquis",
+			"description": "Play a melody for the ancient shrine in STORM RIG ZONE",
 			"condition_set": 233,
 			"tags": [
 				"Challenges",
@@ -234,6 +257,7 @@
 			"id": 234,
 			"name": "Challenge - Follower: Octus",
 			"label": "Octus",
+			"description": "GRAND PRIX: On RUSTY RIG ZONE, break every Prison Egg using exactly one Gachabom repeatedly",
 			"condition_set": 234,
 			"tags": [
 				"Challenges",
@@ -244,6 +268,7 @@
 			"id": 235,
 			"name": "Challenge - Follower: Asteron",
 			"label": "Asteron",
+			"description": "HARD-BOILED STADIUM ZONE: Touch a course hazard on every lap",
 			"condition_set": 235,
 			"tags": [
 				"Challenges",
@@ -254,6 +279,7 @@
 			"id": 236,
 			"name": "Challenge - Follower: Egg Pod",
 			"label": "Egg Pod",
+			"description": "GRAND PRIX: As Dr. Eggman on METROPOLIS ZONE, touch a course hazard on every lap & finish in 1st",
 			"condition_set": 236,
 			"tags": [
 				"Challenges",
@@ -264,6 +290,7 @@
 			"id": 237,
 			"name": "Challenge - Follower: Nebula",
 			"label": "Nebula",
+			"description": "SILVERCLOUD ISLAND: With Tornado in tow, dunk a Land Mine on another racer's head & finish in good standing",
 			"condition_set": 237,
 			"tags": [
 				"Challenges",
@@ -274,6 +301,7 @@
 			"id": 238,
 			"name": "Challenge - Follower: Tornado",
 			"label": "Tornado",
+			"description": "GRAND PRIX: On ANGEL ISLAND ZONE, finish in 1st",
 			"condition_set": 238,
 			"tags": [
 				"Challenges",
@@ -284,6 +312,7 @@
 			"id": 245,
 			"name": "Challenge - Follower: Meramora Jr.",
 			"label": "Meramora Jr.",
+			"description": "ANGEL ISLAND ZONE: As Caterkiller, shock a Self-Propelled Bomb into submission",
 			"condition_set": 245,
 			"tags": [
 				"Challenges",
@@ -294,6 +323,7 @@
 			"id": 246,
 			"name": "Challenge - Follower: Buggernaut",
 			"label": "Buggernaut",
+			"description": "PESTILENCE ZONE: Don't fall off the course & finish in good standing",
 			"condition_set": 246,
 			"tags": [
 				"Challenges",
@@ -304,6 +334,7 @@
 			"id": 247,
 			"name": "Challenge - Follower: Bubbles",
 			"label": "Bubbles",
+			"description": "GRAND PRIX: On MARBLE GARDEN ZONE, finish in 2nd with exactly -20 Rings",
 			"condition_set": 247,
 			"tags": [
 				"Challenges",
@@ -314,6 +345,7 @@
 			"id": 248,
 			"name": "Challenge - Follower: Balloon",
 			"label": "Balloon",
+			"description": "CARNIVAL NIGHT ZONE: Finish in 1st while chased by a Self-Propelled Bomb",
 			"condition_set": 248,
 			"tags": [
 				"Challenges",
@@ -324,6 +356,7 @@
 			"id": 249,
 			"name": "Challenge - Follower: Barrel",
 			"label": "Barrel",
+			"description": "GRAND PRIX: On CARNIVAL NIGHT ZONE, finish in good standing without touching any water - OR enter the name of that course's most famous attraction!",
 			"condition_set": 249,
 			"tags": [
 				"Challenges",
@@ -334,6 +367,7 @@
 			"id": 250,
 			"name": "Challenge - Follower: Mushmeanie",
 			"label": "Mushmeanie",
+			"description": "GRAND PRIX: On TREE RING ZONE as Cluckoid, don't touch any course hazards & break every Prison Egg - OR TIME ATTACK: get the Gold Medal for FUNGAL DIMENSION",
 			"condition_set": 250,
 			"tags": [
 				"Challenges",
@@ -344,6 +378,7 @@
 			"id": 251,
 			"name": "Challenge - Follower: Technosqueek",
 			"label": "Technosqueek",
+			"description": "MEGA FLYING BATTERY ZONE: Don't fall off the course & finish in good standing",
 			"condition_set": 251,
 			"tags": [
 				"Challenges",
@@ -354,6 +389,7 @@
 			"id": 252,
 			"name": "Challenge - Follower: Chainspike",
 			"label": "Chainspike",
+			"description": "DEATH EGG ZONE: Don't touch any course hazards & finish in good standing",
 			"condition_set": 252,
 			"tags": [
 				"Challenges",
@@ -364,6 +400,7 @@
 			"id": 253,
 			"name": "Challenge - Follower: Spikebonker",
 			"label": "Spikebonker",
+			"description": "DEATH EGG ZONE: Don't fall off the course & finish in good standing",
 			"condition_set": 253,
 			"tags": [
 				"Challenges",
@@ -374,6 +411,7 @@
 			"id": 254,
 			"name": "Challenge - Follower: Hyudoro",
 			"label": "Hyudoro",
+			"description": "GRAND PRIX: On MEGA SANDOPOLIS ZONE, FAULT during POSITION & finish in 1st",
 			"condition_set": 254,
 			"tags": [
 				"Challenges",
@@ -384,6 +422,7 @@
 			"id": 255,
 			"name": "Challenge - Follower: Super Emerald",
 			"label": "Super Emerald",
+			"description": "GRAND PRIX: Collect all 7 Super Emeralds",
 			"condition_set": 255,
 			"tags": [
 				"Challenges",
@@ -394,6 +433,7 @@
 			"id": 256,
 			"name": "Challenge - Follower: S.P.B. Jr.",
 			"label": "S.P.B. Jr.",
+			"description": "Get SPB Attack, then get 777 Medals",
 			"condition_set": 256,
 			"big_tile": true,
 			"tags": [
@@ -405,6 +445,7 @@
 			"id": 257,
 			"name": "Challenge - Follower: Prison Egg",
 			"label": "Prison Egg",
+			"description": "Clear 40 Prison Rounds",
 			"condition_set": 257,
 			"big_tile": true,
 			"tags": [
@@ -416,6 +457,7 @@
 			"id": 261,
 			"name": "Challenge - Follower: Burboom",
 			"label": "Burboom",
+			"description": "GRAND PRIX: On ISOLATED ISLAND ZONE as Espio, get grade A",
 			"condition_set": 261,
 			"tags": [
 				"Challenges",
@@ -426,6 +468,7 @@
 			"id": 262,
 			"name": "Challenge - Follower: Bushbubble",
 			"label": "Bushbubble",
+			"description": "GRAND PRIX: On WORLD 1 MAP, finish in 0:24.00",
 			"condition_set": 262,
 			"tags": [
 				"Challenges",
@@ -436,6 +479,7 @@
 			"id": 263,
 			"name": "Challenge - Follower: Gotcha",
 			"label": "Gotcha",
+			"description": "BIGTIME BREAKDOWN ZONE: Don't touch any Sneaker Panels",
 			"condition_set": 263,
 			"tags": [
 				"Challenges",
@@ -446,6 +490,7 @@
 			"id": 264,
 			"name": "Challenge - Follower: Motorspike",
 			"label": "Motorspike",
+			"description": "As Charmy, consistently tether off other racers for 12 seconds",
 			"condition_set": 264,
 			"tags": [
 				"Challenges",
@@ -456,6 +501,7 @@
 			"id": 265,
 			"name": "Challenge - Follower: Piranhy",
 			"label": "Piranhy",
+			"description": "Play a melody for the ancient shrine in the Rings Tutorial",
 			"condition_set": 265,
 			"tags": [
 				"Challenges",
@@ -466,6 +512,7 @@
 			"id": 266,
 			"name": "Challenge - Follower: Ticktock",
 			"label": "Ticktock",
+			"description": "TIME ATTACK: Get the Gold Medal for JOYPOLIS ZONE",
 			"condition_set": 266,
 			"tags": [
 				"Challenges",
@@ -476,6 +523,7 @@
 			"id": 276,
 			"name": "Challenge - Follower: Scouter",
 			"label": "Scouter",
+			"description": "GRAND PRIX: As Motobug on GEMS MUSEUM ZONE, break every Prison Egg using exactly one Gachabom repeatedly",
 			"condition_set": 276,
 			"tags": [
 				"Challenges",
@@ -486,6 +534,7 @@
 			"id": 277,
 			"name": "Challenge - Follower: Snowman",
 			"label": "Snowman",
+			"description": "BLUE MOUNTAIN ZONE 2: Don't touch any course hazards",
 			"condition_set": 277,
 			"tags": [
 				"Challenges",
@@ -496,6 +545,7 @@
 			"id": 278,
 			"name": "Challenge - Follower: Firefly",
 			"label": "Firefly",
+			"description": "GRAND PRIX: As Flicky on SEGA SATURN, finish in 0:32.00",
 			"condition_set": 278,
 			"tags": [
 				"Challenges",
@@ -506,6 +556,7 @@
 			"id": 279,
 			"name": "Challenge - Follower: Whirl",
 			"label": "Whirl",
+			"description": "GRAND PRIX: On GUST PLANET ZONE, reach at least 400% on the speedometer",
 			"condition_set": 279,
 			"tags": [
 				"Challenges",
@@ -516,6 +567,7 @@
 			"id": 291,
 			"name": "Challenge - Follower: Mecha Hiyoko",
 			"label": "Mecha Hiyoko",
+			"description": "AQUEDUCT CRYSTAL ZONE: Don't touch any offroad & finish in good standing",
 			"condition_set": 291,
 			"tags": [
 				"Challenges",
@@ -526,6 +578,7 @@
 			"id": 292,
 			"name": "Challenge - Follower: Silver Sonic",
 			"label": "Silver Sonic",
+			"description": "SPB ATTACK: Conquer CHAOS CHUTE ZONE",
 			"condition_set": 292,
 			"tags": [
 				"Challenges",
@@ -536,6 +589,7 @@
 			"id": 293,
 			"name": "Challenge - Follower: Frogger",
 			"label": "Frogger",
+			"description": "SPB ATTACK: Conquer CHAOS CHUTE ZONE",
 			"condition_set": 293,
 			"tags": [
 				"Challenges",
@@ -546,6 +600,7 @@
 			"id": 294,
 			"name": "Challenge - Follower: Bombaberry",
 			"label": "Bombaberry",
+			"description": "Dunk a Land Mine on another racer's head",
 			"condition_set": 294,
 			"tags": [
 				"Challenges",
@@ -556,6 +611,7 @@
 			"id": 295,
 			"name": "Challenge - Follower: Spidal Tap",
 			"label": "Spidal Tap",
+			"description": "ROBOTNIK WINTER ZONE: Destroy all the ice blocks & finish in good standing",
 			"condition_set": 295,
 			"tags": [
 				"Challenges",
@@ -566,6 +622,7 @@
 			"id": 296,
 			"name": "Challenge - Follower: Bomblur",
 			"label": "Bomblur",
+			"description": "GRAND PRIX: On TURQUOISE HILL ZONE on Vicious, finish in good standing",
 			"condition_set": 296,
 			"tags": [
 				"Challenges",
@@ -576,6 +633,7 @@
 			"id": 297,
 			"name": "Challenge - Follower: Mukaka",
 			"label": "Mukaka",
+			"description": "As Vectorman, consistently tether off other racers for 30 seconds & finish in 2nd",
 			"condition_set": 297,
 			"tags": [
 				"Challenges",
@@ -586,6 +644,7 @@
 			"id": 298,
 			"name": "Challenge - Follower: Sandoom",
 			"label": "Sandoom",
+			"description": "ROASTED RUINS ZONE: Don't touch any offroad & finish in good standing",
 			"condition_set": 298,
 			"tags": [
 				"Challenges",
@@ -596,6 +655,7 @@
 			"id": 299,
 			"name": "Challenge - Follower: Gaikoko",
 			"label": "Gaikoko",
+			"description": "Play a melody for the ancient shrine in HAUNTED SHIP",
 			"condition_set": 299,
 			"tags": [
 				"Challenges",
@@ -606,6 +666,7 @@
 			"id": 306,
 			"name": "Challenge - Follower: Chao",
 			"label": "Chao",
+			"description": "GRAND PRIX: With Chao Egg in tow, complete any Cup without using any continues",
 			"condition_set": 306,
 			"tags": [
 				"Challenges",
@@ -616,6 +677,7 @@
 			"id": 307,
 			"name": "Challenge - Follower: Chao Egg",
 			"label": "Chao Egg",
+			"description": "GRAND PRIX: Get grade A or better in BARRIER CUP",
 			"condition_set": 307,
 			"tags": [
 				"Challenges",
@@ -626,6 +688,7 @@
 			"id": 308,
 			"name": "Challenge - Follower: Froggy",
 			"label": "Froggy",
+			"description": "EMERALD COAST: Find a secret",
 			"condition_set": 308,
 			"tags": [
 				"Challenges",
@@ -636,6 +699,7 @@
 			"id": 309,
 			"name": "Challenge - Follower: Spinner",
 			"label": "Spinner",
+			"description": "GRAND PRIX: On SPEED HIGHWAY as Sonic, don't touch any course hazards on the final lap",
 			"condition_set": 309,
 			"tags": [
 				"Challenges",
@@ -646,6 +710,7 @@
 			"id": 310,
 			"name": "Challenge - Follower: Kart Kiki",
 			"label": "Kart Kiki",
+			"description": "As Metal Sonic consistently tether off other racers for 30 seconds & don't go into Ring debt",
 			"condition_set": 310,
 			"tags": [
 				"Challenges",
@@ -656,6 +721,7 @@
 			"id": 311,
 			"name": "Challenge - Follower: Bowling Pin",
 			"label": "Bowling Pin",
+			"description": "Tumble through the air for 1:00.00",
 			"condition_set": 311,
 			"tags": [
 				"Challenges",
@@ -666,6 +732,7 @@
 			"id": 312,
 			"name": "Challenge - Follower: Hint Orb",
 			"label": "Hint Orb",
+			"description": "SEALED STARS: As Tikal, smash the UFO Catcher",
 			"condition_set": 312,
 			"tags": [
 				"Challenges",
@@ -676,6 +743,7 @@
 			"id": 313,
 			"name": "Challenge - Follower: Jet Booster",
 			"label": "Jet Booster",
+			"description": "GRAND PRIX: On HOT SHELTER, don't touch any course hazards & finish in 1st",
 			"condition_set": 313,
 			"tags": [
 				"Challenges",
@@ -686,6 +754,7 @@
 			"id": 314,
 			"name": "Challenge - Follower: Chaclon",
 			"label": "Chaclon",
+			"description": "GRAND PRIX: On PICO PARK ZONE on Master, FAULT during POSITION & finish in 1st - OR get 250 Medals",
 			"condition_set": 314,
 			"big_tile": true,
 			"tags": [
@@ -697,6 +766,7 @@
 			"id": 321,
 			"name": "Challenge - Follower: Hero Chao",
 			"label": "Hero Chao",
+			"description": "GRAND PRIX: As Sonic on HERO CHAO GARDEN, break every Prison Egg with Chao in tow",
 			"condition_set": 321,
 			"tags": [
 				"Challenges",
@@ -707,6 +777,7 @@
 			"id": 322,
 			"name": "Challenge - Follower: Dark Chao",
 			"label": "Dark Chao",
+			"description": "GRAND PRIX: As Shadow on DARK CHAO GARDEN, break every Prison Egg with Chao in tow",
 			"condition_set": 322,
 			"tags": [
 				"Challenges",
@@ -717,6 +788,7 @@
 			"id": 323,
 			"name": "Challenge - Follower: Mono Beetle",
 			"label": "Mono Beetle",
+			"description": "GRAND PRIX: On CITY ESCAPE, finish in 1st",
 			"condition_set": 323,
 			"tags": [
 				"Challenges",
@@ -727,6 +799,7 @@
 			"id": 324,
 			"name": "Challenge - Follower: Gold Beetle",
 			"label": "Gold Beetle",
+			"description": "CITY ESCAPE: Find a secret before 1:35.00",
 			"condition_set": 324,
 			"tags": [
 				"Challenges",
@@ -737,6 +810,7 @@
 			"id": 325,
 			"name": "Challenge - Follower: Attack Boo",
 			"label": "Attack Boo",
+			"description": "Go through Tripwire while afflicted by Hyudoro",
 			"condition_set": 325,
 			"tags": [
 				"Challenges",
@@ -747,6 +821,7 @@
 			"id": 326,
 			"name": "Challenge - Follower: Boo",
 			"label": "Boo",
+			"description": "DARKVILE CASTLE ZONE 1: As Rouge, FAULT during POSITION & finish in 1st",
 			"condition_set": 326,
 			"tags": [
 				"Challenges",
@@ -757,6 +832,7 @@
 			"id": 327,
 			"name": "Challenge - Follower: Chaos Drive",
 			"label": "Chaos Drive",
+			"description": "SEALED STARS: Smash the UFO Catcher & escape with your prize",
 			"condition_set": 327,
 			"tags": [
 				"Challenges",
@@ -767,6 +843,7 @@
 			"id": 328,
 			"name": "Challenge - Follower: Emerald Radar",
 			"label": "Emerald Radar",
+			"description": "GRAND PRIX: As Knuckles on METEOR HERD, break every Prison Egg",
 			"condition_set": 328,
 			"tags": [
 				"Challenges",
@@ -777,6 +854,7 @@
 			"id": 329,
 			"name": "Challenge - Follower: Mystic Melody",
 			"label": "Mystic Melody",
+			"description": "LOST COLONY: Find a secret",
 			"condition_set": 329,
 			"tags": [
 				"Challenges",
@@ -787,6 +865,7 @@
 			"id": 336,
 			"name": "Challenge - Follower: Cheese",
 			"label": "Cheese",
+			"description": "GRAND PRIX: As Cream, complete any Cup without using any continues",
 			"condition_set": 336,
 			"tags": [
 				"Challenges",
@@ -797,6 +876,7 @@
 			"id": 337,
 			"name": "Challenge - Follower: Egg Flapper",
 			"label": "Egg Flapper",
+			"description": "TIME ATTACK: Get the Silver Medal for POWER PLANT",
 			"condition_set": 337,
 			"tags": [
 				"Challenges",
@@ -807,6 +887,7 @@
 			"id": 338,
 			"name": "Challenge - Follower: Klagen",
 			"label": "Klagen",
+			"description": "WATER PALACE ZONE: Touch a course hazard on every lap & finish a perfect round (excluding Gear 1)",
 			"condition_set": 338,
 			"tags": [
 				"Challenges",
@@ -817,6 +898,7 @@
 			"id": 339,
 			"name": "Challenge - Follower: Gold Klagen",
 			"label": "Gold Klagen",
+			"description": "TIME ATTACK: Get the Gold Medal for WATER PALACE ZONE",
 			"condition_set": 339,
 			"tags": [
 				"Challenges",
@@ -827,6 +909,7 @@
 			"id": 340,
 			"name": "Challenge - Follower: Hermit Crab",
 			"label": "Hermit Crab",
+			"description": "The Brakes Tutorial: Find a secret - OR beat the game 4 times",
 			"condition_set": 340,
 			"tags": [
 				"Challenges",
@@ -837,6 +920,7 @@
 			"id": 351,
 			"name": "Challenge - Follower: Splats",
 			"label": "Splats",
+			"description": "Play a melody for the ancient shrine in PRESS GARDEN ZONE",
 			"condition_set": 351,
 			"tags": [
 				"Challenges",
@@ -847,6 +931,7 @@
 			"id": 352,
 			"name": "Challenge - Follower: Marble UAP",
 			"label": "Marble UAP",
+			"description": "TIME ATTACK: Get the Gold Medal for MEGA MARBLE ZONE",
 			"condition_set": 352,
 			"tags": [
 				"Challenges",
@@ -857,6 +942,7 @@
 			"id": 353,
 			"name": "Challenge - Follower: Claw Guy",
 			"label": "Claw Guy",
+			"description": "GRAND PRIX: On ADVENT ANGEL ZONE, don't go into Ring debt & finish in good standing with exactly 20 Rings",
 			"condition_set": 353,
 			"tags": [
 				"Challenges",
@@ -867,6 +953,7 @@
 			"id": 354,
 			"name": "Challenge - Follower: Bubbler's Mother",
 			"label": "Bubbler's Mother",
+			"description": "SPB ATTACK: Conquer CHEMICAL FACILITY ZONE",
 			"condition_set": 354,
 			"tags": [
 				"Challenges",
@@ -877,6 +964,7 @@
 			"id": 355,
 			"name": "Challenge - Follower: Spinpole",
 			"label": "Spinpole",
+			"description": "GRAND PRIX: On VERMILION VESSEL ZONE, don't touch any course hazards & finish in good standing",
 			"condition_set": 355,
 			"tags": [
 				"Challenges",
@@ -887,6 +975,7 @@
 			"id": 356,
 			"name": "Challenge - Follower: Flysquid",
 			"label": "Flysquid",
+			"description": "HYDRO PLANT ZONE: Break every Prison Egg without touching any water",
 			"condition_set": 356,
 			"tags": [
 				"Challenges",
@@ -897,6 +986,7 @@
 			"id": 357,
 			"name": "Challenge - Follower: Final Duck",
 			"label": "Final Duck",
+			"description": "GRAND PRIX: On KODACHROME VOID ZONE as Billy Hatcher, get grade A",
 			"condition_set": 357,
 			"tags": [
 				"Challenges",
@@ -907,6 +997,7 @@
 			"id": 366,
 			"name": "Challenge - Follower: Tridrill",
 			"label": "Tridrill",
+			"description": "RUMBLE RIDGE ZONE: In Gear 3, finish a perfect round",
 			"condition_set": 366,
 			"tags": [
 				"Challenges",
@@ -917,6 +1008,7 @@
 			"id": 367,
 			"name": "Challenge - Follower: Cappy",
 			"label": "Cappy",
+			"description": "GRAND PRIX: On Vicious, get grade A or better in RECYCLE B CUP",
 			"condition_set": 367,
 			"tags": [
 				"Challenges",
@@ -927,6 +1019,7 @@
 			"id": 368,
 			"name": "Challenge - Follower: Jetarang",
 			"label": "Jetarang",
+			"description": "GRAND PRIX: Complete RECYCLE A CUP",
 			"condition_set": 368,
 			"tags": [
 				"Challenges",
@@ -937,6 +1030,7 @@
 			"id": 369,
 			"name": "Challenge - Follower: Balldron",
 			"label": "Balldron",
+			"description": "GRAND PRIX: On CRIMSON CORE ZONE as Metal Knuckles, don't fall off the course & get grade A",
 			"condition_set": 369,
 			"tags": [
 				"Challenges",
@@ -947,6 +1041,7 @@
 			"id": 370,
 			"name": "Challenge - Follower: Bomber",
 			"label": "Bomber",
+			"description": "GRAND PRIX: On ICE PARADISE ZONE on Vicious, get grade A",
 			"condition_set": 370,
 			"tags": [
 				"Challenges",
@@ -957,6 +1052,7 @@
 			"id": 371,
 			"name": "Challenge - Follower: Gyro",
 			"label": "Gyro",
+			"description": "GRAVTECH DIMENSION 5: Don't touch any course hazards, don't fall off the course, & finish in 1st",
 			"condition_set": 371,
 			"tags": [
 				"Challenges",
@@ -967,6 +1063,7 @@
 			"id": 381,
 			"name": "Challenge - Follower: SRB1 Crawla",
 			"label": "SRB1 Crawla",
+			"description": "GRAND PRIX: On SRB2 FROZEN NIGHT on Vicious, get grade A as either Engine Class C, F, or I",
 			"condition_set": 381,
 			"tags": [
 				"Challenges",
@@ -977,6 +1074,7 @@
 			"id": 382,
 			"name": "Challenge - Follower: GuardRobo",
 			"label": "GuardRobo",
+			"description": "Play a melody for the ancient shrine in TECHNOLOGY TUNDRA",
 			"condition_set": 382,
 			"tags": [
 				"Challenges",
@@ -987,6 +1085,7 @@
 			"id": 383,
 			"name": "Challenge - Follower: HotRobo",
 			"label": "HotRobo",
+			"description": "GRAND PRIX: On MEGA LAVA REEF ZONE, don't go into Ring debt & finish in good standing with exactly 20 Rings",
 			"condition_set": 383,
 			"tags": [
 				"Challenges",
@@ -997,6 +1096,7 @@
 			"id": 384,
 			"name": "Challenge - Follower: Pyrex",
 			"label": "Pyrex",
+			"description": "GRAND PRIX: Get Gold in MEGA CUP without using any continues",
 			"condition_set": 384,
 			"tags": [
 				"Challenges",
@@ -1007,6 +1107,7 @@
 			"id": 385,
 			"name": "Challenge - Follower: Spybot 2000",
 			"label": "Spybot 2000",
+			"description": "THUNDER PISTON ZONE: Hit a racer tethering off you while looking back at them",
 			"condition_set": 385,
 			"tags": [
 				"Challenges",
@@ -1017,6 +1118,7 @@
 			"id": 396,
 			"name": "Challenge - Follower: SRB2 Crawla",
 			"label": "SRB2 Crawla",
+			"description": "GRAND PRIX: On SRB2 MEADOW MATCH as Bomb, break every Prison Egg using exactly one Gachabom repeatedly",
 			"condition_set": 396,
 			"tags": [
 				"Challenges",
@@ -1027,6 +1129,7 @@
 			"id": 397,
 			"name": "Challenge - Follower: Mean Bean",
 			"label": "Mean Bean",
+			"description": "GRAND PRIX: As Dr. Eggman, complete EGG CUP with Has Bean in tow & without using any continues",
 			"condition_set": 397,
 			"tags": [
 				"Challenges",
@@ -1037,6 +1140,7 @@
 			"id": 398,
 			"name": "Challenge - Follower: C.H.R.O.M.E.",
 			"label": "C.H.R.O.M.E.",
+			"description": "VIRTUAL HIGHWAY ZONE: Don't go into Ring debt & finish in 1st",
 			"condition_set": 398,
 			"tags": [
 				"Challenges",
@@ -1047,6 +1151,7 @@
 			"id": 399,
 			"name": "Challenge - Follower: Tridentz",
 			"label": "Tridentz",
+			"description": "NOVA SHORE ZONE: Touch a course hazard on every lap, don't fall off the course, & get grade A",
 			"condition_set": 399,
 			"tags": [
 				"Challenges",
@@ -1057,6 +1162,7 @@
 			"id": 400,
 			"name": "Challenge - Follower: Stegospike",
 			"label": "Stegospike",
+			"description": "BRONZE LAKE ZONE: As Redz, don't touch any course hazards & finish in 1st",
 			"condition_set": 400,
 			"tags": [
 				"Challenges",
@@ -1067,6 +1173,7 @@
 			"id": 401,
 			"name": "Challenge - Follower: Flicky Turncoat",
 			"label": "Flicky Turncoat",
+			"description": "As Flicky, make Sonic retire",
 			"condition_set": 401,
 			"tags": [
 				"Challenges",
@@ -1077,6 +1184,7 @@
 			"id": 402,
 			"name": "Challenge - Follower: Manegg",
 			"label": "Manegg",
+			"description": "Play a melody for the ancient shrine in NOVA SHORE ZONE",
 			"condition_set": 402,
 			"big_tile": true,
 			"tags": [
@@ -1088,6 +1196,7 @@
 			"id": 403,
 			"name": "Challenge - Follower: Blend Eye",
 			"label": "Blend Eye",
+			"description": "ADVENTURE EXAMPLE: Survive",
 			"condition_set": 403,
 			"big_tile": true,
 			"tags": [
@@ -1099,6 +1208,7 @@
 			"id": 411,
 			"name": "Challenge - Follower: Flicky",
 			"label": "Flicky",
+			"description": "Hit another racer with a projectile while you're both in the air",
 			"condition_set": 411,
 			"tags": [
 				"Challenges",
@@ -1109,6 +1219,7 @@
 			"id": 412,
 			"name": "Challenge - Follower: Red Flicky",
 			"label": "Red Flicky",
+			"description": "GRAND PRIX: On SCARLET GARDENS ZONE, finish in good standing with exactly 20 Rings",
 			"condition_set": 412,
 			"tags": [
 				"Challenges",
@@ -1119,6 +1230,7 @@
 			"id": 413,
 			"name": "Challenge - Follower: Pink Flicky",
 			"label": "Pink Flicky",
+			"description": "GRAND PRIX: On DIAMOND DUST ZONE, finish in good standing with exactly 20 Rings",
 			"condition_set": 413,
 			"tags": [
 				"Challenges",
@@ -1129,6 +1241,7 @@
 			"id": 414,
 			"name": "Challenge - Follower: Green Flicky",
 			"label": "Green Flicky",
+			"description": "GRAND PRIX: On REGAL RUIN, finish in good standing with exactly 20 Rings",
 			"condition_set": 414,
 			"tags": [
 				"Challenges",
@@ -1139,6 +1252,7 @@
 			"id": 415,
 			"name": "Challenge - Follower: Clucky",
 			"label": "Clucky",
+			"description": "NO CONTEST as Cluckoid",
 			"condition_set": 415,
 			"tags": [
 				"Challenges",
@@ -1149,6 +1263,7 @@
 			"id": 416,
 			"name": "Challenge - Follower: Fish",
 			"label": "Fish",
+			"description": "MEGA AQUA LAKE ZONE: Finish a perfect round (excluding Gear 1)",
 			"condition_set": 416,
 			"tags": [
 				"Challenges",
@@ -1159,6 +1274,7 @@
 			"id": 417,
 			"name": "Challenge - Follower: Puffin",
 			"label": "Puffin",
+			"description": "SUB-ZERO PEAK ZONE: Touch a course hazard on lap 1 & finish in good standing",
 			"condition_set": 417,
 			"tags": [
 				"Challenges",
@@ -1169,6 +1285,7 @@
 			"id": 418,
 			"name": "Challenge - Follower: Dove",
 			"label": "Dove",
+			"description": "GRAND PRIX: Get Gold in FLASH CUP",
 			"condition_set": 418,
 			"tags": [
 				"Challenges",
@@ -1179,6 +1296,7 @@
 			"id": 419,
 			"name": "Challenge - Follower: Canary",
 			"label": "Canary",
+			"description": "ENDLESS MINE ZONE 1: Make Cluckoid retire",
 			"condition_set": 419,
 			"tags": [
 				"Challenges",
@@ -1189,6 +1307,7 @@
 			"id": 420,
 			"name": "Challenge - Follower: Bat",
 			"label": "Bat",
+			"description": "GRAND PRIX: On DARKVILE CASTLE ZONE 2, don't fall off the course & get grade A",
 			"condition_set": 420,
 			"tags": [
 				"Challenges",
@@ -1199,6 +1318,7 @@
 			"id": 426,
 			"name": "Challenge - Follower: Has Bean",
 			"label": "Has Bean",
+			"description": "As Arle, make Dr. Eggman retire",
 			"condition_set": 426,
 			"big_tile": true,
 			"tags": [
@@ -1210,6 +1330,7 @@
 			"id": 427,
 			"name": "Challenge - Follower: Nomi",
 			"label": "Nomi",
+			"description": "As Arle, hit a giant racer with a shrunken Orbinaut",
 			"condition_set": 427,
 			"big_tile": true,
 			"tags": [
@@ -1221,6 +1342,7 @@
 			"id": 428,
 			"name": "Challenge - Follower: Glyph",
 			"label": "Glyph",
+			"description": "GRAND PRIX: On CRYSTAL ISLAND ZONE as Ecco, break every Prison Egg - OR enter the code that welcomes you to the machine!",
 			"condition_set": 428,
 			"big_tile": true,
 			"tags": [
@@ -1232,6 +1354,7 @@
 			"id": 429,
 			"name": "Challenge - Follower: Asterite",
 			"label": "Asterite",
+			"description": "Play a melody for the ancient shrine in AZURE AXIOM ZONE",
 			"condition_set": 429,
 			"big_tile": true,
 			"tags": [
@@ -1243,6 +1366,7 @@
 			"id": 430,
 			"name": "Challenge - Follower: Controller",
 			"label": "Controller",
+			"description": "GRAND PRIX: Collect all 14 Emeralds on Master",
 			"condition_set": 430,
 			"big_tile": true,
 			"tags": [
@@ -1254,6 +1378,7 @@
 			"id": 431,
 			"name": "Challenge - Follower: Orblet",
 			"label": "Orblet",
+			"description": "Unlock all guest drivers",
 			"condition_set": 431,
 			"big_tile": true,
 			"tags": [
@@ -1265,6 +1390,7 @@
 			"id": 432,
 			"name": "Challenge - Follower: Kobu",
 			"label": "Kobu",
+			"description": "GRAND PRIX: On HANAGUMI HALL ZONE, don't go into Ring debt",
 			"condition_set": 432,
 			"big_tile": true,
 			"tags": [
@@ -1276,6 +1402,7 @@
 			"id": 433,
 			"name": "Challenge - Follower: The Cake From Hell",
 			"label": "The Cake From Hell",
+			"description": "GRAND PRIX: As Gutbuster, get grade A or better in SPRING CUP",
 			"condition_set": 433,
 			"big_tile": true,
 			"tags": [
@@ -1287,6 +1414,7 @@
 			"id": 434,
 			"name": "Challenge - Follower: Billiards Cactus",
 			"label": "Billiards Cactus",
+			"description": "MIRAGE SALOON ZONE: As AiAi, touch a course hazard on every lap & finish in 1st",
 			"condition_set": 434,
 			"big_tile": true,
 			"tags": [

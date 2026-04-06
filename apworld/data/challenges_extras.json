@@ -4,6 +4,7 @@
 			"id": 700,
 			"name": "Challenge - Prison Break Mode",
 			"label": "Prison Break Mode",
+			"description": "Clear 1 Prison Round - OR successfully skip the Tutorial",
 			"condition_set": 700,
 			"big_tile": true,
 			"tags": [
@@ -15,6 +16,7 @@
 			"id": 701,
 			"name": "Challenge - Special Mode",
 			"label": "Special Mode",
+			"description": "GRAND PRIX: Collect all 7 Chaos Emeralds",
 			"condition_set": 701,
 			"big_tile": true,
 			"tags": [
@@ -26,6 +28,7 @@
 			"id": 702,
 			"name": "Challenge - Gear 3 + GP Vicious Mode",
 			"label": "Gear 3 + GP Vicious Mode",
+			"description": "GRAND PRIX: Get Bronze or better in EGG CUP - OR collect all Ancient Gears on the Playground Tutorial",
 			"condition_set": 702,
 			"big_tile": true,
 			"tags": [
@@ -37,6 +40,7 @@
 			"id": 703,
 			"name": "Challenge - Time Attack Mode",
 			"label": "Time Attack Mode",
+			"description": "Clear 1 Race Round - OR successfully skip the Tutorial",
 			"condition_set": 709,
 			"big_tile": true,
 			"tags": [
@@ -48,6 +52,7 @@
 			"id": 704,
 			"name": "Challenge - GP Master Mode",
 			"label": "GP Master Mode",
+			"description": "GRAND PRIX: Collect all 14 Emeralds",
 			"condition_set": 704,
 			"big_tile": true,
 			"tags": [
@@ -59,6 +64,7 @@
 			"id": 705,
 			"name": "Challenge - Encore Mode",
 			"label": "Encore Mode",
+			"description": "CHALLENGES: Get 100% of Cups",
 			"condition_set": 705,
 			"big_tile": true,
 			"tags": [
@@ -70,6 +76,7 @@
 			"id": 706,
 			"name": "Challenge - SPB Attack Mode",
 			"label": "SPB Attack Mode",
+			"description": "Get Encore Mode & 500 Medals",
 			"condition_set": 706,
 			"big_tile": true,
 			"tags": [
@@ -81,6 +88,7 @@
 			"id": 708,
 			"name": "Challenge - Online Play",
 			"label": "Online Play",
+			"description": "GRAND PRIX: Get Bronze or better in RING CUP - OR pick the Playground - OR successfully skip the Tutorial - OR enter a secret password",
 			"condition_set": 708,
 			"big_tile": true,
 			"tags": [
@@ -92,6 +100,7 @@
 			"id": 730,
 			"name": "Challenge - Alternate Titlescreen",
 			"label": "Alternate Titlescreen",
+			"description": "Watch the developer credits all the way from start to finish",
 			"condition_set": 730,
 			"big_tile": true,
 			"tags": [
@@ -103,6 +112,7 @@
 			"id": 731,
 			"name": "Challenge - Egg TV",
 			"label": "Egg TV",
+			"description": "Save a replay after finishing a round",
 			"condition_set": 731,
 			"tags": [
 				"Challenges",
@@ -113,6 +123,7 @@
 			"id": 732,
 			"name": "Challenge - Sound Test",
 			"label": "Sound Test",
+			"description": "CHALLENGES: Get 25% of alternate music",
 			"condition_set": 732,
 			"tags": [
 				"Challenges",
@@ -123,6 +134,7 @@
 			"id": 733,
 			"name": "Challenge - Playing with Addons",
 			"label": "Playing with Addons",
+			"description": "GRAND PRIX: Get Bronze or better in RING CUP - OR pick the Playground - OR successfully skip the Tutorial - OR enter one of two secret passwords",
 			"condition_set": 733,
 			"tags": [
 				"Challenges",

@@ -4,6 +4,7 @@
 			"id": 601,
 			"name": "Challenge - Ring Cup",
 			"label": "Ring Cup",
+			"description": "Complete the First Boot",
 			"condition_set": 601,
 			"tags": [
 				"Challenges",
@@ -14,6 +15,7 @@
 			"id": 602,
 			"name": "Challenge - Sneaker Cup",
 			"label": "Sneaker Cup",
+			"description": "GRAND PRIX: Get Bronze or better in RING CUP",
 			"condition_set": 602,
 			"tags": [
 				"Challenges",
@@ -24,6 +26,7 @@
 			"id": 603,
 			"name": "Challenge - Spring Cup",
 			"label": "Spring Cup",
+			"description": "GRAND PRIX: Get Bronze or better in SNEAKER CUP",
 			"condition_set": 603,
 			"tags": [
 				"Challenges",
@@ -34,6 +37,7 @@
 			"id": 604,
 			"name": "Challenge - Barrier Cup",
 			"label": "Barrier Cup",
+			"description": "GRAND PRIX: Get Bronze or better in SPRING CUP",
 			"condition_set": 604,
 			"tags": [
 				"Challenges",
@@ -44,6 +48,7 @@
 			"id": 605,
 			"name": "Challenge - Invincible Cup",
 			"label": "Invincible Cup",
+			"description": "GRAND PRIX: Get Bronze or better in BARRIER CUP",
 			"condition_set": 605,
 			"tags": [
 				"Challenges",
@@ -54,6 +59,7 @@
 			"id": 606,
 			"name": "Challenge - Emerald Cup",
 			"label": "Emerald Cup",
+			"description": "GRAND PRIX: Get Bronze or better in INVINCIBLE CUP",
 			"condition_set": 606,
 			"tags": [
 				"Challenges",
@@ -64,6 +70,7 @@
 			"id": 607,
 			"name": "Challenge - Extra Cup",
 			"label": "Extra Cup",
+			"description": "GRAND PRIX: Get Bronze or better in EMERALD CUP, & complete the Brakes Tutorial",
 			"condition_set": 610,
 			"tags": [
 				"Challenges",
@@ -74,6 +81,7 @@
 			"id": 608,
 			"name": "Challenge - S.P.B. Cup",
 			"label": "S.P.B. Cup",
+			"description": "GRAND PRIX: Get Bronze or better in EXTRA CUP",
 			"condition_set": 608,
 			"big_tile": true,
 			"tags": [
@@ -85,6 +93,7 @@
 			"id": 609,
 			"name": "Challenge - Rocket Cup",
 			"label": "Rocket Cup",
+			"description": "GRAND PRIX: Get Bronze or better in EXTRA CUP",
 			"condition_set": 608,
 			"big_tile": true,
 			"tags": [
@@ -96,6 +105,7 @@
 			"id": 610,
 			"name": "Challenge - Aqua Cup",
 			"label": "Aqua Cup",
+			"description": "GRAND PRIX: Get Bronze or better in EXTRA CUP",
 			"condition_set": 608,
 			"big_tile": true,
 			"tags": [
@@ -107,6 +117,7 @@
 			"id": 611,
 			"name": "Challenge - Lightning Cup",
 			"label": "Lightning Cup",
+			"description": "GRAND PRIX: Get Bronze or better in EXTRA CUP",
 			"condition_set": 608,
 			"big_tile": true,
 			"tags": [
@@ -118,6 +129,7 @@
 			"id": 612,
 			"name": "Challenge - Flame Cup",
 			"label": "Flame Cup",
+			"description": "GRAND PRIX: Get Bronze or better in EXTRA CUP",
 			"condition_set": 608,
 			"big_tile": true,
 			"tags": [
@@ -129,6 +141,7 @@
 			"id": 613,
 			"name": "Challenge - Super Cup",
 			"label": "Super Cup",
+			"description": "GRAND PRIX: Get Bronze or better in EXTRA CUP, & complete the Drifting Tutorial",
 			"condition_set": 609,
 			"big_tile": true,
 			"tags": [
@@ -140,6 +153,7 @@
 			"id": 614,
 			"name": "Challenge - Egg Cup",
 			"label": "Egg Cup",
+			"description": "GRAND PRIX: Get Bronze or better over the first 13 Cups",
 			"condition_set": 613,
 			"big_tile": true,
 			"tags": [
@@ -151,6 +165,7 @@
 			"id": 615,
 			"name": "Challenge - Goggles Cup",
 			"label": "Goggles Cup",
+			"description": "GRAND PRIX: Get Bronze or better over the first 14 Cups - OR GRAND PRIX: get Bronze or better in RING CUP & collect the Emerald",
 			"condition_set": 615,
 			"tags": [
 				"Challenges",
@@ -161,6 +176,7 @@
 			"id": 616,
 			"name": "Challenge - Timer Cup",
 			"label": "Timer Cup",
+			"description": "GRAND PRIX: Get Bronze or better over the first 15 Cups - OR GRAND PRIX: get Bronze or better in SNEAKER CUP & collect the Emerald",
 			"condition_set": 616,
 			"tags": [
 				"Challenges",
@@ -171,6 +187,7 @@
 			"id": 617,
 			"name": "Challenge - Grow Cup",
 			"label": "Grow Cup",
+			"description": "GRAND PRIX: Get Bronze or better over the first 16 Cups - OR GRAND PRIX: get Bronze or better in SPRING CUP & collect the Emerald",
 			"condition_set": 617,
 			"tags": [
 				"Challenges",
@@ -181,6 +198,7 @@
 			"id": 618,
 			"name": "Challenge - Chao Cup",
 			"label": "Chao Cup",
+			"description": "GRAND PRIX: Get Bronze or better over the first 17 Cups - OR GRAND PRIX: get Bronze or better in BARRIER CUP & collect the Emerald",
 			"condition_set": 618,
 			"tags": [
 				"Challenges",
@@ -191,6 +209,7 @@
 			"id": 619,
 			"name": "Challenge - Wing Cup",
 			"label": "Wing Cup",
+			"description": "GRAND PRIX: Get Bronze or better over the first 18 Cups - OR GRAND PRIX: get Bronze or better in INVINCIBLE CUP & collect the Emerald",
 			"condition_set": 619,
 			"tags": [
 				"Challenges",
@@ -201,6 +220,7 @@
 			"id": 620,
 			"name": "Challenge - Mega Cup",
 			"label": "Mega Cup",
+			"description": "GRAND PRIX: Get Bronze or better over the first 19 Cups - OR GRAND PRIX: get Bronze or better in EMERALD CUP & collect the Emerald",
 			"condition_set": 620,
 			"tags": [
 				"Challenges",
@@ -211,6 +231,7 @@
 			"id": 621,
 			"name": "Challenge - Phantom Cup",
 			"label": "Phantom Cup",
+			"description": "GRAND PRIX: Get Bronze or better over the first 20 Cups - OR GRAND PRIX: get Bronze or better in EXTRA CUP & collect the Emerald",
 			"condition_set": 621,
 			"tags": [
 				"Challenges",
@@ -221,6 +242,7 @@
 			"id": 622,
 			"name": "Challenge - Flash Cup",
 			"label": "Flash Cup",
+			"description": "GRAND PRIX: Get Bronze or better over the first 21 Cups - OR GRAND PRIX: get Bronze or better in S.P.B. CUP & collect the Emerald",
 			"condition_set": 622,
 			"big_tile": true,
 			"tags": [
@@ -232,6 +254,7 @@
 			"id": 623,
 			"name": "Challenge - Swap Cup",
 			"label": "Swap Cup",
+			"description": "GRAND PRIX: Get Bronze or better over the first 22 Cups - OR GRAND PRIX: get Bronze or better in ROCKET CUP & collect the Emerald",
 			"condition_set": 623,
 			"big_tile": true,
 			"tags": [
@@ -243,6 +266,7 @@
 			"id": 624,
 			"name": "Challenge - Shrink Cup",
 			"label": "Shrink Cup",
+			"description": "GRAND PRIX: Get Bronze or better over the first 23 Cups - OR GRAND PRIX: get Bronze or better in AQUA CUP & collect the Emerald",
 			"condition_set": 624,
 			"big_tile": true,
 			"tags": [
@@ -254,6 +278,7 @@
 			"id": 625,
 			"name": "Challenge - Bomb Cup",
 			"label": "Bomb Cup",
+			"description": "GRAND PRIX: Get Bronze or better over the first 24 Cups - OR GRAND PRIX: get Bronze or better in LIGHTNING CUP & collect the Emerald",
 			"condition_set": 625,
 			"big_tile": true,
 			"tags": [
@@ -265,6 +290,7 @@
 			"id": 626,
 			"name": "Challenge - Power Cup",
 			"label": "Power Cup",
+			"description": "GRAND PRIX: Get Bronze or better over the first 25 Cups - OR GRAND PRIX: get Bronze or better in FLAME CUP & collect the Emerald",
 			"condition_set": 626,
 			"big_tile": true,
 			"tags": [
@@ -276,6 +302,7 @@
 			"id": 627,
 			"name": "Challenge - Genesis Cup",
 			"label": "Genesis Cup",
+			"description": "GRAND PRIX: Get Bronze or better over the first 26 Cups - OR GRAND PRIX: get Bronze or better in SUPER CUP & collect the Emerald",
 			"condition_set": 627,
 			"big_tile": true,
 			"tags": [
@@ -287,6 +314,7 @@
 			"id": 628,
 			"name": "Challenge - Skate Cup",
 			"label": "Skate Cup",
+			"description": "GRAND PRIX: Get Bronze or better over the first 27 Cups - OR GRAND PRIX: get Bronze or better in EGG CUP & collect the Emerald",
 			"condition_set": 628,
 			"big_tile": true,
 			"tags": [
@@ -298,6 +326,7 @@
 			"id": 698,
 			"name": "Challenge - Recycle A Cup",
 			"label": "Recycle A Cup",
+			"description": "GRAND PRIX: Get Bronze or better in PHANTOM CUP & collect the prize",
 			"condition_set": 698,
 			"big_tile": true,
 			"tags": [
@@ -309,6 +338,7 @@
 			"id": 699,
 			"name": "Challenge - Recycle B Cup",
 			"label": "Recycle B Cup",
+			"description": "GRAND PRIX: Get Bronze or better in SKATE CUP & collect the prize",
 			"condition_set": 699,
 			"big_tile": true,
 			"tags": [
