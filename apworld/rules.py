@@ -744,7 +744,7 @@ def set_follower_challenge_location_rules(world: RingRacersWorld) -> None:
         world.get_location("Challenge - Follower: UFO"),
         lambda state:
             (state.has("Driver: Silver", world.player) and state.can_reach_region("CD Special Stage 8", world.player))
-            or map_time_attack(state, "CD Special Stage 8", world.player)
+            or map_prison_break(state, "CD Special Stage 8", world.player)
     )
 
     set_rule(
