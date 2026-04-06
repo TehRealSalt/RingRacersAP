@@ -2096,10 +2096,24 @@ static void Command_AP_Say(void)
 	RRAP_Say(COM_Argv(1));
 }
 
+static void Command_AP_BuildDescriptions(void)
+{
+	for (auto& [id, _] : g_ap_location_info)
+	{
+		char *description_c = M_BuildConditionSetString(id);
+		srb2::String description = description_c;
+		Z_Free(description_c);
+
+		std::replace(description.begin(), description.end(), '\n', ' ');
+		CONS_Printf("[%d]: \"%s\"\n", id, description.c_str());
+	}
+}
+
 void D_RegisterArchipelagoCommands(void)
 {
 	COM_AddCommand("ap_connect", Command_AP_Connect);
 	COM_AddCommand("ap_say", Command_AP_Say);
+	COM_AddCommand("ap_builddescriptions", Command_AP_BuildDescriptions);
 }
 
 void RRAP_ConnectFromMenu(int32_t choice)

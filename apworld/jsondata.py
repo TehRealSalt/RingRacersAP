@@ -6,14 +6,13 @@ import logging
 import pkgutil
 import json
 
-# TODO: Get list of regions to create later
-# from this data, as well.
+location_name_to_id: Dict[str, int] = {}
+location_name_groups: Dict[str, List[str]] = {}
+location_descriptions: Dict[str, str] = {}
 
-location_name_to_id: dict[str, int] = {}
-location_name_groups: dict[str, list[str]] = {}
-
-item_name_to_id: dict[str, int] = {}
-item_name_groups: dict[str, list[str]] = {}
+item_name_to_id: Dict[str, int] = {}
+item_name_groups: Dict[str, List[str]] = {}
+item_descriptions: Dict[str, str] = {}
 
 rr_item_defs = {}
 rr_location_defs = {}
@@ -49,6 +48,10 @@ def load_all() -> None:
 				if group_keys:
 					for key in group_keys:
 						location_name_groups.setdefault(key, []).append(name)
+
+				desc = location_json.get("description", None)
+				if desc:
+					location_descriptions[name] = desc
 
 		items_json = file_json.get("items", None)
 		if items_json:

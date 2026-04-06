@@ -4,6 +4,7 @@
 			"id": 760,
 			"name": "Challenge - Lost & Found: Test Run",
 			"label": "Test Run",
+			"description": "CHALLENGES: Get 100% of Courses - OR load a custom addon",
 			"condition_set": 760,
 			"big_tile": true,
 			"tags": [
@@ -15,6 +16,7 @@
 			"id": 761,
 			"name": "Challenge - Lost & Found: Hidden Palace",
 			"label": "Leap of Faith",
+			"description": "GRAND PRIX: On HIDDEN PALACE ZONE, finish in good standing",
 			"condition_set": 761,
 			"big_tile": true,
 			"tags": [
@@ -26,6 +28,7 @@
 			"id": 762,
 			"name": "Challenge - Lost & Found: Test Track",
 			"label": "Test Track",
+			"description": "Successfully skip the Tutorial",
 			"condition_set": 762,
 			"big_tile": true,
 			"tags": [
@@ -37,6 +40,7 @@
 			"id": 763,
 			"name": "Challenge - Lost & Found: Route 1980",
 			"label": "Digital Detour",
+			"description": "GRAND PRIX: On ROUTE 1980 ZONE, finish in good standing",
 			"condition_set": 763,
 			"big_tile": true,
 			"tags": [
@@ -48,6 +52,7 @@
 			"id": 764,
 			"name": "Challenge - Lost & Found: Duel Busters",
 			"label": "Duel Busters",
+			"description": "Successfully skip the Tutorial",
 			"condition_set": 764,
 			"big_tile": true,
 			"tags": [

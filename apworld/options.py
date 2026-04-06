@@ -167,15 +167,40 @@ class ProgressiveCups(NamedRange):
 @dataclass
 class RingRacersOptions(PerGameCommonOptions):
     accessibility: ItemsAccessibility
+
     challenges: Challenges
     spray_cans: SprayCans
     prison_egg_cds: PrisonEggCDs
     gum_challenge: GumChallenge
     sound_test_challenge: SoundTestChallenge
-    character_wins_count: CharWinsCount
+
     goal_num_trophies: GoalNumTrophies
     goal_trophy_level: GoalTrophyLevel
-    starting_driver_count: StartingDriverCount
+
     starting_driver_pool: StartingDriverPool
+    starting_driver_count: StartingDriverCount
+
+    character_wins_count: CharWinsCount
     simple_map_access: SimpleMapAccess
+
     progressive_cups: ProgressiveCups
+
+
+option_groups = [
+    OptionGroup(
+        "Locations",
+        [Challenges, SprayCans, PrisonEggCDs, GumChallenge, SoundTestChallenge],
+    ),
+    OptionGroup(
+        "Goal Options",
+        [GoalNumTrophies, GoalTrophyLevel],
+    ),
+    OptionGroup(
+        "Starting Drivers",
+        [StartingDriverPool, StartingDriverCount],
+    ),
+    OptionGroup(
+        "Logic",
+        [CharWinsCount, SimpleMapAccess],
+    ),
+]
