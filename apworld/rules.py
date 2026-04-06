@@ -465,7 +465,9 @@ def set_driver_challenge_location_rules(world: RingRacersWorld) -> None:
     set_rule(
         world.get_location("Challenge - Driver: Rouge"),
         lambda state:
-            state.can_reach_region("Security Hall", world.player)
+            # Technically possible in Free Play, but it's inconvenient
+            # to access as a single player, so require Prison Break.
+            map_prison_break(state, "Security Hall", world.player)
     )
 
     set_rule(
