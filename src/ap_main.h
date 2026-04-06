@@ -251,6 +251,7 @@ void RRAP_CountItems(INT32 filter, INT64 *total, INT64 *count);
 
 void RRAP_LevelChanged(void);
 void RRAP_PrisonEggCDMissed(void);
+void RRAP_PrisonEggCDGotten(void);
 
 void RRAP_TickMessages(void);
 void RRAP_Say(const char *msg);

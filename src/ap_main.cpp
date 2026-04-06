@@ -73,7 +73,7 @@ static UINT8 g_goal_trophy_level = 0;
 static boolean g_goal_queued = false;
 static boolean g_goal_sent = false;
 
-static boolean g_cd_missed_this_map = false;
+static boolean g_sent_cd_hint = false;
 
 static srb2::Vector<srb2::String> g_group_blacklist;
 static srb2::Vector<srb2::String> g_group_whitelist;
@@ -1654,18 +1654,20 @@ void RRAP_LevelChanged(void)
 		RRAP_PrisonEggCDMissed();
 	}
 
-	g_cd_missed_this_map = false;
+	g_sent_cd_hint = false;
 }
 
 void RRAP_PrisonEggCDMissed(void)
 {
-	if (g_cd_missed_this_map)
+	if (g_sent_cd_hint)
 	{
 		return;
 	}
 
 	gamedata->missed_prison_egg_pickups++;
-	g_cd_missed_this_map = true;
+	gamedata->deferredsave = true;
+
+	g_sent_cd_hint = true;
 
 	UINT64 hint_cd = gamedata->numprisoneggpickups + gamedata->missed_prison_egg_pickups;
 	if (hint_cd == 0)
@@ -1689,6 +1691,24 @@ void RRAP_PrisonEggCDMissed(void)
 		std::set<INT64> scout_ids = {index};
 		AP_SendLocationScouts(scout_ids, 2);
 	}
+}
+
+void RRAP_PrisonEggCDGotten(void)
+{
+	g_sent_cd_hint = true;
+	gamedata->numprisoneggpickups++;
+
+	if (gamedata->missed_prison_egg_pickups)
+	{
+		gamedata->missed_prison_egg_pickups--;
+	}
+
+	if (!M_UpdateUnlockablesAndExtraEmblems(true, true))
+	{
+		S_StartSound(NULL, sfx_ncitem);
+	}
+
+	gamedata->deferredsave = true;
 }
 
 void RRAP_TickMessages(void)
