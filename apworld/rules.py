@@ -698,6 +698,12 @@ def set_follower_challenge_location_rules(world: RingRacersWorld) -> None:
     )
 
     set_rule(
+        world.get_location("Challenge - Follower: Mosqui"),
+        lambda state:
+            state.has("Driver: Amy", world.player)
+    )
+
+    set_rule(
         world.get_location("Challenge - Follower: Ga"),
         lambda state:
             map_mystic_melody(state, "Collision Chaos", world.player)
