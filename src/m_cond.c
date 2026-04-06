@@ -2065,8 +2065,8 @@ static const char *M_GetConditionString(condition_t *cn)
 		case UC_TOTALTUMBLETIME:
 		{
 			// [RRAP] Nerfed Bowling Pin requirement
-			// Possibly too high still? revisit later
-			UINT32 tumble_time = min(60 * TICRATE, (unsigned)cn->requirement);
+			UINT32 tumble_time = min(10 * TICRATE, (unsigned)cn->requirement);
+
 			return va("tumble through the air for %i:%02i.%02i",
 				G_TicsToMinutes(tumble_time, true),
 				G_TicsToSeconds(tumble_time),
