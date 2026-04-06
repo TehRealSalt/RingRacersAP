@@ -1386,9 +1386,7 @@ def set_follower_challenge_location_rules(world: RingRacersWorld) -> None:
         world.get_location("Challenge - Follower: Canary"),
         lambda state:
             state.can_reach_region("Endless Mine 1", world.player)
-            # TODO: Might need logic for a list of drivers
-            # that have Cluckoid as a rival, since if you don't
-            # have one it will be possible but RNG
+            and state.has_any(("Driver: Billy Hatcher", "Driver: Motobug"), world.player)
     )
 
     set_rule(
