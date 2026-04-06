@@ -148,8 +148,8 @@
 		},
 		{
 			"id": 15,
-			"name": "Challenge - Driver: Chaos",
-			"label": "Chaos",
+			"name": "Challenge - Driver: Chaos Zero",
+			"label": "Chaos Zero",
 			"condition_set": 15,
 			"tags": [
 				"Challenges",
@@ -745,8 +745,8 @@
 		},
 		{
 			"id": 15,
-			"name": "Driver: Chaos",
-			"label": "Chaos",
+			"name": "Driver: Chaos Zero",
+			"label": "Chaos Zero",
 			"unlockable": 15,
 			"skin": "chaos",
 			"class": "useful",

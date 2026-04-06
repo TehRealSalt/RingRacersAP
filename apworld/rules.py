@@ -271,9 +271,10 @@ def set_driver_challenge_location_rules(world: RingRacersWorld) -> None:
     )
 
     set_rule(
-        world.get_location("Challenge - Driver: Chaos"),
+        world.get_location("Challenge - Driver: Chaos Zero"),
         lambda state:
-            (state.has("Driver: Sonic", world.player) and can_reach_sealed_star(state, world.player))
+            state.has("Driver: Sonic", world.player)
+            and can_reach_sealed_star(state, world.player)
     )
 
     set_rule(
@@ -582,7 +583,7 @@ def set_driver_challenge_location_rules(world: RingRacersWorld) -> None:
         )
 
         add_rule(
-            world.get_location("Challenge - Driver: Chaos"),
+            world.get_location("Challenge - Driver: Chaos Zero"),
             lambda state:
                 state.has("Driver: Tikal", world.player),
             "or"
@@ -633,7 +634,7 @@ def set_driver_challenge_location_rules(world: RingRacersWorld) -> None:
         add_rule(
             world.get_location("Challenge - Driver: Tikal"),
             lambda state:
-                state.has("Driver: Chaos", world.player),
+                state.has("Driver: Chaos Zero", world.player),
             "or"
         )
 
