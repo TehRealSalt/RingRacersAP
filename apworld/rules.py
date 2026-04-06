@@ -449,9 +449,11 @@ def set_driver_challenge_location_rules(world: RingRacersWorld) -> None:
             state.can_reach_region("Las Vegas", world.player)
     )
 
-    #
-    # "Challenge - Driver: Ray" is always possible, currently
-    #
+    set_rule(
+        world.get_location("Challenge - Driver: Ray"),
+        lambda state:
+            state.has("Driver: Mighty", world.player)
+    )
 
     set_rule(
         world.get_location("Challenge - Driver: Redz"),
