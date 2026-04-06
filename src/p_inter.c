@@ -49,6 +49,9 @@
 #include "m_easing.h"
 #include "k_hud.h" // K_AddMessage
 
+// [RRAP]
+#include "ap_main.h"
+
 void P_ForceFeed(const player_t *player, INT32 attack, INT32 fade, tic_t duration, INT32 period)
 {
 	BasicFF_t Basicfeed;
@@ -915,17 +918,7 @@ void P_TouchSpecialThing(mobj_t *special, mobj_t *toucher, boolean heightcheck)
 					&& netgame == false // game design + makes it easier to implement
 				)
 				{
-					gamedata->numprisoneggpickups++;
-
-					if (gamedata->missed_prison_egg_pickups)
-					{
-						gamedata->missed_prison_egg_pickups--;
-					}
-
-					if (!M_UpdateUnlockablesAndExtraEmblems(true, true))
-						S_StartSound(NULL, sfx_ncitem);
-
-					gamedata->deferredsave = true;
+					RRAP_PrisonEggCDGotten();
 				}
 
 				statenum_t teststate = (special->state-states);
