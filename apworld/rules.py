@@ -214,13 +214,13 @@ def set_driver_challenge_location_rules(world: RingRacersWorld) -> None:
     set_rule(
         world.get_location("Challenge - Driver: Bark"),
         lambda state:
-            map_mystic_melody(state, "Sub-Zero Peak", world.player)
+            map_time_attack(state, "Sub-Zero Peak", world.player)
     )
 
     set_rule(
         world.get_location("Challenge - Driver: Battle Kukku XV"),
         lambda state:
-            map_mystic_melody(state, "Vermilion Vessel", world.player)
+            map_time_attack(state, "Vermilion Vessel", world.player)
     )
 
     set_rule(
@@ -343,7 +343,7 @@ def set_driver_challenge_location_rules(world: RingRacersWorld) -> None:
         world.get_location("Challenge - Driver: Gutbuster"),
         lambda state:
             state.has_all(("Driver: Bomb", "Driver: Heavy"), world.player)
-            and state.can_reach_region("Sundae Drive", world.player)
+            and map_time_attack(state, "Sundae Drive", world.player)
     )
 
     set_rule(
