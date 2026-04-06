@@ -1781,19 +1781,19 @@ def set_extras_challenge_location_rules(world: RingRacersWorld) -> None:
     set_rule(
         world.get_location("Challenge - Sunbeam Paradise: Brakes"),
         lambda state:
-            state.has("Sneaker Cup Access", world.player)
+            state.has("Ring Cup Access", world.player)
     )
 
     set_rule(
         world.get_location("Challenge - Sunbeam Paradise: Drifting"),
         lambda state:
-            state.has("Barrier Cup Access", world.player)
+            state.has("Spring Cup Access", world.player)
     )
 
     set_rule(
         world.get_location("Challenge - Sunbeam Paradise: Items"),
         lambda state:
-            state.has("Emerald Cup Access", world.player)
+            state.has("Invincible Cup Access", world.player)
     )
 
     set_rule(
