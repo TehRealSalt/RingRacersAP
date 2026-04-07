@@ -1,3 +1,4 @@
+from BaseClasses import Tutorial
 from worlds.AutoWorld import WebWorld
 
 from .jsondata import location_descriptions, item_descriptions
